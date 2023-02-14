@@ -17,12 +17,12 @@ const Pool = ({ pool }) => {
     <>
       <h1>{pool.id}</h1>
       {console.log(pool)}
-      <HeroSection pool={pool} />
+      {/* <HeroSection pool={pool} />
       <section className="pool-token-information">
         <PoolInformation pool={pool} />
         <TokenInformation pool={pool} />
       </section>
-      <AboutProject pool={pool} />
+      <AboutProject pool={pool} /> */}
     </>
   );
 };
