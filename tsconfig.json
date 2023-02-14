@@ -13,12 +13,8 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "incremental": true,
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["./*"]
-    }
+    "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/api/pools/[id].js", "pages/api/pools/index.js", "pages/pools/[id]/index.js", "components/Layout.js", "pages/launchpad.js", "components/LaunchPad/Pools/PoolCard.jsx", "components/LaunchPad/Pools/PoolCard.jsx", "pages/index.js"],
   "exclude": ["node_modules"]
 }
