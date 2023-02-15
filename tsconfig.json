@@ -15,6 +15,6 @@
     "jsx": "preserve",
     "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/api/pools/[id].js", "pages/api/pools/index.js", "pages/pools/[id]/index.js", "components/Layout.js", "pages/launchpad.js", "components/LaunchPad/Pools/PoolCard.jsx", "components/LaunchPad/Pools/PoolCard.jsx", "pages/index.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/api/pools/[id].js", "pages/api/pools/index.js", "pages/pools/[id]/index.js", "components/Layout.js", "pages/launchpad.js", "components/LaunchPad/Pools/PoolCard.jsx", "components/LaunchPad/Pools/PoolCard.jsx", "pages/index.js", "components/Home/HeroSection.jsx", "components/Home/AboutUs.jsx", "components/Home/AboutUs.jsx"],
   "exclude": ["node_modules"]
 }

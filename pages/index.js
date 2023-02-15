@@ -3,14 +3,14 @@ import { ConnectButton } from "@rainbow-me/rainbowkit";
 // import type { NextPage } from "next";
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
-import AboutUs from "../components/Home/AboutUs";
-import HeroSection from "../components/Home/HeroSection";
 import HowToBuy from "../components/Home/HowToBuy";
 import Mission from "../components/Home/Mission";
 import HomeNavbar from "../components/Home/HomeNavbar";
 import Roadmap from "../components/Home/Roadmap";
 import Tokenomics from "../components/Home/Tokenomics";
 import ContractAddress from "../components/Home/ContractAddress";
+import HeroSection from "../components/Home/HeroSection";
+import AboutUs from "../components/Home/AboutUs";
 
 const Home = () => {
   return (

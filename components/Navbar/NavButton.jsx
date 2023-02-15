@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { GlobalAuth } from "../../context/GlobalContext";
+import styles from '../../styles/Navbar.module.css';
 
 export default function NavButton({ value, link }) {
   const { setCheckboxState, setMenuState } = GlobalAuth();
@@ -11,7 +12,7 @@ export default function NavButton({ value, link }) {
         setMenuState((prevState) => !prevState);
         setCheckboxState((prevState) => !prevState);
       }}
-      className="nav-btn"
+      className={styles.navBtn}
     >
       {value}
     </Link>

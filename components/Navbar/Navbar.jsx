@@ -5,6 +5,7 @@ import navLogo from "../../components/assets/icons/nav-logo.svg";
 import { GlobalAuth } from "../../context/GlobalContext";
 import HamburgerIcon from "./HamburgerIcon";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
+import styles from '../../styles/Navbar.module.css';
 // import { useNetwork, useSwitchNetwork } from 'wagmi';
 import Link from "next/link";
 import Image from "next/image";
@@ -17,16 +18,16 @@ export default function Navbar() {
     // console.log({chain})
 
   return (
-    <header id="launchpad-header">
+    <header className={styles.header} id="launchpad-header">
       <Link href="/">
-        <Image className="nav-logo" src={navLogo} alt="logo" />
+        <Image className={styles.navLogo} src={navLogo} alt="logo" />
       </Link>
 
-      <nav className="navbar">
+      <nav className={styles.navbar}>
         {/* MENU */}
-        <ul className={`menu ${menuState ? `active` : ``}`}>
+        <ul className={`${styles.menu} ${menuState ? styles.active : ``}`}>
           <li
-            className="menu-item"
+            className={styles.menuItem}
             onClick={() => {
               setMenuState((prevState) => !prevState);
               setCheckboxState((prevState) => !prevState);
@@ -34,14 +35,14 @@ export default function Navbar() {
           >
             <Link
               href="/#about-us"
-              activeClassName="selected"
+              className={styles.navLink}
               smooth="true"
             >
               About us
             </Link>
           </li>
           <li
-            className="menu-item"
+            className={styles.menuItem}
             onClick={() => {
               setMenuState((prevState) => !prevState);
               setCheckboxState((prevState) => !prevState);
@@ -49,14 +50,14 @@ export default function Navbar() {
           >
             <Link
               href="/#tokenomics"
-              activeClassName="selected"
+              className={styles.navLink}
               smooth="true"
             >
               Tokenomics
             </Link>
           </li>
           <li
-            className="menu-item"
+            className={styles.menuItem}
             onClick={() => {
               setMenuState((prevState) => !prevState);
               setCheckboxState((prevState) => !prevState);
@@ -64,14 +65,14 @@ export default function Navbar() {
           >
             <Link
               href="/#roadmap"
-              activeClassName="selected"
+              className={styles.navLink}
               smooth="true"
             >
               Roadmap
             </Link>
           </li>
           <li
-            className="menu-item"
+            className={styles.menuItem}
             onClick={() => {
               setMenuState((prevState) => !prevState);
               setCheckboxState((prevState) => !prevState);
@@ -82,18 +83,18 @@ export default function Navbar() {
             </Link>
           </li>
           {/* <li
-            className="menu-item"
+            className={styles.menuItem}
             onClick={() => {
               setMenuState((prevState) => !prevState);
               setCheckboxState((prevState) => !prevState);
             }}
           >
-            <NavLink to="/launchpad/staking" activeClassName="selected" smooth="true">
+            <NavLink to="/launchpad/staking" className={styles.navLink} smooth="true">
               Staking
             </NavLink>
           </li> */}
           <li
-            className="menu-item"
+            className={styles.menuItem}
             onClick={() => {
               setMenuState((prevState) => !prevState);
               setCheckboxState((prevState) => !prevState);
@@ -101,14 +102,14 @@ export default function Navbar() {
           >
             <Link
               href="/#how-to-buy"
-              activeClassName="selected"
+              className={styles.navLink}
               smooth="true"
             >
               How to buy
             </Link>
           </li>
           <li
-            className="menu-item"
+            className={styles.menuItem}
             onClick={() => {
               setMenuState((prevState) => !prevState);
               setCheckboxState((prevState) => !prevState);
@@ -116,19 +117,19 @@ export default function Navbar() {
           >
             <Link
               href="/#contact"
-              activeClassName="selected"
+              className={styles.navLink}
               smooth="true"
             >
               Contact us
             </Link>
           </li>
 
-          <div className="btn" id="mobile-btn">
+          <div className={`${styles.btn} ${styles.mobileBtn}`} id="mobileBtn">
             <ConnectButton />
           </div>
         </ul>
       </nav>
-      <div className="btn" id="desktop-btn">
+      <div className={`${styles.btn} ${styles.desktopBtn}`} id="desktopBtn">
         <ConnectButton />
       </div>
 

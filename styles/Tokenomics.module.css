@@ -1,0 +1,31 @@
+.tokenomics {
+  background: var(--body-bg);
+  z-index: 99999;
+  padding-block: 5em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-bottom: 1px solid #1f2937;
+}
+
+.title {
+  margin-bottom: 4rem;
+}
+
+.tokenomicsContainer {
+  display: grid;
+  font-size: 18px;
+  gap: 42px 20px;
+}
+
+.figure {
+  color: var(--text-color);
+}
+
+.card {
+  width: 100%;
+  padding: 16px;
+  text-align: center;
+  border: 1.41148px dashed #454fda;
+  border-radius: 14.1148px 14.11px 14.11px 14.1148px;
+}

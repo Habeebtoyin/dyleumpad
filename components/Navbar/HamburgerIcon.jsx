@@ -1,12 +1,13 @@
 import { GlobalAuth } from "../../context/GlobalContext";
+import styles from '../../styles/Navbar.module.css';
 
 export default function HamburgerIcon() {
   const { checkboxState, setCheckboxState, setMenuState } = GlobalAuth();
 
   return (
-    <div className="hamburger">
+    <div className={styles.hamburger}>
       <input
-        id="input"
+        className={styles.input}
         type="checkbox"
         checked={checkboxState ? `checked` : ``}
         onChange={() => {
@@ -14,9 +15,9 @@ export default function HamburgerIcon() {
           setCheckboxState((prevState) => !prevState);
         }}
       />
-      <span id="span1"></span>
-      <span id="span2"></span>
-      <span id="span3"></span>
+      <span className={`${styles.span} ${styles.span1}`}></span>
+      <span className={`${styles.span} ${styles.span2}`}></span>
+      <span className={`${styles.span} ${styles.span3}`}></span>
     </div>
   );
 }
