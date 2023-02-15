@@ -27,9 +27,9 @@ export default function Tokenomics() {
           <span className={styles.figure}>15%</span>
         </div>
         {/* teams stat */}
-        <div className="card">
+        <div className={`${styles.card} ${AboutStyles.card}`}>
           <span>Team</span>
-          <span className="figure">10%</span>
+          <span className={styles.figure}>10%</span>
         </div>
       </div>
     </section>

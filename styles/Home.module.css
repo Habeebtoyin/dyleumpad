@@ -24,7 +24,6 @@
   left: 50%;
   padding-block: 225px 110px;
   transform: translateX(-50%);
-
   width: 100%;
   text-align: center;
   padding-inline: var(--padding);
@@ -43,11 +42,13 @@
 
 .heroBg {
   overflow-x: hidden;
-  height: 463px;
-  width: 100%;
+  height: 463px !important;
+  width: 100% !important;
   overflow-x: hidden;
-  transform: perspective(300px) translate3d(0px, -66px, 42px)
-    scale3d(0.86, 0.75, 1) translateY(816px);
+  position: unset;
+  margin-top: 470px !important;
+  /* transform: perspective(300px) translate3d(0px, -66px, 42px)
+    scale3d(0.86, 0.75, 1) translateY(816px); */
 }
 
 .heroTitle {
@@ -111,3 +112,17 @@
   letter-spacing: -1.68px;
   text-align: center;
 }
+
+
+
+/* -------------------------------------------------------------------------------- */
+/* LAUNCHPAD PAGE  */
+
+.launchpadHeroSection {
+  height: 1100px;
+}
+
+.launchpadImg {
+  width: 100%;
+}
+

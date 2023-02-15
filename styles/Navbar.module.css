@@ -26,7 +26,7 @@
 
 .active {
   background-color: var(--body-bg);
-  padding-top: 20em;
+  padding-top: 16em;
   position: absolute;
   top: 0;
   right: 0;
@@ -76,11 +76,9 @@
 }
 
 /* Nav button */
-.btn {
-  margin-top: 2rem;
-}
 
 .navBtn {
+  margin-top: 2rem;
   background: linear-gradient(
     90.72deg,
     rgba(107, 3, 184, 0.9) 21.79%,
@@ -143,7 +141,7 @@
   margin-bottom: 0;
 }
 
-.input:checked ~ span {
+.checked{
   background: linear-gradient(
     90.72deg,
     rgba(107, 3, 184, 0.9) 21.79%,
@@ -152,15 +150,15 @@
   );
 }
 
-.input:checked ~ #span1 {
+.checkedSpan1 {
   transform: rotate(45deg) translate(8px);
 }
 
-.input:checked ~ #span2 {
+.checkedSpan2 {
   transform: rotate(495deg) translate(4px);
 }
 
-.input:checked ~ #span3 {
+.checkedSpan3 {
   transform: rotate(45deg);
   opacity: 0;
 }

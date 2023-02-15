@@ -24,22 +24,22 @@ export default function HomeNavbar() {
           <li
             className={styles.menuItem}
             onClick={() => {
-              setMenuState((prevState) => !prevState);
-              setCheckboxState((prevState) => !prevState);
+              setMenuState((prevState : any) => !prevState);
+              setCheckboxState((prevState : any) => !prevState);
             }}
           >
-            <Link href="/#about-us" className={styles.navLink} smooth="true">
+            <Link href="/#about-us" className={styles.navLink} >
               About us
             </Link>
           </li>
           <li
             className={styles.menuItem}
             onClick={() => {
-              setMenuState((prevState) => !prevState);
-              setCheckboxState((prevState) => !prevState);
+              setMenuState((prevState : any) => !prevState);
+              setCheckboxState((prevState : any) => !prevState);
             }}
           >
-            <Link href="/#tokenomics" className={styles.navLink} smooth="true">
+            <Link href="/#tokenomics" className={styles.navLink} >
               Tokenomics
             </Link>
           </li>
@@ -62,53 +62,53 @@ export default function HomeNavbar() {
           <li
             className={styles.menuItem}
             onClick={() => {
-              setMenuState((prevState) => !prevState);
-              setCheckboxState((prevState) => !prevState);
+              setMenuState((prevState : any) => !prevState);
+              setCheckboxState((prevState : any) => !prevState);
             }}
           >
-            <Link href="/#roadmap" className={styles.navLink} smooth="true">
+            <Link href="/#roadmap" className={styles.navLink} >
               Roadmap
             </Link>
           </li>
           <li
             className={styles.menuItem}
             onClick={() => {
-              setMenuState((prevState) => !prevState);
-              setCheckboxState((prevState) => !prevState);
+              setMenuState((prevState : any) => !prevState);
+              setCheckboxState((prevState : any) => !prevState);
             }}
           >
-            <Link href="/launchpad" className={styles.navLink} smooth="true">
+            <Link href="/launchpad" className={styles.navLink} >
               Launchpad
             </Link>
           </li>
           <li
             className={styles.menuItem}
             onClick={() => {
-              setMenuState((prevState) => !prevState);
-              setCheckboxState((prevState) => !prevState);
+              setMenuState((prevState : any) => !prevState);
+              setCheckboxState((prevState : any) => !prevState);
             }}
           >
-            <Link href="/#how-to-buy" className={styles.navLink} smooth="true">
+            <Link href="/#how-to-buy" className={styles.navLink} >
               How to buy
             </Link>
           </li>
           <li
             className={styles.menuItem}
             onClick={() => {
-              setMenuState((prevState) => !prevState);
-              setCheckboxState((prevState) => !prevState);
+              setMenuState((prevState : any) => !prevState);
+              setCheckboxState((prevState : any) => !prevState);
             }}
           >
-            <Link href="/#contact" className={styles.navLink} smooth="true">
+            <Link href="/#contact" className={styles.navLink} >
               Contact us
             </Link>
           </li>
-          <div className={`${styles.btn} ${styles.mobileBtn}`} id="mobile-btn">
+          <div className={`${styles.navBtn} ${styles.mobileBtn}`} id="mobile-btn">
             <NavButton link="/launchpad" value="SLM LaunchPad" />
           </div>
         </ul>
       </nav>
-      <div className={`${styles.btn} ${styles.mobileBtn}`} id="desktop-btn">
+      <div className={`${styles.navBtn} ${styles.desktopBtn}`} id="desktop-btn">
         <NavButton link="/launchpad" value="SLM LaunchPad" />
       </div>
 

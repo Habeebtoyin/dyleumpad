@@ -1,20 +1,15 @@
 import border from "../assets/icons/buy-btn-border.svg";
+import styles from '../../styles/Launchpad.module.css';
 
 export default function BuyButtons() {
   return (
-    <section className="buy-btns">
-      {/* <div className=""> */}
-      {/* <img src={border} alt="border" /> */}
-      <a href="#" className="buy-btn active">
+    <section className={styles.buyBtns}>
+      <a href="#" className={`${styles.buyBtn} ${styles.buyBtnActive}`}>
         Buy on Equaliser
       </a>
-      {/* </div> */}
-      {/* <div className=""> */}
-      {/* <img src={border} alt="border" /> */}
-      <a href="#" className="buy-btn">
+      <a href="#" className={`${styles.buyBtn} `}>
         Buy on Firebird
       </a>
-      {/* </div> */}
     </section>
   );
 }

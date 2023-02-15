@@ -1,5 +1,7 @@
 import { useState } from "react";
 import copyIcon from "../assets/icons/copy-icon.svg";
+import styles from '../../styles/ContractAddress.module.css';
+import Image from "next/image";
 
 export default function ContractAddress() {
   const [successMessageState, setSuccessMessageState] = useState(false);
@@ -9,30 +11,37 @@ export default function ContractAddress() {
     let text = "0x39263A476aADF768BE43a99b24C4e461098524a4";
     navigator.clipboard.writeText(text).then(
       function () {
+        setSuccessMessageState(true)
         console.log("Async: copying address was successful");
-        setTimeout(() => {}, 4000);
+        setTimeout(() => {
+          setSuccessMessageState(false)
+        }, 3000);
       },
       function (err) {
         console.error("Aync could not copy text:", err);
+        setErrorMessageState(true)
+        setTimeout(() => {
+          setSuccessMessageState(false)
+        }, 4000);
       }
     );
   }
   return (
-    <section className="contract-address">
-      <h1>0X39263A476aADF768BE43a99b24C4e461098524a4</h1>
-      <button onClick={copyToClipboard}>
+    <section className={styles.contractAddress}>
+      <h1 className={styles.heading}>0X39263A476aADF768BE43a99b24C4e461098524a4</h1>
+      <button className={styles.button} onClick={copyToClipboard}>
         Copy Contract Address
-        <img src={copyIcon} alt="copy icon" />
+        <Image src={copyIcon} alt="copy icon" />
       </button>
       <div
-        className={`message success-message ${
-          successMessageState ? `` : `hidden`
+        className={`${styles.message} ${
+          successMessageState ? `` : styles.hidden
         }`}
       >
         Copied to clipboard
       </div>
       <div
-        className={`message error-message ${errorMessageState ? `` : `hidden`}`}
+        className={`${styles.message} ${errorMessageState ? `` : styles.hidden}`}
       >
         Error !
       </div>

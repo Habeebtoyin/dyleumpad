@@ -15,9 +15,9 @@ export default function HamburgerIcon() {
           setCheckboxState((prevState) => !prevState);
         }}
       />
-      <span className={`${styles.span} ${styles.span1}`}></span>
-      <span className={`${styles.span} ${styles.span2}`}></span>
-      <span className={`${styles.span} ${styles.span3}`}></span>
+      <span className={`${checkboxState ? `${styles.checked} ${styles.checkedSpan1}` : ``} ${styles.span} ${styles.span1}`}></span>
+      <span className={`${checkboxState ? `${styles.checked} ${styles.checkedSpan2}` : ``} ${styles.span} ${styles.span2}`}></span>
+      <span className={`${checkboxState ? `${styles.checked} ${styles.checkedSpan3}` : ``} ${styles.span} ${styles.span3}`}></span>
     </div>
   );
 }

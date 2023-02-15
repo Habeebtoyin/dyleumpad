@@ -1,3 +1,4 @@
+import styles from '../../../styles/Launchpad.module.css';
 import dots from "../../assets/icons/launchpad-card-dots.svg";
 import cardBorder from "../../assets/icons/Strokes.svg";
 import cardBorder1 from "../../assets/icons/strokes1.svg";
@@ -14,12 +15,12 @@ export default function PoolCard({ pool }) {
   percentage = percentage.toFixed(2) + "%";
 
   return (
-    <div key={pool.id} className="pool-container">
-      <div className="pool-box">
-        <div className="box">
+    <div key={pool.id} className={styles.poolContainer}>
+      {/* <div className="pool-box"> */}
+          <div className={styles.box}>
           {pool.tag !== "completed" && (
             <Image
-              className="box-img"
+              className={styles.boxImg}
               src={cardBorder}
               alt="box border"
               width={100}
@@ -27,22 +28,22 @@ export default function PoolCard({ pool }) {
           )}
           {pool.tag === "completed" && (
             <Image
-              className="box-img completed-pool-box"
+              className={`${styles.boxImg} ${styles.completedPoolBox}`}
               src={cardBorder1}
               alt="box border"
               width={100}
             />
           )}
           {/* <!--content inside the box--> */}
-          <div className="fContent">
+          <div className={styles.fContent}>
             {/* <!--begin top contents--> */}
             <Image src={dots} alt="dots" width={39.31} />
-            <div className="topContent">
+            <div className={styles.topContent}>
               {/* <div className="logo">{pool?.logo}</div> */}
               <Image className="logo" src={DAILogo} alt="logo" />
-              <div className="buttons">
+              <div className={styles.buttons}>
                 {pool.tags?.map((tag, index) => (
-                  <button key={index} className="btn">
+                  <button key={index} className={styles.btn}>
                     {tag}
                   </button>
                 ))}
@@ -128,7 +129,7 @@ export default function PoolCard({ pool }) {
           </Link>
           // </button>
         )}
-      </div>
+      {/* </div> */}
     </div>
   );
 }

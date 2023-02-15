@@ -124,12 +124,12 @@ export default function Navbar() {
             </Link>
           </li>
 
-          <div className={`${styles.btn} ${styles.mobileBtn}`} id="mobileBtn">
+          <div className={`${styles.navBtn} ${styles.mobileBtn}`} id="mobileBtn">
             <ConnectButton />
           </div>
         </ul>
       </nav>
-      <div className={`${styles.btn} ${styles.desktopBtn}`} id="desktopBtn">
+      <div className={`${styles.navBtn} ${styles.desktopBtn}`} id="desktopBtn">
         <ConnectButton />
       </div>
 

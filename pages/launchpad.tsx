@@ -5,7 +5,7 @@ import Pools from "../components/LaunchPad/Pools/Pools";
 import Navbar from "../components/Navbar/Navbar";
 import { server } from "../config";
 
-export default function LaunchPad({pools}) {
+export default function LaunchPad({pools }: any) {
   console.log(pools);
   
   return (

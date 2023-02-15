@@ -9,6 +9,9 @@
   padding-top: 74px;
   padding-bottom: 92px;
   position: relative;
+  text-align: center;
+  font-weight: 400;
+  font-size: var(--section-title-font-size);
 }
 
 .div {
@@ -66,62 +69,72 @@
 }
 
 .connectorLine {
-  display: none;
-  position: absolute;
+  display: none !important;
+  /* position: absolute; */
 }
 
-
 .ourMission {
-    height: 1260px;
-    width: 100%;
-    text-align: center;
-    position: relative;
-    background: #101725;
-    z-index: -1;
-  }
-  
-  .missionBg {
-    transform: perspective(300px) translate3d(0px, -66px, 79px)
-      scale3d(0.86, 0.75, 1) translateY(729px);
-    width: 100%;
-  }
-  
-  .missionContainer {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    width: 90%;
-    transform: translateX(-50%);
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    padding-top: 132px;
-  }
-  
-  .containerGroup
-  /* .container > div div  */
-  {
-    display: flex;
-    flex-direction: column;
-    margin-top: 21px;
-  }
-  
-  .containerMainGroup{
-    gap: 30px;
-  }
-  
-  .containerSubGroup {
-    gap: 5px;
-  }
-  
-  .containerText {
-    font-weight: 400;
-    line-height: 31px;
-    color: var(--text-color);
-  }
-  
-  .missionAsset {
-    margin-top: 6.25em;
-    width: 100%;
-    margin-inline: auto;
-  }
+  padding-inline: var(--padding);
+  height: 1260px;
+  width: 100%;
+  text-align: center;
+  position: relative;
+  background: #101725;
+  z-index: -1;
+}
+
+.missionTitle {
+  padding-bottom: 0;
+  padding-top: 0;
+}
+
+.missionBg {
+  transform: perspective(300px) translate3d(0px, -66px, 79px)
+    scale3d(0.86, 0.75, 1) translateY(729px);
+  width: 100%;
+}
+
+.missionContainer {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 90%;
+  height: 100%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 132px;
+}
+
+.containerGroup
+  /* .container > div div  */ {
+  display: flex;
+  flex-direction: column;
+  margin-top: 21px;
+}
+
+.containerMainGroup {
+  gap: 30px;
+}
+
+.containerSubGroup {
+  gap: 5px;
+}
+
+.containerText {
+  font-weight: 400;
+  line-height: 31px;
+  color: var(--text-color);
+}
+
+.missionAsset {
+  margin-top: 6.25em !important;
+  width: 100% !important;
+  margin-inline: auto;
+}
+
+.bold {
+  color: #a2a8fc;
+  font-weight: 500;
+}

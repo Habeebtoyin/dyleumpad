@@ -1,3 +1,4 @@
+import styles from '../../../styles/Launchpad.module.css';
 import PoolsBtn from "./PoolsBtn";
 import ReactPaginate from "react-paginate";
 import { lazy, Suspense, useState } from "react";
@@ -34,8 +35,8 @@ export default function Pools({pools}) {
 
   return (
     // <Suspense fallback={<Loading />}>
-      <section className="pools">
-        <div className="pools-btns">
+      <section className={styles.pools}>
+        <div className={styles.poolsBtns}>
           {titles.map((item) => (
             <PoolsBtn
               key={item.id}
@@ -49,7 +50,7 @@ export default function Pools({pools}) {
         <PoolsBtn id="completed" title="Completed Pools" /> */}
         </div>
 
-        <div className="container">
+        <div className="">
           {pools
             ?.slice(pagesVisited, pagesVisited + cardPerPage)
             .map((pool) => (

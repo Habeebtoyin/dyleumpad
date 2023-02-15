@@ -1,4 +1,5 @@
 .tokenomics {
+  padding-inline: var(--padding);
   background: var(--body-bg);
   z-index: 99999;
   padding-block: 5em;
@@ -10,6 +11,8 @@
 
 .title {
   margin-bottom: 4rem;
+  padding-bottom: 0;
+  padding-top: 0;
 }
 
 .tokenomicsContainer {
@@ -24,8 +27,12 @@
 
 .card {
   width: 100%;
-  padding: 16px;
+  /* padding: 16px; */
   text-align: center;
+  /* justify-content: center; */
+  flex-direction: row;
+  /* gap: 16px; */
+  /* justify-content: space-between; */
   border: 1.41148px dashed #454fda;
   border-radius: 14.1148px 14.11px 14.11px 14.1148px;
 }

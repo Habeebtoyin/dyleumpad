@@ -7,7 +7,7 @@ import TokenInformation from "../../../components/PoolCardDetails/TokenInformati
 import { server } from "../../../config";
 import { GlobalAuth } from "../../../context/GlobalContext";
 
-const Pool = ({ pool }) => {
+const Pool = ({ pool } : any) => {
   // const { poolsData } = GlobalAuth();
   // const router = useRouter();
   // const { id } = router.query;
@@ -27,7 +27,7 @@ const Pool = ({ pool }) => {
   );
 };
 
-export const getStaticProps = async (context) => {
+export const getStaticProps = async (context : any) => {
   const res = await fetch(`${server}/api/pools/${context.params.id}`);
   const pool = await res.json();
   console.log(pool)
@@ -43,8 +43,8 @@ export const getStaticPaths = async () => {
   const res = await fetch(`${server}/api/pools`);
   const pool = await res.json();
 
-  const ids = pool.map((item) => item.id);
-  const paths = ids.map((id) => {
+  const ids = pool.map((item : any) => item.id);
+  const paths = ids.map((id : number) => {
     {
       params: {
         id: id.toString();
