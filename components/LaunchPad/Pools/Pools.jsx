@@ -50,7 +50,7 @@ export default function Pools({pools}) {
         <PoolsBtn id="completed" title="Completed Pools" /> */}
         </div>
 
-        <div className="">
+        <div className={styles.container}>
           {pools
             ?.slice(pagesVisited, pagesVisited + cardPerPage)
             .map((pool) => (

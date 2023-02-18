@@ -45,7 +45,7 @@
   height: 463px !important;
   width: 100% !important;
   overflow-x: hidden;
-  position: unset;
+  position: unset !important;
   margin-top: 470px !important;
   /* transform: perspective(300px) translate3d(0px, -66px, 42px)
     scale3d(0.86, 0.75, 1) translateY(816px); */

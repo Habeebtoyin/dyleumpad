@@ -9,7 +9,7 @@ export default function PoolsBtn({ item, active }) {
     <div key={item?.id} className={styles.poolsBtn}>
       <a
         id={item?.id}
-        href=""
+        href="#"
         className={`${styles.poolsBtnLink} ${active ? styles.poolsBtnsActiveLink : ``} `}
         onClick={() => {
           setSelectedPool(item?.id);

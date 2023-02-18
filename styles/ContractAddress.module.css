@@ -19,6 +19,7 @@
 .button {
   cursor: pointer;
   border: none;
+  outline: none;
   background: linear-gradient(
     90.72deg,
     rgba(107, 3, 184, 0.9) 21.79%,

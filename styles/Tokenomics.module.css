@@ -27,12 +27,11 @@
 
 .card {
   width: 100%;
-  /* padding: 16px; */
+  padding: 16px;
   text-align: center;
-  /* justify-content: center; */
+  justify-content: center;
   flex-direction: row;
-  /* gap: 16px; */
-  /* justify-content: space-between; */
+  gap: 16px;
   border: 1.41148px dashed #454fda;
   border-radius: 14.1148px 14.11px 14.11px 14.1148px;
 }

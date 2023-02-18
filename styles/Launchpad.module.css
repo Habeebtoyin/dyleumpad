@@ -1,6 +1,6 @@
 .buyBtns {
   display: flex;
-  justify-content: start;
+  justify-content: flex-start;
   flex-direction: column;
   align-items: center;
   gap: 15px 30px;
@@ -44,7 +44,7 @@
 
 .poolsBtns {
   display: flex;
-  justify-content: start;
+  justify-content: flex-start;
   flex-direction: column;
   border: 1px solid #374151;
   margin-block: 47px 74.1px;
@@ -76,22 +76,27 @@
   border-bottom: 0;
 }
 
-.poolsContainer {
+.container {
   display: grid;
   gap: 32px;
   width: 100%;
 }
 
-/* .pool-container {
-    width: 100%;
-    position: relative;
-  } */
+.poolBox {
+  width: 100%;
+  position: relative;
+}
 
 .box {
   position: relative;
   display: flex;
   justify-content: center;
   text-align: left;
+}
+
+.boxImg {
+  width: 100% !important;
+  height: 100% !important;
 }
 
 /* BOX DETAILS */
@@ -108,19 +113,136 @@
   margin-block: 13px 14px;
   display: flex;
   justify-content: space-between;
+  /* align-items: center; */
+  height: fit-content;
+  width: 100%;
   gap: 20px;
 }
 
+.logo {
+  width: 66px !important;
+  height: 46px !important;
+  min-width: 66px !important;
+  min-height: 46px !important;
+  margin: 0 !important;
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  justify-content: center;
+  background: rgba(217, 217, 217, 0.03);
+  border: 0.961652px solid #374151;
+}
+
 .buttons {
-    width: fit-content;
-    display: flex;
-    gap: 7.69px;
-  }
-  
+  width: fit-content;
+  height: fit-content;
+  display: flex;
+  gap: 7.69px;
+}
 
+.midContent {
+  width: 95%;
+  margin-left: auto;
+}
 
-@media screen and (min-width: 400px) {
+.midContentText {
+  font-size: 14px;
+  line-height: 1.7em;
+  font-weight: 300;
+  font-size: 10.5px;
+  line-height: 21px;
+  color: #d1d5db;
+}
+
+.boxButton {
+  text-align: center;
+  line-height: 12px;
+  background: linear-gradient(
+    106.23deg,
+    rgba(0, 255, 255, 0.1) 221.75%,
+    rgba(98, 209, 255, 0.1) 308.55%
+  );
+  border: 0.480826px solid #42e8e0;
+  border-radius: 30px;
+  color: #e5e7eb;
+  outline: none;
+  font-size: 11px;
+  letter-spacing: -0.02em;
+  padding: 6.73px 12.5px;
+  width: fit-content;
+  height: fit-content;
+}
+
+.dash {
+  border: 1px dashed #00e5ff;
+  transform: rotate(-0.17deg);
+  margin-block: 32.73px 34.27px;
+}
+
+.boxHeading {
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 30px;
+  color: #f3f4f6;
+  letter-spacing: -0.02em;
+}
+
+.allocationGroup {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 17.73px;
+  width: 100%;
+}
+
+.allocationGroupContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 7.87px;
+}
+
+.allocationGroupText {
+  font-size: 10.5782px;
+  line-height: 13px;
+  color: var(--card-p-color);
+}
+
+.allocationGroupHeading {
+  font-size: 14px;
+  line-height: 19px;
+  color: var(--card-text-color);
+}
+
+.allocationGroupHeading,
+.allocationGroupText,
+.percentageBarHeading,
+.percentageBarText,
+.viewMoreBtn,
+.details h1,
+.details h2,
+.details p {
+  letter-spacing: -0.005em;
+}
+
+.viewMoreBtn {
+  background: #08272f;
+  border: 1px solid #2166ae;
+  outline: none;
+  display: flex;
+  max-width: 420px;
+  justify-content: center;
+  padding-block: 13.5px;
+  align-items: center;
+  color: var(--white);
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  width: 100%;
+  margin-top: 16px;
+}
+
+/* @media screen and (min-width: 400px) {
   .buyBtn {
     font-size: 16px;
   }
-}
+} */

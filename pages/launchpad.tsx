@@ -17,7 +17,7 @@ export default function LaunchPad({pools }: any) {
           content="A Global Hub for Farmers, Degens, and Tech Geeks"
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/nav-logo.svg" />
+        <link rel="icon" href="/logo-icon.svg" />
       </Head>
       <Navbar />
       <main className="launchpad">

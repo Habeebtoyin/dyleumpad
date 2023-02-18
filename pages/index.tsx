@@ -21,7 +21,7 @@ const Home = () => {
           name="description"
           content="A Global Hub for Farmers, Degens, and Tech Geeks"
         />
-        <link rel="icon" href="/nav-logo.svg" />
+        <link rel="icon" href="/logo-icon.svg" />
       </Head>
 
       <HomeNavbar />

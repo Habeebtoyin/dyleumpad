@@ -14,18 +14,21 @@ export default function AboutUs() {
         id="connector-line-1"
         className={`${styles.connectorLine} ${styles.connectorLine1}`}
         src={connectorLine1}
+        width="100%"
         alt="Connector line 1"
       />
       <Image
         id="connector-line-2"
         className={`${styles.connectorLine} ${styles.connectorLine2}`}
         src={connectorLine2}
+        width="100%"
         alt="Connector line 2"
       />
       <Image
         id="connector-line-3"
         className={`${styles.connectorLine} ${styles.connectorLine3}`}
         src={connectorLine3}
+        width="100%"
         alt="Connector line 3"
       />
 

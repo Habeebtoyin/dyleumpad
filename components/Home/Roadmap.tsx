@@ -10,7 +10,7 @@ export default function Roadmap() {
         <div className={`${styles.card} ${AboutStyles.card}`}>
           <div className={styles.phaseNo}>1</div>
           <div className="">
-            <h3>Phase 1</h3>
+            <h3 className={styles.cardHeading}>Phase 1</h3>
             <ul>
               <li className={styles.listItem}>Token creation</li>
               <li className={styles.listItem}>Launch on equalizer DEX</li>
@@ -25,7 +25,7 @@ export default function Roadmap() {
         <div className={`${styles.card} ${AboutStyles.card}`}>
           <div className={styles.phaseNo}>2</div>
           <div className="">
-            <h3>Phase 2</h3>
+            <h3 className={styles.cardHeading}>Phase 2</h3>
             <ul>
               <li className={styles.listItem}>Website creation</li>
               <li className={styles.listItem}>Twitter spaces with prominent KOLs</li>
@@ -38,11 +38,11 @@ export default function Roadmap() {
             <p className={styles.text}>*LP farming and staking on Equalizer Dex</p>
           </div>
         </div>
-        {/* Phase 2 */}
+        {/* Phase 3 */}
         <div className={`${styles.card} ${AboutStyles.card}`}>
           <div className={styles.phaseNo}>3</div>
           <div className="">
-            <h3>Phase 3</h3>
+            <h3 className={styles.cardHeading}>Phase 3</h3>
             <ul>
               <li className={styles.listItem}>DAO creation</li>
               <li className={styles.listItem}>Launch of governance mechanism</li>

@@ -3,14 +3,20 @@ import twitterLogo from "../components/assets/icons/twitter.svg";
 import telegramLogo from "../components/assets/icons/telegram.svg";
 import Link from "next/link";
 import Image from "next/image";
-import styles from '../styles/Footer.module.css';
+import styles from "../styles/Footer.module.css";
 // import { NavHashLink } from "react-router-hash-link";
 
 export default function Footer() {
   return (
     <footer id="contact" className={styles.footer}>
       {/* footer Logo */}
-      <Image className={styles.footerLogo} src={footerLogo} alt="footer logo" />
+      <Link href="/">
+        <Image
+          className={styles.footerLogo}
+          src={footerLogo}
+          alt="footer logo"
+        />
+      </Link>
 
       {/* NAV LINKS */}
       <ul className={styles.listContainer}>
@@ -45,12 +51,22 @@ export default function Footer() {
       <div className={styles.socialMediaLinks}>
         {/* TWITTER */}
         <a href="https://twitter.com/solimax_?s=21&t=9kRJw2sM-LP9OHpM9DIrrA">
-          <Image width="24px" height="24px" src={twitterLogo} alt="twitter logo" />
+          <Image
+            width="24px"
+            height="24px"
+            src={twitterLogo}
+            alt="twitter logo"
+          />
         </a>
 
         {/* TELEGRAM */}
         <a href="https://t.me/SoliMax_Official">
-          <Image width="24px" height="24px" src={telegramLogo} alt="telegram logo" />
+          <Image
+            width="24px"
+            height="24px"
+            src={telegramLogo}
+            alt="telegram logo"
+          />
         </a>
       </div>
     </footer>

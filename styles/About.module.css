@@ -69,8 +69,15 @@
 }
 
 .connectorLine {
+  /* border: 1px solid #fff !important; */
   display: none !important;
-  /* position: absolute; */
+  position: absolute;
+}
+
+.connectorLine1,
+.connectorLine2,
+.connectorLine3{
+  width: 100%;
 }
 
 .ourMission {

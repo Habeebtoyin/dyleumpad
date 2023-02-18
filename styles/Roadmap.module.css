@@ -7,7 +7,6 @@
 .title {
   /* margin-bottom: 2em; */
   padding-top: 0;
-  
 }
 
 .div {
@@ -40,4 +39,10 @@
   margin-top: 2.5rem;
   color: #a2a8fc;
   font-weight: 500;
+}
+
+.cardHeading {
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 36px;
 }
