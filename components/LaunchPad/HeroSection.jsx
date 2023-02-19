@@ -1,4 +1,5 @@
-import styles from "../../styles/Home.module.css";
+import HomeStyles from "../../styles/Home.module.css";
+import styles from "../../styles/Launchpad.module.css";
 import arrowRight from "../assets/icons/arrow-right.svg";
 import heroImg from "../assets/images/launchpad/hero-img.png";
 import heroBg from "../assets/images/launchpad/hero-frame.png";
@@ -8,20 +9,20 @@ import Link from "next/link";
 
 export default function HeroSection() {
   return (
-    <section className={`${styles.heroSection} ${styles.launchpadHeroSection}`}>
+    <section className={`${styles.heroSection}`}>
       <Image className={styles.bg} src={heroBg} alt="hero background" />
 
-      <div className={styles.heroContainer}>
-        <div className={styles.leftCol}>
-          <h1 className={styles.heroTitle}>
+      <div className={`${styles.heroContainer}`}>
+        <div className={`${HomeStyles.leftCol} ${styles.leftCol}`}>
+          <h1 className={HomeStyles.heroTitle}>
             A Secure Multi-chain Launch-pad with High Staking
           </h1>
           <Image src={dash} alt="dash" />
-          <p className={styles.text}>Want to raise funds with SoliMax Launchpad?</p>
+          <p className={HomeStyles.text}>Want to raise funds with SoliMax Launchpad?</p>
           {/* HERO BTN */}
-          <button className={styles.heroBtn}>
+          <button className={HomeStyles.heroBtn}>
             <a
-              className={`${styles.buySlmBtn} ${styles.heroButtonLink}`}
+              className={`${HomeStyles.buySlmBtn} ${HomeStyles.heroButtonLink}`}
               href="https://egx10b579vb.typeform.com/to/MrD6iduN"
             >
               Apply as a Project

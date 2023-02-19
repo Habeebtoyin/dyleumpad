@@ -7,7 +7,40 @@ import TokenInformation from "../../../components/PoolCardDetails/TokenInformati
 import { server } from "../../../config";
 import { GlobalAuth } from "../../../context/GlobalContext";
 
-const Pool = ({ pool } : any) => {
+export const getStaticPaths = async () => {
+  console.log(server)
+  const res = await fetch(`${server}/api/pools`);
+  const data = await res.json();
+
+  // const ids = pool.map((item : any) => item.id);
+  const paths = data.map((item: any) => {
+    return {
+      params: {
+        id: item.id.toString(),
+      },
+    };
+  });
+
+  return {
+    paths,
+    fallback: false,
+  };
+};
+
+export const getStaticProps = async (context: any) => {
+  const id = context.params.id;
+  const res = await fetch(`${server}/api/pools/${id}`);
+  const data = await res.json();
+  console.log(data);
+
+  return {
+    props: {
+      pool: data,
+    },
+  };
+};
+
+const Pool = ({ pool }: any) => {
   // const { poolsData } = GlobalAuth();
   // const router = useRouter();
   // const { id } = router.query;
@@ -25,37 +58,6 @@ const Pool = ({ pool } : any) => {
       <AboutProject pool={pool} /> */}
     </>
   );
-};
-
-export const getStaticProps = async (context : any) => {
-  const res = await fetch(`${server}/api/pools/${context.params.id}`);
-  const pool = await res.json();
-  console.log(pool)
-
-  return {
-    props: {
-      pool,
-    },
-  };
-};
-
-export const getStaticPaths = async () => {
-  const res = await fetch(`${server}/api/pools`);
-  const pool = await res.json();
-
-  const ids = pool.map((item : any) => item.id);
-  const paths = ids.map((id : number) => {
-    {
-      params: {
-        id: id.toString();
-      }
-    }
-  });
-
-  return {
-    paths,
-    fallback: false,
-  };
 };
 
 export default Pool;

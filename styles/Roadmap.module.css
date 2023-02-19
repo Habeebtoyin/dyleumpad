@@ -1,6 +1,6 @@
 .roadmap {
   padding-block: 9.2rem 5.5rem;
-  padding-inline: var(--padding);
+  /* padding-inline: var(--padding); */
   background: linear-gradient(360deg, #0f1522 0%, rgba(16, 23, 37, 0) 88.29%);
 }
 
@@ -45,4 +45,31 @@
   font-weight: 400;
   font-size: 20px;
   line-height: 36px;
+}
+
+@media screen and (min-width: 768px) {
+  /* .title {
+    margin-bottom: 5.625rem;
+  } */
+
+  .phaseNo {
+    font-size: 30.5455px;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .div {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .card {
+    height: 626px;
+    justify-content: flex-start;
+  }
+}
+
+@media screen and (min-width: 1300px) {
+  .card {
+    height: 546px;
+  }
 }

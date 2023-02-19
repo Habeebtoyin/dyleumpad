@@ -8,7 +8,7 @@ export default function HowToBuy() {
       {/* grid */}
       <div className={styles.div}>
         {/* STEP ONE */}
-        <div className={`${styles.card} ${AboutStyles.card}`}>
+        <div className={`${styles.card} ${AboutStyles.card} ${styles.stepOne}`}>
           <h3 className={styles.stepTag}>STEP ONE</h3>
           <h1 className={styles.cardHeading}>Create Metamask wallet</h1>
           <p className={styles.cardText}>
@@ -18,7 +18,7 @@ export default function HowToBuy() {
         </div>
 
         {/* STEP TWO */}
-        <div className={`${styles.card} ${AboutStyles.card}`}>
+        <div className={`${styles.card} ${AboutStyles.card} ${styles.stepTwo}`}>
           <h3 className={styles.stepTag}>STEP TWO</h3>
           <h1 className={styles.cardHeading}>Send $FTM to your created wallet</h1>
           <p className={styles.cardText}>
@@ -27,7 +27,7 @@ export default function HowToBuy() {
           </p>
         </div>
         {/* STEP THREE */}
-        <div className={`${styles.card} ${AboutStyles.card}`}>
+        <div className={`${styles.card} ${AboutStyles.card} ${styles.stepThree}`}>
           <h3 className={styles.stepTag}>STEP THREE</h3>
           <h1 className={styles.cardHeading}>Connect wallet to swap</h1>
           <p className={styles.cardText}>
@@ -36,7 +36,7 @@ export default function HowToBuy() {
           </p>
         </div>
         {/* STEP FOUR */}
-        <div className={`${styles.card} ${AboutStyles.card}`}>
+        <div className={`${styles.card} ${AboutStyles.card} ${styles.stepFour}`}>
           <h3 className={styles.stepTag}>STEP FOUR</h3>
           <h1 className={styles.cardHeading}>Swap FTM for $SLM</h1>
           <p className={styles.cardText}>

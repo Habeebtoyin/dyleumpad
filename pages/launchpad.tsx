@@ -5,9 +5,9 @@ import Pools from "../components/LaunchPad/Pools/Pools";
 import Navbar from "../components/Navbar/Navbar";
 import { server } from "../config";
 
-export default function LaunchPad({pools }: any) {
+export default function LaunchPad({ pools }: any) {
   console.log(pools);
-  
+
   return (
     <>
       <Head>
@@ -23,12 +23,11 @@ export default function LaunchPad({pools }: any) {
       <main className="launchpad">
         <HeroSection />
         <BuyButtons />
-        <Pools pools={pools} />
+        <Pools />
       </main>
     </>
   );
 }
-
 
 export const getStaticProps = async () => {
   const res = await fetch(`${server}/api/pools`);

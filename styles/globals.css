@@ -1,6 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
 
-
 :root {
   /* colors */
   --body-bg: #090e17;
@@ -70,6 +69,7 @@ body {
   color: var(--white);
   font-family: "Inter", sans-serif;
   overflow-x: hidden;
+  overflow-y: scroll;
   width: 100%;
   position: relative;
 }
@@ -88,11 +88,27 @@ a {
   text-decoration: none;
 }
 
-/* section {
+section {
   padding-inline: var(--padding);
   width: 100%;
 }
 
+@media screen and (min-width: 768px) {
+  section {
+    --padding: 5rem;
+  }
+
+}
+@media screen and (min-width: 1000px) {
+  section {
+    --padding: 6.25rem;
+  }
+
+}
+
+
+
+/*
 .card {
   background-color: var(--card-bg);
   height: fit-content;

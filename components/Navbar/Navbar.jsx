@@ -5,7 +5,7 @@ import navLogo from "../../components/assets/icons/nav-logo.svg";
 import { GlobalAuth } from "../../context/GlobalContext";
 import HamburgerIcon from "./HamburgerIcon";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
-import styles from '../../styles/Navbar.module.css';
+import styles from "../../styles/Navbar.module.css";
 // import { useNetwork, useSwitchNetwork } from 'wagmi';
 import Link from "next/link";
 import Image from "next/image";
@@ -14,8 +14,8 @@ export default function Navbar() {
   const { menuState, setCheckboxState, setMenuState } = GlobalAuth();
   // const { chain } = useNetwork()
   // const { chains, error, isLoading, pendingChainId, switchNetwork } =
-    // useSwitchNetwork()
-    // console.log({chain})
+  // useSwitchNetwork()
+  // console.log({chain})
 
   return (
     <header className={styles.header} id="launchpad-header">
@@ -33,11 +33,7 @@ export default function Navbar() {
               setCheckboxState((prevState) => !prevState);
             }}
           >
-            <Link
-              href="/#about-us"
-              className={styles.navLink}
-              smooth="true"
-            >
+            <Link href="/#about-us" className={styles.navLink} smooth="true">
               About us
             </Link>
           </li>
@@ -48,11 +44,7 @@ export default function Navbar() {
               setCheckboxState((prevState) => !prevState);
             }}
           >
-            <Link
-              href="/#tokenomics"
-              className={styles.navLink}
-              smooth="true"
-            >
+            <Link href="/#tokenomics" className={styles.navLink} smooth="true">
               Tokenomics
             </Link>
           </li>
@@ -63,11 +55,7 @@ export default function Navbar() {
               setCheckboxState((prevState) => !prevState);
             }}
           >
-            <Link
-              href="/#roadmap"
-              className={styles.navLink}
-              smooth="true"
-            >
+            <Link href="/#roadmap" className={styles.navLink} smooth="true">
               Roadmap
             </Link>
           </li>
@@ -78,7 +66,7 @@ export default function Navbar() {
               setCheckboxState((prevState) => !prevState);
             }}
           >
-            <Link href="/launchpad" activeClassName="selected" smooth="true">
+            <Link href="/launchpad" className={styles.navLink} smooth="true">
               Launchpad
             </Link>
           </li>
@@ -100,11 +88,7 @@ export default function Navbar() {
               setCheckboxState((prevState) => !prevState);
             }}
           >
-            <Link
-              href="/#how-to-buy"
-              className={styles.navLink}
-              smooth="true"
-            >
+            <Link href="/#how-to-buy" className={styles.navLink} smooth="true">
               How to buy
             </Link>
           </li>
@@ -115,16 +99,15 @@ export default function Navbar() {
               setCheckboxState((prevState) => !prevState);
             }}
           >
-            <Link
-              href="/#contact"
-              className={styles.navLink}
-              smooth="true"
-            >
+            <Link href="/#contact" className={styles.navLink} smooth="true">
               Contact us
             </Link>
           </li>
 
-          <div className={`${styles.navBtn} ${styles.mobileBtn}`} id="mobileBtn">
+          <div
+            className={`${styles.navBtn} ${styles.mobileBtn}`}
+            id="mobileBtn"
+          >
             <ConnectButton />
           </div>
         </ul>

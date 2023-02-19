@@ -6,18 +6,6 @@
   padding-inline: 0;
 }
 
-.imgOverlay {
-  position: absolute;
-  top: 917px;
-  left: 0;
-  width: 100%;
-  height: 150px;
-  background-color: #090e17;
-  opacity: 0.7;
-  filter: blur(25px);
-  z-index: 99999;
-}
-
 .heroContainer {
   position: absolute;
   top: 0;
@@ -34,9 +22,6 @@
 /* .poolCard-details .hero-container */ {
   display: grid;
   place-items: center;
-  /* flex-direction: column; */
-  /* align-items: center; */
-  /* justify-content: center; */
   gap: 2rem;
 }
 
@@ -46,9 +31,23 @@
   width: 100% !important;
   overflow-x: hidden;
   position: unset !important;
-  margin-top: 470px !important;
+  margin-top: 573px !important;
+  transform: perspective(1000px) scale3d(0.86, 0.75, 6) translate3d(0px, -66px, 29px);
+  
   /* transform: perspective(300px) translate3d(0px, -66px, 42px)
     scale3d(0.86, 0.75, 1) translateY(816px); */
+}
+
+.imgOverlay {
+  position: absolute;
+  top: 979px;
+  left: 0;
+  width: 100%;
+  height: 150px;
+  background-color: #090e17;
+  opacity: 0.7;
+  filter: blur(25px);
+  z-index: 99999;
 }
 
 .heroTitle {
@@ -104,7 +103,6 @@
   line-height: 25px;
 }
 
-/* SECTION TITLES */
 .title {
   font-weight: 400;
   font-size: var(--section-title-font-size);
@@ -114,15 +112,54 @@
 }
 
 
+@media screen and (min-width: 768px) {
+  .heroSection {
+    height: 1180px;
+    margin-block: 0 0 6.5rem;
+  }
 
-/* -------------------------------------------------------------------------------- */
-/* LAUNCHPAD PAGE  */
+  .imgOverlay {
+    top: 986px;
+  }
 
-.launchpadHeroSection {
-  height: 1100px;
+  .heroContainer {
+    padding-block: 225px 88px;
+    gap: 1.4em;
+    justify-content: center;
+  }
+
+  .heroTitle {
+    font-size: 50px !important;
+    line-height: 80px !important;
+  }
+
+  .heroBg {
+    margin-top: 280px !important;
+    height: 610px !important;
+  }
+
+  .text{
+    width: 615px;
+  }
+
+  .title {
+    --section-title-font-size: 2.5em;
+    line-height: 64px;
+  }
+
 }
 
-.launchpadImg {
-  width: 100%;
-}
+@media screen and (min-width: 1300px) {
+  .heroBg {
+    margin-top: 82px !important;
+    height: 610px !important;
+  }
 
+  .heroContainer {
+    --padding: 334px;
+  }
+
+  .imgOverlay {
+    top: 974px;
+  }
+}

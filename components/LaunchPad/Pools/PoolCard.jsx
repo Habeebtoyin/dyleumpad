@@ -58,10 +58,11 @@ export default function PoolCard({ pool }) {
       <div className={styles.box}>
         {pool.tag !== "completed" && (
           <Image
-            className={styles.boxImg}
-            src={cardBorder}
+            // className={styles.boxImg}
+            src="/Strokes.svg"
             alt="box border"
             width="100%"
+            height={453.9}
           />
         )}
         {pool.tag === "completed" && (
@@ -163,8 +164,27 @@ export default function PoolCard({ pool }) {
         // }}
 
         // >
-        <Link className={styles.viewMoreBtn} href={`/pools/${pool.id}`}>
-          View More
+        <Link
+          style={{
+            background: "#08272f",
+            border: "1px solid #2166ae",
+            outline: "none",
+            display: "flex",
+            maxWidth: "420px",
+            justifyContent: "center",
+            paddingBlock: "13.5px",
+            alignItems: "center",
+            color: "#fff",
+            fontWeight: "400",
+            fontSize: "18px",
+            lineHeight: "22px",
+            width: "100%",
+            marginTop: "16px",
+          }}
+          // className={styles.viewMoreBtn}
+          href={`/pools/${pool.id}`}
+        >
+          View MoreFDDF
         </Link>
         // </button>
       )}

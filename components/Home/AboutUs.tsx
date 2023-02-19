@@ -1,9 +1,9 @@
 import styles from '../../styles/About.module.css';
 import homeStyles from '../../styles/Home.module.css';
 import Image from 'next/image';
-import connectorLine1 from "../assets//images/Connector line.svg";
-import connectorLine2 from "../assets//images/Connector line-1.svg";
-import connectorLine3 from "../assets//images/Connector line-2.svg";
+import connectorLine1 from "../assets/images/Connector line.svg";
+import connectorLine2 from "../assets/images/Connector line-1.svg";
+import connectorLine3 from "../assets/images/Connector line-2.svg";
 
 export default function AboutUs() {
   return (

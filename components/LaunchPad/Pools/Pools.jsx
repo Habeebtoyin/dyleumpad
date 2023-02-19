@@ -1,4 +1,4 @@
-import styles from '../../../styles/Launchpad.module.css';
+import styles from "../../../styles/Launchpad.module.css";
 import PoolsBtn from "./PoolsBtn";
 import ReactPaginate from "react-paginate";
 import { lazy, Suspense, useState } from "react";
@@ -6,13 +6,13 @@ import { GlobalAuth } from "../../../context/GlobalContext";
 import Loading from "../../Loading";
 import PoolCard from "./PoolCard";
 
-export default function Pools({pools}) {
+export default function Pools() {
   const { poolsData, selectedPool } = GlobalAuth();
   const [pageNumber, setPageNumber] = useState(0);
   const cardPerPage = 9;
   const pagesVisited = pageNumber * cardPerPage;
-  const pageCount = Math.ceil(pools?.length / cardPerPage);
-  console.log(pools)
+  const pageCount = Math.ceil(poolsData?.length / cardPerPage);
+  console.log(poolsData);
 
   const changePage = ({ selected }) => {
     setPageNumber(selected);
@@ -35,44 +35,44 @@ export default function Pools({pools}) {
 
   return (
     // <Suspense fallback={<Loading />}>
-      <section className={styles.pools}>
-        <div className={styles.poolsBtns}>
-          {titles.map((item) => (
-            <PoolsBtn
-              key={item.id}
-              item={item}
-              active={selectedPool === item.id}
-            />
-          ))}
+    <section className={styles.pools}>
+      <div className={styles.poolsBtns}>
+        {titles.map((item) => (
+          <PoolsBtn
+            key={item.id}
+            item={item}
+            active={selectedPool === item.id}
+          />
+        ))}
 
-          {/* <PoolsBtn id="active" title="Active Pools" />
+        {/* <PoolsBtn id="active" title="Active Pools" />
         <PoolsBtn id="upcoming" title="Upcoming Pools" />
         <PoolsBtn id="completed" title="Completed Pools" /> */}
-        </div>
+      </div>
 
-        <div className={styles.container}>
-          {pools
-            ?.slice(pagesVisited, pagesVisited + cardPerPage)
-            .map((pool) => (
-              <PoolCard key={pool.id} pool={pool} />
-            ))}
-        </div>
+      <div className={styles.container}>
+        {poolsData
+          ?.slice(pagesVisited, pagesVisited + cardPerPage)
+          .map((pool) => (
+            <PoolCard key={pool.id} pool={pool} />
+          ))}
+      </div>
 
-        <ReactPaginate
-          breakLabel="..."
-          nextLabel=">"
-          onPageChange={changePage}
-          pageRangeDisplayed={5}
-          pageCount={pageCount}
-          previousLabel="<"
-          renderOnZeroPageCount={null}
-          containerClassName={"paginationBtns"}
-          previousLinkClassName={"previousBtn"}
-          nextLinkClassName={"nextBtn"}
-          disabledClassName={"paginationDisabled"}
-          activeClassName={"paginationActive"}
-        />
-      </section>
+      <ReactPaginate
+        breakLabel="..."
+        nextLabel=">"
+        onPageChange={changePage}
+        pageRangeDisplayed={5}
+        pageCount={pageCount}
+        previousLabel="<"
+        renderOnZeroPageCount={null}
+        containerClassName={styles.paginationBtns}
+        previousLinkClassName={"previousBtn"}
+        nextLinkClassName={styles.nextBtn}
+        disabledClassName={styles.paginationDisabled}
+        activeClassName={styles.paginationActive}
+      />
+    </section>
     // </Suspense>
   );
 }
