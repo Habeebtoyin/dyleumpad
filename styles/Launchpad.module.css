@@ -4,8 +4,18 @@
 
 .heroContainer{
   display: grid;
+  justify-items: center;
   position: absolute;
   top: 260px;
+  left: 50%;
+  transform: translateX(-50%);
+  gap: 40px;
+  width: 90%;
+  margin-inline: auto;
+}
+
+.leftCol{
+  text-align: center;
 }
 
 .launchpadImg {
