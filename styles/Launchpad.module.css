@@ -1,8 +1,9 @@
-.heroSection {
+.heroSection,
+.bg {
   height: 1100px;
 }
 
-.heroContainer{
+.heroContainer {
   display: grid;
   justify-items: center;
   position: absolute;
@@ -14,7 +15,7 @@
   margin-inline: auto;
 }
 
-.leftCol{
+.leftCol {
   text-align: center;
 }
 
@@ -23,7 +24,7 @@
 }
 
 .bg {
-  width: 100%;
+  width: 100% !important;
   position: absolute;
   top: 0;
   left: 0;
@@ -314,7 +315,6 @@
   }
 }
 
-
 @media screen and (min-width: 400px) {
   .fContent {
     top: 14px;
@@ -354,10 +354,10 @@
   }
 }
 
-
 /* TABLET SCREEN SIZES */
 @media screen and (min-width: 768px) {
-  .heroSection {
+  .heroSection,
+  .bg {
     height: 1244px;
   }
 
@@ -393,7 +393,6 @@
   }
 }
 
-
 @media screen and (min-width: 1000px) {
   .bar {
     height: 24px;
@@ -402,20 +401,20 @@
   .dash {
     margin-block: 43.73px 49.27px;
   }
-  
 }
 
 @media screen and (min-width: 1300px) {
-  .heroSection {
+  .heroSection,
+  .bg {
     height: 814px;
   }
 
-  .heroContainer{
+  .heroContainer {
     grid-template-columns: repeat(2, 1fr);
     gap: 81px;
   }
 
-  .leftCol{
+  .leftCol {
     place-items: start !important;
     text-align: left;
   }
@@ -423,6 +422,4 @@
   .launchpadImg {
     width: 587px;
   }
-
-  
 }
