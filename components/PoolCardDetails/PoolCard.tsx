@@ -1,3 +1,4 @@
+import styles from "../../styles/Launchpad.module.css";
 import cardBorder from "../assets/icons/Strokes.svg";
 import cardBorder1 from "../assets/icons/strokes1.svg";
 import percentageBar from "../assets/icons/percentage-Bar.svg";
@@ -122,29 +123,77 @@ export default function PoolCard({ pool }: any) {
   percentage = percentage.toFixed(2) + "%";
 
   return (
-    <div key={pool.id} className="pool-container">
-      <div className="pool-box">
-        <div className="box">
-          <img
-            className="box-img"
-            src={cardBorder}
-            alt="box border"
-            width="100%"
-          />
-          {pool.tag === "completed" && (
-            <img
-              className="box-img"
-              src={cardBorder1}
-              alt="box border"
-              width="100%"
+    <div key={pool.id} className={styles.poolBox}>
+      {/* <div className="pool-box"> */}
+        <div className={styles.box}>
+        <svg
+            width="421"
+            height="457"
+            className={styles.boxImg}
+            viewBox="0 0 421 457"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M159.672 41.528L209.678 2.10028L262.088 41.528"
+              stroke="#00FFFF"
+              stroke-width="1.9233"
             />
+            <path
+              d="M173.135 39.6047L209.725 6.90857L248.144 39.6047"
+              stroke="#00FFFF"
+              stroke-width="0.480826"
+            />
+            <path
+              d="M1 39.6047V213.235L31.589 247.538L1 278.148V456H420.28V272.343L393.91 245.955L420.28 211.124V39.6047H1Z"
+              fill="#090E17"
+              stroke="#1592CA"
+              stroke-width="0.673156"
+            />
+            <path
+              d="M19.2715 57.8761V216.068L47.1594 247.322L19.2715 275.209V437.248H401.528V269.92L377.487 245.879L401.528 214.145V57.8761H19.2715Z"
+              stroke="#00FFFF"
+              stroke-width="1.9233"
+            />
+          </svg>
+          {pool.tag === "completed" && (
+            <svg
+            className={styles.boxImg}
+            width="421"
+            height="534"
+            viewBox="0 0 421 534"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M159.672 41.4277L209.678 2L262.088 41.4277"
+              stroke="#00FFFF"
+              stroke-width="1.9233"
+            />
+            <path
+              d="M173.135 39.5044L209.724 6.80823L248.144 39.5044"
+              stroke="#00FFFF"
+              stroke-width="0.480826"
+            />
+            <path
+              d="M1 39.5044V213.134L31.589 247.438L1 278.048V532.9H420.28V272.242L393.91 245.855L420.28 211.023V39.5044H1Z"
+              fill="#090E17"
+              stroke="#1592CA"
+              stroke-width="0.673156"
+            />
+            <path
+              d="M19.2715 57.7758V215.967L47.1594 247.221L19.2715 275.109V514.9H401.528V269.82L377.487 245.779L401.528 214.044V57.7758H19.2715Z"
+              stroke="#00FFFF"
+              stroke-width="1.9233"
+            />
+          </svg>
           )}
           {/* <!--content inside the box--> */}
-          <div className="fContent">
+          <div className={styles.fContent}>
             {/* <!--begin top contents--> */}
             {/* <img src={dots} alt="dots" width="39.31px" /> */}
-            <div className="topContent">
-              <div className="buttons">
+            {/* <div className={styles.topContent}> */}
+              <div className={`${styles.buttons} ${styles.phaseBtns}`}>
                 {phases?.map((phase): any => (
                   <PhaseBtns
                     phase={phase}
@@ -153,7 +202,7 @@ export default function PoolCard({ pool }: any) {
                     setPhaseId={setPhaseId}
                   />
                 ))}
-              </div>
+              {/* </div> */}
             </div>
 
             <div className="percentage-bar">
@@ -225,7 +274,7 @@ export default function PoolCard({ pool }: any) {
             </button>
           </>
         )}
-      </div>
+      {/* </div> */}
     </div>
   );
 }

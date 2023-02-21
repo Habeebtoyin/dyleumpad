@@ -1,4 +1,5 @@
 import styles from '../../styles/Launchpad.module.css';
+import HomeStyles from "../../styles/Home.module.css";
 import dash from "../assets/icons/PoolCardDetails/dash.svg";
 import twitterIcon from "../assets/icons/twitter.svg";
 import telegramIcon from "../assets/icons/telegram.svg";
@@ -13,17 +14,18 @@ export default function HeroSection({ pool }) {
   return (
     <section className={styles.heroSection}>
       <Image className={styles.bg} src={heroBg} alt="hero background" />
+      
       <div className={styles.heroContainer}>
-        <div className={styles.leftCol}>
+        <div className={`${HomeStyles.leftCol} ${styles.leftCol}`}>
           <div className={styles.logo}>{pool?.logo}</div>
-          <h1 class={styles.heroTitle}>{pool?.projectTitle}</h1>
+          <h1 class={HomeStyles.heroTitle}>{pool?.projectTitle}</h1>
           <Image src={dash} alt="dash" />
-          <p>{pool?.projectDescription}</p>
+          <p className={HomeStyles.text}>{pool?.projectDescription}</p>
           {/* HERO LOGO LINKS */}
-          <div className="social-icons">
+          <div className={styles.socialIcons}>
             {/* TWITTER ICON */}
             <a href="">
-              <Image src={twitterIcon} alt="twitter icon" />
+              <Image src={twitterIcon} alt="twitter icon"  />
             </a>
             {/* TELEGRAM ICON */}
             <a href="">
@@ -39,7 +41,7 @@ export default function HeroSection({ pool }) {
             </a>
           </div>
         </div>
-        <div className="right-col">
+        <div className="rightCol">
           <PoolCard pool={pool} />
         </div>
       </div>

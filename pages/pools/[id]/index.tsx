@@ -1,3 +1,4 @@
+import styles from "../../../styles/Home.module.css";
 import Head from "next/head";
 import {server} from "../../../config/index";
 import { useRouter } from "next/router";
@@ -50,7 +51,7 @@ const Pool = ({pool} : any) => {
   // const [pool, setPool] = useState();
 
   return (
-    <>
+    <div className={styles.container}>
       <Head>
         <title>Solimax | Launchpad | Pool</title>
         <meta
@@ -61,14 +62,13 @@ const Pool = ({pool} : any) => {
         <link rel="icon" href="/logo-icon.svg" />
       </Head>
       <Navbar />
-      {/* {console.log(pool)} */}
       <HeroSection pool={pool} />
       <section className="pool-token-information">
         <PoolInformation pool={pool} />
         <TokenInformation pool={pool} />
       </section>
       <AboutProject pool={pool} />
-    </>
+    </div>
   );
 };
 

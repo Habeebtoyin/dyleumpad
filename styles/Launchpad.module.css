@@ -1,6 +1,6 @@
 .heroSection,
 .bg {
-  height: 1100px;
+  height: 1100px !important;
 }
 
 .heroSection {
@@ -305,7 +305,122 @@
   border-width: 2px;
 }
 
+.socialIcons {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
 
+.socialIcons img {
+  width: 24px !important;
+  height: 24px !important;
+}
+
+.activeStatus {
+  color: #08c5ea !important;
+}
+
+.phaseBtns{
+  width: 100%;
+  justify-content: space-between;
+  gap: 0;
+}
+
+.phaseBtns button{
+  width: 100%;
+  background: transparent;
+  border: 0.5px solid #00e5ff;
+  border-radius: 0px;
+}
+
+.poolTokenInformation {
+  display: flex;
+  flex-direction: column;
+  gap: 56px;
+  width: 100%;
+}
+
+.details {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  border: 0.7px solid #374151;
+  max-width: 612px;
+}
+
+.details h1,
+.about-project h1 {
+  width: fit-content;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 29px;
+}
+
+.details h1 {
+  padding: 28px 32px;
+}
+
+.details .group {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+}
+
+.details .group div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding: 28px 32px;
+  border: 0.7px solid #374151;
+}
+
+.group .access,
+.group .total-supply {
+  border: none !important;
+}
+
+.group .token-address {
+  padding: 18px 32px !important;
+}
+
+.details h2 {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 20px;
+}
+
+.details p {
+  text-align: right;
+  word-break: break-all;
+}
+
+.details p,
+.about-project p,
+.about-project li {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  color: #d1d5db;
+}
+
+.about-project {
+  margin-block: 100px 97px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.about-project ul {
+  list-style: none;
+}
+
+.about-project p,
+.about-project li {
+  line-height: 31px;
+  color: var(--text-color);
+}
 
 @media screen and (max-width: 400px) {
   .poolBox a {
