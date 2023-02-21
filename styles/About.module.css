@@ -70,13 +70,13 @@
   /* border: 1px solid #fff !important; */
   display: none !important;
   position: absolute;
+  width: 333px;
 }
 
-.connectorLine1,
+/* .connectorLine1,
 .connectorLine2,
 .connectorLine3 {
-  width: 100%;
-}
+} */
 
 .ourMission {
   /* padding-inline: var(--padding); */
@@ -243,22 +243,22 @@
   .connectorLine {
     display: unset !important;
     position: absolute;
-    width: 100% !important;
-    height: 100% !important;
+    /* width: 100% !important; */
+    /* height: 100% !important; */
   }
 
   .connectorLine1 {
     left: 193.5px !important;
-    top: 749px !important;
+    top: 754px !important;
   }
 
   .connectorLine2 {
-    top: 234px !important;
+    top: 242px !important;
     left: 526.5px !important;
   }
 
   .connectorLine3 {
     left: 859.5px !important;
-    top: 718px !important;
+    top: 700px !important;
   }
 }

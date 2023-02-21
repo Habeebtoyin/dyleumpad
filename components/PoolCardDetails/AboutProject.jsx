@@ -7,10 +7,10 @@ export default function AboutProject({ pool }) {
        <ToastContainer />
       <h1>About the Project</h1>
       <div className="">
-        <p>{pool[0]?.aboutProject}</p>
+        <p>{pool?.aboutProject}</p>
         {console.log(pool)}
         <ul>
-          {pool[0].projectBenefits?.map((item, index) => (
+          {pool.projectBenefits?.map((item, index) => (
             <li key={index}>{item}</li>
           ))}
         </ul>

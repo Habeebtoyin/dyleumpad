@@ -15,6 +15,6 @@
     "jsx": "preserve",
     "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/api/pools/[id].tsxx", "pages/api/pools/index.tsxx", "pages/pools/[id]/index.tsxx", "components/Layout.tsxx", "pages/launchpad.tsxx", "components/LaunchPad/Pools/PoolCard.jsx", "components/LaunchPad/Pools/PoolCard.jsx", "pages/index.tsx", "components/Home/HeroSection.tsx", "components/Home/AboutUs.tsx", "components/Home/AboutUs.tsx","components/Home/ContractAddress.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/api/pools/[id].tsxx", "pages/api/pools/index.tsxx", "pages/pools/[id]/index.tsxx", "components/Layout.tsxx", "pages/launchpad.tsxx", "components/LaunchPad/Pools/PoolCard.jsx", "components/LaunchPad/Pools/PoolCard.jsx", "pages/index.tsx", "components/Home/HeroSection.tsx", "components/Home/AboutUs.tsx", "components/Home/AboutUs.tsx","components/Home/ContractAddress.tsx", "pages/api/pools.js"],
   "exclude": ["node_modules"],
 }

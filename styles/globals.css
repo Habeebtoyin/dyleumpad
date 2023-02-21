@@ -69,7 +69,6 @@ body {
   color: var(--white);
   font-family: "Inter", sans-serif;
   overflow-x: hidden;
-  overflow-y: scroll;
   width: 100%;
   position: relative;
 }

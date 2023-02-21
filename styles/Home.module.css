@@ -163,3 +163,9 @@
     top: 974px;
   }
 }
+
+@media screen and (min-width: 1400px) {
+  .imgOverlay {
+    top: 992px;
+  }
+}

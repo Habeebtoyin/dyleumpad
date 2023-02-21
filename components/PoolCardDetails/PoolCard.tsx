@@ -25,12 +25,12 @@ const { provider } = configureChains(
   [publicProvider()]
 );
 
-export default function PoolCard({ pool }) {
+export default function PoolCard({ pool }: any) {
   const { chain } = useNetwork();
   const { chains, error, pendingChainId, switchNetwork } = useSwitchNetwork();
   const [phaseId, setPhaseId] = useState("1");
-  const currentDate=Date.now()
-  const [amountToBuy, setAmountToBuy] = useState(0);
+  const currentDate = Date.now();
+  const [amountToBuy, setAmountToBuy]: any = useState(0);
   const [tierDetails, setTierDetails] = useState({
     maxTierCap: 0,
     minUserCap: 0,
@@ -39,7 +39,7 @@ export default function PoolCard({ pool }) {
     users: 0,
   });
   const [saleEnd, setSaleEnd] = useState(0);
-  const [saleStart, setSaleStart] = useState(0);
+  const [saleStart, setSaleStart]: any = useState(0);
   const { data: signer, isError, isLoading } = useSigner();
   // console.log(chain.id)
   const newLaunchPool = new LaunchPoolClass(
@@ -56,54 +56,53 @@ export default function PoolCard({ pool }) {
       setTierDetails(res);
     });
     newLaunchPool.getSaleEnd().then((res) => {
-     //  console.log({date:parseInt(res.toString())})
-      var myDate = new Date(parseInt(res.toString()));
+      //  console.log({date:parseInt(res.toString())})
+      var myDate: any = new Date(parseInt(res.toString()));
       console.log(myDate.toLocaleString());
       setSaleEnd(myDate.toLocaleString());
     });
     newLaunchPool.getSaleStart().then((res) => {
-       console.log({date:parseInt(res.toString())})
-     var myDate = new Date(parseInt(res.toString()));
-    // console.log(myDate.toLocaleString());
-     setSaleStart(res.toString());
-   });
-   newLaunchPool.checkAllowance().then(res=>{
-    console.log({res})
-   })
+      console.log({ date: parseInt(res.toString()) });
+      var myDate = new Date(parseInt(res.toString()));
+      // console.log(myDate.toLocaleString());
+      setSaleStart(res.toString());
+    });
+    newLaunchPool.checkAllowance().then((res) => {
+      console.log({ res });
+    });
     if (chain) {
       if (chain.id !== pool[0].chain) {
         toast.error("THIS POOL EXIST ON ANOTHER CHAIN");
-        console.log(pool[0].chain,chain.id)
-        switchNetwork?.(parseInt(pool[0].chain))
+        console.log(pool[0].chain, chain.id);
+        switchNetwork?.(parseInt(pool[0].chain));
       }
     }
   }, []);
 
   async function BuyPresale() {
-   
-    if(parseInt(saleStart)<currentDate/1000){
-    const value=convertEthersToWei(amountToBuy.toString(),18)
-    toast.success("Allowance Success");
-    newLaunchPool
-      .increaseAllowance(value.toString())
-      .then((res) => {
-        toast.success("Allowance Success");
-        toast.success("Buying Presale Token");
-        newLaunchPool
-          .buyTokens(value.toString())
-          .then((res) => {
-            toast.success("Presale Token Bought");
-          })
-          .catch((err) => {
-            toast.error(err.error.data.message);
-          });
-      })
-      .catch((err) => {
-        console.log({err})
-        toast.error(err.error.data.message);
-      });
-    }else{
-      toast.error("Launch Has not Started Yet")
+    if (parseInt(saleStart) < currentDate / 1000) {
+      const value = convertEthersToWei(amountToBuy.toString(), 18);
+      toast.success("Allowance Success");
+      newLaunchPool
+        .increaseAllowance(value.toString())
+        .then((res) => {
+          toast.success("Allowance Success");
+          toast.success("Buying Presale Token");
+          newLaunchPool
+            .buyTokens(value.toString())
+            .then((res) => {
+              toast.success("Presale Token Bought");
+            })
+            .catch((err) => {
+              toast.error(err.error.data.message);
+            });
+        })
+        .catch((err) => {
+          console.log({ err });
+          toast.error(err.error.data.message);
+        });
+    } else {
+      toast.error("Launch Has not Started Yet");
     }
   }
 
@@ -118,12 +117,12 @@ export default function PoolCard({ pool }) {
     },
   ];
 
-  let progressValue = pool[0]?.currentBalance / pool[0]?.targetBalance;
-  let percentage = progressValue * 100;
+  let progressValue = pool?.currentBalance / pool?.targetBalance;
+  let percentage: any = progressValue * 100;
   percentage = percentage.toFixed(2) + "%";
 
   return (
-    <div key={pool[0].id} className="pool-container">
+    <div key={pool.id} className="pool-container">
       <div className="pool-box">
         <div className="box">
           <img
@@ -146,12 +145,12 @@ export default function PoolCard({ pool }) {
             {/* <img src={dots} alt="dots" width="39.31px" /> */}
             <div className="topContent">
               <div className="buttons">
-                {phases?.map((phase) => (
+                {phases?.map((phase): any => (
                   <PhaseBtns
                     phase={phase}
+                    key={phase.id}
                     active={phase.id === phaseId}
                     setPhaseId={setPhaseId}
-                    pool={pool[0]}
                   />
                 ))}
               </div>
@@ -160,12 +159,12 @@ export default function PoolCard({ pool }) {
             <div className="percentage-bar">
               {/* <img src={percentageBar} alt="percentage bar" /> */}
               <div
-                class="w3-light-grey"
+                className="w3-light-grey"
                 style={{ border: "2px solid #6B7280", borderRadius: "8px" }}
               >
                 <div
                   id="myBar"
-                  class="w3-container "
+                  className="w3-container "
                   style={{
                     height: "24px",
                     width: percentage,
@@ -178,7 +177,7 @@ export default function PoolCard({ pool }) {
               <div className="">
                 <p className="percentage">{percentage}</p>
                 <p className="SLM-Amt">
-                  {pool[0]?.currentBalance}/{pool[0].targetBalance} DAI
+                  {pool?.currentBalance}/{pool.targetBalance} DAI
                 </p>
               </div>
             </div>
@@ -188,7 +187,7 @@ export default function PoolCard({ pool }) {
             <div className="allocation-group">
               <div className="total-raised">
                 <p>Total Raised</p>
-                <h3>{convertweiToEthers(tierDetails?.amountRaised,18)}</h3>
+                <h3>{convertweiToEthers(tierDetails?.amountRaised, 18)}</h3>
               </div>
               <div className="participants">
                 <p>Participants</p>
@@ -196,10 +195,8 @@ export default function PoolCard({ pool }) {
               </div>
               <div className="participants">
                 <p>Status</p>
-                <h3
-                  className={pool[0].status === "Active" ? `active-status` : ``}
-                >
-                  {pool[0]?.status}
+                <h3 className={pool.status === "Active" ? `active-status` : ``}>
+                  {pool?.status}
                 </h3>
               </div>
             </div>
@@ -221,9 +218,11 @@ export default function PoolCard({ pool }) {
           }}
         />
 
-        {pool[0].tag === "active" && (
+        {pool.tag === "active" && (
           <>
-            <button className="buy-presale-btn" onClick={BuyPresale}>Buy Presale</button>
+            <button className="buy-presale-btn" onClick={BuyPresale}>
+              Buy Presale
+            </button>
           </>
         )}
       </div>

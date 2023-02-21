@@ -3,6 +3,10 @@
   height: 1100px;
 }
 
+.heroSection {
+  --padding: 0;
+}
+
 .heroContainer {
   display: grid;
   justify-items: center;
@@ -127,12 +131,20 @@
   text-align: left;
 }
 
+.boxImg {
+  /* height: 100% !important; */
+  width: 100%;
+  /* position: absolute !important;
+  left: 0 !important; */
+}
+
 .fContent {
-  width: 80%;
+  width: 100%;
+  max-width: 400px;
   margin: auto;
   position: absolute;
-  top: 0;
-  padding: 46px 4px;
+  top: 103px;
+  padding-inline: 30px;
 }
 
 .topContent {
@@ -213,10 +225,14 @@
 }
 
 .allocationGroup {
+  margin-top: 17.73px;
+}
+
+.allocationGroup,
+.percentageBar div {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 17.73px;
   width: 100%;
 }
 
@@ -249,12 +265,31 @@
   letter-spacing: -0.005em;
 }
 
-.viewMoreBtn {
+.percentageBar {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  margin-top: 12px;
+}
+
+.bar {
+  height: 17px;
+}
+
+.percentageBar p {
+  color: var(--card-p-color);
+  font-weight: 300;
+  font-size: 9px;
+  line-height: 11px;
+}
+
+.poolBox a {
   background: #08272f;
   border: 1px solid #2166ae;
   outline: none;
   display: flex;
-  max-width: 420px;
+  max-width: 421px;
+  margin-inline: auto;
   justify-content: center;
   padding-block: 13.5px;
   align-items: center;
@@ -264,6 +299,24 @@
   line-height: 22px;
   width: 100%;
   margin-top: 16px;
+}
+
+.poolBox a:hover{
+  border-width: 2px;
+}
+
+
+
+@media screen and (max-width: 400px) {
+  .poolBox a {
+    margin-top: -36px;
+  }
+}
+
+@media screen and (max-width: 440px) {
+  .poolBox a {
+    margin-top: -12px;
+  }
 }
 
 /* PAGINATION */
@@ -317,7 +370,8 @@
 
 @media screen and (min-width: 400px) {
   .fContent {
-    top: 14px;
+    top: 98px;
+    padding-inline: 36px;
   }
 
   .completed {
@@ -374,15 +428,6 @@
     width: fit-content;
   }
 
-  .container {
-    grid-template-columns: repeat(2, 1fr);
-    padding: 2rem;
-  }
-
-  /* .box {
-    top: 50%;
-  } */
-
   .poolsBtns {
     flex-direction: row;
     border: none;
@@ -400,6 +445,21 @@
 
   .dash {
     margin-block: 43.73px 49.27px;
+  }
+
+  .container {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 2rem;
+  }
+
+  .poolBox a {
+    margin-top: -16px;
+  }
+}
+
+@media screen and (min-width: 1100px) {
+  .poolBox a {
+    margin-top: 16px;
   }
 }
 
@@ -421,5 +481,19 @@
 
   .launchpadImg {
     width: 587px;
+  }
+
+  .bar {
+    height: 17px;
+  }
+}
+
+@media screen and (min-width: 1400px) {
+  .container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .bar {
+    height: 24px;
   }
 }

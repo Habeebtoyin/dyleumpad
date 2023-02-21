@@ -1,9 +1,9 @@
 import Head from "next/head";
-import BuyButtons from "../components/LaunchPad/BuyButtons";
-import HeroSection from "../components/LaunchPad/HeroSection";
-import Pools from "../components/LaunchPad/Pools/Pools";
-import Navbar from "../components/Navbar/Navbar";
-import { server } from "../config";
+import BuyButtons from "../../components/LaunchPad/BuyButtons";
+import HeroSection from "../../components/LaunchPad/HeroSection";
+import Pools from "../../components/LaunchPad/Pools/Pools";
+import Navbar from "../../components/Navbar/Navbar";
+import { server } from "../../config";
 
 export default function LaunchPad({ pools }: any) {
   console.log(pools);
@@ -31,11 +31,11 @@ export default function LaunchPad({ pools }: any) {
 
 export const getStaticProps = async () => {
   const res = await fetch(`${server}/api/pools`);
-  const pools = await res.json();
+  const pools = await res.json()
 
-  return {
-    props: {
+  return{
+    props:{
       pools,
-    },
-  };
-};
+    }
+  }
+}

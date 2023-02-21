@@ -1,6 +1,5 @@
-import { server } from "../config/index";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
-// import type { NextPage } from "next";
+import type { NextPage } from "next";
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import HowToBuy from "../components/Home/HowToBuy";
@@ -12,7 +11,7 @@ import HeroSection from "../components/Home/HeroSection";
 import AboutUs from "../components/Home/AboutUs";
 import Mission from "../components/Home/Mission";
 
-const Home = () => {
+const Home : NextPage = ()  => {
   return (
     <div className={styles.container}>
       <Head>

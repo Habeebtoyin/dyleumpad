@@ -8,7 +8,7 @@ import { convertweiToEthers } from "../../web3/priceOracle";
 
 export default function PoolInformation({ pool }) {
   const { chain } = useNetwork();
-  const [cChain,setCChain]=useState(chain)
+  const [cChain, setCChain] = useState(chain);
   const [tierDetails, setTierDetails] = useState({
     maxTierCap: 0,
     minUserCap: 0,
@@ -18,28 +18,30 @@ export default function PoolInformation({ pool }) {
   });
   const { chains, error, pendingChainId, switchNetwork } = useSwitchNetwork();
   const { data: signer, isError, isLoading } = useSigner();
-   function poolChain(chains){
-   // console.log(pool.chain)
-    return  chains.filter(x=>x.id===pool[0].chain)
+  function poolChain(chains) {
+    // console.log(pool.chain)
+    return chains.filter((x) => x.id === pool.chain);
   }
   useEffect(() => {
-    if(chains){
-  const currentChain= poolChain(chains)
-  setCChain(currentChain[0])
-  console.log(currentChain[0])
+    if (chains) {
+      const currentChain = poolChain(chains);
+      setCChain(currentChain[0]);
+      console.log(currentChain[0]);
     }
     newLaunchPool.getTierDetails().then((res) => {
-      console.log({tier:res});
+      console.log({ tier: res });
       setTierDetails(res);
     });
-  }, [])
-  
+  }, []);
+
   const newLaunchPool = new LaunchPoolClass(
     "0xC53c56F17e4472f521e6BE1718653f5a9Dd37FeB",
     "0x2Fd8894A7F280cE00C362ef1BB51d9B0F42c5931",
     1,
     signer,
-    new ethers.providers.JsonRpcProvider("https://fantom-testnet.public.blastapi.io")
+    new ethers.providers.JsonRpcProvider(
+      "https://fantom-testnet.public.blastapi.io"
+    )
   );
   return (
     <div className="details pool-information">
@@ -51,11 +53,15 @@ export default function PoolInformation({ pool }) {
         </div>
         <div className="">
           <h2 className="details-title">Minimum Allocation</h2>
-          <p className="value">{convertweiToEthers(tierDetails.minUserCap,18)}</p>
+          <p className="value">
+            {convertweiToEthers(tierDetails.minUserCap, 18)}
+          </p>
         </div>
         <div className="">
           <h2 className="details-title">Maximum Allocation</h2>
-          <p className="value">{convertweiToEthers(tierDetails.maxUserCap,18)}</p>
+          <p className="value">
+            {convertweiToEthers(tierDetails.maxUserCap, 18)}
+          </p>
         </div>
         <div className="">
           <h2 className="details-title">Token Price</h2>

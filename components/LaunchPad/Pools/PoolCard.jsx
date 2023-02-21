@@ -57,21 +57,81 @@ export default function PoolCard({ pool }) {
     <div key={pool.id} className={styles.poolBox}>
       <div className={styles.box}>
         {pool.tag !== "completed" && (
-          <Image
-            // className={styles.boxImg}
-            src="/Strokes.svg"
-            alt="box border"
-            width="100%"
-            height={453.9}
-          />
+          // <Image
+          //   className={styles.boxImg}
+          //   src={cardBorder}
+          //   alt="box border"
+          //   width="100%"
+          //   height={453.9}
+          // />
+          <svg
+            width="421"
+            height="457"
+            className={styles.boxImg}
+            viewBox="0 0 421 457"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M159.672 41.528L209.678 2.10028L262.088 41.528"
+              stroke="#00FFFF"
+              stroke-width="1.9233"
+            />
+            <path
+              d="M173.135 39.6047L209.725 6.90857L248.144 39.6047"
+              stroke="#00FFFF"
+              stroke-width="0.480826"
+            />
+            <path
+              d="M1 39.6047V213.235L31.589 247.538L1 278.148V456H420.28V272.343L393.91 245.955L420.28 211.124V39.6047H1Z"
+              fill="#090E17"
+              stroke="#1592CA"
+              stroke-width="0.673156"
+            />
+            <path
+              d="M19.2715 57.8761V216.068L47.1594 247.322L19.2715 275.209V437.248H401.528V269.92L377.487 245.879L401.528 214.145V57.8761H19.2715Z"
+              stroke="#00FFFF"
+              stroke-width="1.9233"
+            />
+          </svg>
         )}
         {pool.tag === "completed" && (
-          <Image
-            className={`${styles.boxImg} ${styles.completedPoolBox}`}
-            src={cardBorder1}
-            alt="box border"
-            width="100%"
-          />
+          // <Image
+          //   className={`${styles.boxImg} ${styles.completedPoolBox}`}
+          //   src={cardBorder1}
+          //   alt="box border"
+          //   width="100%"
+          // />
+          <svg
+            className={styles.boxImg}
+            width="421"
+            height="534"
+            viewBox="0 0 421 534"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M159.672 41.4277L209.678 2L262.088 41.4277"
+              stroke="#00FFFF"
+              stroke-width="1.9233"
+            />
+            <path
+              d="M173.135 39.5044L209.724 6.80823L248.144 39.5044"
+              stroke="#00FFFF"
+              stroke-width="0.480826"
+            />
+            <path
+              d="M1 39.5044V213.134L31.589 247.438L1 278.048V532.9H420.28V272.242L393.91 245.855L420.28 211.023V39.5044H1Z"
+              fill="#090E17"
+              stroke="#1592CA"
+              stroke-width="0.673156"
+            />
+            <path
+              d="M19.2715 57.7758V215.967L47.1594 247.221L19.2715 275.109V514.9H401.528V269.82L377.487 245.779L401.528 214.044V57.7758H19.2715Z"
+              stroke="#00FFFF"
+              stroke-width="1.9233"
+            />
+          </svg>
         )}
         {/* <!--content inside the box--> */}
         <div className={styles.fContent}>
@@ -79,7 +139,13 @@ export default function PoolCard({ pool }) {
           <Image src={dots} alt="dots" width="39.31px" />
           <div className={styles.topContent}>
             {/* <div className="logo">{pool?.logo}</div> */}
-            <Image className={styles.logo} src={DAILogo} alt="logo" />
+            <Image
+              className={styles.logo}
+              src={DAILogo}
+              alt="logo"
+              width={100}
+              height={46}
+            />
             <div className={styles.buttons}>
               {pool.tags?.map((tag, index) => (
                 <button key={index} className={styles.boxButton}>
@@ -127,7 +193,7 @@ export default function PoolCard({ pool }) {
             </div>
           </div>
           {pool?.tag === "completed" && (
-            <div className="percentage-bar">
+            <div className={styles.percentageBar}>
               {/* <img src={percentageBar} alt="percentage bar" /> */}
               <div
                 className=""
@@ -135,9 +201,8 @@ export default function PoolCard({ pool }) {
               >
                 <div
                   id="myBar"
-                  className="w3-container "
+                  className={styles.bar}
                   style={{
-                    height: "24px",
                     width: percentage,
                     borderRadius: "4px",
                     backgroundColor: "#2166AE",
@@ -146,8 +211,8 @@ export default function PoolCard({ pool }) {
                 ></div>
               </div>
               <div className="">
-                <p className="percentage">{percentage}</p>
-                <p className="SLM-Amt">{pool?.SLMAmount}</p>
+                <p className={styles.percentage}>{percentage}</p>
+                <p className={styles.SLMAmt}>{pool?.SLMAmount}</p>
               </div>
             </div>
           )}
@@ -184,7 +249,7 @@ export default function PoolCard({ pool }) {
           // className={styles.viewMoreBtn}
           href={`/pools/${pool.id}`}
         >
-          View MoreFDDF
+          View More
         </Link>
         // </button>
       )}
