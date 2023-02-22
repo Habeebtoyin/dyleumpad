@@ -43,7 +43,7 @@ export default function PoolCard({ pool }) {
   const { data: signer, isError, isLoading } = useSigner();
 
   function poolChain(chains) {
-    return chains.filter((x) => x.id === pool[0].chain);
+    return chains.filter((x) => x.id === pool.chain);
   }
 
   useEffect(() => {
