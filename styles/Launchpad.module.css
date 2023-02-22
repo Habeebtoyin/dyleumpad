@@ -601,11 +601,7 @@
 
 @media screen and (min-width: 1300px) {
   .heroSection,
-  .bg
-   {
-    height: 814px !important;
-  }
-
+  .bg,
   .poolCardDetails .heroSection,
 .poolCardDetails .bg
    {
