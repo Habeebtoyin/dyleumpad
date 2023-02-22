@@ -3,6 +3,11 @@
   height: 1100px !important;
 }
 
+.poolCardDetails .heroSection,
+.poolCardDetails .bg {
+  height: 1344px !important;
+}
+
 .heroSection {
   --padding: 0;
 }
@@ -131,11 +136,10 @@
   text-align: left;
 }
 
-.boxImg {
-  /* height: 100% !important; */
+.boxImg,
+.rightCol .boxImg {
+  height: 100% !important;
   width: 100%;
-  /* position: absolute !important;
-  left: 0 !important; */
 }
 
 .fContent {
@@ -143,7 +147,7 @@
   max-width: 400px;
   margin: auto;
   position: absolute;
-  top: 103px;
+  top: 56px;
   padding-inline: 30px;
 }
 
@@ -301,7 +305,7 @@
   margin-top: 16px;
 }
 
-.poolBox a:hover{
+.poolBox a:hover {
   border-width: 2px;
 }
 
@@ -320,17 +324,34 @@
   color: #08c5ea !important;
 }
 
-.phaseBtns{
+.phaseBtns {
   width: 100%;
   justify-content: space-between;
   gap: 0;
 }
 
-.phaseBtns button{
+.phaseBtns button {
   width: 100%;
   background: transparent;
   border: 0.5px solid #00e5ff;
   border-radius: 0px;
+  color: #e5e7eb;
+  padding: 6.73px 12.5px;
+}
+
+.phaseBtns button.active {
+  background: #08262e;
+}
+
+.poolBox input {
+  width: 100%;
+  background: transparent;
+  border: 1px solid #2166ae;
+  margin-top: 4px;
+  color: var(--white);
+  font-size: 18px;
+  padding: 13.5px 2px;
+  text-align: center;
 }
 
 .poolTokenInformation {
@@ -349,7 +370,7 @@
 }
 
 .details h1,
-.about-project h1 {
+.aboutProject h1 {
   width: fit-content;
   font-weight: 500;
   font-size: 24px;
@@ -397,42 +418,42 @@
 }
 
 .details p,
-.about-project p,
-.about-project li {
+.aboutProject p,
+.aboutProject li {
   font-weight: 400;
   font-size: 18px;
   line-height: 22px;
   color: #d1d5db;
 }
 
-.about-project {
+.aboutProject {
   margin-block: 100px 97px;
   display: flex;
   flex-direction: column;
   gap: 24px;
 }
 
-.about-project ul {
+.aboutProject ul {
   list-style: none;
 }
 
-.about-project p,
-.about-project li {
+.aboutProject p,
+.aboutProject li {
   line-height: 31px;
   color: var(--text-color);
 }
 
-@media screen and (max-width: 400px) {
+/* @media screen and (max-width: 400px) {
   .poolBox a {
     margin-top: -36px;
   }
-}
+} */
 
-@media screen and (max-width: 440px) {
+/* @media screen and (max-width: 440px) {
   .poolBox a {
     margin-top: -12px;
   }
-}
+} */
 
 /* PAGINATION */
 .paginationBtns {
@@ -580,8 +601,15 @@
 
 @media screen and (min-width: 1300px) {
   .heroSection,
-  .bg {
-    height: 814px;
+  .bg
+   {
+    height: 814px !important;
+  }
+
+  .poolCardDetails .heroSection,
+.poolCardDetails .bg
+   {
+    height: 814px !important;
   }
 
   .heroContainer {

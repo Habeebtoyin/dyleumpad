@@ -205,17 +205,16 @@ export default function PoolCard({ pool }: any) {
               {/* </div> */}
             </div>
 
-            <div className="percentage-bar">
+            <div className={styles.percentageBar}>
               {/* <img src={percentageBar} alt="percentage bar" /> */}
               <div
-                className="w3-light-grey"
+                className=""
                 style={{ border: "2px solid #6B7280", borderRadius: "8px" }}
               >
                 <div
                   id="myBar"
-                  className="w3-container "
+                  className={styles.bar}
                   style={{
-                    height: "24px",
                     width: percentage,
                     borderRadius: "4px",
                     backgroundColor: "#2166AE",
@@ -224,35 +223,35 @@ export default function PoolCard({ pool }: any) {
                 ></div>
               </div>
               <div className="">
-                <p className="percentage">{percentage}</p>
-                <p className="SLM-Amt">
+                <p className={styles.percentage}>{percentage}</p>
+                <p className={styles.SLMAmt}>
                   {pool?.currentBalance}/{pool.targetBalance} DAI
                 </p>
               </div>
             </div>
 
-            <div className="dash"></div>
+            <div className={styles.dash}></div>
 
-            <div className="allocation-group">
-              <div className="total-raised">
-                <p>Total Raised</p>
-                <h3>{convertweiToEthers(tierDetails?.amountRaised, 18)}</h3>
+            <div className={styles.allocationGroup}>
+              <div className={styles.allocationGroupContainer}>
+                <p className={styles.allocationGroupText}>Total Raised</p>
+                <h3 className={styles.allocationGroupHeading}>{convertweiToEthers(tierDetails?.amountRaised, 18)}</h3>
               </div>
-              <div className="participants">
-                <p>Participants</p>
-                <h3>{tierDetails.users}</h3>
+              <div className={styles.allocationGroupContainer}>
+                <p className={styles.allocationGroupText}>Participants</p>
+                <h3 className={styles.allocationGroupHeading}>{tierDetails.users}</h3>
               </div>
-              <div className="participants">
-                <p>Status</p>
-                <h3 className={pool.status === "Active" ? `active-status` : ``}>
+              <div className={styles.allocationGroupContainer}>
+                <p className={styles.allocationGroupText}>Status</p>
+                <h3 className={`${pool.status === "Active" ? `active-status` : ``} ${styles.allocationGroupHeading}`}>
                   {pool?.status}
                 </h3>
               </div>
             </div>
-            <div className="allocation-group">
-              <div className="total-raised">
-                <p>Date of Completion</p>
-                <h3>{saleEnd === undefined || !saleEnd ? "0" : saleEnd}</h3>
+            <div className={styles.allocationGroup}>
+              <div className={styles.allocationGroupContainer}>
+                <p className={styles.allocationGroupText}>Date of Completion</p>
+                <h3 className={styles.allocationGroupHeading}>{saleEnd === undefined || !saleEnd ? "0" : saleEnd}</h3>
               </div>
             </div>
           </div>
@@ -269,9 +268,9 @@ export default function PoolCard({ pool }: any) {
 
         {pool.tag === "active" && (
           <>
-            <button className="buy-presale-btn" onClick={BuyPresale}>
+            <a href="" onClick={BuyPresale}>
               Buy Presale
-            </button>
+            </a>
           </>
         )}
       {/* </div> */}

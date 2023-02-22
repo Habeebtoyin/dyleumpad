@@ -1,28 +1,29 @@
+import styles from '../../styles/Launchpad.module.css';
 
 export default function TokenInformation({ pool }) {
   return (
-    <div className="details token-information">
+    <div className={`${styles.details} ${styles.poolInformation}`}>
       <h1>Token Information</h1>
-      <div className="group">
+      <div className={styles.group}>
         <div className="">
-          <h2 className="details-title">Token Name</h2>
-          <p className="value">{pool[0]?.tokenName}</p>
-        </div>
-        <div className="">
-          <h2 className="details-title">Symbol</h2>
-          <p className="value">{pool[0]?.tokenSymbol}</p>
+          <h2 className={styles.detailsTitle}>Token Name</h2>
+          <p className={styles.value}>{pool?.tokenName}</p>
         </div>
         <div className="">
-          <h2 className="details-title">Decimal</h2>
-          <p className="value">{pool[0]?.tokenDecimal}</p>
+          <h2 className={styles.detailsTitle}>Symbol</h2>
+          <p className={styles.value}>{pool?.tokenSymbol}</p>
         </div>
-        <div className="token-address">
-          <h2 className="details-title">Address</h2>
-          <p className="value">{pool[0]?.tokenAddress}</p>
+        <div className="">
+          <h2 className={styles.detailsTitle}>Decimal</h2>
+          <p className={styles.value}>{pool?.tokenDecimal}</p>
         </div>
-        <div className="total-supply">
-          <h2 className="details-title">Total Supply</h2>
-          <p className="value">{pool[0]?.tokenTotalSupply}</p>
+        <div className={styles.tokenAddress}>
+          <h2 className={styles.detailsTitle}>Address</h2>
+          <p className={styles.value}>{pool?.tokenAddress}</p>
+        </div>
+        <div className={styles.totalSupply}>
+          <h2 className={styles.detailsTitle}>Total Supply</h2>
+          <p className={styles.value}>{pool?.tokenTotalSupply}</p>
         </div>
       </div>
     </div>

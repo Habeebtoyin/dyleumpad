@@ -13,7 +13,10 @@ export default function HeroSection({ pool }) {
 
   return (
     <section className={styles.heroSection}>
-      <Image className={styles.bg} src={heroBg} alt="hero background" />
+      <div className={styles.bg}>
+
+      <Image width={1000} height={1344} src={heroBg} alt="hero background" />
+      </div>
       
       <div className={styles.heroContainer}>
         <div className={`${HomeStyles.leftCol} ${styles.leftCol}`}>

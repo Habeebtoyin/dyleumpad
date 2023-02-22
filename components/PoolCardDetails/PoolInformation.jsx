@@ -1,3 +1,4 @@
+import styles from '../../styles/Launchpad.module.css';
 import { Chain } from "wagmi";
 import { ethers } from "ethers";
 import { useState, useEffect } from "react";
@@ -44,32 +45,32 @@ export default function PoolInformation({ pool }) {
     )
   );
   return (
-    <div className="details pool-information">
+    <div className={`${styles.details} ${styles.poolInformation}`}>
       <h1>Pool Information</h1>
-      <div className="group">
+      <div className={styles.group}>
         <div className="">
-          <h2 className="details-title">Token Distribution</h2>
-          <p className="value">{pool[0]?.tokenDistribution}</p>
+          <h2 className={styles.detailsTitle}>Token Distribution</h2>
+          <p className={styles.value}>{pool?.tokenDistribution}</p>
         </div>
         <div className="">
-          <h2 className="details-title">Minimum Allocation</h2>
-          <p className="value">
+          <h2 className={styles.detailsTitle}>Minimum Allocation</h2>
+          <p className={styles.value}>
             {convertweiToEthers(tierDetails.minUserCap, 18)}
           </p>
         </div>
         <div className="">
-          <h2 className="details-title">Maximum Allocation</h2>
-          <p className="value">
+          <h2 className={styles.detailsTitle}>Maximum Allocation</h2>
+          <p className={styles.value}>
             {convertweiToEthers(tierDetails.maxUserCap, 18)}
           </p>
         </div>
         <div className="">
-          <h2 className="details-title">Token Price</h2>
-          <p className="value">{pool[0]?.tokenPrice}</p>
+          <h2 className={styles.detailsTitle}>Token Price</h2>
+          <p className={styles.value}>{pool?.tokenPrice}</p>
         </div>
-        <div className="access">
-          <h2 className="details-title">Access</h2>
-          <p className="value">{pool[0]?.access}</p>
+        <div className={styles.access}>
+          <h2 className={styles.detailsTitle}>Access</h2>
+          <p className={styles.value}>{pool?.access}</p>
         </div>
       </div>
     </div>
