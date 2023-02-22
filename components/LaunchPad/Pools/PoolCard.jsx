@@ -13,7 +13,7 @@ import { convertweiToEthers } from "../../../web3/priceOracle";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-
+import ProviderSelector from "../../../web3/networks"
 export default function PoolCard({ pool }) {
   const { chain } = useNetwork();
   const [cChain, setCChain] = useState(chain);
@@ -36,7 +36,7 @@ export default function PoolCard({ pool }) {
     )
   );
 
-  let progressValue = pool?.currentBalance / pool?.targetBalance;
+  let progressValue = tierDetails.amountRaised/ tierDetails.maxTierCap;
   let percentage = progressValue * 100;
   percentage = percentage.toFixed(2) + "%";
 
