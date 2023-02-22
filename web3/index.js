@@ -6,6 +6,7 @@ import IERC20 from "./abi/IERC20.json"
 
 export class LaunchPoolClass {
     constructor(address, token, tier, signer, provider) {
+        console.log({ address, token, tier, signer, provider })
         this.address = address
         this.token = token
         this.tier = tier
@@ -15,6 +16,7 @@ export class LaunchPoolClass {
         this.contract = new ethers.Contract(this.address, this.abi, this.signer)
         this.contractWithProvider = new ethers.Contract(this.address, this.abi, this.provider)
     }
+
     getpoolAddress() {
         return this.address;
     }
@@ -31,7 +33,7 @@ export class LaunchPoolClass {
     }
     async getTierDetails() {
         const result = await this.contractWithProvider.callStatic.tierDetails(this.tier.toString());
-        console.log(result, result.toString())
+        // console.log(result, result.toString())
         const tierDetails = {
             "maxTierCap": result[0].toString(),
             "minUserCap": result[1].toString(),
@@ -49,7 +51,7 @@ export class LaunchPoolClass {
         return result
     }
     async getSaleStart() {
-        const result = await this.contract.functions.saleStart();
+        const result = await this.contractWithProvider.functions.saleStart();
         return result.toString()
     }
     async getUserAddress() {

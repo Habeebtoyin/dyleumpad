@@ -48,10 +48,17 @@ export default function PoolCard({ pool }: any) {
     "0x2Fd8894A7F280cE00C362ef1BB51d9B0F42c5931",
     1,
     signer,
-    new ethers.providers.JsonRpcProvider(chain?.rpcUrls.default.http[0])
+    new ethers.providers.JsonRpcProvider("https://fantom-testnet.public.blastapi.io")
   );
 
   useEffect(() => {
+    const newLaunchPool = new LaunchPoolClass(
+      "0xC53c56F17e4472f521e6BE1718653f5a9Dd37FeB",
+      "0x2Fd8894A7F280cE00C362ef1BB51d9B0F42c5931",
+      1,
+      signer,
+      new ethers.providers.JsonRpcProvider("https://fantom-testnet.public.blastapi.io")
+    );
     newLaunchPool.getTierDetails().then((res) => {
       //console.log({tier:res});
       setTierDetails(res);
@@ -59,23 +66,23 @@ export default function PoolCard({ pool }: any) {
     newLaunchPool.getSaleEnd().then((res) => {
       //  console.log({date:parseInt(res.toString())})
       var myDate: any = new Date(parseInt(res.toString()));
-      console.log(myDate.toLocaleString());
+    //  console.log(myDate.toLocaleString());
       setSaleEnd(myDate.toLocaleString());
     });
     newLaunchPool.getSaleStart().then((res) => {
-      console.log({ date: parseInt(res.toString()) });
+     // console.log({ date: parseInt(res.toString()) });
       var myDate = new Date(parseInt(res.toString()));
       // console.log(myDate.toLocaleString());
       setSaleStart(res.toString());
     });
-    newLaunchPool.checkAllowance().then((res) => {
-      console.log({ res });
-    });
+    // newLaunchPool.checkAllowance().then((res) => {
+    //   console.log({ res });
+    // });
     if (chain) {
-      if (chain.id !== pool[0].chain) {
+      if (chain.id !== pool.chain) {
         toast.error("THIS POOL EXIST ON ANOTHER CHAIN");
-        console.log(pool[0].chain, chain.id);
-        switchNetwork?.(parseInt(pool[0].chain));
+        console.log(pool.chain, chain.id);
+        switchNetwork?.(parseInt(pool.chain));
       }
     }
   }, []);
