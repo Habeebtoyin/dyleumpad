@@ -2,7 +2,7 @@ import styles from "../../styles/Launchpad.module.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-export default function AboutProject({ pool }) {
+export default function AboutProject({ pool } : any) {
   return (
     <section className={styles.aboutProject}>
       <ToastContainer />
@@ -10,7 +10,7 @@ export default function AboutProject({ pool }) {
       <div className="">
         <p>{pool?.aboutProject}</p>
         <ul>
-          {pool.projectBenefits?.map((item, index) => (
+          {pool.projectBenefits?.map((item : any, index : any) => (
             <li key={index}>{item}</li>
           ))}
         </ul>

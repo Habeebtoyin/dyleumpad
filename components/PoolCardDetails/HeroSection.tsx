@@ -9,7 +9,7 @@ import heroBg from "../assets/images/launchpad/hero-frame.png";
 import PoolCard from "./PoolCard";
 import Image from "next/image";
 
-export default function HeroSection({ pool }) {
+export default function HeroSection({ pool } : any) {
 
   return (
     <section className={styles.heroSection}>
@@ -21,7 +21,7 @@ export default function HeroSection({ pool }) {
       <div className={styles.heroContainer}>
         <div className={`${HomeStyles.leftCol} ${styles.leftCol}`}>
           <div className={styles.logo}>{pool?.logo}</div>
-          <h1 class={HomeStyles.heroTitle}>{pool?.projectTitle}</h1>
+          <h1 className={HomeStyles.heroTitle}>{pool?.projectTitle}</h1>
           <Image src={dash} alt="dash" />
           <p className={HomeStyles.text}>{pool?.projectDescription}</p>
           {/* HERO LOGO LINKS */}

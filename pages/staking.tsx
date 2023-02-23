@@ -11,16 +11,16 @@ import { convertEthersToWei } from "../web3/priceOracle";
 export default function Staking() {
   const { data: signer, isError, isLoading } = useSigner();
   const { chains, error, pendingChainId, switchNetwork } = useSwitchNetwork();
-  const [userAddress, setUserAddress] = useState("");
+  const [userAddress, setUserAddress]: any = useState("");
   const { chain } = useNetwork();
-  const [amount, setAmount] = useState();
+  const [amount, setAmount]: any = useState();
   const StakingPool = new StakingPoolClass(
     "0x5EFbde98f336769E0Ff45A05f9E6dc7A75a25fbB",
     "0x2Fd8894A7F280cE00C362ef1BB51d9B0F42c5931",
     signer,
     new ethers.providers.JsonRpcProvider(chain?.rpcUrls.default.http[0])
-    );
-    // console.log(chain)
+  );
+  // console.log(chain)
 
   async function Transact() {
     const valueInWei = convertEthersToWei(amount, 18).toString();

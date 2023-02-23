@@ -7,7 +7,7 @@ import { LaunchPoolClass } from "../../web3";
 import { useNetwork, useSwitchNetwork } from "wagmi";
 import { convertweiToEthers } from "../../web3/priceOracle";
 
-export default function PoolInformation({ pool }) {
+export default function PoolInformation({ pool } : any) {
   const { chain } = useNetwork();
   const [cChain, setCChain] = useState(chain);
   const [tierDetails, setTierDetails] = useState({
@@ -19,9 +19,9 @@ export default function PoolInformation({ pool }) {
   });
   const { chains, error, pendingChainId, switchNetwork } = useSwitchNetwork();
   const { data: signer, isError, isLoading } = useSigner();
-  function poolChain(chains) {
+  function poolChain(chains : any) {
     // console.log(pool.chain)
-    return chains.filter((x) => x.id === pool.chain);
+    return chains.filter((x : any) => x.id === pool.chain);
   }
   useEffect(() => {
     if (chains) {

@@ -1,6 +1,6 @@
 import styles from '../../styles/Launchpad.module.css';
 
-export default function PhaseBtns({ phase, setPhaseId, active }) {
+export default function PhaseBtns({ phase, setPhaseId, active } : any) {
   return (
     <button
       id={phase?.id}

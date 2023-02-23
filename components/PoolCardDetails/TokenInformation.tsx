@@ -1,6 +1,6 @@
 import styles from '../../styles/Launchpad.module.css';
 
-export default function TokenInformation({ pool }) {
+export default function TokenInformation({ pool } : any) {
   return (
     <div className={`${styles.details} ${styles.poolInformation}`}>
       <h1>Token Information</h1>
