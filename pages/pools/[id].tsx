@@ -12,7 +12,6 @@ import PoolInformation from "../../components/PoolCardDetails/PoolInformation";
 import TokenInformation from "../../components/PoolCardDetails/TokenInformation";
 import AboutProject from "../../components/PoolCardDetails/AboutProject";
 
-
 const Pool = ({ pool }: any) => {
   // const { poolsData } = GlobalAuth();
   // const router = useRouter();
@@ -45,14 +44,19 @@ const Pool = ({ pool }: any) => {
 export default Pool;
 
 export const getStaticProps = async (context: any) => {
-  const res = await fetch(`${server}/api/pools/${context.params.id}`);
-  const pool = await res.json();
+  try {
+    const res = await fetch(`${server}/api/pools/${context.params.id}`);
+    const pool = await res.json();
+    
+    return {
+      props: {
+        pool,
+      },
+    };
+  } catch (err) {
+    console.log("error," + err);
+  }
 
-  return {
-    props: {
-      pool,
-    },
-  };
 };
 export const getStaticPaths = async () => {
   const res = await fetch(`${server}/api/pools`);
