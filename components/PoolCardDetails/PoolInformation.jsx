@@ -23,18 +23,6 @@ export default function PoolInformation({ pool }) {
     // console.log(pool.chain)
     return chains.filter((x) => x.id === pool.chain);
   }
-  useEffect(() => {
-    if (chains) {
-      const currentChain = poolChain(chains);
-      setCChain(currentChain[0]);
-      console.log(currentChain[0]);
-    }
-    newLaunchPool.getTierDetails().then((res) => {
-      console.log({ tier: res });
-      setTierDetails(res);
-    });
-  }, []);
-
   const newLaunchPool = new LaunchPoolClass(
     "0xC53c56F17e4472f521e6BE1718653f5a9Dd37FeB",
     "0x2Fd8894A7F280cE00C362ef1BB51d9B0F42c5931",
@@ -44,6 +32,20 @@ export default function PoolInformation({ pool }) {
       "https://fantom-testnet.public.blastapi.io"
     )
   );
+  useEffect(() => {
+    // if (chains) {
+    //   const currentChain = poolChain(chains);
+    //   setCChain(currentChain[0]);
+    //   console.log(currentChain[0]);
+    // }
+    newLaunchPool.getTierDetails().then((res) => {
+      console.log({ tier: res });
+      setTierDetails(res);
+    });
+  }, []);
+  console.log({pool})
+
+  
   return (
     <div className={`${styles.details} ${styles.poolInformation}`}>
       <h1>Pool Information</h1>

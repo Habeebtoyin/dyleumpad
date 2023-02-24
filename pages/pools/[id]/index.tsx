@@ -13,12 +13,7 @@ import { GlobalAuth } from "../../../context/GlobalContext";
 import { default as GetPools } from "../../api/pools/index";
 
 const Pool = ({pool} : any) => {
-  // const { poolsData } = GlobalAuth();
-  // const router = useRouter();
-  // const { id } = router.query;
-  //console.log({pool})
-  
-  // const [pool, setPool] = useState();
+//console.log({pool})
 
   return (
     <div className={`${HomeStyles.container} ${styles.poolCardDetails}`}>
@@ -32,10 +27,10 @@ const Pool = ({pool} : any) => {
         <link rel="icon" href="/logo-icon.svg" />
       </Head>
       <Navbar />
-      <HeroSection pool={pool} />
+      <HeroSection pool={pool[0]} />
       <section className={styles.poolTokenInformation}>
-        <PoolInformation pool={pool} />
-        <TokenInformation pool={pool} />
+        <PoolInformation pool={pool[0]} />
+        <TokenInformation pool={pool[0]} />
       </section>
       <AboutProject pool={pool} />
     </div>
