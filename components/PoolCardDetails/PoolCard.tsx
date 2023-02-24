@@ -236,7 +236,7 @@ export default function PoolCard({ pool }: any) {
                 ></div>
               </div>
               <div className="">
-                <p className={styles.percentage}>{progress}</p>
+                <p className={styles.percentage}>{convertweiToEthers(tierDetails?.amountRaised)}</p>
                 <p className={styles.SLMAmt}>
                   {convertweiToEthers(tierDetails?.amountRaised)}/{convertweiToEthers(tierDetails?.maxTierCap)} DAI
                 </p>
