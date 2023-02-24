@@ -12,7 +12,7 @@ export default function ContractAddress() {
     navigator.clipboard.writeText(text).then(
       function () {
         setSuccessMessageState(true)
-        console.log("Async: copying address was successful");
+        // console.log("Async: copying address was successful");
         setTimeout(() => {
           setSuccessMessageState(false)
         }, 3000);

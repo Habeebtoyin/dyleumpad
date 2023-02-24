@@ -78,7 +78,7 @@ export default function Staking() {
         <div className="hero-container">
           <div>Staking Balance:{}</div>
           <input
-            onChange={(e) => {
+            onChange={(e : any) => {
               setAmount(e.target.value);
             }}
             type="number"

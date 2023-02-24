@@ -6,7 +6,7 @@ import Navbar from "../../components/Navbar/Navbar";
 import { server } from "../../config";
 
 export default function LaunchPad({ pools }: any) {
-  console.log(pools);
+  // console.log(pools);
 
   return (
     <>
@@ -30,7 +30,7 @@ export default function LaunchPad({ pools }: any) {
 }
 
 export const getStaticProps = async () => {
-  const res = await fetch(`${server}/api/pools`);
+  const res = await fetch("https://solimax-api-danijel-enoch.vercel.app/api/pools");
   const pools = await res.json()
 
   return{

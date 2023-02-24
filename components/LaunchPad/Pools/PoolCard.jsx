@@ -13,6 +13,7 @@ import { convertweiToEthers } from "../../../web3/priceOracle";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import ProviderSelector from "../../../web3/networks"
 
 export default function PoolCard({ pool }) {
   const { chain } = useNetwork();
@@ -36,7 +37,7 @@ export default function PoolCard({ pool }) {
     )
   );
 
-  let progressValue = pool?.currentBalance / pool?.targetBalance;
+  let progressValue = tierDetails.amountRaised / tierDetails.maxTierCap;
   let percentage = progressValue * 100;
   percentage = percentage.toFixed(2) + "%";
 
@@ -48,7 +49,7 @@ export default function PoolCard({ pool }) {
 
   useEffect(() => {
     newLaunchPool.getTierDetails().then((res) => {
-      console.log({ tier: res });
+      // console.log({ tier: res });
       setTierDetails(res);
     });
   }, []);

@@ -11,6 +11,7 @@ import HeroSection from "../../components/PoolCardDetails/HeroSection";
 import PoolInformation from "../../components/PoolCardDetails/PoolInformation";
 import TokenInformation from "../../components/PoolCardDetails/TokenInformation";
 import AboutProject from "../../components/PoolCardDetails/AboutProject";
+import { default as GetPools } from "../api/pools/index";
 
 const Pool = ({ pool }: any) => {
   // const { poolsData } = GlobalAuth();
@@ -44,30 +45,36 @@ const Pool = ({ pool }: any) => {
 export default Pool;
 
 export const getStaticProps = async (context: any) => {
-  try {
-    const res = await fetch(`${server}/api/pools/${context.params.id}`);
+    const res = await fetch("https://solimax-api-danijel-enoch.vercel.app/api/pools/" + context.params.id);
     const pool = await res.json();
+
+    if (!pool) {
+      return {
+        notFound: true,
+      }
+    }
     
     return {
       props: {
         pool,
       },
     };
-  } catch (err) {
-    console.log("error," + err);
-  }
+  
 
 };
 export const getStaticPaths = async () => {
-  const res = await fetch(`${server}/api/pools`);
+  const res = await fetch("https://solimax-api-danijel-enoch.vercel.app/api/pools");
   const pools = await res.json();
 
   const ids = pools.map((pool: any) => pool.id);
-  const paths = ids.map((id: number) => ({
-    params: {
-      id: id.toString(),
-    },
-  }));
+  console.log({ids})
+  const paths = ids.map((id : number) => ({params : {id:id.toString()}}))
+  console.log(paths)
+  // const paths = ids.map((id: number) => ({
+  //   params: {
+  //     id: id.toString(),
+  //   },
+  // }));
 
   return {
     paths,
