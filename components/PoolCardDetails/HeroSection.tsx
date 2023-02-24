@@ -1,4 +1,4 @@
-import styles from '../../styles/Launchpad.module.css';
+import styles from "../../styles/Launchpad.module.css";
 import HomeStyles from "../../styles/Home.module.css";
 import dash from "../assets/icons/PoolCardDetails/dash.svg";
 import twitterIcon from "../assets/icons/twitter.svg";
@@ -9,15 +9,11 @@ import heroBg from "../assets/images/launchpad/hero-frame.png";
 import PoolCard from "./PoolCard";
 import Image from "next/image";
 
-export default function HeroSection({ pool } : any) {
-
+export default function HeroSection({ pool }: any) {
   return (
     <section className={styles.heroSection}>
-      <div className={styles.bg}>
+      <Image className={styles.bg} src={heroBg} alt="hero background" />
 
-      <Image width={1000} height={1344} src={heroBg} alt="hero background" />
-      </div>
-      
       <div className={styles.heroContainer}>
         <div className={`${HomeStyles.leftCol} ${styles.leftCol}`}>
           <div className={styles.logo}>{pool?.logo}</div>
@@ -28,7 +24,7 @@ export default function HeroSection({ pool } : any) {
           <div className={styles.socialIcons}>
             {/* TWITTER ICON */}
             <a href="">
-              <Image src={twitterIcon} alt="twitter icon"  />
+              <Image src={twitterIcon} alt="twitter icon" />
             </a>
             {/* TELEGRAM ICON */}
             <a href="">
