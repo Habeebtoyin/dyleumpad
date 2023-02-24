@@ -30,6 +30,7 @@ export default function PoolCard({ pool }: any) {
   const { chain } = useNetwork();
   const { chains, error, pendingChainId, switchNetwork } = useSwitchNetwork();
   const [phaseId, setPhaseId] = useState("1");
+  const [progress,setProgress]=useState(0)
   const currentDate = Date.now();
   const [amountToBuy, setAmountToBuy]: any = useState(0);
   const [tierDetails, setTierDetails] = useState({
@@ -75,6 +76,11 @@ export default function PoolCard({ pool }: any) {
       // console.log(myDate.toLocaleString());
       setSaleStart(res.toString());
     });
+    let progressValue =parseInt(convertweiToEthers(tierDetails?.amountRaised) )/parseInt(convertweiToEthers(tierDetails?.maxTierCap)) ;
+    let percentage: any = progressValue * 100;
+    percentage = percentage.toFixed(2) + "%"
+
+    setProgress(percentage)
     // newLaunchPool.checkAllowance().then((res) => {
     //   console.log({ res });
     // });
@@ -222,7 +228,7 @@ export default function PoolCard({ pool }: any) {
                   id="myBar"
                   className={styles.bar}
                   style={{
-                    width: percentage,
+                    width: progress,
                     borderRadius: "4px",
                     backgroundColor: "#2166AE",
                     margin: "2px",
@@ -230,9 +236,9 @@ export default function PoolCard({ pool }: any) {
                 ></div>
               </div>
               <div className="">
-                <p className={styles.percentage}>{percentage}</p>
+                <p className={styles.percentage}>{progress}</p>
                 <p className={styles.SLMAmt}>
-                  {pool?.currentBalance}/{pool.targetBalance} DAI
+                  {convertweiToEthers(tierDetails?.amountRaised)}/{convertweiToEthers(tierDetails?.maxTierCap)} DAI
                 </p>
               </div>
             </div>
