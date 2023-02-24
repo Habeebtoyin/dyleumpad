@@ -30,7 +30,7 @@ export default function PoolCard({ pool }: any) {
   const { chain } = useNetwork();
   const { chains, error, pendingChainId, switchNetwork } = useSwitchNetwork();
   const [phaseId, setPhaseId] = useState("1");
-  const [progress,setProgress]=useState(0)
+  const [progress,setProgress]=useState(0.0)
   const currentDate = Date.now();
   const [amountToBuy, setAmountToBuy]: any = useState(0);
   const [tierDetails, setTierDetails] = useState({
@@ -44,13 +44,7 @@ export default function PoolCard({ pool }: any) {
   const [saleStart, setSaleStart]: any = useState(0);
   const { data: signer, isError, isLoading } = useSigner();
   // console.log(chain.id)
-  const newLaunchPool = new LaunchPoolClass(
-    "0xC53c56F17e4472f521e6BE1718653f5a9Dd37FeB",
-    "0x2Fd8894A7F280cE00C362ef1BB51d9B0F42c5931",
-    1,
-    signer,
-    new ethers.providers.JsonRpcProvider("https://fantom-testnet.public.blastapi.io")
-  );
+ 
 
   useEffect(() => {
     const newLaunchPool = new LaunchPoolClass(
@@ -60,10 +54,7 @@ export default function PoolCard({ pool }: any) {
       signer,
       new ethers.providers.JsonRpcProvider("https://fantom-testnet.public.blastapi.io")
     );
-    newLaunchPool.getTierDetails().then((res) => {
-      //console.log({tier:res});
-      setTierDetails(res);
-    });
+    
     newLaunchPool.getSaleEnd().then((res) => {
       //  console.log({date:parseInt(res.toString())})
       var myDate: any = new Date(parseInt(res.toString()));
@@ -76,11 +67,12 @@ export default function PoolCard({ pool }: any) {
       // console.log(myDate.toLocaleString());
       setSaleStart(res.toString());
     });
-    let progressValue =parseInt(convertweiToEthers(tierDetails?.amountRaised) )/parseInt(convertweiToEthers(tierDetails?.maxTierCap)) ;
-    let percentage: any = progressValue * 100;
-    percentage = percentage.toFixed(2) + "%"
+    let progressValue =(((parseInt(convertweiToEthers(tierDetails?.amountRaised) )/parseInt(convertweiToEthers(tierDetails?.maxTierCap)))*100).toFixed(2)).toString()+"%" ;
+    // const percentage: any = progressValue * 100;
+    
+    console.log(progress)
 
-    setProgress(percentage)
+   // setProgress((percentage.toFixed(2)).toString())
     // newLaunchPool.checkAllowance().then((res) => {
     //   console.log({ res });
     // });
@@ -92,11 +84,25 @@ export default function PoolCard({ pool }: any) {
       }
     }
   }, []);
+  useEffect(() => {
+    newLaunchPool.getTierDetails().then((res) => {
+      //console.log({tier:res});
+      setTierDetails(res);
+    });
+  }, [])
+  
+  const newLaunchPool = new LaunchPoolClass(
+    "0xC53c56F17e4472f521e6BE1718653f5a9Dd37FeB",
+    "0x2Fd8894A7F280cE00C362ef1BB51d9B0F42c5931",
+    1,
+    signer,
+    new ethers.providers.JsonRpcProvider("https://fantom-testnet.public.blastapi.io")
+  );
 
   async function BuyPresale() {
     if (parseInt(saleStart) < currentDate / 1000) {
       const value = convertEthersToWei(amountToBuy.toString(), 18);
-      toast.success("Allowance Success");
+     // toast.success("Allowance Success");
       newLaunchPool
         .increaseAllowance(value.toString())
         .then((res) => {
@@ -131,9 +137,9 @@ export default function PoolCard({ pool }: any) {
     },
   ];
 
-  let progressValue = pool?.currentBalance / pool?.targetBalance;
-  let percentage: any = progressValue * 100;
-  percentage = percentage.toFixed(2) + "%";
+  // let progressValue = pool?.currentBalance / pool?.targetBalance;
+  // let percentage: any = progressValue * 100;
+  // percentage = percentage.toFixed(2) + "%";
 
   return (
     <div key={pool.id} className={styles.poolBox}>
@@ -224,11 +230,13 @@ export default function PoolCard({ pool }: any) {
                 className=""
                 style={{ border: "2px solid #6B7280", borderRadius: "8px" }}
               >
+                
                 <div
                   id="myBar"
                   className={styles.bar}
+                 
                   style={{
-                    width: progress,
+                    width:(((parseInt(convertweiToEthers(tierDetails?.amountRaised) )/parseInt(convertweiToEthers(tierDetails?.maxTierCap)))*100).toFixed(2)).toString()+"%",
                     borderRadius: "4px",
                     backgroundColor: "#2166AE",
                     margin: "2px",
@@ -281,9 +289,17 @@ export default function PoolCard({ pool }: any) {
 
         {pool.tag === "active" && (
           <>
-            <a href="" onClick={BuyPresale}>
-              Buy Presale
-            </a>
+          {/* <button
+          onClick={BuyPresale}
+          >
+            Buy Presale
+          </button> */}
+          <a
+          href="#"
+          onClick={BuyPresale}
+          >
+            Buy Presale
+          </a>
           </>
         )}
       {/* </div> */}
