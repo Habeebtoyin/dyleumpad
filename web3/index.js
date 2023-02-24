@@ -6,7 +6,7 @@ import IERC20 from "./abi/IERC20.json"
 
 export class LaunchPoolClass {
     constructor(address, token, tier, signer, provider) {
-        console.log({ address, token, tier, signer, provider })
+        // console.log({ address, token, tier, signer, provider })
         this.address = address
         this.token = token
         this.tier = tier

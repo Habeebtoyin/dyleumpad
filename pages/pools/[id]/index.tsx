@@ -2,13 +2,24 @@ import HomeStyles from "../../../styles/Home.module.css";
 import styles from "../../../styles/Launchpad.module.css";
 import Head from "next/head";
 import {server} from "../../../config/index";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 import Navbar from "../../../components/Navbar/Navbar";
 import AboutProject from "../../../components/PoolCardDetails/AboutProject";
 import HeroSection from "../../../components/PoolCardDetails/HeroSection";
 import PoolInformation from "../../../components/PoolCardDetails/PoolInformation";
 import TokenInformation from "../../../components/PoolCardDetails/TokenInformation";
+import { GlobalAuth } from "../../../context/GlobalContext";
+import { default as GetPools } from "../../api/pools/index";
 
 const Pool = ({pool} : any) => {
+  // const { poolsData } = GlobalAuth();
+  // const router = useRouter();
+  // const { id } = router.query;
+  //console.log({pool})
+  
+  // const [pool, setPool] = useState();
+
   return (
     <div className={`${HomeStyles.container} ${styles.poolCardDetails}`}>
       <Head>
@@ -36,8 +47,14 @@ export default Pool;
 
 
 export const getStaticProps = async (context : any) => {
-  const res = await fetch(`${server}/api/pools/${context.params.id}`);
+  const res = await fetch("https://solimax-api-danijel-enoch.vercel.app/api/pools/"+context.params.id);
   const pool = await res.json();
+
+  if (!pool) {
+    return {
+      notFound: true,
+    }
+  }
 
   return{
     props:{
@@ -46,16 +63,18 @@ export const getStaticProps = async (context : any) => {
   }
 }
 export const getStaticPaths = async () => {
-  const res = await fetch(`${server}/api/pools`);
+  const res = await fetch("https://solimax-api-danijel-enoch.vercel.app/api/pools");
   const pools = await res.json();
-
   const ids = pools.map((pool: any) => pool.id);
-  const paths = ids.map((id : number) => ({params : {
-    id: id.toString()
-  }}))
-
+  console.log({ids})
+  const paths = ids.map((id : number) => ({params : {id:id.toString()}}))
+  console.log(paths)
   return{
     paths,
+    // paths:[
+    //   { params: { id: '1' }},
+    // { params: { id: '2' },},
+    // ],
     fallback: false,
   }
 }

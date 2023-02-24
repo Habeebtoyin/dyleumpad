@@ -17,6 +17,7 @@ import ProviderSelector from "../../../web3/networks"
 export default function PoolCard({ pool }) {
   const { chain } = useNetwork();
   const [cChain, setCChain] = useState(chain);
+  const { data: signer, isError, isLoading } = useSigner();
   const { chains, error, pendingChainId, switchNetwork } = useSwitchNetwork();
   const [tierDetails, setTierDetails] = useState({
     maxTierCap: 0,
@@ -40,7 +41,7 @@ export default function PoolCard({ pool }) {
   let percentage = progressValue * 100;
   percentage = percentage.toFixed(2) + "%";
 
-  const { data: signer, isError, isLoading } = useSigner();
+
 
   function poolChain(chains) {
     return chains.filter((x) => x.id === pool.chain);
@@ -48,7 +49,7 @@ export default function PoolCard({ pool }) {
 
   useEffect(() => {
     newLaunchPool.getTierDetails().then((res) => {
-      console.log({ tier: res });
+      //console.log({ tier: res });
       setTierDetails(res);
     });
   }, []);

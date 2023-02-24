@@ -81,7 +81,7 @@ export default function PoolCard({ pool }: any) {
     if (chain) {
       if (chain.id !== pool.chain) {
         toast.error("THIS POOL EXIST ON ANOTHER CHAIN");
-        console.log(pool.chain, chain.id);
+       // console.log(pool.chain, chain.id);
         switchNetwork?.(parseInt(pool.chain));
       }
     }
@@ -106,7 +106,7 @@ export default function PoolCard({ pool }: any) {
             });
         })
         .catch((err) => {
-          console.log({ err });
+         // console.log({ err });
           toast.error(err.error.data.message);
         });
     } else {
