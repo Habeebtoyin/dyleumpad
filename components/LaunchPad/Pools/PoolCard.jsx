@@ -13,7 +13,6 @@ import { convertweiToEthers } from "../../../web3/priceOracle";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import ProviderSelector from "../../../web3/networks"
 
 export default function PoolCard({ pool }) {
   const { chain } = useNetwork();
