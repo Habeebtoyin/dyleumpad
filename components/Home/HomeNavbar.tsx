@@ -7,6 +7,7 @@ import NavButton from "../Navbar/NavButton";
 import styles from "../../styles/Navbar.module.css";
 import Link from "next/link";
 import Image from "next/image";
+import { ConnectButton } from "@rainbow-me/rainbowkit";
 
 export default function HomeNavbar() {
   const { menuState, setCheckboxState, setMenuState } = GlobalAuth();
@@ -24,22 +25,22 @@ export default function HomeNavbar() {
           <li
             className={styles.menuItem}
             onClick={() => {
-              setMenuState((prevState : any) => !prevState);
-              setCheckboxState((prevState : any) => !prevState);
+              setMenuState((prevState: any) => !prevState);
+              setCheckboxState((prevState: any) => !prevState);
             }}
           >
-            <Link href="/#about-us" className={styles.navLink} >
+            <Link href="/#about-us" className={styles.navLink}>
               About us
             </Link>
           </li>
           <li
             className={styles.menuItem}
             onClick={() => {
-              setMenuState((prevState : any) => !prevState);
-              setCheckboxState((prevState : any) => !prevState);
+              setMenuState((prevState: any) => !prevState);
+              setCheckboxState((prevState: any) => !prevState);
             }}
           >
-            <Link href="/#tokenomics" className={styles.navLink} >
+            <Link href="/#tokenomics" className={styles.navLink}>
               Tokenomics
             </Link>
           </li>
@@ -62,54 +63,68 @@ export default function HomeNavbar() {
           <li
             className={styles.menuItem}
             onClick={() => {
-              setMenuState((prevState : any) => !prevState);
-              setCheckboxState((prevState : any) => !prevState);
+              setMenuState((prevState: any) => !prevState);
+              setCheckboxState((prevState: any) => !prevState);
             }}
           >
-            <Link href="/#roadmap" className={styles.navLink} >
+            <Link href="/#roadmap" className={styles.navLink}>
               Roadmap
             </Link>
           </li>
           <li
             className={styles.menuItem}
             onClick={() => {
-              setMenuState((prevState : any) => !prevState);
-              setCheckboxState((prevState : any) => !prevState);
+              setMenuState((prevState: any) => !prevState);
+              setCheckboxState((prevState: any) => !prevState);
             }}
           >
-            <Link href="/launchpad" className={styles.navLink} >
+            <Link href="/launchpad" className={styles.navLink}>
               Launchpad
             </Link>
           </li>
           <li
             className={styles.menuItem}
             onClick={() => {
-              setMenuState((prevState : any) => !prevState);
-              setCheckboxState((prevState : any) => !prevState);
+              setMenuState((prevState: any) => !prevState);
+              setCheckboxState((prevState: any) => !prevState);
             }}
           >
-            <Link href="/#how-to-buy" className={styles.navLink} >
+            <Link href="/#how-to-buy" className={styles.navLink}>
               How to buy
             </Link>
           </li>
           <li
             className={styles.menuItem}
             onClick={() => {
-              setMenuState((prevState : any) => !prevState);
-              setCheckboxState((prevState : any) => !prevState);
+              setMenuState((prevState: any) => !prevState);
+              setCheckboxState((prevState: any) => !prevState);
             }}
           >
-            <Link href="/#contact" className={styles.navLink} >
+            <Link href="/#contact" className={styles.navLink}>
               Contact us
             </Link>
           </li>
-          <div className={`${styles.navBtn} ${styles.mobileBtn}`} id="mobile-btn">
+          <div
+            className={`${styles.navBtn} ${styles.mobileBtn}`}
+            id="mobile-btn"
+          >
             <NavButton link="/launchpad" value="SLM LaunchPad" />
+          </div>
+          <div className={` ${styles.mobileBtn}`} id="mobile-btn">
+            <ConnectButton />
           </div>
         </ul>
       </nav>
-      <div className={`${styles.navBtn} ${styles.desktopBtn}`} id="desktop-btn">
-        <NavButton link="/launchpad" value="SLM LaunchPad" />
+      <div className={styles.navBtns}>
+        <div
+          className={`${styles.navBtn} ${styles.desktopBtn}`}
+          id="desktop-btn"
+        >
+          <NavButton link="/launchpad" value="SLM LaunchPad" />
+        </div>
+        <div className={` ${styles.desktopBtn}`} id="desktop-btn">
+          <ConnectButton />
+        </div>
       </div>
 
       {/* MENU ICON */}
