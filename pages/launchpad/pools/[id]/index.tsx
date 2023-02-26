@@ -1,16 +1,16 @@
-import HomeStyles from "../../../styles/Home.module.css";
-import styles from "../../../styles/Launchpad.module.css";
+import HomeStyles from "../../../../styles/Home.module.css";
+import styles from "../../../../styles/Launchpad.module.css";
 import Head from "next/head";
-import {server} from "../../../config/index";
+import {server} from "../../../../config/index";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import Navbar from "../../../components/Navbar/Navbar";
-import AboutProject from "../../../components/PoolCardDetails/AboutProject";
-import HeroSection from "../../../components/PoolCardDetails/HeroSection";
-import PoolInformation from "../../../components/PoolCardDetails/PoolInformation";
-import TokenInformation from "../../../components/PoolCardDetails/TokenInformation";
-import { GlobalAuth } from "../../../context/GlobalContext";
-import { default as GetPools } from "../../api/pools/index";
+import Navbar from "../../../../components/Navbar/Navbar";
+import AboutProject from "../../../../components/PoolCardDetails/AboutProject";
+import HeroSection from "../../../../components/PoolCardDetails/HeroSection";
+import PoolInformation from "../../../../components/PoolCardDetails/PoolInformation";
+import TokenInformation from "../../../../components/PoolCardDetails/TokenInformation";
+import { GlobalAuth } from "../../../../context/GlobalContext";
+import { default as GetPools } from "../../../api/pools/index";
 
 const Pool = ({pool} : any) => {
 //console.log({pool})
@@ -32,7 +32,7 @@ const Pool = ({pool} : any) => {
         <PoolInformation pool={pool[0]} />
         <TokenInformation pool={pool[0]} />
       </section>
-      <AboutProject pool={pool} />
+      <AboutProject pool={pool[0]} />
     </div>
   );
 };

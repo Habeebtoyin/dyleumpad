@@ -247,7 +247,7 @@ export default function PoolCard({ pool }) {
             marginTop: "16px",
           }}
           // className={styles.viewMoreBtn}
-          href={`/pools/${pool.id}`}
+          href={`/launchpad/pools/${pool.id}`}
         >
           View More
         </Link>
