@@ -6,15 +6,14 @@ import Navbar from "../../components/Navbar/Navbar";
 import { server } from "../../config";
 
 export default function LaunchPad({ pools }: any) {
-  //console.log(pools);
-
+// console.log(pools);
   return (
     <>
       <Head>
         <title>Solimax | Launchpad</title>
         <meta
           name="description"
-          content="A Global Hub for Farmers, Degens, and Tech Geeks"
+          content="A Secure Multi-chain Launch-pad with High Staking"
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/logo-icon.svg" />

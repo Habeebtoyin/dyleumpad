@@ -14,14 +14,14 @@
 
 .heroContainer {
   display: grid;
-  justify-items: center;
+  place-items: center;
   position: absolute;
   top: 260px;
   left: 50%;
   transform: translateX(-50%);
   gap: 40px;
-  width: 90%;
-  margin-inline: auto;
+  width: 100%;
+  padding-inline: var(--padding);
 }
 
 .leftCol {
@@ -315,6 +315,12 @@
   gap: 16px;
 }
 
+.socialIcons a {
+  padding: 12px;
+  border-radius: 38.47px;
+  border: 0.48px solid #42e8e0;
+}
+
 .socialIcons img {
   width: 24px !important;
   height: 24px !important;
@@ -366,7 +372,7 @@
   display: flex;
   flex-direction: column;
   border: 0.7px solid #374151;
-  max-width: 612px;
+  max-width: 1000px;
 }
 
 .details h1,
@@ -398,11 +404,11 @@
 }
 
 .group .access,
-.group .total-supply {
+.group .totalSupply {
   border: none !important;
 }
 
-.group .token-address {
+.group .tokenAddress {
   padding: 18px 32px !important;
 }
 
@@ -588,8 +594,9 @@
     padding: 2rem;
   }
 
-  .poolBox a {
-    margin-top: -16px;
+  .poolTokenInformation {
+    flex-direction: row;
+    margin-top: 10rem;
   }
 }
 
@@ -603,14 +610,20 @@
   .heroSection,
   .bg,
   .poolCardDetails .heroSection,
-.poolCardDetails .bg
-   {
+  .poolCardDetails .bg {
     height: 814px !important;
   }
 
   .heroContainer {
     grid-template-columns: repeat(2, 1fr);
     gap: 81px;
+    --padding: 100px;
+  }
+
+  .poolCardDetails .heroContainer,
+  .poolTokenInformation,
+  .aboutProject {
+    --padding: 150px;
   }
 
   .leftCol {
@@ -624,6 +637,10 @@
 
   .bar {
     height: 17px;
+  }
+
+  .group .tokenAddress {
+    padding: 28px 32px !important;
   }
 }
 
