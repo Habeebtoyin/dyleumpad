@@ -116,7 +116,7 @@ export default function Navbar() {
             </div>
           )}
           <div className={` ${styles.mobileBtn}`} id="mobile-btn">
-            <ConnectButton chainStatus="none"  />
+            <ConnectButton chainStatus="none" />
           </div>
         </ul>
       </nav>
