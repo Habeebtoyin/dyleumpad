@@ -15,7 +15,7 @@ export default function HeroSection() {
       <div className={`${styles.heroContainer}`}>
         <div className={`${HomeStyles.leftCol} ${styles.leftCol}`}>
           <h1 className={HomeStyles.heroTitle}>
-            A Secure Multi-chain Launch-pad with High Staking
+            A Secure Community Driven Multi-chain Launch-pad
           </h1>
           <Image src={dash} alt="dash" />
           <p className={HomeStyles.text}>Want to raise funds with SoliMax Launchpad?</p>

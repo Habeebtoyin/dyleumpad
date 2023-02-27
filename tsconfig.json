@@ -15,6 +15,6 @@
     "jsx": "preserve",
     "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/api/pools/[id].tsxx", "pages/api/pools/index.tsxx", "pageapp/pools/[id]/index.tsxxcomponents/Layout.tsxx", "pagesll/launchpad.tsxx", "components/LaunchPad/Pools/PoolCard.jsx", "components/LaunchPad/Pools/PoolCard.jsx", "pagesll/index.tsx", "components/Home/HeroSection.tsx", "components/Home/AboutUs.tsx", "components/Home/AboutUs.tsx","components/Home/ContractAddress.tsxpages/api/pools.jss.js", "pages/api/pools/index.js", "pages/api/pools/index.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/api/pools/[id].tsxx", "pages/api/pools/index.tsxx", "pageapp/pools/[id]/index.tsxxcomponents/Layout.tsxx", "pagesll/launchpad.tsxx", "components/LaunchPad/Pools/PoolCard.jsx", "components/LaunchPad/Pools/PoolCard.jsx", "pagesll/index.tsx", "components/Home/HeroSection.tsx", "components/Home/AboutUs.tsx", "components/Home/AboutUs.tsx","components/Home/ContractAddress.tsxpages/api/pools.jss.js", "pages/api/pools/index.js", "pages/api/pools/index.js", "components/Navbar/HamburgerIcon.jsx"],
   "exclude": ["node_modules"],
 }

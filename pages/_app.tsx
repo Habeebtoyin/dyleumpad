@@ -2,7 +2,7 @@ import "../styles/globals.css";
 import "@rainbow-me/rainbowkit/styles.css";
 import type { AppProps } from "next/app";
 import { darkTheme, getDefaultWallets, midnightTheme, RainbowKitProvider, Theme } from "@rainbow-me/rainbowkit";
-import { configureChains, createClient, WagmiConfig } from "wagmi";
+import { configureChains, createClient, useAccount, WagmiConfig } from "wagmi";
 import {
   mainnet,
   polygon,

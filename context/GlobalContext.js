@@ -6,10 +6,12 @@ import {
   UpcomingPools,
   CompletedPools,
 } from "../data/PoolsData";
+import { useAccount } from "wagmi";
 
 const GlobalContext = createContext();
 
 export function GlobalContextProvider({ children }) {
+  const { isConnected} = useAccount();
   const [menuState, setMenuState] = useState(false);
   const [checkboxState, setCheckboxState] = useState(false);
   const menuItems = [
@@ -74,6 +76,7 @@ export function GlobalContextProvider({ children }) {
         poolsData,
         selectedPool,
         setSelectedPool,
+        isConnected
       }}
     >
       {children}

@@ -18,7 +18,7 @@ export default function LaunchPad({ pools }: any) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/logo-icon.svg" />
       </Head>
-      <Navbar />
+      {/* <Navbar /> */}
       <main className="launchpad">
         <HeroSection />
         <BuyButtons />

@@ -87,13 +87,14 @@
 
 .navBtn {
   margin-top: 2rem;
-  background: linear-gradient(
+  /* background: linear-gradient(
     90.72deg,
     rgba(107, 3, 184, 0.9) 21.79%,
     rgba(168, 24, 186, 0.9) 54.77%,
     rgba(226, 43, 187, 0.9) 85.69%
-  ) !important;
-  border-radius: 40px;
+  ) !important; */
+  background-color: #3898FF;
+  border-radius: 12px;
   text-align: center;
   color: var(--menu-text-color);
   cursor: pointer;
@@ -104,9 +105,9 @@
   align-items: center;
   justify-content: center;
   letter-spacing: -0.18px;
-  /* height: 40px; */
+  height: 40px;
   padding-inline: 14px;
-  padding: 12px 25px;
+  padding-inline: 14px ;
 }
 
 .navBtn a{
@@ -191,7 +192,7 @@
   } */
 }
 
-@media screen and (min-width: 1400px) {
+@media screen and (min-width: 1300px) {
   .menu {
     display: flex;
     justify-content: space-between;
