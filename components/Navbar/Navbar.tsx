@@ -1,7 +1,7 @@
 import navLogo from "../assets/icons/nav-logo.svg";
 import { GlobalAuth } from "../../context/GlobalContext";
-import HamburgerIcon from "../Navbar/HamburgerIcon";
-import NavButton from "../Navbar/NavButton";
+import HamburgerIcon from "./HamburgerIcon";
+import NavButton from "./NavButton";
 // import { NavHashLink } from "react-router-hash-link";
 // import { NavLink } from "react-router-dom";
 import styles from "../../styles/Navbar.module.css";
@@ -9,8 +9,10 @@ import Link from "next/link";
 import Image from "next/image";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 
-export default function HomeNavbar() {
-  const { menuState, setCheckboxState, setMenuState } = GlobalAuth();
+export default function Navbar() {
+  const { menuState, setCheckboxState, setMenuState, isConnected } =
+    GlobalAuth();
+  console.log(isConnected);
 
   return (
     <header className={styles.header}>
@@ -104,26 +106,32 @@ export default function HomeNavbar() {
               Contact us
             </Link>
           </li>
-          <div
-            className={`${styles.navBtn} ${styles.mobileBtn}`}
-            id="mobile-btn"
-          >
-            <NavButton link="/launchpad" value="SLM LaunchPad" />
-          </div>
+
+          {!isConnected && (
+            <div
+              className={`${styles.navBtn} ${styles.mobileBtn}`}
+              id="mobile-btn"
+            >
+              <NavButton link="/launchpad" value="SLM LaunchPad" />
+            </div>
+          )}
           <div className={` ${styles.mobileBtn}`} id="mobile-btn">
-            <ConnectButton />
+            <ConnectButton chainStatus="none" />
           </div>
         </ul>
       </nav>
       <div className={styles.navBtns}>
-        <div
-          className={`${styles.navBtn} ${styles.desktopBtn}`}
-          id="desktop-btn"
-        >
-          <NavButton link="/launchpad" value="SLM LaunchPad" />
-        </div>
+        {!isConnected && (
+          <div
+            className={`${styles.navBtn} ${styles.desktopBtn}`}
+            id="desktop-btn"
+          >
+            <NavButton link="/launchpad" value="SLM LaunchPad" />
+          </div>
+        )}
+
         <div className={` ${styles.desktopBtn}`} id="desktop-btn">
-          <ConnectButton />
+          <ConnectButton chainStatus="none" />
         </div>
       </div>
 
