@@ -21,7 +21,7 @@ import Layout from "../components/Layout";
 import Loading from "../components/Loading";
 
 const { chains, provider } = configureChains(
-  [fantom, fantomTestnet, optimism, optimismGoerli, localhost],
+  [fantom, optimism],
   [publicProvider()]
 );
 
