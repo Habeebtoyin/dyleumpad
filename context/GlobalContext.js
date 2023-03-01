@@ -89,7 +89,7 @@ export function GlobalAuth() {
 }
 
 
-GlobalContextProvider.propTypes = {
-  poolProgressValue: PropTypes.number,
-  menuState: PropTypes.bool
-}
+// GlobalContextProvider.propTypes = {
+//   poolProgressValue: PropTypes.number,
+//   menuState: PropTypes.bool
+// }
