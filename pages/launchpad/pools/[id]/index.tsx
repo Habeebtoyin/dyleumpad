@@ -13,7 +13,6 @@ import { GlobalAuth } from "../../../../context/GlobalContext";
 import { default as GetPools } from "../../../api/pools/index";
 
 const Pool = ({pool} : any) => {
-//console.log({pool})
 
   return (
     <div className={`${HomeStyles.container} ${styles.poolCardDetails}`}>
