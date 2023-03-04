@@ -98,14 +98,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     <WagmiConfig client={wagmiClient}>
       <RainbowKitProvider chains={chains} 
       // theme={myCustomTheme}
-      theme={darkTheme({
-      // accentColor: 'linear-gradient(90.72deg,rgba(107, 3, 184, 0.9) 21.79%,rgba(168, 24, 186, 0.9) 54.77%,rgba(226, 43, 187, 0.9) 85.69%)',
-      // accentColorForeground: 'white',
-      // borderRadius: 'large',
-      // fontStack: 'system',
-      // overlayBlur: 'small',
-    })} 
-    coolMode
+      theme={darkTheme()} coolMode
     >
         <GlobalContextProvider>
           <Layout>
