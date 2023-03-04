@@ -10,6 +10,7 @@
 .footerLogo {
   width: 170px;
   margin-inline: auto;
+  cursor: pointer;
 }
 
 .listContainer {

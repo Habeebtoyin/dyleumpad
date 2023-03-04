@@ -23,7 +23,7 @@ const Home : NextPage = ()  => {
         <link rel="icon" href="/logo-icon.svg" />
       </Head>
 
-      <HomeNavbar />
+      {/* <HomeNavbar /> */}
       <main id="main">
         <HeroSection />
         <AboutUs />

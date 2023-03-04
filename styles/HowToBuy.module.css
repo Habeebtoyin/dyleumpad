@@ -87,21 +87,22 @@
   .card {
     height: 427px !important;
     border-radius: 0 !important;
+    justify-content: unset !important;
   }
 
   .stepOne {
-    padding-left: 100px;
+    padding-left: 50px !important;
   }
 
   .stepTwo {
-    padding-left: 32px;
+    padding-left: 32px !important;
   }
 
   .stepThree {
-    padding-left: 32px;
+    padding-left: 32px !important;
   }
 
   .stepFour {
-    padding-right: 154px;
+    /* padding-right: 4px !important; */
   }
 }

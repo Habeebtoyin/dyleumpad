@@ -13,7 +13,8 @@ import { convertweiToEthers } from "../../../web3/priceOracle";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import ProviderSelector from "../../../web3/networks"
+import ProviderSelector from "../../../web3/networks";
+
 export default function PoolCard({ pool }) {
   const { chain } = useNetwork();
   const [cChain, setCChain] = useState(chain);
@@ -246,7 +247,7 @@ export default function PoolCard({ pool }) {
             marginTop: "16px",
           }}
           // className={styles.viewMoreBtn}
-          href={`/pools/${pool.id}`}
+          href={`/launchpad/pools/${pool.id}`}
         >
           View More
         </Link>
