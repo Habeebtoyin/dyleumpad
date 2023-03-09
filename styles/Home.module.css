@@ -32,10 +32,8 @@
   overflow-x: hidden;
   position: unset !important;
   margin-top: 573px !important;
-  transform: perspective(1000px) scale3d(0.86, 0.75, 6) translate3d(0px, -66px, 29px);
-  
-  /* transform: perspective(300px) translate3d(0px, -66px, 42px)
-    scale3d(0.86, 0.75, 1) translateY(816px); */
+  transform: perspective(1000px) scale3d(0.86, 0.75, 6)
+    translate3d(0px, -66px, 29px);
 }
 
 .imgOverlay {
@@ -111,7 +109,6 @@
   text-align: center;
 }
 
-
 @media screen and (min-width: 768px) {
   .heroSection {
     height: 1180px;
@@ -138,7 +135,7 @@
     height: 610px !important;
   }
 
-  .text{
+  .text {
     width: 615px;
   }
 
@@ -146,7 +143,6 @@
     --section-title-font-size: 2.5em;
     line-height: 64px;
   }
-
 }
 
 @media screen and (min-width: 1300px) {

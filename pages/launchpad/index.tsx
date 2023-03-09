@@ -1,12 +1,22 @@
+import dynamic from "next/dynamic";
 import Head from "next/head";
-import BuyButtons from "../../components/LaunchPad/BuyButtons";
-import HeroSection from "../../components/LaunchPad/HeroSection";
-import Pools from "../../components/LaunchPad/Pools/Pools";
-import Navbar from "../../components/Navbar/Navbar";
+import { lazy } from "react";
+// import BuyButtons from "../../components/LaunchPad/BuyButtons";
+// import HeroSection from "../../components/LaunchPad/HeroSection";
+// import Pools from "../../components/LaunchPad/Pools/Pools";
+import Loading from "../../components/Loading";
+// import Navbar from "../../components/Navbar/Navbar";
 import { server } from "../../config";
 
+const BuyButtons = lazy(() => import("../../components/LaunchPad/BuyButtons"));
+
+const HeroSection = lazy(
+  () => import("../../components/LaunchPad/HeroSection")
+);
+
+const Pools = lazy(() => import("../../components/LaunchPad/Pools/Pools"));
+
 export default function LaunchPad({ pools }: any) {
-// console.log(pools);
   return (
     <>
       <Head>
@@ -29,12 +39,14 @@ export default function LaunchPad({ pools }: any) {
 }
 
 export const getStaticProps = async () => {
-  const res = await fetch("https://solimax-api-danijel-enoch.vercel.app/api/pools");
-  const pools = await res.json()
+  const res = await fetch(
+    "https://solimax-api-danijel-enoch.vercel.app/api/pools"
+  );
+  const pools = await res.json();
 
-  return{
-    props:{
+  return {
+    props: {
       pools,
-    }
-  }
-}
+    },
+  };
+};

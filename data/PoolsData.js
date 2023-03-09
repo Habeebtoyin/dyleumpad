@@ -1,3 +1,13 @@
+export const proposals = [
+  {
+    id: "Active",
+    tag: "core",
+    title: "Lorem ipsum dolor sit amet consectetur ",
+    summary:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium architecto cupiditate numquam rem, sit odit nesciunt veniam quod nobis omnis, consequatur ipsa suscipit quidem, fugit libero aliquid ipsum harum laborum.",
+  },
+];
+
 export const ActivePools = [
   // {
   //   id: 1,

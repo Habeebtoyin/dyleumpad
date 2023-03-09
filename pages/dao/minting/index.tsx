@@ -7,7 +7,7 @@ import Image from "next/image";
 export default function DAOMinting() {
   return (
     <div className="minting">
-      <Navbar />
+      {/* <Navbar /> */}
 
       <section className={`${styles.heroSection} ${HomeStyles.heroSection}`}>
         {/* <Image className={styles.bg} src={heroBg} alt="hero background" /> */}

@@ -1,5 +1,6 @@
 .heroSection {
   padding-inline: var(--padding) !important;
+  /* height: 90vh; */
 }
 
 .grid {
