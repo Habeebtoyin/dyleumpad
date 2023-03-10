@@ -1,24 +1,63 @@
 .heroSection {
-  padding-inline: var(--padding) !important;
-  /* height: 90vh; */
+  padding-inline: 1rem !important;
+  height: 1000px;
+}
+
+.heroContainer {
+  padding-inline: 1rem !important;
 }
 
 .grid {
   display: grid;
   gap: 64px;
   margin-top: 31px;
+  /* width: 100%; */
 }
 
 .grid section {
   padding-inline: 0;
 }
 
+.buttons {
+  display: flex;
+  width: 100%;
+  max-width: 375px;
+  overflow-x: visible;
+}
+
+.buttons button {
+  padding: 10px;
+  width: 100%;
+  min-width: 170px;
+  text-align: center;
+}
+
+.activeBtn {
+  background-color: #454fda !important;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 22px;
+}
+
+/* .proposals{
+  padding-inline: 24px !important;
+} */
+
 .text {
   font-weight: 500;
   font-size: 18px !important;
-  line-height: 31px;
+  /* line-height: 31px; */
   text-align: left;
-  margin-bottom: 10px;
+  /* padding: 6px 20px; */
+  border-radius: 8px;
+  background-color: transparent;
+  margin-bottom: 0;
+  color: var(--white);
+  /* margin-bottom: 10px; */
 }
 
 .addressTokenGroup {
@@ -72,25 +111,64 @@
   padding-block: 11px;
 }
 
-.proposals {
+.proposal {
   flex-direction: column;
+  align-items: start;
+  gap: 12px;
+  width: 100%;
+  max-width: 100%;
+  padding: 16px;
 }
 
-.div > div {
+.topContent {
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.topContent div {
+  align-items: center;
+}
+
+.state {
+  line-height: 24px;
+  padding-inline: 12px;
+  border-radius: 14px;
+}
+
+.details {
+  opacity: 0.8;
+  line-height: 28px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* .div > div {
   border-top: 1px solid #374151;
   justify-content: space-between;
   padding: 22px 32px;
-}
+} */
 
-.proposals,
-.div > div,
+.proposal,
+.topContent,
+.topContent div,
+/* .div > div, */
 .radioBtns {
   display: flex;
 }
 
 .div p {
   width: fit-content;
-  padding: 22px 32px;
+  text-align: left;
+  /* padding: 22px 32px; */
 }
 
 .radioBtns {
@@ -148,6 +226,15 @@
   margin-top: 24px;
 }
 
+.button:hover {
+  filter: brightness(80%);
+}
+
+.button:disabled {
+  background: #1f2937;
+  pointer-events: none;
+}
+
 /* -------------------------------------------------- */
 /* create Contract page */
 
@@ -176,8 +263,16 @@
 
 /* TABLET SCREENS */
 @media screen and (min-width: 768px) {
+  .heroContainer {
+    padding-inline: 4rem !important;
+  }
+
   .grid {
     gap: 32px;
+  }
+
+  .buttons {
+    max-width: unset;
   }
 
   .address {

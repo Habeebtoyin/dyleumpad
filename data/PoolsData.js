@@ -1,6 +1,7 @@
 export const proposals = [
   {
-    id: "Active",
+    id: 1,
+    state: "Active",
     tag: "core",
     title: "Lorem ipsum dolor sit amet consectetur ",
     summary:

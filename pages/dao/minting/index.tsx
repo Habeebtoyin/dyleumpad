@@ -1,13 +1,21 @@
 import HomeStyles from "../../../styles/Home.module.css";
 import styles from "../../../styles/DAO.module.css";
-import Navbar from "../../../components/Navbar/Navbar";
 import emoji from "../../../components/assets/icons/Emoji.svg";
 import Image from "next/image";
+import Head from "next/head";
 
 export default function DAOMinting() {
   return (
     <div className="minting">
-      {/* <Navbar /> */}
+      <Head>
+        <title>Solimax | Launchpad</title>
+        <meta
+          name="description"
+          content="A Secure Multi-chain Launch-pad with High Staking"
+        />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/logo-icon.svg" />
+      </Head>
 
       <section className={`${styles.heroSection} ${HomeStyles.heroSection}`}>
         {/* <Image className={styles.bg} src={heroBg} alt="hero background" /> */}
