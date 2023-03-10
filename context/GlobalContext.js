@@ -1,17 +1,12 @@
 import { useContext, useState, useEffect } from "react";
 import { createContext } from "react";
-import PropTypes from "prop-types";
-import {
-  ActivePools,
-  UpcomingPools,
-  CompletedPools,
-} from "../data/PoolsData";
+import { ActivePools, UpcomingPools, CompletedPools } from "../data/PoolsData";
 import { useAccount } from "wagmi";
 
 const GlobalContext = createContext();
 
 export function GlobalContextProvider({ children }) {
-  const { isConnected} = useAccount();
+  const { isConnected } = useAccount();
   const [menuState, setMenuState] = useState(false);
   const [checkboxState, setCheckboxState] = useState(false);
   const menuItems = [
@@ -81,7 +76,7 @@ export function GlobalContextProvider({ children }) {
         setSelectedPool,
         isConnected,
         selectedProposal,
-        setSelectedProposal
+        setSelectedProposal,
       }}
     >
       {children}
@@ -92,7 +87,6 @@ export function GlobalContextProvider({ children }) {
 export function GlobalAuth() {
   return useContext(GlobalContext);
 }
-
 
 // GlobalContextProvider.propTypes = {
 //   poolProgressValue: PropTypes.number,

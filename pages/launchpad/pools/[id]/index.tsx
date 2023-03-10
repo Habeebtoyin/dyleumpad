@@ -11,9 +11,8 @@ import Head from "next/head";
 // import HeroSection from "../../../../components/PoolCardDetails/HeroSection";
 // import PoolInformation from "../../../../components/PoolCardDetails/PoolInformation";
 // import TokenInformation from "../../../../components/PoolCardDetails/TokenInformation";
-import { default as GetPools } from "../../../api/pools/index";
-import dynamic from "next/dynamic";
-import Loading from "../../../../components/Loading";
+// import { default as GetPools } from "../../../api/pools/index";
+// import Loading from "../../../../components/Loading";
 import { lazy } from "react";
 
 const Navbar = lazy(() => import("../../../../components/Navbar/Navbar"));
@@ -46,7 +45,7 @@ const Pool = ({ pool }: any) => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/logo-icon.svg" />
       </Head>
-      <Navbar />
+      {/* <Navbar /> */}
       <HeroSection pool={pool[0]} />
       <section className={styles.poolTokenInformation}>
         <PoolInformation pool={pool[0]} />

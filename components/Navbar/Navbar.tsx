@@ -8,11 +8,12 @@ import styles from "../../styles/Navbar.module.css";
 import Link from "next/link";
 import Image from "next/image";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
+import { useIsMounted } from "../../pages/hooks/useIsMounted";
 
 export default function Navbar() {
   const { menuState, setCheckboxState, setMenuState, isConnected } =
     GlobalAuth();
-  console.log(isConnected);
+  const mounted = useIsMounted();
 
   return (
     <header className={styles.header}>
@@ -118,28 +119,32 @@ export default function Navbar() {
             </Link>
           </li>
 
-          {!isConnected && (
-            <div
-              className={`${styles.navBtn} ${styles.mobileBtn}`}
-              id="mobile-btn"
-            >
-              <NavButton link="/launchpad" value="SLM LaunchPad" />
-            </div>
-          )}
+          {mounted
+            ? !isConnected && (
+                <div
+                  className={`${styles.navBtn} ${styles.mobileBtn}`}
+                  id="mobile-btn"
+                >
+                  <NavButton link="/launchpad" value="SLM LaunchPad" />
+                </div>
+              )
+            : null}
           <div className={` ${styles.mobileBtn}`} id="mobile-btn">
             <ConnectButton chainStatus="none" />
           </div>
         </ul>
       </nav>
       <div className={styles.navBtns}>
-        {!isConnected && (
-          <div
-            className={`${styles.navBtn} ${styles.desktopBtn}`}
-            id="desktop-btn"
-          >
-            <NavButton link="/launchpad" value="SLM LaunchPad" />
-          </div>
-        )}
+        {mounted
+          ? !isConnected && (
+              <div
+                className={`${styles.navBtn} ${styles.desktopBtn}`}
+                id="desktop-btn"
+              >
+                <NavButton link="/launchpad" value="SLM LaunchPad" />
+              </div>
+            )
+          : null}
 
         <div className={` ${styles.desktopBtn}`} id="desktop-btn">
           <ConnectButton chainStatus="none" />

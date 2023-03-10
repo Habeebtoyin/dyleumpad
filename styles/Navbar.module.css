@@ -53,7 +53,7 @@
      background-color: #fff; 
   } */
 
-.menu a::after,
+.menuItem a::after,
 .active::after {
   content: "";
   position: absolute;
@@ -71,9 +71,9 @@
   );
 }
 
-.menu a:hover::after,
-.menu a:focus::after,
-.menu a:active::after {
+.menuItem a:hover::after,
+.menuItem a:focus::after,
+.menuItem a:active::after {
   width: 100%;
 }
 

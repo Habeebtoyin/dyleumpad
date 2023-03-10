@@ -21,8 +21,10 @@
 .buttons {
   display: flex;
   width: 100%;
-  max-width: 375px;
+  max-width: 500px;
   overflow-x: visible;
+  border-radius: 0 0 0 8px;
+  border-bottom: 1px solid #6b7280;
 }
 
 .buttons button {
@@ -43,10 +45,6 @@
   margin-bottom: 22px;
 }
 
-/* .proposals{
-  padding-inline: 24px !important;
-} */
-
 .text {
   font-weight: 500;
   font-size: 18px !important;
@@ -58,6 +56,17 @@
   margin-bottom: 0;
   color: var(--white);
   /* margin-bottom: 10px; */
+}
+
+.filter,
+.filter option {
+  background: var(--body-bg);
+  color: var(--white);
+  width: 100px;
+  height: 45px;
+  outline: none;
+  border-radius: 8px;
+  font-size: 18px;
 }
 
 .addressTokenGroup {
@@ -132,7 +141,7 @@
 
 .state {
   line-height: 24px;
-  padding-inline: 12px;
+  padding: 4px 12px;
   border-radius: 14px;
 }
 
