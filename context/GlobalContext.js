@@ -38,7 +38,7 @@ export function GlobalContextProvider({ children }) {
 
   const [poolsData, setPoolsData] = useState([]);
   const [selectedPool, setSelectedPool] = useState("active");
-  const [selectedProposal, setSelectedProposal] = useState("active");
+  const [selectedTab, setSelectedTab] = useState("active");
   const [proposalName, setProposalName] = useState("");
   const [proposalDescription, setProposalDescription] = useState("");
   // const activePools = poolsData.filter(item => item.tag === "active");
@@ -75,8 +75,8 @@ export function GlobalContextProvider({ children }) {
         selectedPool,
         setSelectedPool,
         isConnected,
-        selectedProposal,
-        setSelectedProposal,
+        selectedTab,
+        setSelectedTab,
       }}
     >
       {children}

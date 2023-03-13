@@ -20,7 +20,7 @@ export default function DAO() {
       <section className={`dao ${styles.heroSection} ${HomeStyles.heroSection}`}>
         {/* <Image className={styles.bg} src={heroBg} alt="hero background" /> */}
 
-        <div className={`${styles.heroContainer} ${HomeStyles.heroContainer}`}>
+        <div className={`${styles.heroContainer} `}>
           {/* <div className={`${HomeStyles.leftCol} ${styles.leftCol}`}> */}
           <h1 className={HomeStyles.heroTitle}>Welcome to SoliMax DAO</h1>
           <p className={HomeStyles.text}>

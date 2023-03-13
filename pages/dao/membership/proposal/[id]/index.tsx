@@ -2,26 +2,42 @@ import HomeStyles from "../../../../../styles/Home.module.css";
 import styles from "../../../../../styles/DAO.module.css";
 import Head from "next/head";
 import Link from "next/link";
+import logo from "../../../../../components/assets/icons/logo-icon.svg";
+import axios from "axios";
+import Image from "next/image";
+
+// type Proposals = {
+//   _id: number;
+//   title: string;
+//   description: string;
+// };
+
+// type GetProposals = {
+//   data: Proposals[];
+// };
 
 export default function index({ proposal }: any) {
   const voteOptions = [
     {
       id: "for",
       label: "For",
-      name: "vote"
+      name: "vote",
     },
     {
       id: "against",
       label: "Against",
-      name: "vote"
+      name: "vote",
     },
     {
       id: "abstain",
       label: "Abstain",
-      name: "vote"
+      name: "vote",
     },
   ];
+  const totalVotes =
+    proposal?.againstVote + proposal?.maybeVote + proposal.forVote;
   console.log(proposal);
+  console.log(proposal.voter?.address);
   return (
     <div>
       <Head>
@@ -33,80 +49,168 @@ export default function index({ proposal }: any) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/logo-icon.svg" />
       </Head>
-      <section className={`${styles.membership} ${styles.heroSection}`}>
-        <div className={`${styles.heroContainer} ${HomeStyles.heroContainer}`}>
-          <Link href="/dao/membership">&#x2190; Back</Link>
-          <article className={``}>
-            {/* top */}
-            <div className={`${styles.topContent}`}>
-              {/* top info */}
-              <h1
-                className="nameOfProposal"
-                style={{
-                  fontSize: "24px",
-                  lineHeight: "32px",
-                  textAlign: "left",
-                }}
-              >
-                {proposal?.title}
-              </h1>
-              <div className="">
-                {/* if active */}
-                <span
-                  className={styles.state}
-                  style={{ background: "rgb(33 ,182, 111)" }}
-                >
-                  {proposal?.ended ? "Closed" : "Active"}
-                </span>
-                {/* if pending */}
-                {/* <span className={styles.state} style={{background: "#454fda"}}>Pending</span> */}
-                {/* if closed */}
-                {/* <span className={styles.state} style={{background: "rgb(124, 58, 237)"}}>Closed</span> */}
-                <p className={styles.truncate} style={{ fontSize: "18px" }}>
-                  SolimaxDAO by{" "}
-                  <span style={{ color: "#fff" }}>{proposal.creator}</span>
-                </p>
-                <span
+      <section
+        className={`${styles.proposalDetailsPage} ${styles.heroSection}`}
+      >
+        <div className={`${styles.heroContainer} `}>
+          <div className={styles.description}>
+            <Link href="/dao/membership">&#x2190; Back</Link>
+            <article className={``}>
+              {/* top */}
+              <div className={styles.top}>
+                {/* top info */}
+                <h1
+                  className={styles.heroTitle}
                   style={{
-                    fontSize: "14px",
-                    color: "#9ca3af",
-                    border: "1px solid #374151",
-                    marginLeft: "4px",
-                    paddingBlock: "4px",
-                    paddingInline: "7px",
-                    borderRadius: "9999px",
+                    fontSize: "24px",
+                    lineHeight: "32px",
+                    textAlign: "left",
                   }}
                 >
-                  Core
-                </span>
-              </div>
-            </div>
+                  {proposal?.title}
+                </h1>
+                <div className={styles.creatorDetails}>
+                  <div className="">
+                    {/* if active */}
+                    <span
+                      className={styles.state}
+                      style={{ background: "rgb(33 ,182, 111)" }}
+                    >
+                      {proposal?.ended ? "Closed" : "Active"}
+                    </span>
+                    {/* if pending */}
+                    {/* <span className={styles.state} style={{background: "#454fda"}}>Pending</span> */}
+                    {/* if closed */}
+                    {/* <span className={styles.state} style={{background: "rgb(124, 58, 237)"}}>Closed</span> */}
+                    <p className={styles.truncate} style={{ fontSize: "18px" }}>
+                      <Image width={24} height={24} src={logo} alt="logo" />{" "}
+                      SolimaxDAO
+                    </p>
+                  </div>
 
-            <p className={`${styles.details}`}>{proposal?.description}</p>
-            {/* cast your vote */}
-            <div className="">
-              <h3>Cast your vote</h3>
-              <div className={styles.voteBtnContainer}>
-
-              {voteOptions.map((type) => (
-                  // <label key={type.id} className={styles.radioBtns} htmlFor={type.name}>
-                  <button key={type.id}>{type.label}</button>
-                  //   <input
-                  //     type="radio"
-                  //     name={type.name}
-                  //     // value={type}
-                  //     id={type.id}
-                  //     //default the "abstain" vote to checked
-                  //     // defaultChecked={type.id === "abstain"}
-                  //     />
-                  //   <div className={styles.circle}></div>
-                  //   {type.label}
-                  // </label>
-              ))}
+                  <div className="">
+                    <div style={{ color: "#fff" }}>
+                      <span style={{opacity: ".9"}}>by</span> {proposal?.creator.slice(0, 10)}
+                    </div>
+                    <span
+                      style={{
+                        fontSize: "14px",
+                        color: "#9ca3af",
+                        border: "1px solid #374151",
+                        marginLeft: "4px",
+                        paddingBlock: "4px",
+                        paddingInline: "7px",
+                        borderRadius: "9999px",
+                      }}
+                    >
+                      Core
+                    </span>
+                  </div>
+                </div>
               </div>
-              <button type="submit" style={{ fontSize: "18px", fontWeight: "500", width: "100%" }}>Submit Vote</button>
-            </div>
-          </article>
+
+              <p className={`${styles.details}`}>{proposal?.description}</p>
+              {/* cast your vote */}
+              <div className={styles.voting}>
+                <h3 style={{ fontWeight: "500" }}>Cast your vote</h3>
+                <div className={styles.voteBtnContainer}>
+                  {voteOptions.map((type) => (
+                    <button key={type.id}>{type.label}</button>
+                  ))}
+                </div>
+                <button
+                  type="submit"
+                  style={{
+                    fontSize: "18px",
+                    height: "40px",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    color: "#fff",
+                    fontWeight: "500",
+                    borderRadius: "40px",
+                    width: "100%",
+                    maxWidth: "500px",
+                    marginInline: "auto",
+                    background:
+                      "linear-gradient(90.72deg,rgba(107, 3, 184, 0.9) 21.79%,rgba(168, 24, 186, 0.9) 54.77%, rgba(226, 43, 187, 0.9) 85.69%)",
+                  }}
+                >
+                  Submit Vote
+                </button>
+              </div>
+
+              <div className={styles.voteContainer}>
+                <h3 style={{ fontWeight: "500" }}>
+                  Votes{" "}
+                  <span
+                    style={{
+                      borderRadius: "999px",
+                      padding: "4px",
+                      fontSize: "14px",
+                      background: "#6b7280",
+                    }}
+                  >
+                    {totalVotes}
+                  </span>
+                </h3>
+                {/* {proposal.voter.voteType}
+                {proposal.voter.address} */}
+                <ul className={styles.votes}>
+                  <li>
+                    <span>0xxx..o</span>
+                    <span>4.20</span>
+                    <span>4.8k</span>
+                  </li>
+                  <li>
+                    <span>0xxx..o</span>
+                    <span>4.20</span>
+                    <span>4.8k</span>
+                  </li>
+                  <li>
+                    <span>0xxx..o</span>
+                    <span>4.20</span>
+                    <span>4.8k</span>
+                  </li>
+                  <li>
+                    <span>0xxx..o</span>
+                    <span>4.20</span>
+                    <span>4.8k</span>
+                  </li>
+                  <li>
+                    <span>0xxx..o</span>
+                    <span>4.20</span>
+                    <span>4.8k</span>
+                  </li>
+                  <li>
+                    <span>0xxx..o</span>
+                    <span>4.20</span>
+                    <span>4.8k</span>
+                  </li>
+                  <li>
+                    <span>0xxx..o</span>
+                    <span>4.20</span>
+                    <span>4.8k</span>
+                  </li>
+                  <li>
+                    <span>0xxx..o</span>
+                    <span>4.20</span>
+                    <span>4.8k</span>
+                  </li>
+                  <li>
+                    <span>0xxx..o</span>
+                    <span>4.20</span>
+                    <span>4.8k</span>
+                  </li>
+                  <li>
+                    <span>0xxx..o</span>
+                    <span>4.20</span>
+                    <span>4.8k</span>
+                  </li>
+                </ul>
+              </div>
+            </article>
+          </div>
         </div>
       </section>
     </div>
@@ -115,8 +219,8 @@ export default function index({ proposal }: any) {
 
 export const getStaticProps = async (context: any) => {
   const res = await fetch(
-    "https://solimax-nest-api-danijel-enoch.vercel.app/api/proposals" +
-      context.params._id
+    "https://solimax-nest-api-danijel-enoch.vercel.app/api/proposals/" +
+      context.params.id
   );
   const proposal = await res.json();
 
@@ -138,6 +242,7 @@ export const getStaticPaths = async () => {
     "https://solimax-nest-api-danijel-enoch.vercel.app/api/proposals"
   );
   const proposals = await res.json();
+  // console.lo
   const ids = proposals.map((item: any) => item._id);
   console.log({ ids });
   const paths = ids.map((id: any) => ({ params: { id: id?.toString() } }));

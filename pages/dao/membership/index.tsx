@@ -8,10 +8,12 @@ import Link from "next/link";
 import emoji from "../../../components/assets/icons/Emoji.svg";
 import Image from "next/image";
 import Select from "react-select";
+import NewProposal from "./proposal/new";
+import axios from "axios";
 
 export default function index({ proposals }: any) {
   console.log(proposals);
-  const { selectedProposal, setSelectedProposal } = GlobalAuth();
+  const { selectedTab, setSelectedTab } = GlobalAuth();
 
   const options = [
     { value: "all", label: "All" },
@@ -25,25 +27,60 @@ export default function index({ proposals }: any) {
     {
       id: "active",
       title: "Proposals",
+      href: "#",
     },
     {
       id: "new",
       title: "New Proposal",
+      href: "/dao/membership/proposal/new",
     },
     {
       id: "about",
       title: "About",
+      href: "#",
     },
     {
       id: "settings",
       title: "Settings",
+      href: "#",
     },
   ];
+
+  async function joinDAO(e: any) {
+    console.log("clicked");
+    e.preventDefault();
+    e.stopPropagation();
+    try {
+      // 👇️ const data: CreateUserResponse
+      const { data, status } = await axios.post(
+        "https://solimax-nest-api-danijel-enoch.vercel.app/api/users/join/",
+        { creator: "0x4cBDDaA2f48dF41aCc17434180892DB2B5ae93Cf" },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+        }
+      );
+      console.log(JSON.stringify(data, null, 4));
+
+      console.log(status);
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        console.log("error message: ", error.message);
+        // 👇️ error: AxiosError<any, any>
+        return error.message;
+      } else {
+        console.log("unexpected error: ", error);
+        return "An unexpected error occurred";
+      }
+    }
+  }
 
   return (
     <div className="membership">
       <Head>
-      <title>Solimax DAO | Member Page</title>
+        <title>Solimax DAO | Member Page</title>
         <meta
           name="description"
           content="A Secure Multi-chain Launch-pad with High Staking"
@@ -53,32 +90,73 @@ export default function index({ proposals }: any) {
       </Head>
 
       <section className={`${styles.membership} ${styles.heroSection}`}>
-        <div className={`${styles.heroContainer} ${HomeStyles.heroContainer}`}>
-          <h1 className={HomeStyles.heroTitle}>
-            <Image src={emoji} alt="emoji" /> DAO Member Page
-          </h1>
-
-          <p className={`${HomeStyles.text}`}>
-            Congratulations on becoming a member!
-          </p>
-
+        <div className={`${styles.heroContainer} `}>
           <div className={styles.grid}>
             {/* member list */}
-            <section className={`${styles.buttons}`}>
-              {titles?.map((item) => (
+            <section className={styles.leftCol}>
+              <div className="">
+                <h1 className={styles.heroTitle}>
+                  <Image src={emoji} alt="emoji" /> DAO Member Page
+                </h1>
+
+                <p
+                  style={{ textAlign: "left", width: "fit-content" }}
+                  className={`${HomeStyles.text}`}
+                >
+                  To become a member, click the Join button below
+                </p>
+                {/* when user has become a member */}
+                {/* <p style={{ textAlign: "center" }} className={`${HomeStyles.text}`}>
+            Congratulations on becoming a member!
+          </p> */}
+                <button className={styles.joinBtn} onClick={joinDAO}>
+                  Join
+                </button>
+              </div>
+              <div className={`${styles.buttons}`}>
+                {/* {titles?.map((item) => ( */}
+                {/* <Link href={item.href} key={item.id}> */}
+
                 <button
-                  key={item.id}
                   className={`${styles.text} ${
-                    item.id === selectedProposal ? styles.activeBtn : ``
+                    selectedTab === "active" ? styles.activeBtn : ``
                   }`}
                   style={{ cursor: "pointer" }}
-                  onClick={() => setSelectedProposal(item.id)}
+                  onClick={() => setSelectedTab("active")}
                 >
-                  {item.title}
+                  Proposals
                 </button>
-              ))}
+                <Link href="/dao/membership/proposal/new">
+                  <span
+                    className={`${styles.text} `}
+                    style={{ cursor: "pointer" }}
+                  >
+                    New Proposal
+                  </span>
+                </Link>
+                <button
+                  className={`${styles.text} ${
+                    selectedTab === "about" ? styles.activeBtn : ``
+                  }`}
+                  style={{ cursor: "pointer" }}
+                  onClick={() => setSelectedTab("about")}
+                >
+                  About
+                </button>
+                <Link href="#">
+                  <span
+                    className={`${styles.text} `}
+                    style={{ cursor: "pointer" }}
+                  >
+                    Settings
+                  </span>
+                </Link>
+              </div>
+
+              {/* </Link> */}
+              {/* // ))} */}
             </section>
-            {selectedProposal === "active" && (
+            {selectedTab === "active" && (
               <section className={`${styles.proposals}`}>
                 <div className={`${styles.header}`}>
                   <h1>Proposals</h1>
@@ -91,6 +169,7 @@ export default function index({ proposals }: any) {
                         ...base,
                         background: "#090e17",
                         borderBottom: "1px solid #454fda",
+                        width: "150px",
                       }),
                       control: (baseStyles, state) => ({
                         ...baseStyles,
@@ -118,7 +197,10 @@ export default function index({ proposals }: any) {
                       href={`/dao/membership/proposal/${proposal._id}`}
                       key={proposal._id}
                     >
-                      <article className={`${styles.div} ${styles.proposal}`}>
+                      <article
+                        style={{ cursor: "pointer" }}
+                        className={`${styles.div} ${styles.proposal}`}
+                      >
                         {/* top */}
                         <div className={`${styles.topContent}`}>
                           {/* wallet address */}
@@ -158,8 +240,8 @@ export default function index({ proposals }: any) {
                         <h1
                           className="nameOfProposal"
                           style={{
-                            fontSize: "24px",
-                            lineHeight: "32px",
+                            fontSize: "20px",
+                            lineHeight: "30.2px",
                             textAlign: "left",
                           }}
                         >
@@ -169,7 +251,7 @@ export default function index({ proposals }: any) {
                           {proposal?.description}
                         </p>
                         {/* deadline  */}
-                        <p style={{ opacity: ".8" }}>1 day left</p>
+                        <p>1 day left</p>
                       </article>
                     </Link>
                   ))}
@@ -201,7 +283,7 @@ export default function index({ proposals }: any) {
 
 export const getStaticProps = async () => {
   const res = await fetch(
-    "https://solimax-nest-api-danijel-enoch.vercel.app/api/proposals"
+    "https://solimax-nest-api-danijel-enoch.vercel.app/api/proposals/"
   );
   const proposals = await res.json();
 
