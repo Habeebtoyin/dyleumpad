@@ -4,16 +4,16 @@ import cardBorder from "../../assets/icons/Strokes.svg";
 import cardBorder1 from "../../assets/icons/strokes1.svg";
 import DAILogo from "../../assets/icons/dai-logo.png";
 import percentageBar from "../../assets/icons/percentage-Bar.svg";
-import { LaunchPoolClass } from "../../../web3";
+import { LaunchPoolClass } from "../../../../../web3";
 import { useSigner } from "wagmi";
 import { Chain } from "wagmi";
 import { ethers } from "ethers";
 import { useNetwork, useSwitchNetwork } from "wagmi";
-import { convertweiToEthers } from "../../../web3/priceOracle";
+import { convertweiToEthers } from "../../../../../web3/priceOracle";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import ProviderSelector from "../../../web3/networks";
+import ProviderSelector from "../../../../../web3/networks";
 
 export default function PoolCard({ pool }) {
   const { chain } = useNetwork();
@@ -57,13 +57,6 @@ export default function PoolCard({ pool }) {
     <div key={pool.id} className={styles.poolBox}>
       <div className={styles.box}>
         {pool.tag !== "completed" && (
-          // <Image
-          //   className={styles.boxImg}
-          //   src={cardBorder}
-          //   alt="box border"
-          //   width="100%"
-          //   height={453.9}
-          // />
           <svg
             width="421"
             height="457"

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { GlobalAuth } from "../../../context/GlobalContext";
+import { GlobalAuth } from "../../../../../context/GlobalContext";
 import styles from '../../../styles/Launchpad.module.css';
 
 export default function PoolsBtn({ item, active }) {

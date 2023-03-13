@@ -9,7 +9,8 @@ import emoji from "../../../components/assets/icons/Emoji.svg";
 import Image from "next/image";
 import Select from "react-select";
 
-export default function index() {
+export default function index({ proposals }: any) {
+  console.log(proposals);
   const { selectedProposal, setSelectedProposal } = GlobalAuth();
 
   const options = [
@@ -42,7 +43,7 @@ export default function index() {
   return (
     <div className="membership">
       <Head>
-        <title>Solimax | Launchpad</title>
+      <title>Solimax DAO | Member Page</title>
         <meta
           name="description"
           content="A Secure Multi-chain Launch-pad with High Staking"
@@ -51,11 +52,8 @@ export default function index() {
         <link rel="icon" href="/logo-icon.svg" />
       </Head>
 
-      <section className={`membership ${styles.heroSection}`}>
-        {/* <Image className={styles.bg} src={heroBg} alt="hero background" /> */}
-
+      <section className={`${styles.membership} ${styles.heroSection}`}>
         <div className={`${styles.heroContainer} ${HomeStyles.heroContainer}`}>
-          {/* <div className={`${HomeStyles.leftCol} ${styles.leftCol}`}> */}
           <h1 className={HomeStyles.heroTitle}>
             <Image src={emoji} alt="emoji" /> DAO Member Page
           </h1>
@@ -80,102 +78,104 @@ export default function index() {
                 </button>
               ))}
             </section>
-            {/* Active proposals */}
-            <section className={`${styles.proposals}`}>
-              <div className={`${styles.header}`}>
-                <h1>Proposals</h1>
-                {/* <select name="proposalFilter" className={styles.filter}>
-                    <option value="all">All</option>
-                    <option value="active">Active</option>
-                    <option value="pending">Pending</option>
-                    <option value="closed">Closed</option>
-                    <option value="core">Core</option>
-                  </select> */}
-                <Select
-                  options={options}
-                defaultValue={options[0]}
-                  styles={{
-                    option: (base) => ({
-                     ...base,
-                     background: "#090e17",
-                     borderBottom: "1px solid #454fda"
-                    }),
-                    control: (baseStyles, state) => ({
-                      ...baseStyles,
-                      borderRadius: "8px",
-                      borderColor: state.isFocused ? "grey" : "#454fda",
-                      background: "#090e17"
-                    }),
-                  }}
-                  theme={(theme) => ({
-                    ...theme,
-                    marginBlock: "0",
-                    borderRadius: 0,
-                    background: "#090e17",
-                    colors: {
-                      ...theme.colors,
-                      primary25: 'hotpink',
-                      primary: '#454fda',
-                    },
-                  })}
-                />
-              </div>
-              <Link href="">
-                <article className={`${styles.div} ${styles.proposal}`}>
-                  {/* top */}
-                  <div className={`${styles.topContent}`}>
-                    {/* wallet address */}
-                    <div className="">
-                      <span
-                        className={styles.truncate}
-                        style={{ fontSize: "18px" }}
-                      >
-                        0xydxuhg...
-                      </span>
-                      <span
-                        style={{
-                          fontSize: "14px",
-                          color: "#9ca3af",
-                          border: "1px solid #374151",
-                          marginLeft: "4px",
-                          paddingBlock: "4px",
-                          paddingInline: "7px",
-                          borderRadius: "9999px",
-                        }}
-                      >
-                        Core
-                      </span>
-                    </div>
-                    {/* if active */}
-                    <span
-                      className={styles.state}
-                      style={{ background: "rgb(33 ,182, 111)" }}
-                    >
-                      Active
-                    </span>
-                    {/* if pending */}
-                    {/* <span className={styles.state} style={{background: "#454fda"}}>Pending</span> */}
-                    {/* if closed */}
-                    {/* <span className={styles.state} style={{background: "rgb(124, 58, 237)"}}>Closed</span> */}
-                  </div>
-                  <h1
-                    className="nameOfProposal"
-                    style={{ fontSize: "24px", lineHeight: "32px" }}
-                  >
-                    Proposal 1
-                  </h1>
-                  <p className={`${styles.details}`}>
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                    Quasi quisquam doloremque, dolores quos, ipsam incidunt sed
-                    adipisci harum dolorum veritatis totam asperiores expedita,
-                    vel consectetur ipsa animi accusantium itaque aliquid.
-                  </p>
-                  {/* deadline  */}
-                  <p style={{ opacity: ".8" }}>1 day left</p>
-                </article>
-              </Link>
+            {selectedProposal === "active" && (
+              <section className={`${styles.proposals}`}>
+                <div className={`${styles.header}`}>
+                  <h1>Proposals</h1>
 
-              {/* <button className={`${HomeStyles.heroBtn} ${styles.heroBtn}`}>
+                  <Select
+                    options={options}
+                    defaultValue={options[0]}
+                    styles={{
+                      option: (base) => ({
+                        ...base,
+                        background: "#090e17",
+                        borderBottom: "1px solid #454fda",
+                      }),
+                      control: (baseStyles, state) => ({
+                        ...baseStyles,
+                        borderRadius: "8px",
+                        borderColor: state.isFocused ? "grey" : "#454fda",
+                        background: "#090e17",
+                      }),
+                    }}
+                    theme={(theme) => ({
+                      ...theme,
+                      marginBlock: "0",
+                      borderRadius: 0,
+                      background: "#090e17",
+                      colors: {
+                        ...theme.colors,
+                        primary25: "hotpink",
+                        primary: "#454fda",
+                      },
+                    })}
+                  />
+                </div>
+                <div className={styles.cardContainer}>
+                  {proposals?.map((proposal: any) => (
+                    <Link
+                      href={`/dao/membership/proposal/${proposal._id}`}
+                      key={proposal._id}
+                    >
+                      <article className={`${styles.div} ${styles.proposal}`}>
+                        {/* top */}
+                        <div className={`${styles.topContent}`}>
+                          {/* wallet address */}
+                          <div className="">
+                            <span
+                              className={styles.truncate}
+                              style={{ fontSize: "18px" }}
+                            >
+                              {proposal.creator.slice(0, 8)}
+                            </span>
+                            <span
+                              style={{
+                                fontSize: "14px",
+                                color: "#9ca3af",
+                                border: "1px solid #374151",
+                                marginLeft: "4px",
+                                paddingBlock: "4px",
+                                paddingInline: "7px",
+                                borderRadius: "9999px",
+                              }}
+                            >
+                              Core
+                            </span>
+                          </div>
+                          {/* if active */}
+                          <span
+                            className={styles.state}
+                            style={{ background: "rgb(33 ,182, 111)" }}
+                          >
+                            {proposal?.ended ? "Closed" : "Active"}
+                          </span>
+                          {/* if pending */}
+                          {/* <span className={styles.state} style={{background: "#454fda"}}>Pending</span> */}
+                          {/* if closed */}
+                          {/* <span className={styles.state} style={{background: "rgb(124, 58, 237)"}}>Closed</span> */}
+                        </div>
+                        <h1
+                          className="nameOfProposal"
+                          style={{
+                            fontSize: "24px",
+                            lineHeight: "32px",
+                            textAlign: "left",
+                          }}
+                        >
+                          {proposal?.title}
+                        </h1>
+                        <p className={`${styles.details}`}>
+                          {proposal?.description}
+                        </p>
+                        {/* deadline  */}
+                        <p style={{ opacity: ".8" }}>1 day left</p>
+                      </article>
+                    </Link>
+                  ))}
+                </div>
+
+                {/* <button className={`${HomeStyles.heroBtn} ${styles.heroBtn}`}>
                 <a
                   className={`${HomeStyles.buySlmBtn} ${HomeStyles.heroButtonLink}`}
                   href=""
@@ -187,7 +187,9 @@ export default function index() {
                 This will trigger multiple transactions that you’ll need to
                 sign!
               </p> */}
-            </section>
+              </section>
+            )}
+            {/* {selectedProposal === "new" && <NewProposal />} */}
           </div>
         </div>
 
@@ -196,3 +198,16 @@ export default function index() {
     </div>
   );
 }
+
+export const getStaticProps = async () => {
+  const res = await fetch(
+    "https://solimax-nest-api-danijel-enoch.vercel.app/api/proposals"
+  );
+  const proposals = await res.json();
+
+  return {
+    props: {
+      proposals,
+    },
+  };
+};
