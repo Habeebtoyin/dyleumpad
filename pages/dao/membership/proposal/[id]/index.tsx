@@ -5,6 +5,7 @@ import Link from "next/link";
 import logo from "../../../../../components/assets/icons/logo-icon.svg";
 import axios from "axios";
 import Image from "next/image";
+import backArrow from "../../../../../components/assets/icons/arrow-back.svg";
 
 // type Proposals = {
 //   _id: number;
@@ -52,9 +53,27 @@ export default function index({ proposal }: any) {
       <section
         className={`${styles.proposalDetailsPage} ${styles.heroSection}`}
       >
-        <div className={`${styles.heroContainer} `}>
+        <div className={`${styles.heroContainer} ${styles.grid} `}>
           <div className={styles.description}>
-            <Link href="/dao/membership">&#x2190; Back</Link>
+            <Link href="/dao/membership">
+              <span
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "6px",
+                  fontSize: "18px",
+                  cursor: "pointer",
+                }}
+              >
+                <Image
+                  src={backArrow}
+                  width={24}
+                  height={24}
+                  alt="back arrow"
+                />
+                Back
+              </span>
+            </Link>
             <article className={``}>
               {/* top */}
               <div className={styles.top}>
@@ -72,12 +91,12 @@ export default function index({ proposal }: any) {
                 <div className={styles.creatorDetails}>
                   <div className="">
                     {/* if active */}
-                    <span
+                    <p
                       className={styles.state}
                       style={{ background: "rgb(33 ,182, 111)" }}
                     >
                       {proposal?.ended ? "Closed" : "Active"}
-                    </span>
+                    </p>
                     {/* if pending */}
                     {/* <span className={styles.state} style={{background: "#454fda"}}>Pending</span> */}
                     {/* if closed */}
@@ -88,24 +107,10 @@ export default function index({ proposal }: any) {
                     </p>
                   </div>
 
-                  <div className="">
                     <div style={{ color: "#fff" }}>
-                      <span style={{opacity: ".9"}}>by</span> {proposal?.creator.slice(0, 10)}
+                      <span style={{ opacity: ".9" }}>by</span>{" "}
+                      {proposal?.creator.slice(0, 10)}
                     </div>
-                    <span
-                      style={{
-                        fontSize: "14px",
-                        color: "#9ca3af",
-                        border: "1px solid #374151",
-                        marginLeft: "4px",
-                        paddingBlock: "4px",
-                        paddingInline: "7px",
-                        borderRadius: "9999px",
-                      }}
-                    >
-                      Core
-                    </span>
-                  </div>
                 </div>
               </div>
 
@@ -211,6 +216,23 @@ export default function index({ proposal }: any) {
               </div>
             </article>
           </div>
+        <div className={styles.voteContainer}>
+          <h3 style={{ fontWeight: "500" }}>
+            Information
+          </h3>
+          {/* {proposal.voter.voteType}
+                {proposal.voter.address} */}
+          <ul className={styles.votes}>
+            <li>
+              <span>Start date</span>
+              <span>{proposal?.startDate}</span>
+            </li>
+            <li>
+              <span>End date</span>
+              <span>{proposal?.endDate}</span>
+            </li>
+          </ul>
+        </div>
         </div>
       </section>
     </div>

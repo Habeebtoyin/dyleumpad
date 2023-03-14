@@ -2,7 +2,9 @@ import Head from "next/head";
 import Link from "next/link";
 import { useState } from "react";
 import styles from "../../../../../styles/DAO.module.css";
+import backArrow from "../../../../../components/assets/icons/arrow-back.svg";
 import axios from "axios";
+import Image from "next/image";
 
 type CreateUserResponse = {
   title: string;
@@ -19,31 +21,55 @@ export default function NewProposal() {
     console.log("clicked");
     e.preventDefault();
     e.stopPropagation();
-    try {
-      // 👇️ const data: CreateUserResponse
-      const { data, status } = await axios.post<CreateUserResponse>(
-        "https://solimax-nest-api-danijel-enoch.vercel.app/api/proposals/create",
-        { title: title, description: description },
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-          },
-        }
-      );
-      console.log(JSON.stringify(data, null, 4));
+    let headersList = {
+      Accept: "*/*",
+      "User-Agent": "Thunder Client (https://www.thunderclient.com)",
+      "Content-Type": "application/json",
+    };
 
-      console.log(status);
-    } catch (error) {
-      if (axios.isAxiosError(error)) {
-        console.log("error message: ", error.message);
-        // 👇️ error: AxiosError<any, any>
-        return error.message;
-      } else {
-        console.log("unexpected error: ", error);
-        return "An unexpected error occurred";
+    let bodyContent = JSON.stringify({
+      title: title,
+      description: description,
+      creator: "0x4cBDDaA2f48dF41aCc17434180892DB2B5ae93Cf",
+    });
+
+    let response = await fetch(
+      "https://solimax-nest-api-danijel-enoch.vercel.app/api/proposals/create",
+      {
+        method: "POST",
+        body: bodyContent,
+        headers: headersList,
       }
-    }
+    );
+
+    let data = await response.text();
+    console.log(data);
+
+    // try {
+    //   // 👇️ const data: CreateUserResponse
+    //   const { data, status } = await axios.post<CreateUserResponse>(
+    //     "https://solimax-nest-api-danijel-enoch.vercel.app/api/proposals/create",
+    //     { title: title, description: description },
+    //     {
+    //       headers: {
+    //         "Content-Type": "application/json",
+    //         Accept: "application/json",
+    //       },
+    //     }
+    //   );
+    //   console.log(JSON.stringify(data, null, 4));
+
+    //   console.log(status);
+    // } catch (error) {
+    //   if (axios.isAxiosError(error)) {
+    //     console.log("error message: ", error.message);
+    //     // 👇️ error: AxiosError<any, any>
+    //     return error.message;
+    //   } else {
+    //     console.log("unexpected error: ", error);
+    //     return "An unexpected error occurred";
+    //   }
+    // }
   }
 
   // const createProposal = async (e : any) => {
@@ -75,9 +101,13 @@ export default function NewProposal() {
       </Head>
       <section className={` ${styles.heroSection}`}>
         <div className={` ${styles.heroContainer}`}>
-          <div className="" style={{display: "flex"}}>
-
-          <Link href="/dao/membership">&#x2190; Back</Link>
+          <div className="" style={{ display: "flex" }}>
+            <Link href="/dao/membership">
+              <span style={{display: "flex", alignItems: "center", gap: "6px", fontSize: "18px", cursor: "pointer"}}>
+                <Image src={backArrow} width={24} height={24} alt="back arrow" />
+                Back
+              </span>
+            </Link>
           </div>
 
           <form
@@ -119,8 +149,13 @@ export default function NewProposal() {
             >
               Description
               <textarea
-              rows={20} cols={20}
-                style={{ color: "#fff" , width: "100%", background: "transparent"}}
+                rows={20}
+                cols={20}
+                style={{
+                  color: "#fff",
+                  width: "100%",
+                  background: "transparent",
+                }}
                 onChange={(e) => setDescription(e.target.value)}
                 name="description"
                 id="description"
@@ -128,22 +163,7 @@ export default function NewProposal() {
             </label>
             <button
               type="submit"
-              style={{
-                marginTop: "20px",
-                fontSize: "18px",
-                height: "40px",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                color: "#fff",
-                fontWeight: "500",
-                borderRadius: "40px",
-                width: "100%",
-                maxWidth: "500px",
-                marginInline: "auto",
-                background:
-                  "linear-gradient(90.72deg,rgba(107, 3, 184, 0.9) 21.79%,rgba(168, 24, 186, 0.9) 54.77%, rgba(226, 43, 187, 0.9) 85.69%)",
-              }}
+              className={styles.button}
             >
               Submit proposal
             </button>

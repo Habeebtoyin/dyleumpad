@@ -8,23 +8,42 @@ import Image from "next/image";
 import NewProposal from "./proposal/new";
 import axios from "axios";
 import { useState } from "react";
+import Select from "react-select";
+import { ToastContainer, toast } from "react-toastify";
 
-// interface Option {
-//   value: string;
-//   label: string;
-// }
-
-// const options: Option[] = [
-//   { value: "all", label: "All" },
-//   { value: "active", label: "Active" },
-//   { value: "pending", label: "Pending" },
-//   { value: "closed", label: "Closed" },
-//   { value: "core", label: "Core" },
-// ];
+interface Data {
+  statusCode: number;
+  message: string;
+  error: string;
+}
 
 export default function index({ proposals }: any) {
-  const { selectedTab, setSelectedTab, setFilterValue } = GlobalAuth();
+  const {
+    selectedTab,
+    setSelectedTab,
+    setFilterValue,
+    errorMessage,
+    setErrorMessage,
+  } = GlobalAuth();
+  const notify = (msg: any) =>
+    toast.error(msg, {
+      position: "top-right",
+      autoClose: 10000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
 
+  const options = [
+    { value: "all", label: "All" },
+    { value: "active", label: "Active" },
+    { value: "pending", label: "Pending" },
+    { value: "closed", label: "Closed" },
+    { value: "core", label: "Core" },
+  ];
 
   const titles = [
     {
@@ -59,29 +78,31 @@ export default function index({ proposals }: any) {
     e.preventDefault();
     e.stopPropagation();
     try {
-      // 👇️ const data: CreateUserResponse
-      const { data, status } = await axios.post(
-        "https://solimax-nest-api-danijel-enoch.vercel.app/api/users/join/",
-        { creator: "0x4cBDDaA2f48dF41aCc17434180892DB2B5ae93Cf" },
+      let headersList = {
+        Accept: "*/*",
+        "User-Agent": "Thunder Client (https://www.thunderclient.com)",
+        "Content-Type": "application/json",
+      };
+
+      let bodyContent = JSON.stringify({
+        creator: "0xCD115b6AEC40A25a582302c15B27b0bb46F96C6F ",
+      });
+
+      let response = await fetch(
+        "https://solimax-nest-api-danijel-enoch.vercel.app/api/users/join/0xCD115b6AEC40A25a582302c15B27b0bb46F96C6F ",
         {
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-          },
+          method: "POST",
+          body: bodyContent,
+          headers: headersList,
         }
       );
-      console.log(JSON.stringify(data, null, 4));
 
-      console.log(status);
-    } catch (error) {
-      if (axios.isAxiosError(error)) {
-        console.log("error message: ", error.message);
-        // 👇️ error: AxiosError<any, any>
-        return error.message;
-      } else {
-        console.log("unexpected error: ", error);
-        return "An unexpected error occurred";
-      }
+      let data: any = await response.text();
+      console.log("data", data[0].message);
+      notify(data);
+    } catch (error: any) {
+      console.log(error);
+      notify(error.message);
     }
   }
 
@@ -98,6 +119,7 @@ export default function index({ proposals }: any) {
       </Head>
 
       <section className={`${styles.membership} ${styles.heroSection}`}>
+        <ToastContainer />
         <div className={`${styles.heroContainer} `}>
           <div className={styles.grid}>
             {/* member list */}
@@ -176,12 +198,14 @@ export default function index({ proposals }: any) {
               <section className={`${styles.proposals}`}>
                 <div className={`${styles.header}`}>
                   <h1>Proposals</h1>
-                  <select name="" id="">
+                  {/* <select name="" id="">
                     <option value="">Hello</option>
-                  </select>
+                  </select> */}
 
-                  {/* <Select
+                  <Select
                     options={options}
+                    id="selectbox"
+                    instanceId="selectbox"
                     defaultValue={options[0]}
                     onChange={handleChange}
                     styles={{
@@ -210,71 +234,58 @@ export default function index({ proposals }: any) {
                         primary: "#454fda",
                       },
                     })}
-                  /> */}
+                  />
                 </div>
                 <div className={styles.cardContainer}>
                   {proposals?.map((proposal: any) => (
                     <Link
-                    href={`/dao/membership/proposal/${proposal._id}`}
-                    key={proposal._id}
-                  >
-                    <article
-                      style={{ cursor: "pointer" }}
-                      className={`${styles.div} ${styles.proposal}`}
+                      href={`/dao/membership/proposal/${proposal._id}`}
+                      key={proposal._id}
                     >
-                      {/* top */}
-                      <div className={`${styles.topContent}`}>
-                        {/* wallet address */}
-                        <div className="">
-                          <span
-                            className={styles.truncate}
-                            style={{ fontSize: "18px" }}
-                          >
-                            {proposal.creator.slice(0, 8)}
-                          </span>
-                          <span
-                            style={{
-                              fontSize: "14px",
-                              color: "#9ca3af",
-                              border: "1px solid #374151",
-                              marginLeft: "4px",
-                              paddingBlock: "4px",
-                              paddingInline: "7px",
-                              borderRadius: "9999px",
-                            }}
-                          >
-                            Core
-                          </span>
-                        </div>
-                        {/* if active */}
-                        <span
-                          className={styles.state}
-                          style={{ background: "rgb(33 ,182, 111)" }}
-                        >
-                          {proposal?.ended ? "Closed" : "Active"}
-                        </span>
-                        {/* if pending */}
-                        {/* <span className={styles.state} style={{background: "#454fda"}}>Pending</span> */}
-                        {/* if closed */}
-                        {/* <span className={styles.state} style={{background: "rgb(124, 58, 237)"}}>Closed</span> */}
-                      </div>
-                      <h1
-                        className="nameOfProposal"
-                        style={{
-                          fontSize: "20px",
-                          lineHeight: "30.2px",
-                          textAlign: "left",
-                        }}
+                      <article
+                        style={{ cursor: "pointer" }}
+                        className={`${styles.div} ${styles.proposal}`}
                       >
-                        {proposal?.title}
-                      </h1>
-                      <p className={`${styles.details}`}>
-                        {proposal?.description}
-                      </p>
-                      {/* deadline  */}
-                      <p>1 day left</p>
-                    </article>
-                  </Link>
+                        {/* top */}
+                        <div className={`${styles.topContent}`}>
+                          {/* wallet address */}
+                          <div className="">
+                            <span
+                              className={styles.truncate}
+                              style={{ fontSize: "18px" }}
+                            >
+                              {proposal.creator.slice(0, 8)}
+                            </span>
+                          </div>
+                          {/* if active */}
+                          <span
+                            className={styles.state}
+                            style={{ background: "rgb(33 ,182, 111)" }}
+                          >
+                            {proposal?.ended ? "Closed" : "Active"}
+                          </span>
+                          {/* if pending */}
+                          {/* <span className={styles.state} style={{background: "#454fda"}}>Pending</span> */}
+                          {/* if closed */}
+                          {/* <span className={styles.state} style={{background: "rgb(124, 58, 237)"}}>Closed</span> */}
+                        </div>
+                        <h1
+                          className="nameOfProposal"
+                          style={{
+                            fontSize: "20px",
+                            lineHeight: "30.2px",
+                            textAlign: "left",
+                          }}
+                        >
+                          {proposal?.title}
+                        </h1>
+                        <p className={`${styles.details}`}>
+                          {proposal?.description}
+                        </p>
+                        {/* deadline  */}
+                        <p>1 day left</p>
+                      </article>
+                    </Link>
                   ))}
                 </div>
 

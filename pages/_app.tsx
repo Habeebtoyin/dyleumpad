@@ -1,5 +1,6 @@
 import "../styles/globals.css";
 import "@rainbow-me/rainbowkit/styles.css";
+import 'react-toastify/dist/ReactToastify.css';
 import type { AppProps } from "next/app";
 import { darkTheme, getDefaultWallets, midnightTheme, RainbowKitProvider, Theme } from "@rainbow-me/rainbowkit";
 import { configureChains, createClient, useAccount, WagmiConfig } from "wagmi";

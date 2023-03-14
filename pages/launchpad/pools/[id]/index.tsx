@@ -14,6 +14,7 @@ import Head from "next/head";
 // import { default as GetPools } from "../../../api/pools/index";
 // import Loading from "../../../../components/Loading";
 import { lazy } from "react";
+import Footer from "../../../../components/Footer";
 
 const Navbar = lazy(() => import("../../../../components/Navbar/Navbar"));
 
@@ -52,6 +53,7 @@ const Pool = ({ pool }: any) => {
         <TokenInformation pool={pool[0]} />
       </section>
       <AboutProject pool={pool[0]} />
+      <Footer />
     </div>
   );
 };

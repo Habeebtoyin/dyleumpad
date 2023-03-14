@@ -2,6 +2,8 @@ import HomeStyles from "../../styles/Home.module.css";
 import styles from "../../styles/DAO.module.css";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import Head from "next/head";
+import Image from "next/image";
+import heroBg from "../../components/assets/images/hero-bg.png";
 
 export default function DAO() {
   return (
@@ -17,7 +19,9 @@ export default function DAO() {
       </Head>
       {/* Hero Section */}
       <section className={`${styles.dao} ${styles.heroSection} ${HomeStyles.heroSection}`}>
-        {/* <Image className={styles.bg} src={heroBg} alt="hero background" /> */}
+      <div className={styles.bg}>
+          <Image src={heroBg} alt="hero background" />
+        </div>
 
         <div className={`${styles.heroContainer} `}>
           {/* <div className={`${HomeStyles.leftCol} ${styles.leftCol}`}> */}
@@ -29,12 +33,9 @@ export default function DAO() {
           </p>
           {/* HERO BTN */}
           {/* <button className={HomeStyles.heroBtn}> */}
-            <a
-              className={`${HomeStyles.buySlmBtn} ${HomeStyles.heroButtonLink}`}
-              href=""
-            >
-              <ConnectButton chainStatus="none" />
-            </a>
+          <div className={` ${HomeStyles.heroButtonLink} ${styles.connectBtn}`}>
+            <ConnectButton chainStatus="none" />
+          </div>
           {/* </button> */}
         </div>
 
