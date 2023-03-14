@@ -5,22 +5,26 @@ import Head from "next/head";
 import Link from "next/link";
 import emoji from "../../../components/assets/icons/Emoji.svg";
 import Image from "next/image";
-import Select from "react-select";
 import NewProposal from "./proposal/new";
 import axios from "axios";
 import { useState } from "react";
 
+// interface Option {
+//   value: string;
+//   label: string;
+// }
+
+// const options: Option[] = [
+//   { value: "all", label: "All" },
+//   { value: "active", label: "Active" },
+//   { value: "pending", label: "Pending" },
+//   { value: "closed", label: "Closed" },
+//   { value: "core", label: "Core" },
+// ];
+
 export default function index({ proposals }: any) {
-  console.log(proposals);
   const { selectedTab, setSelectedTab, setFilterValue } = GlobalAuth();
 
-  const options = [
-    { value: "all", label: "All" },
-    { value: "active", label: "Active" },
-    { value: "pending", label: "Pending" },
-    { value: "closed", label: "Closed" },
-    { value: "core", label: "Core" },
-  ];
 
   const titles = [
     {
@@ -82,7 +86,7 @@ export default function index({ proposals }: any) {
   }
 
   return (
-    <div className="membership">
+    <div className="">
       <Head>
         <title>Solimax DAO | Member Page</title>
         <meta
@@ -172,8 +176,11 @@ export default function index({ proposals }: any) {
               <section className={`${styles.proposals}`}>
                 <div className={`${styles.header}`}>
                   <h1>Proposals</h1>
+                  <select name="" id="">
+                    <option value="">Hello</option>
+                  </select>
 
-                  <Select
+                  {/* <Select
                     options={options}
                     defaultValue={options[0]}
                     onChange={handleChange}
@@ -199,11 +206,11 @@ export default function index({ proposals }: any) {
                       background: "#090e17",
                       colors: {
                         ...theme.colors,
-                        primary25: "hotpink",
+                        // primary25: "hotpink",
                         primary: "#454fda",
                       },
                     })}
-                  />
+                  /> */}
                 </div>
                 <div className={styles.cardContainer}>
                   {proposals?.map((proposal: any) => (

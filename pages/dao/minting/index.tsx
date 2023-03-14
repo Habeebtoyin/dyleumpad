@@ -26,7 +26,7 @@ export default function DAOMinting() {
         <div className={`${styles.heroContainer} ${HomeStyles.heroContainer}`}>
           {/* <div className={`${HomeStyles.leftCol} ${styles.leftCol}`}> */}
           <h1 className={HomeStyles.heroTitle}>
-            Mint your Free DAO <Image src={emoji} alt="emoji" /> <br />{" "}
+            Mint your SoliMax DAO <Image src={emoji} alt="emoji" /> <br />{" "}
             Membership NFT
           </h1>
 
