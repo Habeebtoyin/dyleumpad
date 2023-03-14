@@ -10,7 +10,7 @@ export default function DAOMinting() {
   return (
     <div className={styles.minting}>
       <Head>
-        <title>Solimax | Launchpad</title>
+        <title>Solimax | DAO | Minting</title>
         <meta
           name="description"
           content="A Secure Multi-chain Launch-pad with High Staking"
