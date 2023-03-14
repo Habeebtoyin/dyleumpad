@@ -2,7 +2,7 @@ import styles from "../../styles/Launchpad.module.css";
 import PoolsBtn from "./PoolsBtn";
 import ReactPaginate from "react-paginate";
 import { lazy, Suspense, useState } from "react";
-import { GlobalAuth } from "../../../../../context/GlobalContext";
+import { GlobalAuth } from "../../context/GlobalContext";
 import PoolCard from "./PoolCard";
 
 export default function Pools() {
