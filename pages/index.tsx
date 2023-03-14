@@ -11,6 +11,7 @@ import styles from "../styles/Home.module.css";
 // import Mission from "../components/Home/Mission";
 import dynamic from "next/dynamic";
 import Loading from "../components/Loading";
+import Footer from "../components/Footer";
 import { lazy } from "react";
 
 const HeroSection = lazy(() => import("../components/Home/HeroSection"));
@@ -51,6 +52,7 @@ const Home: NextPage = () => {
         <HowToBuy />
         <ContractAddress />
       </main>
+<Footer />
     </div>
   );
 };
