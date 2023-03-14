@@ -1,4 +1,4 @@
-import styles from "../../../styles/Launchpad.module.css";
+import styles from "../../styles/Launchpad.module.css";
 import dots from "../../components/assets/icons/launchpad-card-dots.svg";
 import DAILogo from "../../components/assets/icons/dai-logo.png";
 import { LaunchPoolClass } from "../../web3";

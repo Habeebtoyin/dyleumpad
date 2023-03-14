@@ -1,4 +1,4 @@
-import styles from "../../../styles/Launchpad.module.css";
+import styles from "../../styles/Launchpad.module.css";
 import PoolsBtn from "./PoolsBtn";
 import ReactPaginate from "react-paginate";
 import { lazy, Suspense, useState } from "react";
