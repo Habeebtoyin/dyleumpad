@@ -2,8 +2,16 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
+// import HowToBuy from "../components/Home/HowToBuy";
+// import HomeNavbar from "../components/Home/HomeNavbar";
+// import Roadmap from "../components/Home/Roadmap";
+// import Tokenomics from "../components/Home/Tokenomics";
+// import ContractAddress from "../components/Home/ContractAddress";
+// import HeroSection from "../components/Home/HeroSection";
+// import Mission from "../components/Home/Mission";
+import dynamic from "next/dynamic";
+import Loading from "../components/Loading";
 import { lazy } from "react";
-import Footer from "../components/Footer";
 
 const HeroSection = lazy(() => import("../components/Home/HeroSection"));
 
@@ -43,7 +51,6 @@ const Home: NextPage = () => {
         <HowToBuy />
         <ContractAddress />
       </main>
-      <Footer />
     </div>
   );
 };

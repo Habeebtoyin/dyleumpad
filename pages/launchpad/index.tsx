@@ -11,7 +11,6 @@ import Image from "next/image";
 import dots from "../../components/assets/icons/launchpad-card-dots.svg";
 import DAILogo from "../../components/assets/icons/dai-logo.png";
 import { convertweiToEthers } from "../../web3/priceOracle";
-import Footer from "../../components/Footer";
 
 const BuyButtons = lazy(() => import("../../components/LaunchPad/BuyButtons"));
 
@@ -340,6 +339,7 @@ export default function LaunchPad({ pools }: any) {
             pageRangeDisplayed={5}
             pageCount={pageCount}
             previousLabel="<"
+            
             containerClassName={styles.paginationBtns}
             previousLinkClassName={"previousBtn"}
             nextLinkClassName={styles.nextBtn}
@@ -348,7 +348,6 @@ export default function LaunchPad({ pools }: any) {
           />
         </section>
       </main>
-      <Footer />
     </div>
   );
 }

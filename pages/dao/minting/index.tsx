@@ -3,12 +3,10 @@ import styles from "../../../styles/DAO.module.css";
 import emoji from "../../../components/assets/icons/Emoji.svg";
 import Image from "next/image";
 import Head from "next/head";
-import heroBg from "../../../components/assets/images/hero-bg.png";
-import Footer from "../../../components/Footer";
 
 export default function DAOMinting() {
   return (
-    <div className={styles.minting}>
+    <div className="minting">
       <Head>
         <title>Solimax | Launchpad</title>
         <meta
@@ -20,9 +18,8 @@ export default function DAOMinting() {
       </Head>
 
       <section className={`${styles.heroSection} ${HomeStyles.heroSection}`}>
-        <div className={styles.bg}>
-          <Image src={heroBg} alt="hero background" />
-        </div>
+        {/* <Image className={styles.bg} src={heroBg} alt="hero background" /> */}
+
         <div className={`${styles.heroContainer} ${HomeStyles.heroContainer}`}>
           {/* <div className={`${HomeStyles.leftCol} ${styles.leftCol}`}> */}
           <h1 className={HomeStyles.heroTitle}>
