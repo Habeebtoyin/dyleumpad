@@ -9,6 +9,10 @@ export function GlobalContextProvider({ children }) {
   const { isConnected } = useAccount();
   const [menuState, setMenuState] = useState(false);
   const [checkboxState, setCheckboxState] = useState(false);
+  const [filterValue, setFilterValue] = useState("");
+  const [proposalTag, setProposalTag] = useState("all");
+  const [content, setContent] = useState();
+
   const menuItems = [
     {
       title: "About us",
@@ -61,6 +65,23 @@ export function GlobalContextProvider({ children }) {
     }
     // setPoolsData(activePools);
   }, [selectedPool]);
+
+  // useEffect(() => {
+    // switch (proposalTag) {
+  //   case "all":
+      
+  //     break;
+  //   case "active":
+      
+  //     break;
+  //   case "all":
+      
+  //     break;
+  
+  //   default:
+  //     break;
+  // }
+  // }, proposalTag)
   //   console.log(menuItems)
 
   return (
@@ -77,6 +98,12 @@ export function GlobalContextProvider({ children }) {
         isConnected,
         selectedTab,
         setSelectedTab,
+        filterValue,
+        setContent,
+        setFilterValue,
+        content,
+        proposalTag,
+        setProposalTag
       }}
     >
       {children}

@@ -12,25 +12,7 @@ import { useState } from "react";
 
 export default function index({ proposals }: any) {
   console.log(proposals);
-  const { selectedTab, setSelectedTab } = GlobalAuth();
-  const [filterValue, setFilterValue] = useState("");
-  const [proposalTag, setProposalTag] = useState("all");
-  const [content, setContent] = useState();
-
-  // switch (proposalTag) {
-  //   case "all":
-      
-  //     break;
-  //   case "active":
-      
-  //     break;
-  //   case "all":
-      
-  //     break;
-  
-  //   default:
-  //     break;
-  // }
+  const { selectedTab, setSelectedTab, setFilterValue } = GlobalAuth();
 
   const options = [
     { value: "all", label: "All" },
