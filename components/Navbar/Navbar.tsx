@@ -2,13 +2,11 @@ import navLogo from "../assets/icons/nav-logo.svg";
 import { GlobalAuth } from "../../context/GlobalContext";
 import HamburgerIcon from "./HamburgerIcon";
 import NavButton from "./NavButton";
-// import { NavHashLink } from "react-router-hash-link";
-// import { NavLink } from "react-router-dom";
 import styles from "../../styles/Navbar.module.css";
 import Link from "next/link";
 import Image from "next/image";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
-import { useIsMounted } from "../../pages/hooks/useIsMounted";
+import { useIsMounted } from "../../hooks/useIsMounted";
 
 export default function Navbar() {
   const { menuState, setCheckboxState, setMenuState, isConnected } =
