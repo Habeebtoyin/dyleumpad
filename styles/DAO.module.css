@@ -1,24 +1,55 @@
 .heroSection {
   padding-inline: 0 !important;
-  padding-block: 150px 100px;
-  height: fit-content !important;
+  height: fit-content ;
+  position: relative;
 }
 
-.dao .heroSection {
-  height: 90vh;
+.dao.heroSection,
+.minting .heroSection {
+  height: 90vh !important;
+}
+
+.dao .heroContainer,
+.minting .heroContainer{
+  padding-block: 273px 100px;
+  justify-content: center;
+}
+
+.connectBtn button{
+ background: linear-gradient(
+    90.72deg,
+    rgba(107, 3, 184, 0.9) 21.79%,
+    rgba(168, 24, 186, 0.9) 54.77%,
+    rgba(226, 43, 187, 0.9) 85.69%
+  ) !important;
+  transition: all  0.5s ease;
+}
+.connectBtn button:hover{
+ background: linear-gradient(
+    200deg,
+    rgba(107, 3, 184, 0.9) 21.79%,
+    rgba(168, 24, 186, 0.9) 54.77%,
+    rgba(226, 43, 187, 0.9) 85.69%
+  ) !important;
 }
 
 .heroContainer {
+  padding-block: 150px 100px;
   padding-inline: 2rem !important;
-  position: unset !important;
-  transform: none;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
   display: grid;
   text-align: center;
-  /* justify-content: center; */
   gap: 2rem;
   width: 100%;
   max-width: 1000px;
   margin-inline: auto;
+}
+
+.bg img{
+  height: 100vh !important;
 }
 
 .grid {
@@ -446,6 +477,12 @@
   }
 }
 @media screen and (min-width: 1000px) {
+
+  .dao.heroSection,
+  .minting .heroSection {
+    height: 100vh !important;
+  }
+
   .grid {
     gap: 32px;
     grid-template-columns: 200px auto;
