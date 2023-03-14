@@ -85,7 +85,8 @@
   justify-content: space-between;
 }
 
-.navBtn {
+.navBtn ,
+.header button{
   margin-top: 2rem;
   /* background: linear-gradient(
     90.72deg,
@@ -105,7 +106,7 @@
   align-items: center;
   justify-content: center;
   letter-spacing: -0.18px;
-  height: 40px;
+  height: 40px !important;
   padding-inline: 14px;
   padding-inline: 14px ;
 }
@@ -192,7 +193,7 @@
   } */
 }
 
-@media screen and (min-width: 1300px) {
+@media screen and (min-width: 1330px) {
   .menu {
     display: flex;
     justify-content: space-between;

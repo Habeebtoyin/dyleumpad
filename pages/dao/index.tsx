@@ -1,4 +1,3 @@
-import Navbar from "../../components/Navbar/Navbar";
 import HomeStyles from "../../styles/Home.module.css";
 import styles from "../../styles/DAO.module.css";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
@@ -17,7 +16,7 @@ export default function DAO() {
         <link rel="icon" href="/logo-icon.svg" />
       </Head>
       {/* Hero Section */}
-      <section className={`dao ${styles.heroSection} ${HomeStyles.heroSection}`}>
+      <section className={`${styles.dao} ${styles.heroSection} ${HomeStyles.heroSection}`}>
         {/* <Image className={styles.bg} src={heroBg} alt="hero background" /> */}
 
         <div className={`${styles.heroContainer} `}>

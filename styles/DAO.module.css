@@ -1,12 +1,11 @@
 .heroSection {
   padding-inline: 0 !important;
   padding-block: 150px 100px;
-  height: 90vh;
+  height: fit-content !important;
 }
 
-.membership,
-.proposalDetailsPage {
-  height: fit-content !important;
+.dao .heroSection {
+  height: 90vh;
 }
 
 .heroContainer {
@@ -64,9 +63,8 @@
 }
 
 .proposalDetailsPage a,
-.proposalDetailsPage p{
+.proposalDetailsPage p {
   align-self: flex-start;
-
 }
 
 .creatorDetails {
@@ -90,9 +88,6 @@
   gap: 10px;
 }
 
-.voting {
-}
-
 .joinBtn {
   width: fit-content;
   display: flex;
@@ -112,11 +107,10 @@
   flex-direction: column;
   align-items: center;
   gap: 2rem;
-  /* width: 100%; */
 }
 
 .buttons {
-  max-width: 350px;
+  max-width: 300px;
   overflow-x: visible;
   border-radius: 0 0 0 8px;
   border-bottom: 1px solid #6b7280;
@@ -332,9 +326,9 @@
   border: 1px solid var(--white);
 }
 
-.voteContainer{
-display: flex;
-flex-direction: column;
+.voteContainer {
+  display: flex;
+  flex-direction: column;
   align-items: flex-start;
   gap: 16px;
 }
@@ -350,7 +344,7 @@ flex-direction: column;
   display: flex;
   justify-content: space-between;
   width: 100%;
-  padding:  16px;
+  padding: 16px;
 }
 
 .radioBtns {
@@ -446,11 +440,12 @@ flex-direction: column;
 }
 
 /* TABLET SCREENS */
-@media screen and (min-width: 1000px) {
+@media screen and (min-width: 768px) {
   .heroContainer {
     padding-inline: 4rem !important;
   }
-
+}
+@media screen and (min-width: 1000px) {
   .grid {
     gap: 32px;
     grid-template-columns: 200px auto;
@@ -493,16 +488,15 @@ flex-direction: column;
     border-bottom: none;
   }
 
-  .voteBtnContainer{
+  .voteBtnContainer {
     flex-direction: row;
     justify-content: space-between;
     background: transparent;
   }
 
-  .creatorDetails{
+  .creatorDetails {
     flex-direction: row;
     align-items: center;
-  
   }
 
   .address {
@@ -516,5 +510,17 @@ flex-direction: column;
   .address label,
   .address input {
     padding: 12px 32px;
+  }
+}
+
+
+@media screen and (min-width: 2200px) {
+  .heroContainer{
+    max-width: 1900px;
+  }
+
+  .grid {
+    gap: 48px;
+    grid-template-columns: 300px auto;
   }
 }

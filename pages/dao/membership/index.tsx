@@ -1,7 +1,5 @@
 import HomeStyles from "../../../styles/Home.module.css";
 import styles from "../../../styles/DAO.module.css";
-import Navbar from "../../../components/Navbar/Navbar";
-import { useState } from "react";
 import { GlobalAuth } from "../../../context/GlobalContext";
 import Head from "next/head";
 import Link from "next/link";
@@ -10,10 +8,29 @@ import Image from "next/image";
 import Select from "react-select";
 import NewProposal from "./proposal/new";
 import axios from "axios";
+import { useState } from "react";
 
 export default function index({ proposals }: any) {
   console.log(proposals);
   const { selectedTab, setSelectedTab } = GlobalAuth();
+  const [filterValue, setFilterValue] = useState("");
+  const [proposalTag, setProposalTag] = useState("all");
+  const [content, setContent] = useState();
+
+  // switch (proposalTag) {
+  //   case "all":
+      
+  //     break;
+  //   case "active":
+      
+  //     break;
+  //   case "all":
+      
+  //     break;
+  
+  //   default:
+  //     break;
+  // }
 
   const options = [
     { value: "all", label: "All" },
@@ -45,6 +62,11 @@ export default function index({ proposals }: any) {
       href: "#",
     },
   ];
+
+  function handleChange(selectedOption: any) {
+    setFilterValue(selectedOption.value);
+    console.log(" Option", selectedOption.value);
+  }
 
   async function joinDAO(e: any) {
     console.log("clicked");
@@ -134,15 +156,23 @@ export default function index({ proposals }: any) {
                     New Proposal
                   </span>
                 </Link>
-                <button
+                {/* <button
                   className={`${styles.text} ${
-                    selectedTab === "about" ? styles.activeBtn : ``
+                    selectedTab === "active" ? styles.activeBtn : ``
                   }`}
                   style={{ cursor: "pointer" }}
                   onClick={() => setSelectedTab("about")}
                 >
                   About
-                </button>
+                </button> */}
+                <Link href="#">
+                  <span
+                    className={`${styles.text} `}
+                    style={{ cursor: "pointer" }}
+                  >
+                    About
+                  </span>
+                </Link>
                 <Link href="#">
                   <span
                     className={`${styles.text} `}
@@ -164,18 +194,20 @@ export default function index({ proposals }: any) {
                   <Select
                     options={options}
                     defaultValue={options[0]}
+                    onChange={handleChange}
                     styles={{
                       option: (base) => ({
                         ...base,
                         background: "#090e17",
                         borderBottom: "1px solid #454fda",
-                        width: "150px",
+                        width: "120px",
                       }),
                       control: (baseStyles, state) => ({
                         ...baseStyles,
                         borderRadius: "8px",
                         borderColor: state.isFocused ? "grey" : "#454fda",
                         background: "#090e17",
+                        width: "120px",
                       }),
                     }}
                     theme={(theme) => ({
@@ -194,66 +226,66 @@ export default function index({ proposals }: any) {
                 <div className={styles.cardContainer}>
                   {proposals?.map((proposal: any) => (
                     <Link
-                      href={`/dao/membership/proposal/${proposal._id}`}
-                      key={proposal._id}
+                    href={`/dao/membership/proposal/${proposal._id}`}
+                    key={proposal._id}
+                  >
+                    <article
+                      style={{ cursor: "pointer" }}
+                      className={`${styles.div} ${styles.proposal}`}
                     >
-                      <article
-                        style={{ cursor: "pointer" }}
-                        className={`${styles.div} ${styles.proposal}`}
-                      >
-                        {/* top */}
-                        <div className={`${styles.topContent}`}>
-                          {/* wallet address */}
-                          <div className="">
-                            <span
-                              className={styles.truncate}
-                              style={{ fontSize: "18px" }}
-                            >
-                              {proposal.creator.slice(0, 8)}
-                            </span>
-                            <span
-                              style={{
-                                fontSize: "14px",
-                                color: "#9ca3af",
-                                border: "1px solid #374151",
-                                marginLeft: "4px",
-                                paddingBlock: "4px",
-                                paddingInline: "7px",
-                                borderRadius: "9999px",
-                              }}
-                            >
-                              Core
-                            </span>
-                          </div>
-                          {/* if active */}
+                      {/* top */}
+                      <div className={`${styles.topContent}`}>
+                        {/* wallet address */}
+                        <div className="">
                           <span
-                            className={styles.state}
-                            style={{ background: "rgb(33 ,182, 111)" }}
+                            className={styles.truncate}
+                            style={{ fontSize: "18px" }}
                           >
-                            {proposal?.ended ? "Closed" : "Active"}
+                            {proposal.creator.slice(0, 8)}
                           </span>
-                          {/* if pending */}
-                          {/* <span className={styles.state} style={{background: "#454fda"}}>Pending</span> */}
-                          {/* if closed */}
-                          {/* <span className={styles.state} style={{background: "rgb(124, 58, 237)"}}>Closed</span> */}
+                          <span
+                            style={{
+                              fontSize: "14px",
+                              color: "#9ca3af",
+                              border: "1px solid #374151",
+                              marginLeft: "4px",
+                              paddingBlock: "4px",
+                              paddingInline: "7px",
+                              borderRadius: "9999px",
+                            }}
+                          >
+                            Core
+                          </span>
                         </div>
-                        <h1
-                          className="nameOfProposal"
-                          style={{
-                            fontSize: "20px",
-                            lineHeight: "30.2px",
-                            textAlign: "left",
-                          }}
+                        {/* if active */}
+                        <span
+                          className={styles.state}
+                          style={{ background: "rgb(33 ,182, 111)" }}
                         >
-                          {proposal?.title}
-                        </h1>
-                        <p className={`${styles.details}`}>
-                          {proposal?.description}
-                        </p>
-                        {/* deadline  */}
-                        <p>1 day left</p>
-                      </article>
-                    </Link>
+                          {proposal?.ended ? "Closed" : "Active"}
+                        </span>
+                        {/* if pending */}
+                        {/* <span className={styles.state} style={{background: "#454fda"}}>Pending</span> */}
+                        {/* if closed */}
+                        {/* <span className={styles.state} style={{background: "rgb(124, 58, 237)"}}>Closed</span> */}
+                      </div>
+                      <h1
+                        className="nameOfProposal"
+                        style={{
+                          fontSize: "20px",
+                          lineHeight: "30.2px",
+                          textAlign: "left",
+                        }}
+                      >
+                        {proposal?.title}
+                      </h1>
+                      <p className={`${styles.details}`}>
+                        {proposal?.description}
+                      </p>
+                      {/* deadline  */}
+                      <p>1 day left</p>
+                    </article>
+                  </Link>
                   ))}
                 </div>
 

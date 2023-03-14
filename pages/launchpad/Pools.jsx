@@ -3,7 +3,6 @@ import PoolsBtn from "./PoolsBtn";
 import ReactPaginate from "react-paginate";
 import { lazy, Suspense, useState } from "react";
 import { GlobalAuth } from "../../../../../context/GlobalContext";
-import Loading from "../../../../../components/Loading";
 import PoolCard from "./PoolCard";
 
 export default function Pools() {

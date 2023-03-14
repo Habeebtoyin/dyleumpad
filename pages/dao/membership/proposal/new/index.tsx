@@ -13,6 +13,7 @@ type CreateUserResponse = {
 export default function NewProposal() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  // const address = useAddress()
 
   async function createProposal(e: any) {
     console.log("clicked");
