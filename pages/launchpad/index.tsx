@@ -342,7 +342,7 @@ export default function LaunchPad({ pools }: any) {
             pageRangeDisplayed={5}
             pageCount={pageCount}
             previousLabel="<"
-            renderOnZeroPageCount={null}
+            
             containerClassName={styles.paginationBtns}
             previousLinkClassName={"previousBtn"}
             nextLinkClassName={styles.nextBtn}
