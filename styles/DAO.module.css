@@ -6,17 +6,25 @@
 
 .dao.heroSection,
 .minting .heroSection {
-  height: 90vh !important;
+  height: 100vh !important;
 }
 
 .dao .heroContainer,
 .minting .heroContainer {
-  padding-block: 273px 100px;
+  /* padding-block: 273px 100px; */
   justify-content: center;
   position: absolute;
   top: 0;
   left: 50%;
   transform: translateX(-50%);
+}
+
+.dao.heroContainer {
+  padding-block: 273px 100px;
+}
+
+.minting .heroContainer {
+  padding-block: 340px 100px;
 }
 
 .connectBtn button {
@@ -27,6 +35,12 @@
     rgba(226, 43, 187, 0.9) 85.69%
   ) !important;
   transition: all 0.5s ease;
+  height: 46px !important;
+  width: 270px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 40px !important;
 }
 
 .connectBtn button:hover {
@@ -45,7 +59,6 @@
 .heroContainer {
   padding-block: 150px 100px;
   padding-inline: 2rem !important;
-
   display: grid;
   text-align: center;
   gap: 2rem;
@@ -55,7 +68,13 @@
 }
 
 .bg img {
-  height: 100vh !important;
+  height: 50px !important;
+  object-position: center;
+  object-fit: cover;
+  width: 100% !important;
+  position: fixed !important;
+  bottom: 0 !important;
+  transform: perspective(17px) scale3d(1, 1, 0.5) translateY(78px);
 }
 
 .grid {
@@ -79,6 +98,7 @@
 .memberText {
   text-align: center;
   width: fit-content;
+  /* max-width: 300px !important; */
 }
 
 .leftCol,
@@ -511,6 +531,10 @@
   .heroContainer {
     padding-inline: 4rem !important;
   }
+/* 
+  .memberText{
+    max-width: 200px;
+  } */
 }
 @media screen and (min-width: 1000px) {
   .dao.heroSection,

@@ -8,7 +8,7 @@ import Footer from "../../../components/Footer";
 
 export default function DAOMinting() {
   return (
-    <div className="minting">
+    <div className={styles.minting}>
       <Head>
         <title>Solimax | Launchpad</title>
         <meta
@@ -27,8 +27,8 @@ export default function DAOMinting() {
         <div className={`${styles.heroContainer} ${HomeStyles.heroContainer}`}>
           {/* <div className={`${HomeStyles.leftCol} ${styles.leftCol}`}> */}
           <h1 className={HomeStyles.heroTitle}>
-            Mint your SoliMax DAO <Image src={emoji} alt="emoji" /> <br />{" "}
-            Membership NFT
+            <Image src={emoji} alt="emoji" /> Mint your SoliMax DAO Membership
+            NFT
           </h1>
 
           {/* HERO BTN */}

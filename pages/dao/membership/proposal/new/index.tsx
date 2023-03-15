@@ -60,7 +60,7 @@ export default function NewProposal() {
       if (data) {
         toast.success("Proposal was submitted successfully", {
           position: "top-right",
-          autoClose: 10000,
+          autoClose: 7000,
           hideProgressBar: false,
           closeOnClick: true,
           pauseOnHover: true,
@@ -76,7 +76,7 @@ export default function NewProposal() {
       if (err) {
         toast.error(err.message, {
           position: "top-right",
-          autoClose: 10000,
+          autoClose: 7000,
           hideProgressBar: false,
           closeOnClick: true,
           pauseOnHover: true,

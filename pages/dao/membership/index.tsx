@@ -26,9 +26,9 @@ export default function index({ proposals }: any) {
     setErrorMessage,
   } = GlobalAuth();
   const notify = (msg: any) =>
-    toast.error(msg, {
+    toast.info(msg, {
       position: "top-right",
-      autoClose: 10000,
+      autoClose: 8000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
@@ -86,7 +86,6 @@ export default function index({ proposals }: any) {
 
       let bodyContent = JSON.stringify({
         creator: "0xCD115b6AEC40A25a582302c15B27b0bb46F96C6F ",
-        message: "",
       });
 
       let response = await fetch(
@@ -99,6 +98,7 @@ export default function index({ proposals }: any) {
       );
 
       let data: any = await response.json();
+      console.log(data.message);
       notify(data.message);
     } catch (error: any) {
       notify(error.message);
@@ -128,7 +128,15 @@ export default function index({ proposals }: any) {
                   <Image src={emoji} alt="emoji" /> DAO Member Page
                 </h1>
 
-                <p className={`${HomeStyles.text} ${styles.memberText}`}>
+                <p
+                  style={{
+                    color: "#9ca3af",
+                    fontWeight: "400",
+                    lineHeight: "1.45",
+                    fontSize: "17px",
+                  }}
+                  className={` ${styles.memberText}`}
+                >
                   To become a member, click the Join button below
                 </p>
                 {/* when user has become a member */}
