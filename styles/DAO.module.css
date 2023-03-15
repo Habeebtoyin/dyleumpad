@@ -1,6 +1,6 @@
 .heroSection {
   padding-inline: 0 !important;
-  height: fit-content ;
+  height: fit-content;
   position: relative;
 }
 
@@ -10,7 +10,7 @@
 }
 
 .dao .heroContainer,
-.minting .heroContainer{
+.minting .heroContainer {
   padding-block: 273px 100px;
   justify-content: center;
   position: absolute;
@@ -19,17 +19,18 @@
   transform: translateX(-50%);
 }
 
-.connectBtn button{
- background: linear-gradient(
+.connectBtn button {
+  background: linear-gradient(
     90.72deg,
     rgba(107, 3, 184, 0.9) 21.79%,
     rgba(168, 24, 186, 0.9) 54.77%,
     rgba(226, 43, 187, 0.9) 85.69%
   ) !important;
-  transition: all  0.5s ease;
+  transition: all 0.5s ease;
 }
-.connectBtn button:hover{
- background: linear-gradient(
+
+.connectBtn button:hover {
+  background: linear-gradient(
     200deg,
     rgba(107, 3, 184, 0.9) 21.79%,
     rgba(168, 24, 186, 0.9) 54.77%,
@@ -37,10 +38,14 @@
   ) !important;
 }
 
+.newProposalPage button:disabled{
+  background: #1F2937 !important;
+}
+
 .heroContainer {
   padding-block: 150px 100px;
   padding-inline: 2rem !important;
-  
+
   display: grid;
   text-align: center;
   gap: 2rem;
@@ -49,7 +54,7 @@
   margin-inline: auto;
 }
 
-.bg img{
+.bg img {
   height: 100vh !important;
 }
 
@@ -69,6 +74,11 @@
   font-weight: 500;
   font-size: 2.25rem;
   line-height: 1.25;
+}
+
+.memberText {
+  text-align: center;
+  width: fit-content;
 }
 
 .leftCol,
@@ -135,7 +145,7 @@
   font-size: 18px;
 }
 
-.button{
+.button {
   margin-top: 2rem;
   background: linear-gradient(
     90.72deg,
@@ -503,7 +513,6 @@
   }
 }
 @media screen and (min-width: 1000px) {
-
   .dao.heroSection,
   .minting .heroSection {
     height: 100vh !important;
@@ -514,11 +523,12 @@
     grid-template-columns: 200px auto;
   }
 
-  .proposalDetailsPage .grid{
+  .proposalDetailsPage .grid {
     grid-template-columns: auto 320px;
   }
 
-  .heroTitle {
+  .heroTitle,
+  .memberText {
     text-align: left;
   }
 
@@ -580,9 +590,8 @@
   }
 }
 
-
 @media screen and (min-width: 2200px) {
-  .heroContainer{
+  .heroContainer {
     max-width: 1900px;
   }
 

@@ -5,6 +5,7 @@ import styles from "../../../../../styles/DAO.module.css";
 import backArrow from "../../../../../components/assets/icons/arrow-back.svg";
 import axios from "axios";
 import Image from "next/image";
+import { toast, ToastContainer } from "react-toastify";
 
 type CreateUserResponse = {
   title: string;
@@ -16,34 +17,75 @@ export default function NewProposal() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   // const address = useAddress()
+  // const notify = (err: string) => {
+  //   toast.success(err, {
+  //     position: "top-right",
+  //     autoClose: 10000,
+  //     hideProgressBar: false,
+  //     closeOnClick: true,
+  //     pauseOnHover: true,
+  //     draggable: true,
+  //     progress: undefined,
+  //     theme: "dark",
+  //   });
+  // };
 
   async function createProposal(e: any) {
     console.log("clicked");
     e.preventDefault();
     e.stopPropagation();
-    let headersList = {
-      Accept: "*/*",
-      "User-Agent": "Thunder Client (https://www.thunderclient.com)",
-      "Content-Type": "application/json",
-    };
+    try {
+      let headersList = {
+        Accept: "*/*",
+        "User-Agent": "Thunder Client (https://www.thunderclient.com)",
+        "Content-Type": "application/json",
+      };
 
-    let bodyContent = JSON.stringify({
-      title: title,
-      description: description,
-      creator: "0x4cBDDaA2f48dF41aCc17434180892DB2B5ae93Cf",
-    });
+      let bodyContent = JSON.stringify({
+        title: title,
+        description: description,
+        creator: "0x4cBDDaA2f48dF41aCc17434180892DB2B5ae93Cf",
+      });
 
-    let response = await fetch(
-      "https://solimax-nest-api-danijel-enoch.vercel.app/api/proposals/create",
-      {
-        method: "POST",
-        body: bodyContent,
-        headers: headersList,
+      let response = await fetch(
+        "https://solimax-nest-api-danijel-enoch.vercel.app/api/proposals/create",
+        {
+          method: "POST",
+          body: bodyContent,
+          headers: headersList,
+        }
+      );
+
+      let data = await response.json();
+      if (data) {
+        toast.success("Proposal was submitted successfully", {
+          position: "top-right",
+          autoClose: 10000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
+        setTitle("");
+        setDescription("");
       }
-    );
-
-    let data = await response.text();
-    console.log(data);
+    } catch (err: any) {
+      console.log(err.message);
+      if (err) {
+        toast.error(err.message, {
+          position: "top-right",
+          autoClose: 10000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
+      }
+    }
 
     // try {
     //   // 👇️ const data: CreateUserResponse
@@ -99,12 +141,26 @@ export default function NewProposal() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/logo-icon.svg" />
       </Head>
-      <section className={` ${styles.heroSection}`}>
+      <section className={`${styles.newProposalPage} ${styles.heroSection}`}>
+        <ToastContainer />
         <div className={` ${styles.heroContainer}`}>
           <div className="" style={{ display: "flex" }}>
             <Link href="/dao/membership">
-              <span style={{display: "flex", alignItems: "center", gap: "6px", fontSize: "18px", cursor: "pointer"}}>
-                <Image src={backArrow} width={24} height={24} alt="back arrow" />
+              <span
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "6px",
+                  fontSize: "18px",
+                  cursor: "pointer",
+                }}
+              >
+                <Image
+                  src={backArrow}
+                  width={24}
+                  height={24}
+                  alt="back arrow"
+                />
                 Back
               </span>
             </Link>
@@ -134,6 +190,7 @@ export default function NewProposal() {
                 style={{ color: "#fff" }}
                 onChange={(e) => setTitle(e.target.value)}
                 name="title"
+                value={title}
                 id="title"
                 autoFocus
                 required
@@ -151,6 +208,7 @@ export default function NewProposal() {
               <textarea
                 rows={20}
                 cols={20}
+                value={description}
                 style={{
                   color: "#fff",
                   width: "100%",
@@ -162,6 +220,7 @@ export default function NewProposal() {
               />
             </label>
             <button
+              disabled={title === "" || description === ""}
               type="submit"
               className={styles.button}
             >

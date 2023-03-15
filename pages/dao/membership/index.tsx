@@ -86,6 +86,7 @@ export default function index({ proposals }: any) {
 
       let bodyContent = JSON.stringify({
         creator: "0xCD115b6AEC40A25a582302c15B27b0bb46F96C6F ",
+        message: "",
       });
 
       let response = await fetch(
@@ -97,11 +98,9 @@ export default function index({ proposals }: any) {
         }
       );
 
-      let data: any = await response.text();
-      console.log("data", data[0].message);
-      notify(data);
+      let data: any = await response.json();
+      notify(data.message);
     } catch (error: any) {
-      console.log(error);
       notify(error.message);
     }
   }
@@ -129,10 +128,7 @@ export default function index({ proposals }: any) {
                   <Image src={emoji} alt="emoji" /> DAO Member Page
                 </h1>
 
-                <p
-                  style={{ textAlign: "left", width: "fit-content" }}
-                  className={`${HomeStyles.text}`}
-                >
+                <p className={`${HomeStyles.text} ${styles.memberText}`}>
                   To become a member, click the Join button below
                 </p>
                 {/* when user has become a member */}
