@@ -36,7 +36,7 @@
   ) !important;
   transition: all 0.5s ease;
   height: 46px !important;
-  width: 270px !important;
+  width: 180px !important;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -52,8 +52,8 @@
   ) !important;
 }
 
-.newProposalPage button:disabled{
-  background: #1F2937 !important;
+.newProposalPage button:disabled {
+  background: #1f2937 !important;
 }
 
 .heroContainer {
@@ -65,6 +65,13 @@
   width: 100%;
   max-width: 1200px;
   margin-inline: auto;
+}
+
+.heroContainer .topText {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
 }
 
 .bg img {
@@ -98,15 +105,17 @@
 .memberText {
   text-align: center;
   width: fit-content;
-  /* max-width: 300px !important; */
 }
 
 .leftCol,
 .voting {
   display: flex;
-  flex-direction: column;
   align-items: flex-start;
   gap: 2.5rem;
+}
+
+.voting {
+  flex-direction: column;
 }
 
 .leftCol div {
@@ -196,34 +205,42 @@
 }
 
 .buttons {
-  max-width: 300px;
-  overflow-x: visible;
+  max-width: 320px;
+  overflow-x: scroll;
   border-radius: 0 0 0 8px;
-  border-bottom: 1px solid #6b7280;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  /* border-bottom: 1px solid #6b7280; */
 }
 
-@media screen and (min-width: 600px) {
+@media screen and (min-width: 500px) {
   .buttons {
-    max-width: unset;
+    max-width: fit-content;
+  }
+
+  .buttons button,
+  .buttons span {
+    max-width: 160px !important;
   }
 }
 
 .buttons button,
 .buttons span {
-  padding: 10px;
+  padding: 10px 10px 0 10px;
   width: 100%;
-  min-width: 122px;
+  min-width: 137px;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
+  border: none;
   border-radius: 0 !important;
 }
 
 .activeBtn,
 .buttons button:hover,
 .buttons span:hover {
-  border-bottom: 2px solid var(--white);
+  border-bottom: 2px solid var(--white) !important;
 }
 
 .joinBtn {
@@ -531,7 +548,7 @@
   .heroContainer {
     padding-inline: 4rem !important;
   }
-/* 
+  /* 
   .memberText{
     max-width: 200px;
   } */
@@ -570,7 +587,6 @@
 
   .buttons {
     max-width: unset;
-    flex-direction: column;
     gap: 6px;
     border-bottom: none;
   }
@@ -580,13 +596,6 @@
     text-align: left;
     padding-left: 20px;
     justify-content: flex-start;
-  }
-
-  .activeBtn,
-  .buttons button:hover,
-  .buttons span:hover {
-    border-left: 2px solid var(--white);
-    border-bottom: none;
   }
 
   .voteBtnContainer {
@@ -611,6 +620,19 @@
   .address label,
   .address input {
     padding: 12px 32px;
+  }
+}
+
+@media screen and (min-width: 1300px) {
+  .buttons {
+    flex-direction: column;
+  }
+
+  .activeBtn,
+  .buttons button:hover,
+  .buttons span:hover {
+    border-left: 2px solid var(--white);
+    border-bottom: none;
   }
 }
 

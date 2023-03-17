@@ -12,7 +12,8 @@ export function GlobalContextProvider({ children }) {
   const [filterValue, setFilterValue] = useState("");
   const [proposalTag, setProposalTag] = useState("all");
   const [content, setContent] = useState();
-  const [errorMessage, setErrorMessage] = useState("")
+  const [errorMessage, setErrorMessage] = useState("");
+  const [modalIsOpen, setIsOpen] = useState(false);
 
   const menuItems = [
     {
@@ -106,7 +107,9 @@ export function GlobalContextProvider({ children }) {
         proposalTag,
         setProposalTag,
         errorMessage,
-        setErrorMessage
+        setErrorMessage,
+        modalIsOpen,
+        setIsOpen
       }}
     >
       {children}

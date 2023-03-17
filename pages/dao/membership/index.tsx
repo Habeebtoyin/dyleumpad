@@ -10,6 +10,8 @@ import axios from "axios";
 import { useState } from "react";
 import Select from "react-select";
 import { ToastContainer, toast } from "react-toastify";
+import Modal from "react-modal";
+import errorIcon from "../../../components/assets/icons/error-warning-line.png";
 
 interface Data {
   statusCode: number;
@@ -24,7 +26,24 @@ export default function index({ proposals }: any) {
     setFilterValue,
     errorMessage,
     setErrorMessage,
+    setIsOpen,
+    modalIsOpen,
   } = GlobalAuth();
+
+  let subtitle: any;
+
+  function openModal() {
+    setIsOpen(true);
+  }
+
+  function afterOpenModal() {
+    // references are now sync'd and can be accessed.
+    // subtitle.style.color = '#f00';
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+  }
   const notify = (msg: any) =>
     toast.info(msg, {
       position: "top-right",
@@ -99,9 +118,10 @@ export default function index({ proposals }: any) {
 
       let data: any = await response.json();
       console.log(data.message);
-      notify(data.message);
+      openModal();
+      // notify(data.message);
     } catch (error: any) {
-      notify(error.message);
+      console.log(error.message);
     }
   }
 
@@ -118,57 +138,82 @@ export default function index({ proposals }: any) {
       </Head>
 
       <section className={`${styles.membership} ${styles.heroSection}`}>
-        <ToastContainer />
+        {/* <ToastContainer /> */}
         <div className={`${styles.heroContainer} `}>
-          <div className={styles.grid}>
-            {/* member list */}
-            <section className={styles.leftCol}>
-              <div className="">
-                <h1 className={styles.heroTitle}>
-                  <Image src={emoji} alt="emoji" /> DAO Member Page
-                </h1>
+          {/* <button onClick={openModal}>Open Modal</button> */}
+          <Modal
+            isOpen={modalIsOpen}
+            onAfterOpen={afterOpenModal}
+            onRequestClose={closeModal}
+            className="modal"
+            contentLabel="Example Modal"
+          >
+            {/* <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Error</h2> */}
+            <Image src={errorIcon} width={32} height={32} alt="error icon" />
+            <button className="closeBtn" onClick={closeModal}>
+              close
+            </button>
+            <div>
+              You need 100 solimax token and DAO nft to Join the DAO undefined
+              undefined
+            </div>
+            {/* <form>
+          <input />
+          <button>tab navigation</button>
+          <button>stays</button>
+          <button>inside</button>
+          <button>the modal</button>
+        </form> */}
+          </Modal>
+          <div className={styles.topText}>
+            <h1 className={styles.heroTitle}>
+              <Image src={emoji} alt="emoji" /> DAO Member Page
+            </h1>
 
-                <p
-                  style={{
-                    color: "#9ca3af",
-                    fontWeight: "400",
-                    lineHeight: "1.45",
-                    fontSize: "17px",
-                  }}
-                  className={` ${styles.memberText}`}
-                >
-                  To become a member, click the Join button below
-                </p>
-                {/* when user has become a member */}
-                {/* <p style={{ textAlign: "center" }} className={`${HomeStyles.text}`}>
+            <p
+              style={{
+                color: "#9ca3af",
+                fontWeight: "400",
+                lineHeight: "1.45",
+                fontSize: "17px",
+              }}
+              className={` ${styles.memberText}`}
+            >
+              To become a member, click the Join button below
+            </p>
+            {/* when user has become a member */}
+            {/* <p style={{ textAlign: "center" }} className={`${HomeStyles.text}`}>
             Congratulations on becoming a member!
           </p> */}
-                <button className={styles.joinBtn} onClick={joinDAO}>
-                  Join
-                </button>
-              </div>
-              <div className={`${styles.buttons}`}>
-                {/* {titles?.map((item) => ( */}
-                {/* <Link href={item.href} key={item.id}> */}
+            <button className={styles.joinBtn} onClick={joinDAO}>
+              Join
+            </button>
+          </div>
+          <div className={styles.grid}>
+            {/* member list */}
+            {/* <section className={styles.leftCol}> */}
+            <section className={`${styles.leftCol} ${styles.buttons}`}>
+              {/* {titles?.map((item) => ( */}
+              {/* <Link href={item.href} key={item.id}> */}
 
-                <button
-                  className={`${styles.text} ${
-                    selectedTab === "active" ? styles.activeBtn : ``
-                  }`}
+              <button
+                className={`${styles.text} ${
+                  selectedTab === "active" ? styles.activeBtn : ``
+                }`}
+                style={{ cursor: "pointer" }}
+                onClick={() => setSelectedTab("active")}
+              >
+                Proposals
+              </button>
+              <Link href="/dao/membership/proposal/new">
+                <span
+                  className={`${styles.text} `}
                   style={{ cursor: "pointer" }}
-                  onClick={() => setSelectedTab("active")}
                 >
-                  Proposals
-                </button>
-                <Link href="/dao/membership/proposal/new">
-                  <span
-                    className={`${styles.text} `}
-                    style={{ cursor: "pointer" }}
-                  >
-                    New Proposal
-                  </span>
-                </Link>
-                {/* <button
+                  New Proposal
+                </span>
+              </Link>
+              {/* <button
                   className={`${styles.text} ${
                     selectedTab === "active" ? styles.activeBtn : ``
                   }`}
@@ -177,34 +222,31 @@ export default function index({ proposals }: any) {
                 >
                   About
                 </button> */}
-                <Link href="#">
-                  <span
-                    className={`${styles.text} `}
-                    style={{ cursor: "pointer" }}
-                  >
-                    About
-                  </span>
-                </Link>
-                <Link href="#">
-                  <span
-                    className={`${styles.text} `}
-                    style={{ cursor: "pointer" }}
-                  >
-                    Settings
-                  </span>
-                </Link>
-              </div>
-
-              {/* </Link> */}
-              {/* // ))} */}
+              <Link href="#">
+                <span
+                  className={`${styles.text} `}
+                  style={{ cursor: "pointer" }}
+                >
+                  About
+                </span>
+              </Link>
+              <Link href="#">
+                <span
+                  className={`${styles.text} `}
+                  style={{ cursor: "pointer" }}
+                >
+                  Settings
+                </span>
+              </Link>
             </section>
+
+            {/* </Link> */}
+            {/* // ))} */}
+            {/* </section> */}
             {selectedTab === "active" && (
               <section className={`${styles.proposals}`}>
                 <div className={`${styles.header}`}>
                   <h1>Proposals</h1>
-                  {/* <select name="" id="">
-                    <option value="">Hello</option>
-                  </select> */}
 
                   <Select
                     options={options}

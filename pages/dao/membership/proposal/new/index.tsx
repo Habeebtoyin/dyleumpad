@@ -5,7 +5,9 @@ import styles from "../../../../../styles/DAO.module.css";
 import backArrow from "../../../../../components/assets/icons/arrow-back.svg";
 import axios from "axios";
 import Image from "next/image";
+import Modal from "react-modal";
 import { toast, ToastContainer } from "react-toastify";
+import { GlobalAuth } from "../../../../../context/GlobalContext";
 
 type CreateUserResponse = {
   title: string;
@@ -16,6 +18,22 @@ type CreateUserResponse = {
 export default function NewProposal() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const {setIsOpen,
+    modalIsOpen}= GlobalAuth();
+  let subtitle: any;
+
+  function openModal() {
+    setIsOpen(true);
+  }
+
+  function afterOpenModal() {
+    // references are now sync'd and can be accessed.
+    subtitle.style.color = '#00ff6a';
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+  }
   // const address = useAddress()
   // const notify = (err: string) => {
   //   toast.success(err, {
@@ -58,6 +76,7 @@ export default function NewProposal() {
 
       let data = await response.json();
       if (data) {
+        openModal();
         toast.success("Proposal was submitted successfully", {
           position: "top-right",
           autoClose: 7000,
@@ -142,7 +161,29 @@ export default function NewProposal() {
         <link rel="icon" href="/logo-icon.svg" />
       </Head>
       <section className={`${styles.newProposalPage} ${styles.heroSection}`}>
-        <ToastContainer />
+      <Modal
+            isOpen={modalIsOpen}
+            onAfterOpen={afterOpenModal}
+            onRequestClose={closeModal}
+            className="modal"
+            contentLabel="Example Modal"
+          >
+            <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Success</h2>
+            {/* <Image src={errorIcon} width={32} height={32} alt="error icon" /> */}
+            <button className="closeBtn" onClick={closeModal}>
+              close
+            </button>
+            <div>
+            Proposal was submitted successfully
+            </div>
+            {/* <form>
+          <input />
+          <button>tab navigation</button>
+          <button>stays</button>
+          <button>inside</button>
+          <button>the modal</button>
+        </form> */}
+          </Modal>
         <div className={` ${styles.heroContainer}`}>
           <div className="" style={{ display: "flex" }}>
             <Link href="/dao/membership">
