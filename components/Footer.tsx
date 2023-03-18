@@ -4,19 +4,18 @@ import telegramLogo from "../components/assets/icons/telegram.svg";
 import Link from "next/link";
 import Image from "next/image";
 import styles from "../styles/Footer.module.css";
-// import { NavHashLink } from "react-router-hash-link";
 
 export default function Footer() {
   return (
     <footer id="contact" className={styles.footer}>
       {/* footer Logo */}
-      <Link href="/">
-        <Image
-          className={styles.footerLogo}
-          src={footerLogo}
-          alt="footer logo"
-        />
-      </Link>
+        <Link href="/">
+          <Image
+            className={styles.footerLogo}
+            src={footerLogo}
+            alt="footer logo"
+          />
+        </Link>
 
       {/* NAV LINKS */}
       <ul className={styles.listContainer}>

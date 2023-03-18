@@ -6,6 +6,10 @@ import logo from "../../../../../components/assets/icons/logo-icon.svg";
 import axios from "axios";
 import Image from "next/image";
 import backArrow from "../../../../../components/assets/icons/arrow-back.svg";
+import { useSigner } from "wagmi";
+import { verifyMessage } from "ethers/lib/utils.js";
+import { useState } from "react";
+import truncateEthAddress from "truncate-eth-address";
 
 // type Proposals = {
 //   _id: number;
@@ -18,23 +22,65 @@ import backArrow from "../../../../../components/assets/icons/arrow-back.svg";
 // };
 
 export default function index({ proposal }: any) {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const { data: signer, isError, isLoading } = useSigner();
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const [voteData, setVoteData] = useState("forVote");
   const voteOptions = [
     {
-      id: "for",
+      id: "forVote",
       label: "For",
       name: "vote",
     },
     {
-      id: "against",
+      id: "againstVote",
       label: "Against",
       name: "vote",
     },
     {
-      id: "abstain",
+      id: "maybeVote",
       label: "Abstain",
       name: "vote",
     },
   ];
+  const convertToDate = (epochTime: string) => {
+    const date = parseInt(epochTime) * 1000;
+    return new Date(date).toLocaleString();
+  };
+
+  const SubmitVote = async () => {
+    let voteType = 1;
+    const Message = voteType + " " + voteData;
+    const submitVoteSig = await signer?.signMessage(Message);
+
+    if (voteData === "forVote") {
+      voteType = 1;
+    } else if (voteData === "againstVote") {
+      voteType = 2;
+    } else {
+      voteType = 3;
+    }
+    const address = verifyMessage(Message, [submitVoteSig as any]);
+    console.log(address);
+    const voteBody = {
+      [voteData]: 1,
+      voter: [{ address: address, voteType: voteType }],
+    };
+    const options = {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(voteBody),
+    };
+
+    fetch(
+      "https://solimax-nest-api-danijel-enoch.vercel.app/api/proposals/vote/" +
+        proposal?._id,
+      options
+    )
+      .then((response) => response.json())
+      .then((response) => console.log({ response }))
+      .catch((err) => console.error({ err }));
+  };
   const totalVotes =
     proposal?.againstVote + proposal?.maybeVote + proposal.forVote;
   console.log(proposal);
@@ -107,10 +153,10 @@ export default function index({ proposal }: any) {
                     </p>
                   </div>
 
-                    <div style={{ color: "#fff" }}>
-                      <span style={{ opacity: ".9" }}>by</span>{" "}
-                      {proposal?.creator.slice(0, 10)}
-                    </div>
+                  <div style={{ color: "#fff" }}>
+                    <span style={{ opacity: ".9" }}>by</span>{" "}
+                    {proposal?.creator.slice(0, 10)}
+                  </div>
                 </div>
               </div>
 
@@ -120,10 +166,21 @@ export default function index({ proposal }: any) {
                 <h3 style={{ fontWeight: "500" }}>Cast your vote</h3>
                 <div className={styles.voteBtnContainer}>
                   {voteOptions.map((type) => (
-                    <button key={type.id}>{type.label}</button>
+                    <button
+                      className={`${
+                        type.id === voteData ? styles.voteSelected : ""
+                      }`}
+                      onClick={() => {
+                        setVoteData(type.id);
+                      }}
+                      key={type.id}
+                    >
+                      {type.label}
+                    </button>
                   ))}
                 </div>
                 <button
+                  onClick={SubmitVote}
                   type="submit"
                   style={{
                     fontSize: "18px",
@@ -156,83 +213,51 @@ export default function index({ proposal }: any) {
                       background: "#6b7280",
                     }}
                   >
-                    {totalVotes}
+                    {proposal.voter.length}
                   </span>
                 </h3>
                 {/* {proposal.voter.voteType}
                 {proposal.voter.address} */}
                 <ul className={styles.votes}>
-                  <li>
-                    <span>0xxx..o</span>
-                    <span>4.20</span>
-                    <span>4.8k</span>
-                  </li>
-                  <li>
-                    <span>0xxx..o</span>
-                    <span>4.20</span>
-                    <span>4.8k</span>
-                  </li>
-                  <li>
-                    <span>0xxx..o</span>
-                    <span>4.20</span>
-                    <span>4.8k</span>
-                  </li>
-                  <li>
-                    <span>0xxx..o</span>
-                    <span>4.20</span>
-                    <span>4.8k</span>
-                  </li>
-                  <li>
-                    <span>0xxx..o</span>
-                    <span>4.20</span>
-                    <span>4.8k</span>
-                  </li>
-                  <li>
-                    <span>0xxx..o</span>
-                    <span>4.20</span>
-                    <span>4.8k</span>
-                  </li>
-                  <li>
-                    <span>0xxx..o</span>
-                    <span>4.20</span>
-                    <span>4.8k</span>
-                  </li>
-                  <li>
-                    <span>0xxx..o</span>
-                    <span>4.20</span>
-                    <span>4.8k</span>
-                  </li>
-                  <li>
-                    <span>0xxx..o</span>
-                    <span>4.20</span>
-                    <span>4.8k</span>
-                  </li>
-                  <li>
-                    <span>0xxx..o</span>
-                    <span>4.20</span>
-                    <span>4.8k</span>
-                  </li>
+                  {proposal.voter.map((vote: any) => (
+                    <>
+                      <li>
+                        <span>{truncateEthAddress(vote.address)}</span>
+                        <span>
+                          {vote?.voteType === 1
+                            ? "For"
+                            : vote?.voteType === 2
+                            ? "Against"
+                            : "mayBe"}
+                        </span>
+                        <span>Voted</span>
+                      </li>
+                    </>
+                  ))}
                 </ul>
               </div>
             </article>
           </div>
-        <div className={styles.voteContainer}>
-          <h3 style={{ fontWeight: "500" }}>
-            Information
-          </h3>
-          {/* {proposal.voter.voteType}
+          <div className={styles.voteContainer}>
+            <h3 style={{ fontWeight: "500" }}>Information</h3>
+            {/* {proposal.voter.voteType}
                 {proposal.voter.address} */}
-          <ul className={styles.votes}>
-            <li>
-              <span>Start date</span>
-              <span>{proposal?.startDate}</span>
-            </li>
-            <li>
-              <span>End date</span>
-              <span>{proposal?.endDate}</span>
-            </li>
-          </ul>
-        </div>
+            <ul className={styles.votes}>
+              <li>
+                <span>Start date</span>
+                <span style={{ textAlign: "right" }}>
+                  {convertToDate(proposal?.startDate)}
+                  {/* {convertToDate(proposal?.startDate).toString()} */}
+                </span>
+              </li>
+              <li>
+                <span>End date</span>
+                <span style={{ textAlign: "right" }}>
+                  {convertToDate(proposal?.endDate)}
+                </span>
+              </li>
+            </ul>
+          </div>
         </div>
       </section>
     </div>

@@ -8,6 +8,8 @@ import Image from "next/image";
 import Modal from "react-modal";
 import { toast, ToastContainer } from "react-toastify";
 import { GlobalAuth } from "../../../../../context/GlobalContext";
+import { useSigner } from "wagmi";
+import { verifyMessage } from "ethers/lib/utils.js";
 
 type CreateUserResponse = {
   title: string;
@@ -18,6 +20,9 @@ type CreateUserResponse = {
 export default function NewProposal() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+
+  const { data: signer, isError, isLoading } = useSigner();
+
   const {setIsOpen,
     modalIsOpen}= GlobalAuth();
   let subtitle: any;
@@ -49,6 +54,10 @@ export default function NewProposal() {
   // };
 
   async function createProposal(e: any) {
+    const Message = title + " " + description;
+    const createProposalSig= await signer?.signMessage(Message)
+   
+    console.log(await createProposal)
     console.log("clicked");
     e.preventDefault();
     e.stopPropagation();
@@ -58,11 +67,11 @@ export default function NewProposal() {
         "User-Agent": "Thunder Client (https://www.thunderclient.com)",
         "Content-Type": "application/json",
       };
-
+      const address=verifyMessage(Message, createProposalSig as any)
       let bodyContent = JSON.stringify({
         title: title,
         description: description,
-        creator: "0x4cBDDaA2f48dF41aCc17434180892DB2B5ae93Cf",
+        creator:address,
       });
 
       let response = await fetch(
@@ -77,32 +86,14 @@ export default function NewProposal() {
       let data = await response.json();
       if (data) {
         openModal();
-        toast.success("Proposal was submitted successfully", {
-          position: "top-right",
-          autoClose: 7000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
-        });
+        toast.success("Proposal was submitted successfully");
         setTitle("");
         setDescription("");
       }
     } catch (err: any) {
       console.log(err.message);
       if (err) {
-        toast.error(err.message, {
-          position: "top-right",
-          autoClose: 7000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
-        });
+        toast.error(err.message);
       }
     }
 
@@ -152,7 +143,7 @@ export default function NewProposal() {
   return (
     <>
       <Head>
-        <title>Solimax DAO | Member Page</title>
+        <title>Solimax DAO | New Proposal</title>
         <meta
           name="description"
           content="A Secure Multi-chain Launch-pad with High Staking"
@@ -160,8 +151,8 @@ export default function NewProposal() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/logo-icon.svg" />
       </Head>
-      <section className={`${styles.newProposalPage} `}>
-      <Modal
+      <section className={`${styles.newProposalPage} ${styles.heroSection}`}>
+      {/* <Modal
             isOpen={modalIsOpen}
             onAfterOpen={afterOpenModal}
             onRequestClose={closeModal}
@@ -169,18 +160,20 @@ export default function NewProposal() {
             contentLabel="Example Modal"
           >
             <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Success</h2>
-            {/* <Image src={errorIcon} width={32} height={32} alt="error icon" /> */}
             <button className="closeBtn" onClick={closeModal}>
               close
             </button>
             <div>
             Proposal was submitted successfully
             </div>
-          </Modal>
+          </Modal> */}
+        <div className={` ${styles.heroContainer}`}>
+          
 
           <form
             action=""
             style={{
+              marginTop: "1rem",
               display: "flex",
               flexDirection: "column",
               gap: "16px",
@@ -238,6 +231,7 @@ export default function NewProposal() {
               Submit proposal
             </button>
           </form>
+        </div>
       </section>
     </>
   );

@@ -105,14 +105,11 @@ const wagmiClient = createClient({
 function Loading(): JSX.Element {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
-  router
+
   useEffect(() => {
     const handleStart = (url: any) => url !== router.asPath && setLoading(true);
     const handleComplete = (url: any) =>
-      url === router.asPath &&
-      setTimeout(() => {
-        setLoading(false);
-      }, 5000);
+      url === router.asPath && setLoading(false);
     router.events.on("routeChangeStart", handleStart);
     router.events.on("routeChangeComplete", handleComplete);
     router.events.on("routeChangeError", handleComplete);
@@ -123,14 +120,7 @@ function Loading(): JSX.Element {
     };
   });
   // if(loading) return <Loader />
-  return(
-    <>
-    {loading && (
-
-      <Loader />
-    )}
-    </>
-  )
+  return <>{loading && <Loader />}</>;
   // return;
   // return loading && (<Loader />);
 }
@@ -164,9 +154,9 @@ function MyApp({ Component, pageProps }: AppProps) {
             <Loader />
           ) : ( */}
           <Loading />
-            <Layout>
-              <Component {...pageProps} />
-            </Layout>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
           {/* )} */}
         </GlobalContextProvider>
       </RainbowKitProvider>

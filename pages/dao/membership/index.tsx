@@ -86,37 +86,43 @@ export default function index({ proposals }: any) {
 
     e.preventDefault();
     e.stopPropagation();
-    try {
-      const address = verifyMessage(Message, joinDaoSignature as any);
-      const options = { method: "POST" };
-      fetch(
-        "https://solimax-nest-api-danijel-enoch.vercel.app/api/users/join/" +
-          address,
-        options
-      )
-        .then((response) => response.json())
-        .then((response) => {
-          console.log(response);
+
+    // try {
+    const address = verifyMessage(Message, joinDaoSignature as any);
+    const options = { method: "POST" };
+    fetch(
+      "https://solimax-nest-api-danijel-enoch.vercel.app/api/users/join/" +
+        address,
+      options
+    )
+      .then((response) => response.json())
+      .then((response) => {
+        if (response.ok) {
           setModalText(response.message);
-          toast.success(modalText);
-          // openModal();
-          setLoggedIn((prevState: boolean) => !prevState);
+          toast.success(response.message);
           setSubText("Congratulations on becoming a member!");
           setJoinBtnText("");
-        })
-        .catch((err) => {
-          console.error(err);
-          setModalText(err.message);
-          toast.error(modalText);
-          // openModal();
-        });
-      //add a toastify modal to this @CodexJay
-      //set global state to logged in after they have joined  and have been verified
-    } catch (error: any) {
-      console.log(error.message);
-      setModalText(error.message);
-      toast.error(modalText);
-    }
+          setLoggedIn(true);
+          console.log(loggedIn);
+        } else {
+          toast.error(response.message);
+          setJoinBtnText("Join");
+          setLoggedIn(false);
+          console.log(loggedIn);
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+        setModalText(err.message);
+        toast.error(err.message);
+      });
+    //add a toastify modal to this @CodexJay
+    //set global state to logged in after they have joined  and have been verified
+    // } catch (error: any) {
+    // console.log(error.message);
+    // setModalText(error.message);
+    // toast.error(modalText);
+    // }
   }
 
   return (
@@ -157,6 +163,7 @@ export default function index({ proposals }: any) {
             {mounted
               ? address &&
                 isConnected &&
+                !loggedIn &&
                 joinBtnText !== "" && (
                   <button className={styles.joinBtn} onClick={joinDAO}>
                     {joinBtnText}

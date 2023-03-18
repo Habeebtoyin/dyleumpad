@@ -23,6 +23,11 @@
   transform: translate(-50%, -50%);
 }
 
+.newProposalPage .heroContainer{
+  padding-block: 0 !important;
+  padding-inline: 0 !important;
+}
+
 /* .dao.heroContainer,
 .minting .heroContainer {
   padding-block: 280px 100px;
@@ -449,8 +454,14 @@
   border-top: 1px solid #374151;
   display: flex;
   justify-content: space-between;
+  /* align-items: center; */
+  gap: 10px;
   width: 100%;
   padding: 16px;
+}
+
+.voteSelected{
+  border: 1px solid var(--white) !important;
 }
 
 .radioBtns {

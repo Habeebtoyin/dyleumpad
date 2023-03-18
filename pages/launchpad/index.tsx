@@ -1,4 +1,5 @@
 import styles from "../../styles/Launchpad.module.css";
+import HomeStyles from "../../styles/Home.module.css";
 import Head from "next/head";
 import { lazy, useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
@@ -121,6 +122,9 @@ export default function LaunchPad({ pools }: any) {
           </div>
 
           <div className={styles.container}>
+            {pools.length === 0 && (
+              <p style={{textAlign: "center", marginTop: "-10px", marginBottom: "16px"}} className={HomeStyles.text}>No pools at the moment</p>
+            )}
             {pools
               ?.slice(pagesVisited, pagesVisited + cardPerPage)
               .map((pool: any) => (
@@ -332,21 +336,21 @@ export default function LaunchPad({ pools }: any) {
                 </div>
               ))}
           </div>
-
-          <ReactPaginate
-            breakLabel="..."
-            nextLabel=">"
-            onPageChange={changePage}
-            pageRangeDisplayed={5}
-            pageCount={pageCount}
-            previousLabel="<"
-            
-            containerClassName={styles.paginationBtns}
-            previousLinkClassName={"previousBtn"}
-            nextLinkClassName={styles.nextBtn}
-            disabledClassName={styles.paginationDisabled}
-            activeClassName={styles.paginationActive}
-          />
+          {pools.length > 0 && (
+            <ReactPaginate
+              breakLabel="..."
+              nextLabel=">"
+              onPageChange={changePage}
+              pageRangeDisplayed={5}
+              pageCount={pageCount}
+              previousLabel="<"
+              containerClassName={styles.paginationBtns}
+              previousLinkClassName={"previousBtn"}
+              nextLinkClassName={styles.nextBtn}
+              disabledClassName={styles.paginationDisabled}
+              activeClassName={styles.paginationActive}
+            />
+          )}
         </section>
       </main>
       <Footer />

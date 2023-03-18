@@ -38,20 +38,20 @@ export default function DAOMinting() {
   const mint = async (e: any) => {
     e.preventDefault();
     e.stopPropagation();
-    setJoinBtnText("Loading...");
+    setJoinBtnText("Minting...");
 
     await nftMinter
       .mint()
       .then((res: any) => {
         toast.success("Minted Succesfullly");
         Router.push("/dao/membership");
-        setModalText("Minted Succesfullly");
+        // setModalText("Minted Succesfullly");
         setJoinBtnText("Minted");
         console.log({ res });
       })
       .catch((err: any) => {
         console.log({ err });
-        setModalText(err.data.message);
+        // setModalText(err.data.message);
         setJoinBtnText("Mint");
         toast.error(err.data.message);
       });
