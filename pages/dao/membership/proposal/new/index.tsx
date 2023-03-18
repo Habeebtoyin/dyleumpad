@@ -160,7 +160,7 @@ export default function NewProposal() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/logo-icon.svg" />
       </Head>
-      <section className={`${styles.newProposalPage} ${styles.heroSection}`}>
+      <section className={`${styles.newProposalPage} `}>
       <Modal
             isOpen={modalIsOpen}
             onAfterOpen={afterOpenModal}
@@ -176,41 +176,11 @@ export default function NewProposal() {
             <div>
             Proposal was submitted successfully
             </div>
-            {/* <form>
-          <input />
-          <button>tab navigation</button>
-          <button>stays</button>
-          <button>inside</button>
-          <button>the modal</button>
-        </form> */}
           </Modal>
-        <div className={` ${styles.heroContainer}`}>
-          <div className="" style={{ display: "flex" }}>
-            <Link href="/dao/membership">
-              <span
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "6px",
-                  fontSize: "18px",
-                  cursor: "pointer",
-                }}
-              >
-                <Image
-                  src={backArrow}
-                  width={24}
-                  height={24}
-                  alt="back arrow"
-                />
-                Back
-              </span>
-            </Link>
-          </div>
 
           <form
             action=""
             style={{
-              marginTop: "1rem",
               display: "flex",
               flexDirection: "column",
               gap: "16px",
@@ -268,7 +238,6 @@ export default function NewProposal() {
               Submit proposal
             </button>
           </form>
-        </div>
       </section>
     </>
   );

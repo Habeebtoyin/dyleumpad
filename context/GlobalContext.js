@@ -14,6 +14,12 @@ export function GlobalContextProvider({ children }) {
   const [content, setContent] = useState();
   const [errorMessage, setErrorMessage] = useState("");
   const [modalIsOpen, setIsOpen] = useState(false);
+  const [modalText, setModalText] = useState("");
+  const [subText, setSubText] = useState(
+    "To become a member, click the Join button below"
+  );
+  const [joinBtnText, setJoinBtnText] = useState("Join");
+  const [loggedIn, setLoggedIn] = useState(false);
 
   const menuItems = [
     {
@@ -69,17 +75,17 @@ export function GlobalContextProvider({ children }) {
   }, [selectedPool]);
 
   // useEffect(() => {
-    // switch (proposalTag) {
+  // switch (proposalTag) {
   //   case "all":
-      
+
   //     break;
   //   case "active":
-      
+
   //     break;
   //   case "all":
-      
+
   //     break;
-  
+
   //   default:
   //     break;
   // }
@@ -109,7 +115,15 @@ export function GlobalContextProvider({ children }) {
         errorMessage,
         setErrorMessage,
         modalIsOpen,
-        setIsOpen
+        setIsOpen,
+        modalText,
+        setModalText,
+        loggedIn,
+        setLoggedIn,
+        joinBtnText,
+        setJoinBtnText,
+        subText,
+        setSubText,
       }}
     >
       {children}

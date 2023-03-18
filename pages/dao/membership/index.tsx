@@ -1,6 +1,7 @@
 import HomeStyles from "../../../styles/Home.module.css";
 import styles from "../../../styles/DAO.module.css";
 import { GlobalAuth } from "../../../context/GlobalContext";
+import { ConnectButton } from "@rainbow-me/rainbowkit";
 import Head from "next/head";
 import Link from "next/link";
 import emoji from "../../../components/assets/icons/Emoji.svg";
@@ -9,9 +10,12 @@ import NewProposal from "./proposal/new";
 import axios from "axios";
 import { useState } from "react";
 import Select from "react-select";
-import { ToastContainer, toast } from "react-toastify";
+import { useSigner, useAccount } from "wagmi";
+import { verifyMessage } from "ethers/lib/utils.js";
+import { SignatureLike } from "@ethersproject/bytes";
 import Modal from "react-modal";
 import errorIcon from "../../../components/assets/icons/error-warning-line.png";
+import { ToastContainer, toast } from "react-toastify";
 
 interface Data {
   statusCode: number;
@@ -20,7 +24,12 @@ interface Data {
 }
 
 export default function index({ proposals }: any) {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const { address } = useAccount();
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const { data: signer, isError, isLoading } = useSigner();
   const {
+    isConnected,
     selectedTab,
     setSelectedTab,
     setFilterValue,
@@ -28,63 +37,40 @@ export default function index({ proposals }: any) {
     setErrorMessage,
     setIsOpen,
     modalIsOpen,
+    modalText,
+    setModalText,
+    loggedIn,
+    setLoggedIn,
+    joinBtnText,
+    setJoinBtnText,
+    subText,
+    setSubText,
   } = GlobalAuth();
-
-  let subtitle: any;
-
-  function openModal() {
-    setIsOpen(true);
-  }
-
-  function afterOpenModal() {
-    // references are now sync'd and can be accessed.
-    // subtitle.style.color = '#f00';
-  }
-
-  function closeModal() {
-    setIsOpen(false);
-  }
-  const notify = (msg: any) =>
-    toast.info(msg, {
-      position: "top-right",
-      autoClose: 8000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "dark",
-    });
 
   const options = [
     { value: "all", label: "All" },
     { value: "active", label: "Active" },
     { value: "pending", label: "Pending" },
     { value: "closed", label: "Closed" },
-    { value: "core", label: "Core" },
   ];
 
   const titles = [
     {
       id: "active",
       title: "Proposals",
-      href: "#",
     },
     {
       id: "new",
       title: "New Proposal",
-      href: "/dao/membership/proposal/new",
     },
-    {
-      id: "about",
-      title: "About",
-      href: "#",
-    },
-    {
-      id: "settings",
-      title: "Settings",
-      href: "#",
-    },
+    // {
+    //   id: "about",
+    //   title: "About",
+    // },
+    // {
+    //   id: "settings",
+    //   title: "Settings",
+    // },
   ];
 
   function handleChange(selectedOption: any) {
@@ -93,35 +79,45 @@ export default function index({ proposals }: any) {
   }
 
   async function joinDAO(e: any) {
-    console.log("clicked");
+    setJoinBtnText("Loading...");
+    const Message =
+      "Join the Solimax Dao with 1000000 solimax token and 1 Dao governace NFT";
+    const joinDaoSignature = await signer?.signMessage(Message);
+
+    console.log(await joinDaoSignature);
+
     e.preventDefault();
     e.stopPropagation();
     try {
-      let headersList = {
-        Accept: "*/*",
-        "User-Agent": "Thunder Client (https://www.thunderclient.com)",
-        "Content-Type": "application/json",
-      };
-
-      let bodyContent = JSON.stringify({
-        creator: "0xCD115b6AEC40A25a582302c15B27b0bb46F96C6F ",
-      });
-
-      let response = await fetch(
-        "https://solimax-nest-api-danijel-enoch.vercel.app/api/users/join/0xCD115b6AEC40A25a582302c15B27b0bb46F96C6F ",
-        {
-          method: "POST",
-          body: bodyContent,
-          headers: headersList,
-        }
-      );
-
-      let data: any = await response.json();
-      console.log(data.message);
-      openModal();
-      // notify(data.message);
+      const address = verifyMessage(Message, joinDaoSignature as any);
+      const options = { method: "POST" };
+      fetch(
+        "https://solimax-nest-api-danijel-enoch.vercel.app/api/users/join/" +
+          address,
+        options
+      )
+        .then((response) => response.json())
+        .then((response) => {
+          console.log(response);
+          setModalText(response.message);
+          toast.success(modalText);
+          // openModal();
+          setLoggedIn((prevState: boolean) => !prevState);
+          setSubText("Congratulations on becoming a member!");
+          setJoinBtnText("");
+        })
+        .catch((err) => {
+          console.error(err);
+          setModalText(err.message);
+          toast.error(modalText);
+          // openModal();
+        });
+      //add a toastify modal to this @CodexJay
+      //set global state to logged in after they have joined  and have been verified
     } catch (error: any) {
       console.log(error.message);
+      setModalText(error.message);
+      toast.error(modalText);
     }
   }
 
@@ -140,34 +136,11 @@ export default function index({ proposals }: any) {
       <section className={`${styles.membership} ${styles.heroSection}`}>
         {/* <ToastContainer /> */}
         <div className={`${styles.heroContainer} `}>
-          {/* <button onClick={openModal}>Open Modal</button> */}
-          <Modal
-            isOpen={modalIsOpen}
-            onAfterOpen={afterOpenModal}
-            onRequestClose={closeModal}
-            className="modal"
-            contentLabel="Example Modal"
-          >
-            {/* <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Error</h2> */}
-            <Image src={errorIcon} width={32} height={32} alt="error icon" />
-            <button className="closeBtn" onClick={closeModal}>
-              close
-            </button>
-            <div>
-              You need 100 solimax token and DAO nft to Join the DAO undefined
-              undefined
-            </div>
-            {/* <form>
-          <input />
-          <button>tab navigation</button>
-          <button>stays</button>
-          <button>inside</button>
-          <button>the modal</button>
-        </form> */}
-          </Modal>
+          <ToastContainer />
           <div className={styles.topText}>
             <h1 className={styles.heroTitle}>
-              <Image src={emoji} alt="emoji" /> DAO Member Page
+              <Image width={36} height={36} src={emoji} alt="emoji" /> DAO
+              Member Page
             </h1>
 
             <p
@@ -179,109 +152,97 @@ export default function index({ proposals }: any) {
               }}
               className={` ${styles.memberText}`}
             >
-              To become a member, click the Join button below
+              {subText}
             </p>
-            {/* when user has become a member */}
-            {/* <p style={{ textAlign: "center" }} className={`${HomeStyles.text}`}>
-            Congratulations on becoming a member!
-          </p> */}
-            <button className={styles.joinBtn} onClick={joinDAO}>
-              Join
-            </button>
-          </div>
-          <div className={styles.grid}>
-            {/* member list */}
-            {/* <section className={styles.leftCol}> */}
-            <section className={`${styles.leftCol} ${styles.buttons}`}>
-              {/* {titles?.map((item) => ( */}
-              {/* <Link href={item.href} key={item.id}> */}
 
-              <button
-                className={`${styles.text} ${
-                  selectedTab === "active" ? styles.activeBtn : ``
-                }`}
-                style={{ cursor: "pointer" }}
-                onClick={() => setSelectedTab("active")}
-              >
-                Proposals
+            {/* when a user's wallet is connected */}
+            {address && isConnected && joinBtnText !== "" && (
+              <button className={styles.joinBtn} onClick={joinDAO}>
+                {joinBtnText}
               </button>
-              <Link href="/dao/membership/proposal/new">
-                <span
-                  className={`${styles.text} `}
-                  style={{ cursor: "pointer" }}
-                >
-                  New Proposal
-                </span>
-              </Link>
-              {/* <button
+            )}
+            {/* when a user's wallet isn't connected */}
+            {!address && !isConnected && (
+              <div className={styles.connectBtn}>
+                <ConnectButton chainStatus="none" />
+              </div>
+            )}
+          </div>
+          <div className={`${styles.header}`}>
+            <div className={`${styles.leftCol} ${styles.buttons}`}>
+              {titles?.map((item) => (
+                <button
+                  key={item.id}
                   className={`${styles.text} ${
-                    selectedTab === "active" ? styles.activeBtn : ``
+                    selectedTab === item.id ? styles.activeBtn : ``
                   }`}
                   style={{ cursor: "pointer" }}
-                  onClick={() => setSelectedTab("about")}
+                  onClick={() => setSelectedTab(item.id)}
                 >
-                  About
-                </button> */}
-              <Link href="#">
-                <span
-                  className={`${styles.text} `}
-                  style={{ cursor: "pointer" }}
-                >
-                  About
-                </span>
-              </Link>
-              <Link href="#">
-                <span
-                  className={`${styles.text} `}
-                  style={{ cursor: "pointer" }}
-                >
-                  Settings
-                </span>
-              </Link>
-            </section>
+                  {item.title}
+                </button>
+              ))}
+            </div>
+            <div className={styles.select}>
+              <Select
+                options={options}
+                id="selectbox"
+                instanceId="selectbox"
+                defaultValue={options[0]}
+                onChange={handleChange}
+                styles={{
+                  option: (base) => ({
+                    ...base,
+                    background: "#090e17",
+                    borderBottom: "1px solid #454fda",
+                    width: "120px",
+                  }),
+                  control: (baseStyles, state) => ({
+                    ...baseStyles,
+                    borderRadius: "8px",
+                    borderColor: state.isFocused ? "grey" : "#454fda",
+                    background: "#090e17",
+                    width: "120px",
+                    color: "#fff",
+                    height: "50px",
+                  }),
+                }}
+                theme={(theme) => ({
+                  ...theme,
+                  marginBlock: "0",
+                  borderRadius: 0,
+                  background: "#090e17",
+                  colors: {
+                    ...theme.colors,
+                    // primary25: "hotpink",
+                    primary: "#454fda",
+                  },
+                })}
+              />
+            </div>
+          </div>
+          <div className="">
+            {!proposals && selectedTab === "active" && (
+              <p
+                style={{
+                  fontWeight: 400,
+                  fontSize: "16px",
+                  lineHeight: "31px",
+                  color: "#a2a8fc",
+                  marginTop: "24px",
+                }}
+              >
+                No Active proposals
+              </p>
+            )}
+            {/* member list */}
+            {/* <section className={styles.leftCol}> */}
 
             {/* </Link> */}
             {/* // ))} */}
             {/* </section> */}
             {selectedTab === "active" && (
               <section className={`${styles.proposals}`}>
-                <div className={`${styles.header}`}>
-                  <h1>Proposals</h1>
-
-                  <Select
-                    options={options}
-                    id="selectbox"
-                    instanceId="selectbox"
-                    defaultValue={options[0]}
-                    onChange={handleChange}
-                    styles={{
-                      option: (base) => ({
-                        ...base,
-                        background: "#090e17",
-                        borderBottom: "1px solid #454fda",
-                        width: "120px",
-                      }),
-                      control: (baseStyles, state) => ({
-                        ...baseStyles,
-                        borderRadius: "8px",
-                        borderColor: state.isFocused ? "grey" : "#454fda",
-                        background: "#090e17",
-                        width: "120px",
-                      }),
-                    }}
-                    theme={(theme) => ({
-                      ...theme,
-                      marginBlock: "0",
-                      borderRadius: 0,
-                      background: "#090e17",
-                      colors: {
-                        ...theme.colors,
-                        // primary25: "hotpink",
-                        primary: "#454fda",
-                      },
-                    })}
-                  />
-                </div>
                 <div className={styles.cardContainer}>
                   {proposals?.map((proposal: any) => (
                     <Link
@@ -334,22 +295,9 @@ export default function index({ proposals }: any) {
                     </Link>
                   ))}
                 </div>
-
-                {/* <button className={`${HomeStyles.heroBtn} ${styles.heroBtn}`}>
-                <a
-                  className={`${HomeStyles.buySlmBtn} ${HomeStyles.heroButtonLink}`}
-                  href=""
-                >
-                  Submit votes
-                </a>
-              </button>
-              <p className={styles.subtext}>
-                This will trigger multiple transactions that you’ll need to
-                sign!
-              </p> */}
               </section>
             )}
-            {/* {selectedProposal === "new" && <NewProposal />} */}
+            {selectedTab === "new" && <NewProposal />}
           </div>
         </div>
 

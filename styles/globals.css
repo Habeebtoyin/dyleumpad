@@ -96,20 +96,21 @@ section {
   /* overflow-x: hidden; */
 }
 
+.Toastify__toast-container {
+  width: 430px !important;
+  z-index: 99999999 !important;
+}
+
 @media screen and (min-width: 768px) {
   section {
     --padding: 5rem;
   }
-
 }
 @media screen and (min-width: 1000px) {
   section {
     --padding: 6.25rem;
   }
-
 }
-
-
 
 /*
 .card {

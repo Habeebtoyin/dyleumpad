@@ -4,6 +4,10 @@
   position: relative;
 }
 
+.heroSection section {
+  padding-inline: 0 !important;
+}
+
 .dao.heroSection,
 .minting .heroSection {
   height: 100vh !important;
@@ -14,18 +18,15 @@
   /* padding-block: 273px 100px; */
   justify-content: center;
   position: absolute;
-  top: 0;
+  top: 50%;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translate(-50%, -50%);
 }
 
-.dao.heroContainer {
-  padding-block: 273px 100px;
-}
-
+/* .dao.heroContainer,
 .minting .heroContainer {
-  padding-block: 340px 100px;
-}
+  padding-block: 280px 100px;
+} */
 
 .connectBtn button {
   background: linear-gradient(
@@ -71,7 +72,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 16px;
+  gap: 32px;
 }
 
 .bg img {
@@ -82,17 +83,6 @@
   position: fixed !important;
   bottom: 0 !important;
   transform: perspective(17px) scale3d(1, 1, 0.5) translateY(78px);
-}
-
-.grid {
-  display: grid;
-  gap: 64px;
-  margin-top: 31px;
-  width: 100%;
-}
-
-.grid section {
-  padding-inline: 0;
 }
 
 .heroTitle {
@@ -111,11 +101,11 @@
 .voting {
   display: flex;
   align-items: flex-start;
-  gap: 2.5rem;
 }
 
 .voting {
   flex-direction: column;
+  gap: 2.5rem;
 }
 
 .leftCol div {
@@ -159,7 +149,8 @@
   gap: 10px;
 }
 
-.joinBtn {
+.joinBtn,
+.membership .connectBtn button {
   width: fit-content;
   display: flex;
   justify-self: flex-end;
@@ -167,11 +158,16 @@
   align-items: center;
   /* margin-inline: auto; */
   min-width: 120px;
-  border-radius: 23px;
+  background: #454fda !important;
+  border-radius: 8px !important;
   color: var(--white);
   padding-inline: 22px;
   height: 46px;
   font-size: 18px;
+}
+
+.joinBtn:hover .membership .connectBtn button:hover {
+  filter: brightness(80%) !important;
 }
 
 .button {
@@ -205,53 +201,75 @@
 }
 
 .buttons {
-  max-width: 320px;
-  overflow-x: scroll;
+  width: 100%;
+  max-width: 350px;
+  /* overflow-x: scroll; */
   border-radius: 0 0 0 8px;
+  border: 1px solid #363b44;
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
   margin-bottom: 10px;
-  padding-bottom: 10px;
+  padding: 10px !important;
+  /* padding-inline: 0 !important; */
+  gap: 1rem;
   /* border-bottom: 1px solid #6b7280; */
 }
 
 @media screen and (min-width: 500px) {
-  .buttons {
-    max-width: fit-content;
-  }
+  /* .buttons {
+    max-width: 100%;
+  } */
 
-  .buttons button,
+  /* .buttons button,
   .buttons span {
     max-width: 160px !important;
-  }
+  } */
 }
 
 .buttons button,
 .buttons span {
-  padding: 10px 10px 0 10px;
+  padding: 10px;
   width: 100%;
-  min-width: 137px;
+  min-width: fit-content;
+  max-width: 144px;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
   border: none;
-  border-radius: 0 !important;
+  /* border-radius: 0 !important; */
 }
 
 .activeBtn,
 .buttons button:hover,
 .buttons span:hover {
-  border-bottom: 2px solid var(--white) !important;
+  background-color: #454fda !important;
 }
 
-.joinBtn {
-  background-color: #454fda !important;
+.proposals {
+  padding-inline: 0 !important;
 }
 
 .header {
   display: flex;
-  align-items: center;
+  width: 100%;
+  flex-direction: column;
+  /* align-items: flex-end; */
   justify-content: space-between;
-  margin-bottom: 22px;
+  margin-top: 41px;
+}
+
+@media screen and (min-width: 800px) {
+  .header {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+.select {
+  width: 120px;
+  margin-left: auto;
 }
 
 .text {
@@ -316,21 +334,6 @@
   color: #6b7280;
   padding: 12px 14px;
   margin-top: 0 !important;
-}
-
-.createContractBtn {
-  font-weight: 400;
-  font-size: 20px;
-  line-height: 34px;
-  background: rgba(217, 217, 217, 0.03);
-  border: 1.41148px solid #454fda;
-  width: 100%;
-  margin-top: 64px;
-  border-radius: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-block: 11px;
 }
 
 .proposal {
@@ -559,11 +562,6 @@
     height: 100vh !important;
   }
 
-  .grid {
-    gap: 32px;
-    grid-template-columns: 200px auto;
-  }
-
   .proposalDetailsPage .grid {
     grid-template-columns: auto 320px;
   }
@@ -624,9 +622,9 @@
 }
 
 @media screen and (min-width: 1300px) {
-  .buttons {
+  /* .buttons {
     flex-direction: column;
-  }
+  } */
 
   .activeBtn,
   .buttons button:hover,
@@ -639,10 +637,5 @@
 @media screen and (min-width: 2200px) {
   .heroContainer {
     max-width: 1900px;
-  }
-
-  .grid {
-    gap: 48px;
-    grid-template-columns: 300px auto;
   }
 }

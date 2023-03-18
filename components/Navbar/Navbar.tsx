@@ -130,7 +130,7 @@ export default function Navbar() {
               )
             : null}
           <div className={` ${styles.mobileBtn}`} id="mobile-btn">
-            <ConnectButton chainStatus="none" />
+            <ConnectButton chainStatus="none" showBalance={false} />
           </div>
         </ul>
       </nav>
@@ -147,7 +147,7 @@ export default function Navbar() {
           : null}
 
         <div className={` ${styles.desktopBtn}`} id="desktop-btn">
-          <ConnectButton chainStatus="none" />
+          <ConnectButton chainStatus="none" showBalance={false} />
         </div>
       </div>
 
