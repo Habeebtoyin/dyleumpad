@@ -1,9 +1,16 @@
 import "../styles/globals.css";
 import "@rainbow-me/rainbowkit/styles.css";
-import 'react-toastify/dist/ReactToastify.css';
-import '../styles/Modal.css';
+import "react-toastify/dist/ReactToastify.css";
+import "../styles/Loading.css";
+import { Router, useRouter } from "next/router";
 import type { AppProps } from "next/app";
-import { darkTheme, getDefaultWallets, midnightTheme, RainbowKitProvider, Theme } from "@rainbow-me/rainbowkit";
+import {
+  darkTheme,
+  getDefaultWallets,
+  midnightTheme,
+  RainbowKitProvider,
+  Theme,
+} from "@rainbow-me/rainbowkit";
 import { configureChains, createClient, useAccount, WagmiConfig } from "wagmi";
 import {
   mainnet,
@@ -18,9 +25,9 @@ import {
 import { alchemyProvider } from "wagmi/providers/alchemy";
 import { publicProvider } from "wagmi/providers/public";
 import { GlobalContextProvider } from "../context/GlobalContext";
-import { Suspense } from "react";
+import { Suspense, useEffect, useState } from "react";
 import Layout from "../components/Layout";
-import Loading from "../components/Loading";
+import Loader from "./Loading";
 
 const { chains, provider } = configureChains(
   [fantom, fantomTestnet, optimism, optimismGoerli, localhost],
@@ -38,7 +45,7 @@ const wagmiClient = createClient({
   provider,
 });
 
-// Custom theme 
+// Custom theme
 // const myCustomTheme: Theme = {
 //   blurs: {
 //     modalOverlay: '...',
@@ -95,19 +102,72 @@ const wagmiClient = createClient({
 //   },
 // };
 
+function Loading(): JSX.Element {
+  const router = useRouter();
+  const [loading, setLoading] = useState(false);
+  router
+  useEffect(() => {
+    const handleStart = (url: any) => url !== router.asPath && setLoading(true);
+    const handleComplete = (url: any) =>
+      url === router.asPath &&
+      setTimeout(() => {
+        setLoading(false);
+      }, 5000);
+    router.events.on("routeChangeStart", handleStart);
+    router.events.on("routeChangeComplete", handleComplete);
+    router.events.on("routeChangeError", handleComplete);
+    return () => {
+      router.events.off("routeChangeStart", handleStart);
+      router.events.off("routeChangeComplete", handleComplete);
+      router.events.off("routeChangeError", handleComplete);
+    };
+  });
+  // if(loading) return <Loader />
+  return(
+    <>
+    {loading && (
+
+      <Loader />
+    )}
+    </>
+  )
+  // return;
+  // return loading && (<Loader />);
+}
+
 function MyApp({ Component, pageProps }: AppProps) {
+  // const router = useRouter();
+  // const [loading, setLoading] = useState(false);
+
+  // // useEffect(() => {
+  //   Router.events.on("routeChangeStart", (url) => {
+  //     setLoading(true);
+  //     console.log("route is changing");
+  //   });
+
+  //   Router.events.on("routeChangeComplete", (url) => {
+  //     setLoading(false);
+  //     console.log("route changing is complete");
+  //   });
+  // },[loading]);
+
   return (
     <WagmiConfig client={wagmiClient}>
-      <RainbowKitProvider chains={chains} 
-      // theme={myCustomTheme}
-      theme={darkTheme()} coolMode
-    >
+      <RainbowKitProvider
+        chains={chains}
+        // theme={myCustomTheme}
+        theme={darkTheme()}
+        coolMode
+      >
         <GlobalContextProvider>
-          <Layout>
-            <Suspense fallback={<Loading />}>
+          {/* {loading ? (
+            <Loader />
+          ) : ( */}
+          <Loading />
+            <Layout>
               <Component {...pageProps} />
-            </Suspense>
-          </Layout>
+            </Layout>
+          {/* )} */}
         </GlobalContextProvider>
       </RainbowKitProvider>
     </WagmiConfig>

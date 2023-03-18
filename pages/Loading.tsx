@@ -1,7 +1,7 @@
-export default function Loading() {
+
+export default function Loader() {
   return (
     <div id="preloader">
-      Loading
       <svg
         width="91"
         height="91"

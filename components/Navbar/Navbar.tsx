@@ -85,7 +85,7 @@ export default function Navbar() {
               Launchpad
             </Link>
           </li>
-          {/* <li
+          <li
             className={styles.menuItem}
             onClick={() => {
               setMenuState((prevState: any) => !prevState);
@@ -95,7 +95,7 @@ export default function Navbar() {
             <Link href="/dao" className={styles.navLink}>
               DAO
             </Link>
-          </li> */}
+          </li>
           <li
             className={styles.menuItem}
             onClick={() => {

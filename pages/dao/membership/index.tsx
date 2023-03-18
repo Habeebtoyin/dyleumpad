@@ -1,4 +1,3 @@
-import HomeStyles from "../../../styles/Home.module.css";
 import styles from "../../../styles/DAO.module.css";
 import { GlobalAuth } from "../../../context/GlobalContext";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
@@ -7,15 +6,12 @@ import Link from "next/link";
 import emoji from "../../../components/assets/icons/Emoji.svg";
 import Image from "next/image";
 import NewProposal from "./proposal/new";
-import axios from "axios";
-import { useState } from "react";
 import Select from "react-select";
 import { useSigner, useAccount } from "wagmi";
 import { verifyMessage } from "ethers/lib/utils.js";
 import { SignatureLike } from "@ethersproject/bytes";
-import Modal from "react-modal";
-import errorIcon from "../../../components/assets/icons/error-warning-line.png";
 import { ToastContainer, toast } from "react-toastify";
+import { useIsMounted } from "../../../hooks/useIsMounted";
 
 interface Data {
   statusCode: number;
@@ -26,6 +22,8 @@ interface Data {
 export default function index({ proposals }: any) {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const { address } = useAccount();
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const mounted = useIsMounted();
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const { data: signer, isError, isLoading } = useSigner();
   const {
@@ -156,17 +154,24 @@ export default function index({ proposals }: any) {
             </p>
 
             {/* when a user's wallet is connected */}
-            {address && isConnected && joinBtnText !== "" && (
-              <button className={styles.joinBtn} onClick={joinDAO}>
-                {joinBtnText}
-              </button>
-            )}
+            {mounted
+              ? address &&
+                isConnected &&
+                joinBtnText !== "" && (
+                  <button className={styles.joinBtn} onClick={joinDAO}>
+                    {joinBtnText}
+                  </button>
+                )
+              : null}
             {/* when a user's wallet isn't connected */}
-            {!address && !isConnected && (
-              <div className={styles.connectBtn}>
-                <ConnectButton chainStatus="none" />
-              </div>
-            )}
+            {mounted
+              ? !address &&
+                !isConnected && (
+                  <div className={styles.connectBtn}>
+                    <ConnectButton chainStatus="none" />
+                  </div>
+                )
+              : null}
           </div>
           <div className={`${styles.header}`}>
             <div className={`${styles.leftCol} ${styles.buttons}`}>
