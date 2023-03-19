@@ -303,7 +303,7 @@ export const getStaticProps : GetStaticProps = async (context: any) => {
     props: {
       proposal,
     },
-    revalidate: 10,
+    
   };
 };
 
