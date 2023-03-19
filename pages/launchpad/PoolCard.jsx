@@ -35,7 +35,7 @@ export default function PoolCard({ pool }) {
     )
   );
 
-  let progressValue = tierDetails.amountRaised/ tierDetails.maxTierCap;
+  let progressValue = tierDetails.amountRaised / tierDetails.maxTierCap;
   let percentage = progressValue * 100;
   percentage = percentage.toFixed(2) + "%";
 
@@ -51,9 +51,9 @@ export default function PoolCard({ pool }) {
   }, []);
 
   return (
-    <div key={pool.id} className={styles.poolBox}>
+    <div key={pool?.id} className={styles.poolBox}>
       <div className={styles.box}>
-        {pool.tag !== "completed" && (
+        {pool?.tag !== "completed" && (
           <svg
             width="421"
             height="457"
@@ -85,7 +85,7 @@ export default function PoolCard({ pool }) {
             />
           </svg>
         )}
-        {pool.tag === "completed" && (
+        {pool?.tag === "completed" && (
           // <Image
           //   className={`${styles.boxImg} ${styles.completedPoolBox}`}
           //   src={cardBorder1}
@@ -137,7 +137,7 @@ export default function PoolCard({ pool }) {
               height={46}
             />
             <div className={styles.buttons}>
-              {pool.tags?.map((tag, index) => (
+              {pool?.tags.map((tag, index) => (
                 <button key={index} className={styles.boxButton}>
                   {tag}
                 </button>

@@ -52,10 +52,6 @@
   z-index: 999999;
 }
 
-/* .buyBtnsImg {
-    width: 100%;
-    max-width: 222px;
-  } */
 
 /* .buyBtnsDiv {
     display: flex;
@@ -654,4 +650,5 @@
   .bar {
     height: 24px;
   }
+  
 }

@@ -77,7 +77,7 @@ export default function index({ proposals }: any) {
   }
 
   async function joinDAO(e: any) {
-    setJoinBtnText("Loading...");
+    setJoinBtnText("Joining...");
     const Message =
       "Join the Solimax Dao with 1000000 solimax token and 1 Dao governace NFT";
     const joinDaoSignature = await signer?.signMessage(Message);
@@ -88,6 +88,7 @@ export default function index({ proposals }: any) {
     e.stopPropagation();
 
     // try {
+
     const address = verifyMessage(Message, joinDaoSignature as any);
     const options = { method: "POST" };
     fetch(
@@ -247,12 +248,6 @@ export default function index({ proposals }: any) {
                 No Active proposals
               </p>
             )}
-            {/* member list */}
-            {/* <section className={styles.leftCol}> */}
-
-            {/* </Link> */}
-            {/* // ))} */}
-            {/* </section> */}
             {selectedTab === "active" && (
               <section className={`${styles.proposals}`}>
                 <div className={styles.cardContainer}>

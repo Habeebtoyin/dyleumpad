@@ -23,7 +23,7 @@
   transform: translate(-50%, -50%);
 }
 
-.newProposalPage .heroContainer{
+.newProposalPage .heroContainer {
   padding-block: 0 !important;
   padding-inline: 0 !important;
 }
@@ -49,7 +49,8 @@
   border-radius: 40px !important;
 }
 
-.connectBtn button:hover {
+.connectBtn button:hover,
+.proposalDetailsPage button.submitBtn {
   background: linear-gradient(
     200deg,
     rgba(107, 3, 184, 0.9) 21.79%,
@@ -58,8 +59,13 @@
   ) !important;
 }
 
-.newProposalPage button:disabled {
+.newProposalPage button:disabled{
   background: #1f2937 !important;
+}
+
+.proposalDetailsPage button.submitBtn:disabled{
+  background: transparent !important;
+  border: 1px solid #1f2937 !important;
 }
 
 .heroContainer {
@@ -143,8 +149,6 @@
 .creatorDetails div {
   display: flex;
   align-items: center;
-  /* justify-content: flex-start; */
-  /* flex-direction: column; */
   gap: 10px;
 }
 
@@ -221,16 +225,6 @@
   /* border-bottom: 1px solid #6b7280; */
 }
 
-@media screen and (min-width: 500px) {
-  /* .buttons {
-    max-width: 100%;
-  } */
-
-  /* .buttons button,
-  .buttons span {
-    max-width: 160px !important;
-  } */
-}
 
 .buttons button,
 .buttons span {
@@ -387,12 +381,6 @@
   white-space: nowrap;
 }
 
-/* .div > div {
-  border-top: 1px solid #374151;
-  justify-content: space-between;
-  padding: 22px 32px;
-} */
-
 .proposal,
 .topContent,
 .topContent div,
@@ -404,7 +392,6 @@
 .div p {
   width: fit-content;
   text-align: left;
-  /* padding: 22px 32px; */
 }
 
 .voting {
@@ -445,7 +432,6 @@
 }
 
 .votes {
-  /* display: grid; */
   width: 100%;
   list-style: none;
 }
@@ -454,13 +440,12 @@
   border-top: 1px solid #374151;
   display: flex;
   justify-content: space-between;
-  /* align-items: center; */
   gap: 10px;
   width: 100%;
   padding: 16px;
 }
 
-.voteSelected{
+.voteSelected {
   border: 1px solid var(--white) !important;
 }
 

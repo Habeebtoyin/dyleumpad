@@ -19,6 +19,7 @@ export function GlobalContextProvider({ children }) {
     "To become a member, click the Join button below"
   );
   const [joinBtnText, setJoinBtnText] = useState("Join");
+  const [submitBtnText, setSubmitBtnText] = useState("Submit Vote");
   const [loggedIn, setLoggedIn] = useState(false);
 
   const menuItems = [
@@ -124,6 +125,8 @@ export function GlobalContextProvider({ children }) {
         setJoinBtnText,
         subText,
         setSubText,
+        submitBtnText,
+        setSubmitBtnText
       }}
     >
       {children}

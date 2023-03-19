@@ -3,8 +3,6 @@ import Link from "next/link";
 import { useState } from "react";
 import styles from "../../../../../styles/DAO.module.css";
 import backArrow from "../../../../../components/assets/icons/arrow-back.svg";
-import axios from "axios";
-import Image from "next/image";
 import Modal from "react-modal";
 import { toast, ToastContainer } from "react-toastify";
 import { GlobalAuth } from "../../../../../context/GlobalContext";

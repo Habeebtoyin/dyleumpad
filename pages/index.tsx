@@ -52,7 +52,7 @@ const Home: NextPage = () => {
         <HowToBuy />
         <ContractAddress />
       </main>
-<Footer />
+      <Footer />
     </div>
   );
 };

@@ -1,15 +1,14 @@
-import HomeStyles from "../../../../../styles/Home.module.css";
 import styles from "../../../../../styles/DAO.module.css";
 import Head from "next/head";
 import Link from "next/link";
 import logo from "../../../../../components/assets/icons/logo-icon.svg";
-import axios from "axios";
 import Image from "next/image";
 import backArrow from "../../../../../components/assets/icons/arrow-back.svg";
 import { useSigner } from "wagmi";
 import { verifyMessage } from "ethers/lib/utils.js";
 import { useState } from "react";
 import truncateEthAddress from "truncate-eth-address";
+import { GlobalAuth } from "../../../../../context/GlobalContext";
 
 // type Proposals = {
 //   _id: number;
@@ -24,6 +23,8 @@ import truncateEthAddress from "truncate-eth-address";
 export default function index({ proposal }: any) {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const { data: signer, isError, isLoading } = useSigner();
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const { submitBtnText, setSubmitBtnText } = GlobalAuth();
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const [voteData, setVoteData] = useState("forVote");
   const voteOptions = [
@@ -51,6 +52,8 @@ export default function index({ proposal }: any) {
   const SubmitVote = async () => {
     let voteType = 1;
     const Message = voteType + " " + voteData;
+
+    // setSubmitBtnText("Submitting....");
     const submitVoteSig = await signer?.signMessage(Message);
 
     if (voteData === "forVote") {
@@ -78,8 +81,15 @@ export default function index({ proposal }: any) {
       options
     )
       .then((response) => response.json())
-      .then((response) => console.log({ response }))
-      .catch((err) => console.error({ err }));
+      .then((response) => {
+      console.log({ response })
+      setSubmitBtnText("You have voted")
+    }
+      )
+      .catch((err) => {
+      console.error({ err })
+      setSubmitBtnText("Submit Vote")
+  });
   };
   const totalVotes =
     proposal?.againstVote + proposal?.maybeVote + proposal.forVote;
@@ -180,7 +190,9 @@ export default function index({ proposal }: any) {
                   ))}
                 </div>
                 <button
+                disabled={voteData === ""}
                   onClick={SubmitVote}
+                  className={styles.submitBtn}
                   type="submit"
                   style={{
                     fontSize: "18px",
@@ -194,11 +206,11 @@ export default function index({ proposal }: any) {
                     width: "100%",
                     maxWidth: "500px",
                     marginInline: "auto",
-                    background:
-                      "linear-gradient(90.72deg,rgba(107, 3, 184, 0.9) 21.79%,rgba(168, 24, 186, 0.9) 54.77%, rgba(226, 43, 187, 0.9) 85.69%)",
+                    // background:
+                    //   "linear-gradient(90.72deg,rgba(107, 3, 184, 0.9) 21.79%,rgba(168, 24, 186, 0.9) 54.77%, rgba(226, 43, 187, 0.9) 85.69%)",
                   }}
                 >
-                  Submit Vote
+                  {submitBtnText}
                 </button>
               </div>
 
