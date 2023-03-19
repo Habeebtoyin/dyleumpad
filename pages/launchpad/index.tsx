@@ -13,6 +13,7 @@ import dots from "../../components/assets/icons/launchpad-card-dots.svg";
 import DAILogo from "../../components/assets/icons/dai-logo.png";
 import { convertweiToEthers } from "../../web3/priceOracle";
 import Footer from "../../components/Footer";
+import { GetStaticProps } from "next";
 
 const BuyButtons = lazy(() => import("../../components/LaunchPad/BuyButtons"));
 
@@ -336,7 +337,7 @@ export default function LaunchPad({ pools }: any) {
                 </div>
               ))}
           </div>
-          {pools.length > 0 && (
+          {pools?.length > 0 && (
             <ReactPaginate
               breakLabel="..."
               nextLabel=">"
@@ -358,11 +359,12 @@ export default function LaunchPad({ pools }: any) {
   );
 }
 
-export const getStaticProps = async () => {
+export const getStaticProps : GetStaticProps = async () => {
   const res = await fetch(
     "https://solimax-api-danijel-enoch.vercel.app/api/pools"
   );
   const pools = await res.json();
+  console.log(pools)
 
   return {
     props: {

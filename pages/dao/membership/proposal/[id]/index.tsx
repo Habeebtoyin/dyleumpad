@@ -9,6 +9,9 @@ import { verifyMessage } from "ethers/lib/utils.js";
 import { useState } from "react";
 import truncateEthAddress from "truncate-eth-address";
 import { GlobalAuth } from "../../../../../context/GlobalContext";
+import { GetStaticPaths, GetStaticProps } from "next";
+import { useRouter } from "next/router";
+import Loader from "../../../../Loading";
 
 // type Proposals = {
 //   _id: number;
@@ -20,7 +23,13 @@ import { GlobalAuth } from "../../../../../context/GlobalContext";
 //   data: Proposals[];
 // };
 
-export default function index({ proposal }: any) {
+export default function ProposalDetails({ proposal }: any) {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const router = useRouter();
+
+  if (router.isFallback) {
+    <Loader />
+  }
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const { data: signer, isError, isLoading } = useSigner();
   // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -178,14 +187,14 @@ export default function index({ proposal }: any) {
                   {voteOptions.map((type) => (
                     <button
                       className={`${
-                        type.id === voteData ? styles.voteSelected : ""
+                        type?.id === voteData ? styles.voteSelected : ""
                       }`}
                       onClick={() => {
-                        setVoteData(type.id);
+                        setVoteData(type?.id);
                       }}
-                      key={type.id}
+                      key={type?.id}
                     >
-                      {type.label}
+                      {type?.label}
                     </button>
                   ))}
                 </div>
@@ -231,10 +240,10 @@ export default function index({ proposal }: any) {
                 {/* {proposal.voter.voteType}
                 {proposal.voter.address} */}
                 <ul className={styles.votes}>
-                  {proposal.voter.map((vote: any) => (
+                  {proposal.voter?.map((vote: any) => (
                     <>
                       <li>
-                        <span>{truncateEthAddress(vote.address)}</span>
+                        <span>{truncateEthAddress(vote?.address)}</span>
                         <span>
                           {vote?.voteType === 1
                             ? "For"
@@ -276,12 +285,13 @@ export default function index({ proposal }: any) {
   );
 }
 
-export const getStaticProps = async (context: any) => {
+export const getStaticProps : GetStaticProps = async (context: any) => {
   const res = await fetch(
     "https://solimax-nest-api-danijel-enoch.vercel.app/api/proposals/" +
-      context.params.id
+      context?.params.id
   );
   const proposal = await res.json();
+  console.log(proposal, context.params.id)
 
   if (!proposal) {
     return {
@@ -296,12 +306,12 @@ export const getStaticProps = async (context: any) => {
   };
 };
 
-export const getStaticPaths = async () => {
+export const getStaticPaths : GetStaticPaths = async () => {
   const res = await fetch(
     "https://solimax-nest-api-danijel-enoch.vercel.app/api/proposals"
   );
   const proposals = await res.json();
-  // console.lo
+  console.log(proposals)
   const ids = proposals.map((item: any) => item._id);
   console.log({ ids });
   const paths = ids.map((id: any) => ({ params: { id: id?.toString() } }));

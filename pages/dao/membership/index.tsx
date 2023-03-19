@@ -12,6 +12,7 @@ import { verifyMessage } from "ethers/lib/utils.js";
 import { SignatureLike } from "@ethersproject/bytes";
 import { ToastContainer, toast } from "react-toastify";
 import { useIsMounted } from "../../../hooks/useIsMounted";
+import { GetStaticProps } from "next";
 
 interface Data {
   statusCode: number;
@@ -314,7 +315,7 @@ export default function index({ proposals }: any) {
   );
 }
 
-export const getStaticProps = async () => {
+export const getStaticProps : GetStaticProps = async () => {
   const res = await fetch(
     "https://solimax-nest-api-danijel-enoch.vercel.app/api/proposals/"
   );

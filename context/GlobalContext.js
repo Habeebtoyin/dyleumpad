@@ -9,12 +9,12 @@ export function GlobalContextProvider({ children }) {
   const { isConnected } = useAccount();
   const [menuState, setMenuState] = useState(false);
   const [checkboxState, setCheckboxState] = useState(false);
-  const [filterValue, setFilterValue] = useState("");
+  const [filterValue, setFilterValue] = useState(null);
   const [proposalTag, setProposalTag] = useState("all");
-  const [content, setContent] = useState();
-  const [errorMessage, setErrorMessage] = useState("");
+  const [content, setContent] = useState(null);
+  const [errorMessage, setErrorMessage] = useState(null);
   const [modalIsOpen, setIsOpen] = useState(false);
-  const [modalText, setModalText] = useState("");
+  const [modalText, setModalText] = useState(null);
   const [subText, setSubText] = useState(
     "To become a member, click the Join button below"
   );
@@ -126,7 +126,7 @@ export function GlobalContextProvider({ children }) {
         subText,
         setSubText,
         submitBtnText,
-        setSubmitBtnText
+        setSubmitBtnText,
       }}
     >
       {children}

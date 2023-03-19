@@ -7,32 +7,33 @@ import Head from "next/head";
 // import { useRouter } from "next/router";
 // import { useEffect, useState } from "react";
 // import Navbar from "../../../../components/Navbar/Navbar";
-// import AboutProject from "../../../../components/PoolCardDetails/AboutProject";
-// import HeroSection from "../../../../components/PoolCardDetails/HeroSection";
-// import PoolInformation from "../../../../components/PoolCardDetails/PoolInformation";
-// import TokenInformation from "../../../../components/PoolCardDetails/TokenInformation";
+import AboutProject from "../../../../components/PoolCardDetails/AboutProject";
+import HeroSection from "../../../../components/PoolCardDetails/HeroSection";
+import PoolInformation from "../../../../components/PoolCardDetails/PoolInformation";
+import TokenInformation from "../../../../components/PoolCardDetails/TokenInformation";
 // import { default as GetPools } from "../../../api/pools/index";
 // import Loading from "../../../../components/Loading";
 import { lazy } from "react";
 import Footer from "../../../../components/Footer";
+import { GetStaticPaths, GetStaticProps } from "next";
 
 const Navbar = lazy(() => import("../../../../components/Navbar/Navbar"));
 
-const HeroSection = lazy(
-  () => import("../../../../components/PoolCardDetails/HeroSection")
-);
+// const HeroSection = lazy(
+//   () => import("../../../../components/PoolCardDetails/HeroSection")
+// );
 
-const PoolInformation = lazy(
-  () => import("../../../../components/PoolCardDetails/PoolInformation")
-);
+// const PoolInformation = lazy(
+//   () => import("../../../../components/PoolCardDetails/PoolInformation")
+// );
 
-const TokenInformation = lazy(
-  () => import("../../../../components/PoolCardDetails/TokenInformation")
-);
+// const TokenInformation = lazy(
+//   () => import("../../../../components/PoolCardDetails/TokenInformation")
+// );
 
-const AboutProject = lazy(
-  () => import("../../../../components/PoolCardDetails/AboutProject")
-);
+// const AboutProject = lazy(
+//   () => import("../../../../components/PoolCardDetails/AboutProject")
+// );
 
 const Pool = ({ pool }: any) => {
   return (
@@ -60,12 +61,13 @@ const Pool = ({ pool }: any) => {
 
 export default Pool;
 
-export const getStaticProps = async (context: any) => {
+export const getStaticProps : GetStaticProps = async (context: any) => {
   const res = await fetch(
     "https://solimax-api-danijel-enoch.vercel.app/api/pools/" +
-      context.params.id
+      context?.params.id
   );
   const pool = await res.json();
+  console.log(pool, context.params.id)
 
   if (!pool) {
     return {
@@ -79,7 +81,7 @@ export const getStaticProps = async (context: any) => {
     },
   };
 };
-export const getStaticPaths = async () => {
+export const getStaticPaths : GetStaticPaths = async () => {
   const res = await fetch(
     "https://solimax-api-danijel-enoch.vercel.app/api/pools"
   );
