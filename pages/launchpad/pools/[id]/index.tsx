@@ -79,6 +79,7 @@ export const getStaticProps : GetStaticProps = async (context: any) => {
     props: {
       pool,
     },
+    revalidate: 10,
   };
 };
 export const getStaticPaths : GetStaticPaths = async () => {
