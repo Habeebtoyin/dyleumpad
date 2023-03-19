@@ -25,7 +25,7 @@ export default function Navbar() {
         {/* MENU */}
         <ul className={`${styles.menu} ${menuState ? styles.active : ``}`}>
           {/* {menuItems.map((item) => [<NavMenuList item={item} />])} */}
-          <li
+         {/* <li
             className={styles.menuItem}
             onClick={() => {
               setMenuState((prevState: any) => !prevState);
@@ -46,7 +46,7 @@ export default function Navbar() {
             <Link href="/#tokenomics" className={styles.navLink}>
               Tokenomics
             </Link>
-          </li>
+          </li> */}
 
           {/* <li
             className={styles.menuItem}
@@ -63,7 +63,7 @@ export default function Navbar() {
               Staking
             </Link>
           </li> */}
-          <li
+         {/* <li
             className={styles.menuItem}
             onClick={() => {
               setMenuState((prevState: any) => !prevState);
@@ -73,7 +73,7 @@ export default function Navbar() {
             <Link href="/#roadmap" className={styles.navLink}>
               Roadmap
             </Link>
-          </li>
+          </li> */}
           <li
             className={styles.menuItem}
             onClick={() => {
