@@ -243,7 +243,7 @@ export default function ProposalDetails({ proposal }: any) {
                   {proposal.voter?.map((vote: any) => (
                     <>
                       <li>
-                        <span>{vote?.address}</span>
+                        <span className="truncate">{vote?.address}</span>
                         <span>
                           {vote?.voteType === 1
                             ? "For"
