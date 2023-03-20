@@ -243,7 +243,7 @@ export default function ProposalDetails({ proposal }: any) {
                   {proposal.voter?.map((vote: any) => (
                     <>
                       <li>
-                        <span>{truncateEthAddress(vote?.address)}</span>
+                        <span>{vote?.address}</span>
                         <span>
                           {vote?.voteType === 1
                             ? "For"
@@ -303,6 +303,7 @@ export const getStaticProps : GetStaticProps = async (context: any) => {
     props: {
       proposal,
     },
+    
   };
 };
 
