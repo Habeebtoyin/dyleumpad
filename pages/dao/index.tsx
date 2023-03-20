@@ -46,10 +46,7 @@ export default function DAO() {
           {/* <div className={`${HomeStyles.leftCol} ${styles.leftCol}`}> */}
           <h1 className={HomeStyles.heroTitle}>Welcome to SoliMax DAO</h1>
           <p className={HomeStyles.text}>
-            Subtext giving brief info on what SoliMax DAO is all about. Subtext
-            giving brief info on what SoliMax DAO is all about. Subtext giving
-            brief info on what SoliMax DAO is all about. Yeah yeah yeahhhhhh
-          </p>
+          Unlock Your DeFi Potential with SoliMax - Learn, Earn, and Utilize with Confidence! </p>
           {/* HERO BTN */}
           {/* <button className={HomeStyles.heroBtn}> */}
           <div className={` ${HomeStyles.heroButtonLink} ${styles.connectBtn}`}>
