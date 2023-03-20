@@ -26,6 +26,7 @@
 
 .leftCol {
   text-align: center;
+  padding-inline: 2rem;
 }
 
 .launchpadImg {
@@ -51,10 +52,6 @@
   z-index: 999999;
 }
 
-/* .buyBtnsImg {
-    width: 100%;
-    max-width: 222px;
-  } */
 
 /* .buyBtnsDiv {
     display: flex;
@@ -629,6 +626,7 @@
   .leftCol {
     place-items: start !important;
     text-align: left;
+    padding-inline: 0;
   }
 
   .launchpadImg {
@@ -652,4 +650,5 @@
   .bar {
     height: 24px;
   }
+  
 }

@@ -13,7 +13,7 @@ export default function Staking() {
   const { chains, error, pendingChainId, switchNetwork } = useSwitchNetwork();
   const [userAddress, setUserAddress]: any = useState("");
   const { chain } = useNetwork();
-  const [amount, setAmount]: any = useState();
+  const [amount, setAmount]: any = useState(null);
   const StakingPool = new StakingPoolClass(
     "0x5EFbde98f336769E0Ff45A05f9E6dc7A75a25fbB",
     "0x2Fd8894A7F280cE00C362ef1BB51d9B0F42c5931",

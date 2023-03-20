@@ -1,4 +1,4 @@
-import Footer from "./Footer";
+// import Footer from "./Footer";
 import Navbar from "./Navbar/Navbar";
 
 const Layout = ({ children }: any) => {
@@ -6,7 +6,7 @@ const Layout = ({ children }: any) => {
     <div>
       <Navbar />
       {children}
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };

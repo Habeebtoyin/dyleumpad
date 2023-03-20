@@ -1,0 +1,69 @@
+/* ------------------------------------------------------ */
+/* PRELOADER  */
+
+#preloader {
+    position: absolute;
+    top: 0;
+    z-index: 99999999;
+    width: 100%;
+    height: 100vh;
+    background: var(--body-bg);
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+  
+  #preloader svg circle {
+    animation: animation1 2s ease 0s infinite reverse none;
+  }
+  
+  #preloader svg #one {
+    animation: animation1 2s ease 0s infinite normal none;
+  }
+  
+  #preloader svg #two {
+    animation: animation1 2s ease 0s infinite reverse none;
+  }
+  
+  #preloader svg #three {
+    animation: animation1 2s ease 0s infinite normal none;
+  }
+  
+  #preloader svg #four {
+    animation: animation1 2s ease 0s infinite reverse none;
+  }
+  
+  #preloader svg #five {
+    animation: animation1 2s ease 0s infinite normal none;
+  }
+  
+  #preloader svg #six {
+    animation: animation1 2s ease 0s infinite reverse none;
+  }
+  
+  #preloader svg #seven {
+    animation: animation1 2s ease 0s infinite normal none;
+  }
+  
+  #preloader svg #eight {
+    animation: animation1 2s ease 0s infinite reverse none;
+  }
+  
+  @keyframes animation1 {
+    0%,
+    50%,
+    100% {
+      opacity: 1;
+    }
+  
+    25%,
+    75% {
+      opacity: 0;
+    }
+  }
+  

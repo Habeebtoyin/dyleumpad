@@ -1,17 +1,36 @@
-import { ConnectButton } from "@rainbow-me/rainbowkit";
+// import { ConnectButton } from "@rainbow-me/rainbowkit";
 import type { NextPage } from "next";
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import HowToBuy from "../components/Home/HowToBuy";
-import HomeNavbar from "../components/Home/HomeNavbar";
+import AboutUs from "../components/Home/AboutUs";
 import Roadmap from "../components/Home/Roadmap";
 import Tokenomics from "../components/Home/Tokenomics";
 import ContractAddress from "../components/Home/ContractAddress";
 import HeroSection from "../components/Home/HeroSection";
-import AboutUs from "../components/Home/AboutUs";
 import Mission from "../components/Home/Mission";
+import dynamic from "next/dynamic";
+import Loading from "./Loading";
+import Footer from "../components/Footer";
+import { lazy } from "react";
 
-const Home : NextPage = ()  => {
+// const HeroSection = lazy(() => import("../components/Home/HeroSection"));
+
+// const AboutUs = lazy(() => import("../components/Home/AboutUs"));
+
+// const Mission = lazy(() => import("../components/Home/Mission"));
+
+// const Tokenomics = lazy(() => import("../components/Home/Tokenomics"));
+
+// const Roadmap = lazy(() => import("../components/Home/Roadmap"));
+
+// const HowToBuy = lazy(() => import("../components/Home/HowToBuy"));
+
+// const ContractAddress = lazy(
+//   () => import("../components/Home/ContractAddress")
+// );
+
+const Home: NextPage = () => {
   return (
     <div className={styles.container}>
       <Head>
@@ -33,6 +52,7 @@ const Home : NextPage = ()  => {
         <HowToBuy />
         <ContractAddress />
       </main>
+      <Footer />
     </div>
   );
 };
