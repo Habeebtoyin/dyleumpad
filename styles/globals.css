@@ -97,7 +97,7 @@ section {
 }
 
 .Toastify__toast-container {
-  width: 430px !important;
+  max-width: 430px !important;
   z-index: 99999999 !important;
   font-weight: 600 !important;
 }
