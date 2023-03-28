@@ -59,11 +59,11 @@
   ) !important;
 }
 
-.newProposalPage button:disabled{
+.newProposalPage button:disabled {
   background: #1f2937 !important;
 }
 
-.proposalDetailsPage button.submitBtn:disabled{
+.proposalDetailsPage button.submitBtn:disabled {
   background: transparent !important;
   border: 1px solid #1f2937 !important;
 }
@@ -224,7 +224,6 @@
   gap: 1rem;
   /* border-bottom: 1px solid #6b7280; */
 }
-
 
 .buttons button,
 .buttons span {
@@ -580,9 +579,9 @@
   }
 
   .buttons {
-    max-width: unset;
+    max-width: fit-content;
     gap: 6px;
-    border-bottom: none;
+    margin-bottom: 0;
   }
 
   .buttons button,

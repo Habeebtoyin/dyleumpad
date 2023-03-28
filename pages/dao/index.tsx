@@ -10,17 +10,19 @@ import { GlobalAuth } from "../../context/GlobalContext";
 
 export default function DAO() {
   const { isConnected } = GlobalAuth();
-  const Redirect = () => {
-    if (isConnected === true) {
-      Router.push("/dao/minting");
-    } else {
-      Router.push("/dao");
-    }
-  };
+  // const Redirect = () => {
+  //   // if (isConnected === true) {
+  //   //   Router.push("/dao/membership");
+  //   // }
+  // };
+
+  // useEffect(() => {
+  //   Redirect();
+  // }, [isConnected]);
 
   useEffect(() => {
-    Redirect();
-  }, [isConnected]);
+    Router.push("/dao/minting");
+  }, []);
   // const {pathname}: any = Router;
 
   return (
@@ -46,8 +48,9 @@ export default function DAO() {
           {/* <div className={`${HomeStyles.leftCol} ${styles.leftCol}`}> */}
           <h1 className={HomeStyles.heroTitle}>Welcome to SoliMax DAO</h1>
           <p className={HomeStyles.text}>
-
-          Unlock Your DeFi Potential with SoliMax - Learn, Earn, and Utilize with Confidence! </p>
+            Unlock Your DeFi Potential with SoliMax - Learn, Earn, and Utilize
+            with Confidence!{" "}
+          </p>
 
           {/* HERO BTN */}
           {/* <button className={HomeStyles.heroBtn}> */}

@@ -13,6 +13,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { GlobalAuth } from "../../../context/GlobalContext";
 import { useEffect } from "react";
+import { ConnectButton } from "@rainbow-me/rainbowkit";
 
 export default function DAOMinting() {
   const { data: signer, isError, isLoading } = useSigner();
@@ -21,18 +22,14 @@ export default function DAOMinting() {
 
   const Redirect = () => {
     if (isConnected === true) {
-      Router.push("/dao/minting");
-    } else {
-      Router.push("/dao");
+      // Router.push("/dao/membership");
     }
   };
 
   const nftMinter = new DaoNftMint(
-    "0x48d1c55F00E1B926f10620b06cf6b689A09b3325",
+    "0x80E6B89DfB224ba88927404c5eBBdd71b638E979",
     signer,
-    new ethers.providers.JsonRpcProvider(
-      "https://fantom-testnet.public.blastapi.io"
-    )
+    new ethers.providers.JsonRpcProvider("https://rpc.ankr.com/fantom")
   );
 
   const mint = async (e: any) => {
@@ -44,16 +41,21 @@ export default function DAOMinting() {
       .mint()
       .then((res: any) => {
         toast.success("Minted Succesfullly");
-        Router.push("/dao/membership");
+        Router.push("/dao");
         // setModalText("Minted Succesfullly");
         setJoinBtnText("Minted");
         console.log({ res });
       })
       .catch((err: any) => {
-        console.log({ err });
-        // setModalText(err.data.message);
+        if (err.data) {
+          toast.error(err.data.message);
+        } else if (err.error) {
+          toast.error(err.error.data.message);
+        } else {
+          toast.error("Error not Found");
+        }
         setJoinBtnText("Mint");
-        toast.error(err.data.message);
+        console.log(err);
       });
   };
 
@@ -68,7 +70,7 @@ export default function DAOMinting() {
   return (
     <div className={styles.minting}>
       <Head>
-        <title>Solimax | Launchpad</title>
+        <title>Solimax | DAO | Minting</title>
         <meta
           name="description"
           content="A Secure Multi-chain Launch-pad with High Staking"
@@ -91,14 +93,22 @@ export default function DAOMinting() {
           </h1>
 
           {/* HERO BTN */}
-          <button onClick={mint} className={HomeStyles.heroBtn}>
-            <a
-              className={`${HomeStyles.buySlmBtn} ${HomeStyles.heroButtonLink}`}
-              href=""
+          {isConnected === true ? (
+            <button onClick={mint} className={HomeStyles.heroBtn}>
+              <a
+                className={`${HomeStyles.buySlmBtn} ${HomeStyles.heroButtonLink}`}
+                href=""
+              >
+                {joinBtnText}
+              </a>
+            </button>
+          ) : (
+            <div
+              className={` ${HomeStyles.heroButtonLink} ${styles.connectBtn}`}
             >
-              {joinBtnText}
-            </a>
-          </button>
+              <ConnectButton chainStatus="none" showBalance={false} />
+            </div>
+          )}
         </div>
 
         {/* </div> */}

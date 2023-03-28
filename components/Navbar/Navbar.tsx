@@ -103,6 +103,17 @@ export default function Navbar() {
               setCheckboxState((prevState: any) => !prevState);
             }}
           >
+            <Link href="/dao/minting" className={styles.navLink}>
+              DAO Minting
+            </Link>
+          </li>
+          <li
+            className={styles.menuItem}
+            onClick={() => {
+              setMenuState((prevState: any) => !prevState);
+              setCheckboxState((prevState: any) => !prevState);
+            }}
+          >
             <Link href="/#how-to-buy" className={styles.navLink}>
               How to buy
             </Link>

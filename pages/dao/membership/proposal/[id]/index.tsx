@@ -28,7 +28,7 @@ export default function ProposalDetails({ proposal }: any) {
   const router = useRouter();
 
   if (router.isFallback) {
-    <Loader />
+    <Loader />;
   }
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const { data: signer, isError, isLoading } = useSigner();
@@ -91,14 +91,13 @@ export default function ProposalDetails({ proposal }: any) {
     )
       .then((response) => response.json())
       .then((response) => {
-      console.log({ response })
-      setSubmitBtnText("You have voted")
-    }
-      )
+        console.log({ response });
+        setSubmitBtnText("You have voted");
+      })
       .catch((err) => {
-      console.error({ err })
-      setSubmitBtnText("Submit Vote")
-  });
+        console.error({ err });
+        setSubmitBtnText("Submit Vote");
+      });
   };
   const totalVotes =
     proposal?.againstVote + proposal?.maybeVote + proposal.forVote;
@@ -199,13 +198,13 @@ export default function ProposalDetails({ proposal }: any) {
                   ))}
                 </div>
                 <button
-                disabled={voteData === ""}
+                  disabled={voteData === ""}
                   onClick={SubmitVote}
                   className={styles.submitBtn}
                   type="submit"
                   style={{
                     fontSize: "18px",
-                    height: "40px",
+                    height: "46px",
                     display: "flex",
                     justifyContent: "center",
                     alignItems: "center",
@@ -285,13 +284,13 @@ export default function ProposalDetails({ proposal }: any) {
   );
 }
 
-export const getStaticProps : GetStaticProps = async (context: any) => {
+export const getStaticProps: GetStaticProps = async (context: any) => {
   const res = await fetch(
     "https://solimax-nest-api-danijel-enoch.vercel.app/api/proposals/" +
       context?.params.id
   );
   const proposal = await res.json();
-  console.log(proposal, context.params.id)
+  console.log(proposal, context.params.id);
 
   if (!proposal) {
     return {
@@ -303,16 +302,15 @@ export const getStaticProps : GetStaticProps = async (context: any) => {
     props: {
       proposal,
     },
-    
   };
 };
 
-export const getStaticPaths : GetStaticPaths = async () => {
+export const getStaticPaths: GetStaticPaths = async () => {
   const res = await fetch(
     "https://solimax-nest-api-danijel-enoch.vercel.app/api/proposals"
   );
   const proposals = await res.json();
-  console.log(proposals)
+  console.log(proposals);
   const ids = proposals.map((item: any) => item._id);
   console.log({ ids });
   const paths = ids.map((id: any) => ({ params: { id: id?.toString() } }));
