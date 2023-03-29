@@ -48,9 +48,10 @@ export default function DAOMinting() {
       })
       .catch((err: any) => {
         if (err.data) {
-          toast.error(err.data.message);
+          toast.error(`${err.data.message}. It requires 60 FTM`);
         } else if (err.error) {
           toast.error(err.error.data.message);
+          console.log(err.error.data.message);
         } else {
           toast.error("Error not Found");
         }
