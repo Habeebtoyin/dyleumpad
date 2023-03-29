@@ -27,7 +27,7 @@ export default function DAOMinting() {
   // };
 
   const nftMinter = new DaoNftMint(
-    "0x80E6B89DfB224ba88927404c5eBBdd71b638E979",
+    "0x807ddf70bB59B3940379D72901482f32C67d0722",
     signer,
     new ethers.providers.JsonRpcProvider("https://rpc.ankr.com/fantom")
   );
