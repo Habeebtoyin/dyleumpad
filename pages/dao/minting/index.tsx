@@ -14,10 +14,14 @@ import "react-toastify/dist/ReactToastify.css";
 import { GlobalAuth } from "../../../context/GlobalContext";
 import { useEffect } from "react";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
+import { useAccount, useConnect } from 'wagmi'
 
 export default function DAOMinting() {
-  const { data: signer, isError, isLoading } = useSigner();
-  const { isConnected, setModalText, modalText, joinBtnText, setJoinBtnText } =
+  const { data: signer, isError, isLoading } = useSigner(); 
+  const { connector: activeConnector, isConnected } = useAccount()
+  const { connect, connectors, error, pendingConnector } =
+    useConnect()
+  const {  setModalText, modalText, joinBtnText, setJoinBtnText } =
     GlobalAuth();
 
   const Redirect = () => {
