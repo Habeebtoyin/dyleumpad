@@ -150,6 +150,7 @@ export default function NewProposal() {
         <link rel="icon" href="/logo-icon.svg" />
       </Head>
       <section className={`${styles.newProposalPage} ${styles.heroSection}`}>
+<ToastContainer />
       {/* <Modal
             isOpen={modalIsOpen}
             onAfterOpen={afterOpenModal}
