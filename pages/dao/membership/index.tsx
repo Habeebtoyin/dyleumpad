@@ -191,7 +191,10 @@ export default function index({ proposals }: any) {
                     selectedTab === item.id ? styles.activeBtn : ``
                   }`}
                   style={{ cursor: "pointer" }}
-                  onClick={() => setSelectedTab(item.id)}
+                  onClick={(e) => {
+e.preventDefault();
+    e.stopPropagation();
+setSelectedTab(item.id)}}
                 >
                   {item.title}
                 </button>
