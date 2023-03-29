@@ -20,11 +20,11 @@ export default function DAOMinting() {
   const { isConnected, setModalText, modalText, joinBtnText, setJoinBtnText } =
     GlobalAuth();
 
-  const Redirect = () => {
-    if (isConnected === true) {
-      // Router.push("/dao/membership");
-    }
-  };
+  // const Redirect = () => {
+  //   if (isConnected === true) {
+  //     Router.push("/dao/membership");
+  //   }
+  // };
 
   const nftMinter = new DaoNftMint(
     "0x80E6B89DfB224ba88927404c5eBBdd71b638E979",
@@ -41,7 +41,7 @@ export default function DAOMinting() {
       .mint()
       .then((res: any) => {
         toast.success("Minted Succesfullly");
-        Router.push("/dao");
+        Router.push("/dao/membership");
         // setModalText("Minted Succesfullly");
         setJoinBtnText("Minted");
         console.log({ res });
@@ -59,9 +59,9 @@ export default function DAOMinting() {
       });
   };
 
-  useEffect(() => {
-    Redirect();
-  }, [isConnected]);
+  // useEffect(() => {
+  //   Redirect();
+  // }, [isConnected]);
 
   useEffect(() => {
     setJoinBtnText("Mint");
@@ -93,22 +93,14 @@ export default function DAOMinting() {
           </h1>
 
           {/* HERO BTN */}
-          {isConnected === true ? (
-            <button onClick={mint} className={HomeStyles.heroBtn}>
-              <a
-                className={`${HomeStyles.buySlmBtn} ${HomeStyles.heroButtonLink}`}
-                href=""
-              >
-                {joinBtnText}
-              </a>
-            </button>
-          ) : (
-            <div
-              className={` ${HomeStyles.heroButtonLink} ${styles.connectBtn}`}
+          <button onClick={mint} className={HomeStyles.heroBtn}>
+            <a
+              className={`${HomeStyles.buySlmBtn} ${HomeStyles.heroButtonLink}`}
+              href=""
             >
-              <ConnectButton chainStatus="none" showBalance={false} />
-            </div>
-          )}
+              {joinBtnText}
+            </a>
+          </button>
         </div>
 
         {/* </div> */}

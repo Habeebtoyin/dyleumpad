@@ -10,19 +10,19 @@ import { GlobalAuth } from "../../context/GlobalContext";
 
 export default function DAO() {
   const { isConnected } = GlobalAuth();
-  // const Redirect = () => {
-  //   // if (isConnected === true) {
-  //   //   Router.push("/dao/membership");
-  //   // }
-  // };
-
-  // useEffect(() => {
-  //   Redirect();
-  // }, [isConnected]);
+  const Redirect = () => {
+    if (isConnected === true) {
+      Router.push("/dao/minting");
+    }
+  };
 
   useEffect(() => {
-    Router.push("/dao/minting");
-  }, []);
+    Redirect();
+  }, [isConnected]);
+
+  // useEffect(() => {
+  //   Router.push("/dao/minting");
+  // }, []);
   // const {pathname}: any = Router;
 
   return (

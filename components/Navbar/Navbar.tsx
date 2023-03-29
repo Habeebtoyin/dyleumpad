@@ -96,7 +96,7 @@ export default function Navbar() {
               DAO
             </Link>
           </li>
-          <li
+          {/* <li
             className={styles.menuItem}
             onClick={() => {
               setMenuState((prevState: any) => !prevState);
@@ -106,7 +106,7 @@ export default function Navbar() {
             <Link href="/dao/minting" className={styles.navLink}>
               DAO Minting
             </Link>
-          </li>
+          </li> */}
           <li
             className={styles.menuItem}
             onClick={() => {
