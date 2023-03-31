@@ -21,7 +21,7 @@ export class DaoNftMint {
 
   async mint() {
     const tx = await this.contract.safeMint({
-      value: ethers.utils.parseEther("60"),
+      value: ethers.utils.parseEther("80"),
     });
     const receipt = await tx.wait();
     return receipt;
