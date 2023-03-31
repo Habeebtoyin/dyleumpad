@@ -236,7 +236,7 @@ export default function index({ proposals }: any) {
             </div>
           </div>
           <div className="">
-            {!proposals && selectedTab === "active" && (
+            {proposals.length === 0 && selectedTab === "active" && (
               <p
                 style={{
                   fontWeight: 400,
