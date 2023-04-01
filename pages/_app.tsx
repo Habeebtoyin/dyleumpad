@@ -11,7 +11,7 @@ import {
   RainbowKitProvider,
   Theme,
 } from "@rainbow-me/rainbowkit";
-import { configureChains, createClient, useAccount, WagmiConfig } from "wagmi";
+import { Chain, configureChains, createClient, useAccount, WagmiConfig } from "wagmi";
 import {
   mainnet,
   polygon,
@@ -29,8 +29,32 @@ import { Suspense, useEffect, useState } from "react";
 import Layout from "../components/Layout";
 import Loader from "./Loading";
 
+const avalancheChain: any = {
+  id: 324,
+  name: 'zkSync Era Mainnet logozkSync Era Mainnet',
+  network: 'zkSync',
+  iconUrl: "her",
+  iconBackground: '#fff',
+  nativeCurrency: {
+    decimals: 18,
+    name: 'Eth',
+    symbol: 'ETH',
+  },
+  rpcUrls: {
+    default: {
+      http: ['https://mainnet.era.zksync.io'],
+    },
+  },
+  blockExplorers: {
+    default: { name: 'Era Explorer', url: 'https://explorer.zksync.io/' },
+    etherscan: { name: 'Era Explorer', url: 'https://explorer.zksync.io/' },
+  },
+  testnet: false,
+};
+
+
 const { chains, provider } = configureChains(
-  [fantom, optimism],
+  [fantom, optimism,avalancheChain],
   [publicProvider()]
 );
 
