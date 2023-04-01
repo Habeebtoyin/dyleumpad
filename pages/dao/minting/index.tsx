@@ -34,10 +34,15 @@ export default function DAOMinting() {
     signer,
     new ethers.providers.JsonRpcProvider("https://rpc.ankr.com/fantom")
   );
-
-  const balance = nftMinter?.balanceOf(address);
-  console.log(balance);
-
+    useEffect(() => {
+      const balance=async()=>{
+        const balance = await nftMinter?.balanceOf(address).then(res=>res);
+      console.log(balance.toString());
+    }
+    balance()
+    }, [])
+    
+ 
   const mint = async (e: any) => {
     e.preventDefault();
     e.stopPropagation();
