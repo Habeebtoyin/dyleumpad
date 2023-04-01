@@ -36,6 +36,8 @@ export default function DAOMinting() {
     new ethers.providers.JsonRpcProvider("https://rpc.ankr.com/fantom")
   );
 
+  const balance=nftMinter.balanceOf("user address which should be gotten from connect wallet")
+
   const mint = async (e: any) => {
     e.preventDefault();
     e.stopPropagation();
