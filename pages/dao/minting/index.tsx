@@ -14,21 +14,20 @@ import "react-toastify/dist/ReactToastify.css";
 import { GlobalAuth } from "../../../context/GlobalContext";
 import { useEffect } from "react";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
-import { useAccount, useConnect } from 'wagmi'
+import { useAccount, useConnect } from "wagmi";
 
 export default function DAOMinting() {
-  const { data: signer, isError, isLoading } = useSigner(); 
-  const { connector: activeConnector, isConnected } = useAccount()
-  const { connect, connectors, error, pendingConnector } =
-    useConnect()
-  const {  setModalText, modalText, joinBtnText, setJoinBtnText } =
-    GlobalAuth();
+  const { data: signer, isError, isLoading } = useSigner();
+  const { connector: activeConnector, isConnected, address } = useAccount();
+  const { connect, connectors, error, pendingConnector } = useConnect();
+  const { setModalText, modalText, joinBtnText, setJoinBtnText } = GlobalAuth();
+  console.log(address);
 
-  // const Redirect = () => {
-  //   if (isConnected === true) {
-  //     Router.push("/dao/membership");
-  //   }
-  // };
+  const Redirect = () => {
+    if (isConnected === false) {
+      Router.push("/dao");
+    }
+  };
 
   const nftMinter = new DaoNftMint(
     "0x807ddf70bB59B3940379D72901482f32C67d0722",
@@ -36,7 +35,8 @@ export default function DAOMinting() {
     new ethers.providers.JsonRpcProvider("https://rpc.ankr.com/fantom")
   );
 
-  const balance=nftMinter.balanceOf("user address which should be gotten from connect wallet")
+  const balance = nftMinter?.balanceOf(address);
+  console.log(balance);
 
   const mint = async (e: any) => {
     e.preventDefault();
@@ -66,9 +66,9 @@ export default function DAOMinting() {
       });
   };
 
-  // useEffect(() => {
-  //   Redirect();
-  // }, [isConnected]);
+  useEffect(() => {
+    Redirect();
+  }, [isConnected]);
 
   useEffect(() => {
     setJoinBtnText("Mint");

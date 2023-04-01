@@ -28,13 +28,14 @@ import { GlobalContextProvider } from "../context/GlobalContext";
 import { Suspense, useEffect, useState } from "react";
 import Layout from "../components/Layout";
 import Loader from "./Loading";
+import zkLogo from '../components/assets/icons/zkSync logo.png';
 
 const avalancheChain: any = {
   id: 324,
-  name: 'zkSync Era Mainnet logozkSync Era Mainnet',
+  name: 'zkSync Era ',
   network: 'zkSync',
-  iconUrl: "her",
-  iconBackground: '#fff',
+  iconUrl: "https://chainlist.org/unknown-logo.png",
+  iconBackground: '#ffffff0',
   nativeCurrency: {
     decimals: 18,
     name: 'Eth',
@@ -174,14 +175,11 @@ function MyApp({ Component, pageProps }: AppProps) {
         coolMode
       >
         <GlobalContextProvider>
-          {/* {loading ? (
-            <Loader />
-          ) : ( */}
+          
           <Loading />
           <Layout>
             <Component {...pageProps} />
           </Layout>
-          {/* )} */}
         </GlobalContextProvider>
       </RainbowKitProvider>
     </WagmiConfig>
