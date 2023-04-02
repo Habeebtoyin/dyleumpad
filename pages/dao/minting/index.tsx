@@ -21,7 +21,6 @@ export default function DAOMinting() {
   const { connector: activeConnector, isConnected, address } = useAccount();
   const { connect, connectors, error, pendingConnector } = useConnect();
   const { setModalText, modalText, joinBtnText, setJoinBtnText } = GlobalAuth();
-  console.log(address);
 
   const Redirect = () => {
     if (isConnected === false) {
@@ -34,15 +33,16 @@ export default function DAOMinting() {
     signer,
     new ethers.providers.JsonRpcProvider("https://rpc.ankr.com/fantom")
   );
-    useEffect(() => {
-      const balance=async()=>{
-        const balance = await nftMinter?.balanceOf(address).then(res=>res);
-      console.log(balance.toString());
+
+  const balance = async () => {
+    const data = await nftMinter?.balanceOf(address).then((res) => res);
+    const value = data.toString();
+
+    if (value === 1) {
+      Router.push("/dao/membership");
     }
-    balance()
-    }, [])
-    
- 
+  };
+
   const mint = async (e: any) => {
     e.preventDefault();
     e.stopPropagation();
@@ -77,6 +77,8 @@ export default function DAOMinting() {
 
   useEffect(() => {
     setJoinBtnText("Mint");
+
+    balance();
   }, []);
 
   return (
