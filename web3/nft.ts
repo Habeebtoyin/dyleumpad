@@ -27,7 +27,7 @@ export class DaoNftMint {
     return receipt;
   }
   async balanceOf(address : any) {   
-    const result = await this.contract.balanceOf(address);
+    const result = await this.contractWithProvider.balanceOf(address);
     // console.log(this.address)
     return result
   }
