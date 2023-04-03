@@ -35,16 +35,15 @@ export default function DAOMinting() {
   );
 
   const balance = async () => {
-    const data = await nftMinter.balanceOf(address).then(res=>{
-      res.toString()
-      const value:number=parseInt(res.toString())
-      console.log(value)
-        if (value === 1) {
-      Router.push("/dao/membership");
-    }
+    const data = await nftMinter.balanceOf(address).then((res) => {
+      res.toString();
+      const value: number = parseInt(res.toString());
+      console.log(value);
+      if (value === 1) {
+        Router.push("/dao/membership");
+      }
     });
     // console.log(data)
-  
   };
 
   const mint = async (e: any) => {
