@@ -39,7 +39,7 @@ export default function DAOMinting() {
       res.toString()
       const value:number=parseInt(res.toString())
       console.log(value)
-        if (value === 0) {
+        if (value === 1) {
       Router.push("/dao/membership");
     }
     });
