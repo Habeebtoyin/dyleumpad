@@ -80,7 +80,7 @@ export default function index({ proposals }: any) {
   async function joinDAO(e: any) {
     setJoinBtnText("Joining...");
     const Message =
-      "Join the Solimax Dao with 1000,000 solimax token and 1 Dao governace NFT";
+      "Join the Solimax Dao with 100,000 solimax token and 1 Dao governace NFT";
     const joinDaoSignature = await signer?.signMessage(Message);
 
     console.log(await joinDaoSignature);
