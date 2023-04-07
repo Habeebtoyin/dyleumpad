@@ -13,6 +13,7 @@ import { SignatureLike } from "@ethersproject/bytes";
 import { ToastContainer, toast } from "react-toastify";
 import { useIsMounted } from "../../../hooks/useIsMounted";
 import { GetStaticProps } from "next";
+import { useEffect } from "react";
 
 interface Data {
   statusCode: number;
@@ -77,16 +78,11 @@ export default function index({ proposals }: any) {
     console.log(" Option", selectedOption.value);
   }
 
-  async function joinDAO(e: any) {
+  async function joinDAO() {
     setJoinBtnText("Joining...");
     const Message =
       "Join the Solimax Dao with 1000000 solimax token and 1 Dao governace NFT";
     const joinDaoSignature = await signer?.signMessage(Message);
-
-    console.log(await joinDaoSignature);
-
-    e.preventDefault();
-    e.stopPropagation();
 
     // try {
 
@@ -167,7 +163,13 @@ export default function index({ proposals }: any) {
                 isConnected &&
                 !loggedIn &&
                 joinBtnText !== "" && (
-                  <button className={styles.joinBtn} onClick={joinDAO}>
+                  <button
+                    className={styles.joinBtn}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      joinDAO();
+                    }}
+                  >
                     {joinBtnText}
                   </button>
                 )
@@ -177,7 +179,7 @@ export default function index({ proposals }: any) {
               ? !address &&
                 !isConnected && (
                   <div className={styles.connectBtn}>
-                    <ConnectButton chainStatus="none" />
+                    <ConnectButton />
                   </div>
                 )
               : null}
@@ -192,9 +194,10 @@ export default function index({ proposals }: any) {
                   }`}
                   style={{ cursor: "pointer" }}
                   onClick={(e) => {
-e.preventDefault();
-    e.stopPropagation();
-setSelectedTab(item.id)}}
+                    e.preventDefault();
+                    e.stopPropagation();
+                    setSelectedTab(item.id);
+                  }}
                 >
                   {item.title}
                 </button>
@@ -318,7 +321,7 @@ setSelectedTab(item.id)}}
   );
 }
 
-export const getStaticProps : GetStaticProps = async () => {
+export const getStaticProps: GetStaticProps = async () => {
   const res = await fetch(
     "https://solimax-nest-api-danijel-enoch.vercel.app/api/proposals/"
   );

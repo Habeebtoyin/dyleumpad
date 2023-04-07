@@ -20,7 +20,7 @@ export default function DAOMinting() {
   const { data: signer, isError, isLoading } = useSigner();
   const { connector: activeConnector, isConnected, address } = useAccount();
   const { connect, connectors, error, pendingConnector } = useConnect();
-  const { setModalText, modalText, joinBtnText, setJoinBtnText } = GlobalAuth();
+  const { setModalText, modalText, mintBtnText, setMintBtnText } = GlobalAuth();
 
   const Redirect = () => {
     if (isConnected === false) {
@@ -38,7 +38,7 @@ export default function DAOMinting() {
     const data = await nftMinter.balanceOf(address).then((res) => {
       res.toString();
       const value: number = parseInt(res.toString());
-      console.log(value);
+      // console.log(value);
       if (value === 1) {
         Router.push("/dao/membership");
       }
@@ -49,7 +49,7 @@ export default function DAOMinting() {
   const mint = async (e: any) => {
     e.preventDefault();
     e.stopPropagation();
-    setJoinBtnText("Minting...");
+    setMintBtnText("Minting...");
 
     await nftMinter
       .mint()
@@ -57,7 +57,7 @@ export default function DAOMinting() {
         toast.success("Minted Succesfullly");
         Router.push("/dao/membership");
         // setModalText("Minted Succesfullly");
-        setJoinBtnText("Minted");
+        setMintBtnText("Minted");
         console.log({ res });
       })
       .catch((err: any) => {
@@ -69,7 +69,7 @@ export default function DAOMinting() {
         } else {
           toast.error("Error not Found");
         }
-        setJoinBtnText("Mint");
+        setMintBtnText("Mint");
         console.log(err);
       });
   };
@@ -79,7 +79,7 @@ export default function DAOMinting() {
   }, [isConnected]);
 
   useEffect(() => {
-    setJoinBtnText("Mint");
+    setMintBtnText("Mint");
 
     balance();
   }, []);
@@ -115,7 +115,7 @@ export default function DAOMinting() {
               className={`${HomeStyles.buySlmBtn} ${HomeStyles.heroButtonLink}`}
               href=""
             >
-              {joinBtnText}
+              {mintBtnText}
             </a>
           </button>
         </div>
