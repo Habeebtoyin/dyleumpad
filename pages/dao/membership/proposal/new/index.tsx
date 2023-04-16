@@ -52,6 +52,7 @@ export default function NewProposal() {
   // };
 
   async function createProposal(e: any) {
+    e.preventDefault();
     const Message = title + " " + description;
     const createProposalSig= await signer?.signMessage(Message)
    
@@ -73,7 +74,7 @@ export default function NewProposal() {
       });
 
       let response = await fetch(
-        "https://solimax-nest-api-danijel-enoch.vercel.app/api/proposals/create",
+        "https://solimax-nest-api.vercel.app/api/proposals/create",
         {
           method: "POST",
           body: bodyContent,
@@ -170,7 +171,7 @@ export default function NewProposal() {
           
 
           <form
-            action=""
+            action="#"
             style={{
               marginTop: "1rem",
               display: "flex",

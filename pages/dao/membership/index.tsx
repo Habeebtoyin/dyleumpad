@@ -12,6 +12,7 @@ import { verifyMessage } from "ethers/lib/utils.js";
 import { SignatureLike } from "@ethersproject/bytes";
 import { ToastContainer, toast } from "react-toastify";
 import { useIsMounted } from "../../../hooks/useIsMounted";
+import { getAccount } from '@wagmi/core'
 import { GetStaticProps } from "next";
 import { useEffect } from "react";
 
@@ -28,6 +29,7 @@ export default function index({ proposals }: any) {
   const mounted = useIsMounted();
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const { data: signer, isError, isLoading } = useSigner();
+  const account = getAccount()
   const {
     isConnected,
     selectedTab,
@@ -46,6 +48,15 @@ export default function index({ proposals }: any) {
     subText,
     setSubText,
   } = GlobalAuth();
+
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  useEffect(() => {
+    console.log('Check wallet data here')
+    console.log({proposals:proposals[0].endDate,start:proposals[0].startDate})
+    const endDate = new Date(proposals[0].endDate * 1000)
+    const startDate=new Date(proposals[0].startDate * 1000)
+    console.log(endDate,startDate)
+  }, [])
 
   const options = [
     { value: "all", label: "All" },
@@ -78,6 +89,26 @@ export default function index({ proposals }: any) {
     console.log(" Option", selectedOption.value);
   }
 
+  async function getLoginStatus() {
+    //check if user wallet is connected
+    if(account.status==="connected"){
+      const {address}=account;
+      const options = { method: "POST" };
+    fetch(
+      "https://solimax-nest-api.vercel.app/api/users/join/" +
+      address,
+      options
+    ).then().catch()
+
+    }
+    //then fetch Join status
+    //then return boolean
+    
+  }
+
+ 
+  
+
   async function joinDAO() {
     setJoinBtnText("Joining...");
     const Message =
@@ -89,13 +120,14 @@ export default function index({ proposals }: any) {
     const address = verifyMessage(Message, joinDaoSignature as any);
     const options = { method: "POST" };
     fetch(
-      "https://solimax-nest-api-danijel-enoch.vercel.app/api/users/join/" +
+      "https://solimax-nest-api.vercel.app/api/users/join/" +
         address,
       options
     )
       .then((response) => response.json())
       .then((response) => {
         if (response.ok) {
+          console.log(response.message)
           setModalText(response.message);
           toast.success(response.message);
           setSubText("Congratulations on becoming a member!");
@@ -263,6 +295,7 @@ export default function index({ proposals }: any) {
                       href={`/dao/membership/proposal/${proposal._id}`}
                       key={proposal._id}
                     >
+                     
                       <article
                         style={{ cursor: "pointer" }}
                         className={`${styles.div} ${styles.proposal}`}
