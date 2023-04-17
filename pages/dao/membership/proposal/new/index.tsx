@@ -21,8 +21,7 @@ export default function NewProposal() {
 
   const { data: signer, isError, isLoading } = useSigner();
 
-  const {setIsOpen,
-    modalIsOpen}= GlobalAuth();
+  const { setIsOpen, modalIsOpen } = GlobalAuth();
   let subtitle: any;
 
   function openModal() {
@@ -31,7 +30,7 @@ export default function NewProposal() {
 
   function afterOpenModal() {
     // references are now sync'd and can be accessed.
-    subtitle.style.color = '#00ff6a';
+    subtitle.style.color = "#00ff6a";
   }
 
   function closeModal() {
@@ -54,9 +53,9 @@ export default function NewProposal() {
   async function createProposal(e: any) {
     e.preventDefault();
     const Message = title + " " + description;
-    const createProposalSig= await signer?.signMessage(Message)
-   
-    console.log(await createProposal)
+    const createProposalSig = await signer?.signMessage(Message);
+
+    console.log(await createProposal);
     console.log("clicked");
     e.preventDefault();
     e.stopPropagation();
@@ -66,11 +65,11 @@ export default function NewProposal() {
         "User-Agent": "Thunder Client (https://www.thunderclient.com)",
         "Content-Type": "application/json",
       };
-      const address=verifyMessage(Message, createProposalSig as any)
+      const address = verifyMessage(Message, createProposalSig as any);
       let bodyContent = JSON.stringify({
         title: title,
         description: description,
-        creator:address,
+        creator: address,
       });
 
       let response = await fetch(
@@ -151,8 +150,8 @@ export default function NewProposal() {
         <link rel="icon" href="/logo-icon.svg" />
       </Head>
       <section className={`${styles.newProposalPage} ${styles.heroSection}`}>
-<ToastContainer />
-      {/* <Modal
+        <ToastContainer />
+        {/* <Modal
             isOpen={modalIsOpen}
             onAfterOpen={afterOpenModal}
             onRequestClose={closeModal}
@@ -168,8 +167,6 @@ export default function NewProposal() {
             </div>
           </Modal> */}
         <div className={` ${styles.heroContainer}`}>
-          
-
           <form
             action="#"
             style={{
@@ -210,7 +207,7 @@ export default function NewProposal() {
             >
               Description
               <textarea
-                rows={20}
+                rows={10}
                 cols={20}
                 value={description}
                 style={{

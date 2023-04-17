@@ -53,9 +53,9 @@ export default function ProposalDetails({ proposal }: any) {
       name: "vote",
     },
   ];
-  const convertToDate = (epochTime: string) => {
-    const date = parseInt(epochTime) * 1000;
-    return new Date(date).toLocaleString();
+  const convertToDate = (epochTime: any) => {
+    let date = new Date(0);
+    return date.setUTCSeconds(epochTime);
   };
 
   const SubmitVote = async () => {

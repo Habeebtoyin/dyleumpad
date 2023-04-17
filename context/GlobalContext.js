@@ -62,32 +62,32 @@ export function GlobalContextProvider({ children }) {
   // const upcomingPools = poolsData.filter(item => item.tag === "upcoming");
   // const completedPools = poolsData.filter(item => item.tag === "completed");
 
-  useEffect(() => {
-    const options = { method: "POST" };
-    fetch(
-      "https://solimax-nest-api-danijel-enoch.vercel.app/api/users/join/" +
-        address,
-      options
-    )
-      .then((response) => response.json())
-      .then((response) => {
-        if (response.ok) {
-          setSubText("Congratulations on becoming a member!");
-          setJoinBtnText("");
-          setLoggedIn(true);
-          console.log(loggedIn);
-        } else {
-          setJoinBtnText("Join");
-          setLoggedIn(false);
-          console.log(loggedIn);
-        }
-      })
-      .catch((err) => {
-        console.error(err);
-        setModalText(err.message);
-        toast.error(err.message);
-      });
-  }, []);
+  // useEffect(() => {
+  //   const options = { method: "POST" };
+  //   fetch(
+  //     "https://solimax-nest-api-danijel-enoch.vercel.app/api/users/join/" +
+  //       address,
+  //     options
+  //   )
+  //     .then((response) => response.json())
+  //     .then((response) => {
+  //       if (response.ok) {
+  //         setSubText("Congratulations on becoming a member!");
+  //         setJoinBtnText("");
+  //         setLoggedIn(true);
+  //         console.log(loggedIn);
+  //       } else {
+  //         setJoinBtnText("Join");
+  //         setLoggedIn(false);
+  //         console.log(loggedIn);
+  //       }
+  //     })
+  //     .catch((err) => {
+  //       console.error(err);
+  //       setModalText(err.message);
+  //       toast.error(err.message);
+  //     });
+  // }, []);
 
   useEffect(() => {
     switch (selectedPool) {
