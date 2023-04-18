@@ -9,13 +9,13 @@ export default function Footer() {
   return (
     <footer id="contact" className={styles.footer}>
       {/* footer Logo */}
-        <Link href="/">
-          <Image
-            className={styles.footerLogo}
-            src={footerLogo}
-            alt="footer logo"
-          />
-        </Link>
+      <Link href="/">
+        <Image
+          className={styles.footerLogo}
+          src={footerLogo}
+          alt="footer logo"
+        />
+      </Link>
 
       {/* NAV LINKS */}
       <ul className={styles.listContainer}>
@@ -37,11 +37,6 @@ export default function Footer() {
         <li className="menu-item">
           <Link href="/#how-to-buy" className={styles.link}>
             How to buy
-          </Link>
-        </li>
-        <li className="menu-item">
-          <Link href="/#contact" className={styles.link}>
-            Contact us
           </Link>
         </li>
       </ul>

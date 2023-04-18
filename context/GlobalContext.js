@@ -32,6 +32,7 @@ export function GlobalContextProvider({ children }) {
   const [mintBtnText, setMintBtnText] = useState("Mint");
   const [submitBtnText, setSubmitBtnText] = useState("Submit Vote");
   const [loggedIn, setLoggedIn] = useState(false);
+  const [joinedDAO, setJoinedDAO] = useState(false);
 
   const menuItems = [
     {
@@ -229,6 +230,8 @@ export function GlobalContextProvider({ children }) {
         setModalText,
         loggedIn,
         setLoggedIn,
+        joinedDAO,
+        setJoinedDAO,
         joinBtnText,
         setJoinBtnText,
         mintBtnText,

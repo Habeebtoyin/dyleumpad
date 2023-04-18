@@ -17,7 +17,7 @@ export default function Navbar() {
     <header className={styles.header}>
       <Link href="/">
         <div className="">
-          <Image className={styles.navLogo} src={navLogo} alt="logo" />
+          <Image className={styles.navLogo} src={navLogo} layout="fixed" alt="logo" />
         </div>
       </Link>
 
@@ -25,55 +25,6 @@ export default function Navbar() {
         {/* MENU */}
         <ul className={`${styles.menu} ${menuState ? styles.active : ``}`}>
           {/* {menuItems.map((item) => [<NavMenuList item={item} />])} */}
-         {/* <li
-            className={styles.menuItem}
-            onClick={() => {
-              setMenuState((prevState: any) => !prevState);
-              setCheckboxState((prevState: any) => !prevState);
-            }}
-          >
-            <Link href="/#about-us" className={styles.navLink}>
-              About us
-            </Link>
-          </li>
-          <li
-            className={styles.menuItem}
-            onClick={() => {
-              setMenuState((prevState: any) => !prevState);
-              setCheckboxState((prevState: any) => !prevState);
-            }}
-          >
-            <Link href="/#tokenomics" className={styles.navLink}>
-              Tokenomics
-            </Link>
-          </li> */}
-
-          {/* <li
-            className={styles.menuItem}
-            onClick={() => {
-              setMenuState((prevState) => !prevState);
-              setCheckboxState((prevState) => !prevState);
-            }}
-          >
-            <Link
-              href="/staking"
-              className={styles.navLink}
-              smooth="true"
-            >
-              Staking
-            </Link>
-          </li> */}
-         {/* <li
-            className={styles.menuItem}
-            onClick={() => {
-              setMenuState((prevState: any) => !prevState);
-              setCheckboxState((prevState: any) => !prevState);
-            }}
-          >
-            <Link href="/#roadmap" className={styles.navLink}>
-              Roadmap
-            </Link>
-          </li> */}
           <li
             className={styles.menuItem}
             onClick={() => {
@@ -96,17 +47,6 @@ export default function Navbar() {
               DAO
             </Link>
           </li>
-          {/* <li
-            className={styles.menuItem}
-            onClick={() => {
-              setMenuState((prevState: any) => !prevState);
-              setCheckboxState((prevState: any) => !prevState);
-            }}
-          >
-            <Link href="/dao/minting" className={styles.navLink}>
-              DAO Minting
-            </Link>
-          </li> */}
           <li
             className={styles.menuItem}
             onClick={() => {
@@ -141,7 +81,7 @@ export default function Navbar() {
               )
             : null}
           <div className={` ${styles.mobileBtn}`} id="mobile-btn">
-            <ConnectButton  showBalance={false} />
+            <ConnectButton showBalance={false} />
           </div>
         </ul>
       </nav>

@@ -7,76 +7,21 @@ import Image from "next/image";
 import heroBg from "../../components/assets/images/hero-bg.png";
 import { useEffect } from "react";
 import { GlobalAuth } from "../../context/GlobalContext";
-import { DaoNftMint } from "../../web3/nft";
-import { useAccount, useSigner } from "wagmi";
-import { ethers } from "ethers";
-import { toast } from "react-toastify";
-import Loader from "../Loading";
 
 export default function DAO() {
   const {
-    getLoginStatus,
-    balance,
-    loggedIn,
-    setLoggedIn,
     isNFTMinted,
     setIsNFTMinted,
   } = GlobalAuth();
-  const { isConnected, address } = useAccount();
-  const { data: signer, isError, isLoading } = useSigner();
-  const nftMinter = new DaoNftMint(
-    "0x807ddf70bB59B3940379D72901482f32C67d0722",
-    signer,
-    new ethers.providers.JsonRpcProvider("https://rpc.ankr.com/fantom")
-  );
-  // const checkMintStatus = async () => {
-  //   const data = await nftMinter.balanceOf(address).then((res) => {
-  //     res.toString();
-  //     const value = parseInt(res.toString());
-  //     // console.log(value);
-  //     if (isConnected === true) {
-  //       console.log(res);
-  //       if (value === 1) {
-  //         setLoggedIn(true);
-  //         Router.push("/dao/membership");
-  //       } else {
-  //         Router.push("/dao/minting");
-  //       }
-  //     }
-  //   });
-  //   // console.log(data)
-  // };
-  // if (isLoading) {
-  //   return <Loader />;
-  // }
-  // const Redirect = () => {
-  //   if (isConnected === true) {
-  //     Router.push("/dao/minting");
-  //   } else if (isConnected === true && loggedIn) {
-  //     console.log(loggedIn);
-  //     Router.push("/dao/membership");
-  //   }
-  // };
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
-    //   Redirect();
-    // checkMintStatus();
     if (isNFTMinted) {
       Router.push("/dao/membership");
     } else {
       Router.push("/dao/minting");
     }
   });
-
-  // useEffect(() => {
-  //   checkMintStatus();
-  // }, [isConnected]);
-
-  // useEffect(() => {
-  //   Router.push("/dao/minting");
-  // }, []);
-  // const {pathname}: any = Router;
 
   return (
     <>

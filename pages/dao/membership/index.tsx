@@ -41,8 +41,8 @@ export default function index({ proposals }: any) {
     modalIsOpen,
     modalText,
     setModalText,
-    loggedIn,
-    setLoggedIn,
+    joinedDAO,
+    setJoinedDAO,
     joinBtnText,
     setJoinBtnText,
     subText,
@@ -81,7 +81,6 @@ export default function index({ proposals }: any) {
     console.log(" Option", selectedOption.value);
   }
 
-  
   // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
     getLoginStatus();
@@ -109,13 +108,11 @@ export default function index({ proposals }: any) {
           toast.success(response.message);
           setSubText("Congratulations on becoming a member!");
           setJoinBtnText("");
-          setLoggedIn(true);
-          console.log(loggedIn);
+          setJoinedDAO(true);
         } else {
           toast.error(response.message);
           setJoinBtnText("Join");
-          setLoggedIn(false);
-          console.log(loggedIn);
+          setJoinedDAO(false);
         }
       })
       .catch((err) => {
@@ -124,13 +121,6 @@ export default function index({ proposals }: any) {
         toast.error(err.message);
         setJoinBtnText("Join");
       });
-    //add a toastify modal to this @CodexJay
-    //set global state to logged in after they have joined  and have been verified
-    // } catch (error: any) {
-    // console.log(error.message);
-    // setModalText(error.message);
-    // toast.error(modalText);
-    // }
   }
 
   return (
@@ -171,7 +161,7 @@ export default function index({ proposals }: any) {
             {mounted
               ? address &&
                 isConnected &&
-                !loggedIn &&
+                !joinedDAO &&
                 joinBtnText !== "" && (
                   <button
                     className={styles.joinBtn}
@@ -233,7 +223,7 @@ export default function index({ proposals }: any) {
                     borderColor: state.isFocused ? "grey" : "#454fda",
                     background: "#090e17",
                     width: "120px",
-                    color: "#fff",
+                    // color: "#fff",
                     height: "50px",
                   }),
                 }}
@@ -343,4 +333,3 @@ export const getStaticProps: GetStaticProps = async () => {
     },
   };
 };
-
