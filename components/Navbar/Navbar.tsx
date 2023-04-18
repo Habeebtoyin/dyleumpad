@@ -24,7 +24,7 @@ export default function Navbar() {
       <nav className={styles.navbar}>
         {/* MENU */}
         <ul className={`${styles.menu} ${menuState ? styles.active : ``}`}>
-          {/* {menuItems.map((item) => [<NavMenuList item={item} />])} */}
+          {/* {menuItems.map((item) => [<NavMenuItem item={item} />])} */}
           <li
             className={styles.menuItem}
             onClick={() => {

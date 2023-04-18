@@ -21,7 +21,7 @@ export default function DAO() {
     } else {
       Router.push("/dao/minting");
     }
-  });
+  }, []);
 
   return (
     <>

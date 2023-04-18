@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import { GlobalAuth } from "../../../context/GlobalContext";
 import styles from '../../styles/Navbar.module.css';
 
-export default function NavMenuList({ item }) {
+export default function NavMenuItem({ item }) {
   const { setCheckboxState, setMenuState } = GlobalAuth();
 
   return (

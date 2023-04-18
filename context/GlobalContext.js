@@ -145,7 +145,6 @@ export function GlobalContextProvider({ children }) {
     const data = await nftMinter.balanceOf(address).then((res) => {
       res.toString();
       const value = parseInt(res.toString());
-      // console.log(value);
       if (isConnected === true) {
         console.log(res)
         if (value === 1) {
