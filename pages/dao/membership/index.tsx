@@ -47,6 +47,7 @@ export default function index({ proposals }: any) {
     setJoinBtnText,
     subText,
     setSubText,
+    getLoginStatus,
   } = GlobalAuth();
 
   const options = [
@@ -80,31 +81,7 @@ export default function index({ proposals }: any) {
     console.log(" Option", selectedOption.value);
   }
 
-  async function getLoginStatus() {
-    //check if user wallet is connected
-    if (account.isConnected === true) {
-      const { address } = account;
-      const options = { method: "POST" };
-      fetch(
-        "https://solimax-nest-api.vercel.app/api/users/join/" + address,
-        options
-      ).then((res) => {
-        console.log(res);
-        if (res.status === 200) {
-          setSubText("Congratulations on becoming a member!");
-          setJoinBtnText("");
-          setLoggedIn(true);
-          console.log(loggedIn);
-        } else {
-          setJoinBtnText("Join");
-          setLoggedIn(false);
-          console.log(loggedIn);
-        }
-      });
-    }
-    //then fetch Join status
-    //then return boolean
-  }
+  
   // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
     getLoginStatus();
@@ -366,3 +343,4 @@ export const getStaticProps: GetStaticProps = async () => {
     },
   };
 };
+

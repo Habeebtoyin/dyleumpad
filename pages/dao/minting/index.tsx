@@ -20,7 +20,14 @@ export default function DAOMinting() {
   const { data: signer, isError, isLoading } = useSigner();
   const { connector: activeConnector, isConnected, address } = useAccount();
   const { connect, connectors, error, pendingConnector } = useConnect();
-  const { setModalText, modalText, mintBtnText, setMintBtnText } = GlobalAuth();
+  const {
+    setModalText,
+    modalText,
+    mintBtnText,
+    balance,
+    setMintBtnText,
+    getLoginStatus,
+  } = GlobalAuth();
 
   const Redirect = () => {
     if (isConnected === false) {
@@ -34,17 +41,17 @@ export default function DAOMinting() {
     new ethers.providers.JsonRpcProvider("https://rpc.ankr.com/fantom")
   );
 
-  const balance = async () => {
-    const data = await nftMinter.balanceOf(address).then((res) => {
-      res.toString();
-      const value: number = parseInt(res.toString());
-      // console.log(value);
-      if (value === 1) {
-        Router.push("/dao/membership");
-      }
-    });
-    // console.log(data)
-  };
+  // const balance = async () => {
+  //   const data = await nftMinter.balanceOf(address).then((res) => {
+  //     res.toString();
+  //     const value: number = parseInt(res.toString());
+  //     // console.log(value);
+  //     if (value === 1) {
+  //       Router.push("/dao/membership");
+  //     }
+  //   });
+  //   // console.log(data)
+  // };
 
   const mint = async (e: any) => {
     e.preventDefault();
@@ -62,7 +69,7 @@ export default function DAOMinting() {
       })
       .catch((err: any) => {
         if (err.data) {
-          toast.error(`${err.data.message}. It requires 80 FTM`);
+          toast.error(`${err.data.message}. It requires 100 FTM`);
         } else if (err.error) {
           toast.error(err.error.data.message);
           console.log(err.error.data.message);
@@ -80,7 +87,7 @@ export default function DAOMinting() {
 
   useEffect(() => {
     setMintBtnText("Mint");
-
+    getLoginStatus();
     balance();
   }, []);
 

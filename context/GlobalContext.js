@@ -4,12 +4,19 @@ import { ActivePools, UpcomingPools, CompletedPools } from "../data/PoolsData";
 import { useAccount, useSigner } from "wagmi";
 import { verifyMessage } from "ethers/lib/utils.js";
 import { toast } from "react-toastify";
+import { Router, useRouter } from "next/router";
+import { DaoNftMint } from "../web3/nft";
+import { ethers } from "ethers";
+import { getAccount } from "@wagmi/core";
 
 const GlobalContext = createContext();
 
 export function GlobalContextProvider({ children }) {
   const { isConnected, address } = useAccount();
+  const account = getAccount();
+  const router = useRouter();
   const { data: signer, isError, isLoading } = useSigner();
+  const [isNFTMinted, setIsNFTMinted] = useState(false);
   const [menuState, setMenuState] = useState(false);
   const [checkboxState, setCheckboxState] = useState(false);
   const [filterValue, setFilterValue] = useState(null);
@@ -89,6 +96,74 @@ export function GlobalContextProvider({ children }) {
   //     });
   // }, []);
 
+  const nftMinter = new DaoNftMint(
+    "0x807ddf70bB59B3940379D72901482f32C67d0722",
+    signer,
+    new ethers.providers.JsonRpcProvider("https://rpc.ankr.com/fantom")
+  );
+
+  const balance = async () => {
+    const data = await nftMinter.balanceOf(address).then((res) => {
+      res.toString();
+      const value = parseInt(res.toString());
+      // console.log(value);
+      if (value === 1) {
+        router.push("/dao/membership");
+      }
+    });
+    // console.log(data)
+  };
+
+  async function getLoginStatus() {
+    //check if user wallet is connected
+    if (account.isConnected === true) {
+      const { address } = account;
+      const options = { method: "POST" };
+      await fetch(
+        "https://solimax-nest-api.vercel.app/api/users/join/" + address,
+        options
+      ).then((res) => {
+        if (res.status === 200) {
+          setSubText("Congratulations on becoming a member!");
+          setJoinBtnText("");
+          setLoggedIn(true);
+          router.push("/dao/membership");
+          console.log(loggedIn);
+        } else {
+          setJoinBtnText("Join");
+          // setLoggedIn(false);
+          console.log(loggedIn);
+        }
+      });
+    }
+    //then fetch Join status
+    //then return boolean
+  }
+
+  const checkMintStatus = async () => {
+    const data = await nftMinter.balanceOf(address).then((res) => {
+      res.toString();
+      const value = parseInt(res.toString());
+      // console.log(value);
+      if (isConnected === true) {
+        console.log(res)
+        if (value === 1) {
+          setLoggedIn(true)
+          setIsNFTMinted(true)
+        } else {
+          setIsNFTMinted(false)
+        }
+      }
+    });
+    // console.log(data)
+  };
+
+  useEffect(() => {
+    checkMintStatus();
+    // getLoginStatus();
+    // balance();
+  }, []);
+
   useEffect(() => {
     switch (selectedPool) {
       case "active":
@@ -130,6 +205,8 @@ export function GlobalContextProvider({ children }) {
         menuState,
         checkboxState,
         menuItems,
+        isNFTMinted,
+        setIsNFTMinted,
         setMenuState,
         setCheckboxState,
         poolsData,
@@ -160,6 +237,8 @@ export function GlobalContextProvider({ children }) {
         setSubText,
         submitBtnText,
         setSubmitBtnText,
+        getLoginStatus,
+        balance,
         // joinDAO,
       }}
     >
