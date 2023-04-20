@@ -54,8 +54,10 @@ export default function ProposalDetails({ proposal }: any) {
     },
   ];
   const convertToDate = (epochTime: any) => {
-    let date = new Date(0);
-    return date.setUTCSeconds(epochTime);
+    let time = epochTime * 1000;
+    console.log(time);
+    let date = new Date(time).toString();
+    return date;
   };
 
   const SubmitVote = async () => {
@@ -103,6 +105,11 @@ export default function ProposalDetails({ proposal }: any) {
     proposal?.againstVote + proposal?.maybeVote + proposal.forVote;
   console.log(proposal);
   console.log(proposal.voter?.address);
+
+  const truncateAddress = (param: any) => {
+    let add = param.slice(1, -5);
+    return add;
+  };
   return (
     <div>
       <Head>
@@ -173,7 +180,8 @@ export default function ProposalDetails({ proposal }: any) {
 
                   <div style={{ color: "#fff" }}>
                     <span style={{ opacity: ".9" }}>by</span>{" "}
-                    {proposal?.creator.slice(0, 10)}
+                    <p className="truncate">{truncateEthAddress(proposal?.creator)}</p>
+                    
                   </div>
                 </div>
               </div>

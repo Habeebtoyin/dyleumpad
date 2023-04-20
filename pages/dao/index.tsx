@@ -7,21 +7,36 @@ import Image from "next/image";
 import heroBg from "../../components/assets/images/hero-bg.png";
 import { useEffect } from "react";
 import { GlobalAuth } from "../../context/GlobalContext";
+import { useAccount } from "wagmi";
 
 export default function DAO() {
   const {
+    loggedIn,
     isNFTMinted,
     setIsNFTMinted,
+    setMenuState,
+    setCheckboxState,
+    Redirect,
   } = GlobalAuth();
+  const { isConnected } = useAccount();
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
-    if (isNFTMinted) {
+    if (isNFTMinted && loggedIn && isConnected === true) {
       Router.push("/dao/membership");
-    } else {
+    }  else {
       Router.push("/dao/minting");
     }
   }, []);
+
+  useEffect(() => {
+    if (isNFTMinted && loggedIn && isConnected === true) {
+      Router.push("/dao/membership");
+    }  else {
+      Router.push("/dao/minting");
+    }
+    Redirect();
+  }, [isConnected]);
 
   return (
     <>

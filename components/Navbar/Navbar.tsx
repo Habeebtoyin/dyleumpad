@@ -7,24 +7,61 @@ import Link from "next/link";
 import Image from "next/image";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { useIsMounted } from "../../hooks/useIsMounted";
+import { NavMenuItem } from "./NavMenuList";
 
+interface Props {
+  id: number;
+  label: string;
+  href: string;
+}
 export default function Navbar() {
   const { menuState, setCheckboxState, setMenuState, isConnected } =
     GlobalAuth();
   const mounted = useIsMounted();
 
+  // const menuItems = [
+  //   {
+  //     id: 1,
+  //     label: "Launchpad",
+  //     href: "/launchpad",
+  //   },
+  //   {
+  //     id: 2,
+  //     label: "Launchpad",
+  //     href: "/launchpad",
+  //   },
+  //   {
+  //     id: 3,
+  //     label: "Launchpad",
+  //     href: "/launchpad",
+  //   },
+  //   {
+  //     id: 4,
+  //     label: "Launchpad",
+  //     href: "/launchpad",
+  //   },
+  // ];
+  // console.log(menuItems)
+
   return (
     <header className={styles.header}>
       <Link href="/">
         <div className="">
-          <Image className={styles.navLogo} src={navLogo} layout="fixed" alt="logo" />
+          <Image
+            className={styles.navLogo}
+            src={navLogo}
+            layout="fixed"
+            alt="logo"
+          />
         </div>
       </Link>
 
       <nav className={styles.navbar}>
         {/* MENU */}
         <ul className={`${styles.menu} ${menuState ? styles.active : ``}`}>
-          {/* {menuItems.map((item) => [<NavMenuItem item={item} />])} */}
+          {/* {menuItems.map((item : any) => (
+            <NavMenuItem key={item.id} item={item} />
+          ))} */}
           <li
             className={styles.menuItem}
             onClick={() => {

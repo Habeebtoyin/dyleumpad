@@ -1,10 +1,10 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
-import { GlobalAuth } from "../../../context/GlobalContext";
 import styles from '../../styles/Navbar.module.css';
+import Link from "next/link";
+import { GlobalAuth } from "../../context/GlobalContext";
 
-export default function NavMenuItem({ item }) {
+export function NavMenuItem({ item }) {
   const { setCheckboxState, setMenuState } = GlobalAuth();
+  console.log(item)
 
   return (
     <li
@@ -15,7 +15,7 @@ export default function NavMenuItem({ item }) {
         setCheckboxState((prevState) => !prevState);
       }}
     >
-      <NavLink to={item.href}>{item.title}</NavLink>
+      <Link to={item.href}>{item.label}</Link>
     </li>
   );
 }

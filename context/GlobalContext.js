@@ -133,7 +133,6 @@ export function GlobalContextProvider({ children }) {
         } else {
           setJoinBtnText("Join");
           // setLoggedIn(false);
-          console.log(loggedIn);
         }
       });
     }
@@ -146,22 +145,29 @@ export function GlobalContextProvider({ children }) {
       res.toString();
       const value = parseInt(res.toString());
       if (isConnected === true) {
-        console.log(res)
+        console.log(res);
         if (value === 1) {
-          setLoggedIn(true)
-          setIsNFTMinted(true)
+          setLoggedIn(true);
+          setIsNFTMinted(true);
         } else {
-          setIsNFTMinted(false)
+          setIsNFTMinted(false);
         }
       }
     });
     // console.log(data)
   };
 
+  const Redirect = () => {
+    if (isConnected === false) {
+      router.push("/dao");
+      setMenuState(false);
+      setCheckboxState(false);
+    }
+  };
+
   useEffect(() => {
     checkMintStatus();
-    // getLoginStatus();
-    // balance();
+    console.log(isConnected);
   }, []);
 
   useEffect(() => {
@@ -241,6 +247,7 @@ export function GlobalContextProvider({ children }) {
         setSubmitBtnText,
         getLoginStatus,
         balance,
+        Redirect,
         // joinDAO,
       }}
     >

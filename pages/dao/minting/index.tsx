@@ -25,33 +25,16 @@ export default function DAOMinting() {
     modalText,
     mintBtnText,
     balance,
+    Redirect,
     setMintBtnText,
     getLoginStatus,
   } = GlobalAuth();
-
-  const Redirect = () => {
-    if (isConnected === false) {
-      Router.push("/dao");
-    }
-  };
 
   const nftMinter = new DaoNftMint(
     "0x807ddf70bB59B3940379D72901482f32C67d0722",
     signer,
     new ethers.providers.JsonRpcProvider("https://rpc.ankr.com/fantom")
   );
-
-  // const balance = async () => {
-  //   const data = await nftMinter.balanceOf(address).then((res) => {
-  //     res.toString();
-  //     const value: number = parseInt(res.toString());
-  //     // console.log(value);
-  //     if (value === 1) {
-  //       Router.push("/dao/membership");
-  //     }
-  //   });
-  //   // console.log(data)
-  // };
 
   const mint = async (e: any) => {
     e.preventDefault();
@@ -69,7 +52,7 @@ export default function DAOMinting() {
       })
       .catch((err: any) => {
         if (err.data) {
-          toast.error(`${err.data.message}. It requires 100 FTM`);
+          toast.error(`${err?.data.message}. It requires 100 FTM`);
         } else if (err.error) {
           toast.error(err.error.data.message);
           console.log(err.error.data.message);

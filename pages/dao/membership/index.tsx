@@ -15,6 +15,7 @@ import { useIsMounted } from "../../../hooks/useIsMounted";
 import { getAccount } from "@wagmi/core";
 import { GetStaticProps } from "next";
 import { useEffect } from "react";
+import { Router, useRouter } from "next/router";
 
 interface Data {
   statusCode: number;
@@ -24,14 +25,17 @@ interface Data {
 
 export default function index({ proposals }: any) {
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  const { address } = useAccount();
+  const { address, isConnected } = useAccount();
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const router = useRouter();
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const mounted = useIsMounted();
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const { data: signer, isError, isLoading } = useSigner();
   const account = getAccount();
   const {
-    isConnected,
+    setMenuState,
+    setCheckboxState,
     selectedTab,
     setSelectedTab,
     setFilterValue,
@@ -48,6 +52,7 @@ export default function index({ proposals }: any) {
     subText,
     setSubText,
     getLoginStatus,
+    Redirect,
   } = GlobalAuth();
 
   const options = [
@@ -80,6 +85,11 @@ export default function index({ proposals }: any) {
     setFilterValue(selectedOption.value);
     console.log(" Option", selectedOption.value);
   }
+
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  useEffect(() => {
+    Redirect();
+  }, [isConnected]);
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
@@ -145,7 +155,7 @@ export default function index({ proposals }: any) {
               Member Page
             </h1>
 
-            <p
+            {/* <p
               style={{
                 color: "#9ca3af",
                 fontWeight: "400",
@@ -155,10 +165,10 @@ export default function index({ proposals }: any) {
               className={` ${styles.memberText}`}
             >
               {subText}
-            </p>
+            </p> */}
 
             {/* when a user's wallet is connected */}
-            {mounted
+            {/* {mounted
               ? address &&
                 isConnected &&
                 !joinedDAO &&
@@ -173,16 +183,16 @@ export default function index({ proposals }: any) {
                     {joinBtnText}
                   </button>
                 )
-              : null}
+              : null} */}
             {/* when a user's wallet isn't connected */}
-            {mounted
+            {/* {mounted
               ? !address &&
                 !isConnected && (
                   <div className={styles.connectBtn}>
                     <ConnectButton />
                   </div>
                 )
-              : null}
+              : null} */}
           </div>
           <div className={`${styles.header}`}>
             <div className={`${styles.leftCol} ${styles.buttons}`}>
