@@ -52,7 +52,6 @@
   z-index: 999999;
 }
 
-
 /* .buyBtnsDiv {
     display: flex;
     justify-content: center;
@@ -118,11 +117,14 @@
   display: grid;
   gap: 32px;
   width: 100%;
+  margin-bottom: 20px;
 }
 
 .poolBox {
   width: 100%;
   position: relative;
+  max-width: 421px;
+  margin-inline: auto;
 }
 
 /* BOX DETAILS */
@@ -133,24 +135,35 @@
   text-align: left;
 }
 
-.boxImg,
-.rightCol .boxImg {
-  height: 100% !important;
-  width: 100%;
+@media screen and (max-width: 700px) {
+  .boxImg,
+  .rightCol .boxImg {
+    height: 100% !important;
+    width: 100%;
+  }
 }
 
 .fContent {
   width: 100%;
   max-width: 400px;
   margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
   position: absolute;
-  top: 56px;
+  top: 50%;
+  transform: translateY(-50%);
   padding-inline: 30px;
+}
+
+.launchpad .fContent {
+  align-items: start;
 }
 
 .topContent {
   margin-block: 13px 14px;
   display: flex;
+  align-items: center;
   justify-content: space-between;
   height: fit-content;
   width: 100%;
@@ -214,7 +227,7 @@
 .dash {
   border: 1px dashed #00e5ff;
   transform: rotate(-0.17deg);
-  margin-block: 32.73px 34.27px;
+  margin-block: 15px;
 }
 
 .boxHeading {
@@ -289,7 +302,7 @@
   border: 1px solid #2166ae;
   outline: none;
   display: flex;
-  max-width: 421px;
+  /* max-width: 421px; */
   margin-inline: auto;
   justify-content: center;
   padding-block: 13.5px;
@@ -509,7 +522,7 @@
 
 @media screen and (min-width: 400px) {
   .fContent {
-    top: 98px;
+    /* top: 98px; */
     padding-inline: 36px;
   }
 
@@ -525,21 +538,21 @@
     height: 56px;
   }
 
-  .dash {
+  /* .dash {
     margin-block: 43.73px 46px;
-  }
+  } */
 
   .boxButton {
     font-size: 13.33px;
   }
 
   .boxHeading {
-    font-size: 17px;
+    font-size: 20px;
   }
 
   .box p,
   .box a {
-    font-size: 11.5398px;
+    font-size: 14px;
   }
 
   .allocationGroup {
@@ -567,6 +580,11 @@
     width: fit-content;
   }
 
+  .container {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 2rem;
+  }
+
   .poolsBtns {
     flex-direction: row;
     border: none;
@@ -582,14 +600,14 @@
     height: 24px;
   }
 
-  .dash {
+  /* .dash {
     margin-block: 43.73px 49.27px;
-  }
+  } */
 
-  .container {
+  /* .container {
     grid-template-columns: repeat(2, 1fr);
     padding: 2rem;
-  }
+  } */
 
   .poolTokenInformation {
     flex-direction: row;
@@ -650,5 +668,4 @@
   .bar {
     height: 24px;
   }
-  
 }

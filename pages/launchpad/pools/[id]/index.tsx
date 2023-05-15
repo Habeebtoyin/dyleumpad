@@ -61,13 +61,13 @@ const Pool = ({ pool }: any) => {
 
 export default Pool;
 
-export const getStaticProps : GetStaticProps = async (context: any) => {
+export const getStaticProps: GetStaticProps = async (context: any) => {
   const res = await fetch(
     "https://solimax-api-danijel-enoch.vercel.app/api/pools/" +
       context?.params.id
   );
   const pool = await res.json();
-  console.log(pool, context.params.id)
+  console.log(pool, context.params.id);
 
   if (!pool) {
     return {
@@ -81,7 +81,7 @@ export const getStaticProps : GetStaticProps = async (context: any) => {
     },
   };
 };
-export const getStaticPaths : GetStaticPaths = async () => {
+export const getStaticPaths: GetStaticPaths = async () => {
   const res = await fetch(
     "https://solimax-api-danijel-enoch.vercel.app/api/pools"
   );

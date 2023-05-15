@@ -49,6 +49,11 @@ export default function LaunchPad({ pools }: any) {
     },
   ];
 
+  // switch(titles.title){
+  //   case "Active Pools":
+  //     setSelectedPool()
+  // }
+
   const { chain } = useNetwork();
   const [cChain, setCChain] = useState(chain);
   const { data: signer, isError, isLoading } = useSigner();
@@ -124,7 +129,16 @@ export default function LaunchPad({ pools }: any) {
 
           <div className={styles.container}>
             {pools.length === 0 && (
-              <p style={{textAlign: "center", marginTop: "-10px", marginBottom: "16px"}} className={HomeStyles.text}>No pools at the moment</p>
+              <p
+                style={{
+                  textAlign: "center",
+                  marginTop: "-10px",
+                  marginBottom: "16px",
+                }}
+                className={HomeStyles.text}
+              >
+                No pools at the moment
+              </p>
             )}
             {pools
               ?.slice(pagesVisited, pagesVisited + cardPerPage)
@@ -337,7 +351,7 @@ export default function LaunchPad({ pools }: any) {
                 </div>
               ))}
           </div>
-          {pools?.length > 0 && (
+          {pools?.length > 3 && (
             <ReactPaginate
               breakLabel="..."
               nextLabel=">"
@@ -359,12 +373,12 @@ export default function LaunchPad({ pools }: any) {
   );
 }
 
-export const getStaticProps : GetStaticProps = async () => {
+export const getStaticProps: GetStaticProps = async () => {
   const res = await fetch(
     "https://solimax-api-danijel-enoch.vercel.app/api/pools"
   );
   const pools = await res.json();
-  console.log(pools)
+  console.log(pools);
 
   return {
     props: {
