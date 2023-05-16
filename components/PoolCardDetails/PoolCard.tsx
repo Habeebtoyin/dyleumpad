@@ -317,6 +317,7 @@ export default function PoolCard({ pool }: any) {
       <input
         type="number"
         placeholder="Enter USDC"
+        min="0"
         // value={amountToBuy}
         onChange={(e) => {
           console.log(e.target.value);

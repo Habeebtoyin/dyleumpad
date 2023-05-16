@@ -12,6 +12,7 @@ import Image from "next/image";
 import BlueNorvaLogo from "../../components/assets/images/launchpad/Blue-norva-logo.png";
 
 export default function HeroSection({ pool }: any) {
+  console.log(pool?.Website)
   return (
     <section className={styles.heroSection}>
       <Image className={styles.bg} src={heroBg} alt="hero background" />
