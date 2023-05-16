@@ -255,8 +255,8 @@ export default function PoolCard({ pool }: any) {
                 style={{
                   width:
                     (
-                      (parseInt(convertweiToEthers(tierDetails?.amountRaised)) /
-                        parseInt(convertweiToEthers(tierDetails?.maxTierCap))) *
+                      (parseInt(convertweiToEthers(tierDetails?.amountRaised,6)) /
+                        parseInt(convertweiToEthers(tierDetails?.maxTierCap,6))) *
                       100
                     )
                       .toFixed(2)

@@ -166,7 +166,7 @@ export default function PoolCard({ pool }) {
               <div className={styles.allocationGroupContainer}>
                 <p className={styles.allocationGroupText}>Min Allocation</p>
                 <h3 className={styles.allocationGroupHeading}>
-                  {convertweiToEthers(tierDetails.minUserCap)}
+                  {convertweiToEthers(tierDetails.minUserCap,6)}
                 </h3>
               </div>
             )}
@@ -174,7 +174,7 @@ export default function PoolCard({ pool }) {
             <div className={styles.allocationGroupContainer}>
               <p className={styles.allocationGroupText}>Max Allocation</p>
               <h3 className={styles.allocationGroupHeading}>
-                {convertweiToEthers(tierDetails.maxUserCap)}
+                {convertweiToEthers(tierDetails.maxUserCap,6)}
               </h3>
             </div>
             <div className={styles.allocationGroupContainer}>
