@@ -1,10 +1,12 @@
-import { BigNumber, ethers } from "ethers"
+import { BigNumber, ethers } from "ethers";
+
 export function convertweiToEthers(amount, decimal) {
-    const value = BigNumber.from(amount);
-    return ethers.utils.formatUnits(value, decimal)
+  const value = BigNumber?.from(amount);
+  return ethers?.utils?.formatUnits(value, decimal);
 }
+
 export function convertEthersToWei(amount, decimal) {
-    return ethers.utils.parseUnits(amount.toString(), decimal)
+  return ethers?.utils?.parseUnits(amount?.toString(), decimal);
 }
 
 // export async function etherToUsdt(value) {

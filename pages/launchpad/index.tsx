@@ -10,16 +10,20 @@ import { useNetwork, useSigner, useSwitchNetwork } from "wagmi";
 import Link from "next/link";
 import Image from "next/image";
 import dots from "../../components/assets/icons/launchpad-card-dots.svg";
+import frame from "../../components/assets/images/launchpad/pool-frame.png";
 import DAILogo from "../../components/assets/icons/dai-logo.png";
 import { convertweiToEthers } from "../../web3/priceOracle";
 import Footer from "../../components/Footer";
 import { GetStaticProps } from "next";
+import HeroSection from "../../components/LaunchPad/HeroSection";
+import BuyButtons from "../../components/LaunchPad/BuyButtons";
+import BlueNorvaLogo from "../../components/assets/images/launchpad/Blue-norva-logo.png";
 
-const BuyButtons = lazy(() => import("../../components/LaunchPad/BuyButtons"));
+// const BuyButtons = lazy(() => import("../../components/LaunchPad/BuyButtons"));
 
-const HeroSection = lazy(
-  () => import("../../components/LaunchPad/HeroSection")
-);
+// const HeroSection = lazy(
+//   () => import("../../components/LaunchPad/HeroSection")
+// );
 
 // const Pools = lazy(() => import("./pools/components/Pools/Pools"));
 
@@ -76,7 +80,7 @@ export default function LaunchPad({ pools }: any) {
     )
   );
 
-  let progressValue = tierDetails.amountRaised / tierDetails.maxTierCap;
+  let progressValue = tierDetails?.amountRaised / tierDetails?.maxTierCap;
   let percentage: any = (progressValue * 100).toFixed(2);
   // percentage = percentage.toFixed(2) ;
 
@@ -85,10 +89,11 @@ export default function LaunchPad({ pools }: any) {
   // }
 
   useEffect(() => {
-    newLaunchPool.getTierDetails().then((res) => {
-      //console.log({ tier: res });
+    newLaunchPool?.getTierDetails().then((res) => {
+      console.log(res);
       setTierDetails(res);
     });
+    // console.log(pools);
   }, []);
 
   return (
@@ -143,9 +148,10 @@ export default function LaunchPad({ pools }: any) {
             {pools
               ?.slice(pagesVisited, pagesVisited + cardPerPage)
               .map((pool: any) => (
-                <div key={pool.id} className={styles.poolBox}>
+                <div key={pool?.id} className={styles.poolBox}>
                   <div className={styles.box}>
-                    {pool.tag !== "completed" && (
+                    <Image src={frame} alt="pool frame" />
+                    {/* {pool.tag !== "completed" && (
                       <svg
                         width="421"
                         height="457"
@@ -176,8 +182,8 @@ export default function LaunchPad({ pools }: any) {
                           strokeWidth="1.9233"
                         />
                       </svg>
-                    )}
-                    {pool.tag === "completed" && (
+                    )} */}
+                    {/* {pool.tag === "completed" && (
                       // <Image
                       //   className={`${styles.boxImg} ${styles.completedPoolBox}`}
                       //   src={cardBorder1}
@@ -214,22 +220,35 @@ export default function LaunchPad({ pools }: any) {
                           strokeWidth="1.9233"
                         />
                       </svg>
-                    )}
+                    )} */}
                     {/* <!--content inside the box--> */}
                     <div className={styles.fContent}>
                       {/* top contents */}
-                      <Image src={dots} alt="dots" width="39.31px" />
+                      <Image
+                        src={dots}
+                        alt="dots"
+                        width="39.31px"
+                        style={{ marginRight: "auto" }}
+                      />
                       <div className={styles.topContent}>
+                        {pool?.tokenName === "Blue Norva" && (
+                          <Image
+                            src={BlueNorvaLogo}
+                            alt="logo"
+                            width="80px"
+                            height="80px"
+                          />
+                        )}
                         {/* <div className="logo">{pool?.logo}</div> */}
-                        <Image
+                        {/* <Image
                           className={styles.logo}
                           src={DAILogo}
                           alt="logo"
                           width={100}
                           height={46}
-                        />
+                        /> */}
                         <div className={styles.buttons}>
-                          {pool.tags?.map((tag: any, index: number) => (
+                          {pool?.tags?.map((tag: any, index: number) => (
                             <button key={index} className={styles.boxButton}>
                               {tag}
                             </button>
@@ -264,7 +283,8 @@ export default function LaunchPad({ pools }: any) {
                               Min Allocation
                             </p>
                             <h3 className={styles.allocationGroupHeading}>
-                              {convertweiToEthers(tierDetails.minUserCap)}
+                              {/* {convertweiToEthers(tierDetails.minUserCap)} */}
+                              {pool?.minimumPurchase}
                             </h3>
                           </div>
                         )}
@@ -274,7 +294,8 @@ export default function LaunchPad({ pools }: any) {
                             Max Allocation
                           </p>
                           <h3 className={styles.allocationGroupHeading}>
-                            {convertweiToEthers(tierDetails.maxUserCap)}
+                            {/* {convertweiToEthers(tierDetails.maxUserCap)} */}
+                            {pool?.maximumPurchase}
                           </h3>
                         </div>
                         <div className={styles.allocationGroupContainer}>

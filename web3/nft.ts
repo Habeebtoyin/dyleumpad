@@ -20,14 +20,14 @@ export class DaoNftMint {
   }
 
   async mint() {
-    const tx = await this.contract.safeMint({
+    const tx = await this?.contract?.safeMint({
       value: ethers.utils.parseEther("100"),
     });
     const receipt = await tx.wait();
     return receipt;
   }
   async balanceOf(address : any) {   
-    const result = await this.contractWithProvider.balanceOf(address);
+    const result = await this?.contractWithProvider?.balanceOf(address);
     // console.log(this.address)
     return result
   }

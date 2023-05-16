@@ -2,6 +2,7 @@ import styles from "../../styles/Launchpad.module.css";
 import cardBorder from "../assets/icons/Strokes.svg";
 import cardBorder1 from "../assets/icons/strokes1.svg";
 import percentageBar from "../assets/icons/percentage-Bar.svg";
+import frame from "../../components/assets/images/launchpad/pool-frame.png";
 import { ethers } from "ethers";
 import { useState, useEffect } from "react";
 import { useSigner } from "wagmi";
@@ -20,6 +21,7 @@ import {
 } from "wagmi/chains";
 import { publicProvider } from "wagmi/providers/public";
 import PhaseBtns from "./PhaseBtns";
+import Image from "next/image";
 
 const { provider } = configureChains(
   [fantom, fantomTestnet, optimism, optimismGoerli],
@@ -110,29 +112,35 @@ export default function PoolCard({ pool }: any) {
     )
   );
 
-  async function BuyPresale() {
-    if (parseInt(saleStart) < currentDate / 1000) {
-      const value = convertEthersToWei(amountToBuy.toString(), 18);
-      // toast.success("Allowance Success");
-      newLaunchPool
-        .increaseAllowance(value.toString())
-        .then((res) => {
-          toast.success("Allowance Success");
-          toast.success("Buying Presale Token");
-          newLaunchPool
-            .buyTokens(value.toString())
-            .then((res) => {
-              toast.success("Presale Token Bought");
-            })
-            .catch((err) => {
-              toast.error(err.error.data.message);
-            });
-        })
-        .catch((err) => {
-          toast.error(err.error.data.message);
-        });
-    } else {
-      toast.error("Launch Has not Started Yet");
+  async function BuyPresale(e: any) {
+    e.preventDefault();
+    if (amountToBuy !== 0) {
+      if (parseInt(saleStart) < currentDate / 1000) {
+        const value = convertEthersToWei(amountToBuy.toString(), 18);
+        // toast.success("Allowance Success");
+        newLaunchPool
+          .increaseAllowance(value.toString())
+          .then((res) => {
+            toast.success("Allowance Success");
+            toast.success("Buying Presale Token");
+            newLaunchPool
+              .buyTokens(value.toString())
+              .then((res) => {
+                toast.success("Presale Token Bought");
+              })
+              .catch((err) => {
+                toast.error(err.error.data.message);
+              });
+          })
+          .catch((err) => {
+            toast.error(err.error.data.message);
+          });
+      } else {
+        toast.error("Launch Has not Started Yet");
+      }
+    }
+    else{
+      toast.error("USDC amount can't be empty")
     }
   }
 
@@ -155,7 +163,8 @@ export default function PoolCard({ pool }: any) {
     <div key={pool.id} className={styles.poolBox}>
       {/* <div className="pool-box"> */}
       <div className={styles.box}>
-        <svg
+        <Image src={frame} alt="pool frame" />
+        {/* <svg
           width="421"
           height="457"
           className={styles.boxImg}
@@ -216,7 +225,7 @@ export default function PoolCard({ pool }: any) {
               strokeWidth="1.9233"
             />
           </svg>
-        )}
+        )} */}
         {/* <!--content inside the box--> */}
         <div className={styles.fContent}>
           {/* <!--begin top contents--> */}
@@ -259,9 +268,9 @@ export default function PoolCard({ pool }: any) {
               ></div>
             </div>
             <div className="">
-              <p className={styles.percentage}>
+              {/* <p className={styles.percentage}>
                 {convertweiToEthers(tierDetails?.amountRaised)}
-              </p>
+              </p> */}
               <p className={styles.SLMAmt}>
                 {convertweiToEthers(tierDetails?.amountRaised)}/
                 {convertweiToEthers(tierDetails?.maxTierCap)} DAI
@@ -269,7 +278,7 @@ export default function PoolCard({ pool }: any) {
             </div>
           </div>
 
-          <div className={styles.dash}></div>
+          <div className={styles.dash} style={{width: "100%"}}></div>
 
           <div className={styles.allocationGroup}>
             <div className={styles.allocationGroupContainer}>
@@ -307,12 +316,13 @@ export default function PoolCard({ pool }: any) {
       </div>
       <input
         type="number"
-        placeholder="Enter SLM Amount"
+        placeholder="Enter USDC"
         // value={amountToBuy}
         onChange={(e) => {
           console.log(e.target.value);
           setAmountToBuy(e.target.value);
         }}
+        required
       />
 
       {pool.tag === "active" && (

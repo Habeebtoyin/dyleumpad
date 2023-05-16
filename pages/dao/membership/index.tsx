@@ -112,23 +112,23 @@ export default function index({ proposals }: any) {
     )
       .then((response) => response.json())
       .then((response) => {
-        if (response.ok) {
-          console.log(response.message);
-          setModalText(response.message);
-          toast.success(response.message);
+        if (response?.ok) {
+          console.log(response?.message);
+          setModalText(response?.message);
+          toast.success(response?.message);
           setSubText("Congratulations on becoming a member!");
           setJoinBtnText("");
           setJoinedDAO(true);
         } else {
-          toast.error(response.message);
+          toast.error(response?.message);
           setJoinBtnText("Join");
           setJoinedDAO(false);
         }
       })
       .catch((err) => {
         console.error(err);
-        setModalText(err.message);
-        toast.error(err.message);
+        setModalText(err?.message);
+        toast.error(err?.message);
         setJoinBtnText("Join");
       });
   }

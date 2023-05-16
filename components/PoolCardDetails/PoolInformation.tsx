@@ -1,4 +1,4 @@
-import styles from '../../styles/Launchpad.module.css';
+import styles from "../../styles/Launchpad.module.css";
 import { Chain } from "wagmi";
 import { ethers } from "ethers";
 import { useState, useEffect } from "react";
@@ -7,7 +7,7 @@ import { LaunchPoolClass } from "../../web3";
 import { useNetwork, useSwitchNetwork } from "wagmi";
 import { convertweiToEthers } from "../../web3/priceOracle";
 
-export default function PoolInformation({ pool } : any) {
+export default function PoolInformation({ pool }: any) {
   const { chain } = useNetwork();
   const [cChain, setCChain] = useState(chain);
   const [tierDetails, setTierDetails] = useState({
@@ -19,9 +19,9 @@ export default function PoolInformation({ pool } : any) {
   });
   const { chains, error, pendingChainId, switchNetwork } = useSwitchNetwork();
   const { data: signer, isError, isLoading } = useSigner();
-  function poolChain(chains : any) {
+  function poolChain(chains: any) {
     // console.log(pool.chain)
-    return chains.filter((x : any) => x.id === pool.chain);
+    return chains.filter((x: any) => x.id === pool.chain);
   }
   const newLaunchPool = new LaunchPoolClass(
     "0xC53c56F17e4472f521e6BE1718653f5a9Dd37FeB",
@@ -32,6 +32,16 @@ export default function PoolInformation({ pool } : any) {
       "https://fantom-testnet.public.blastapi.io"
     )
   );
+
+  const convertDate = (date: any) => {
+    
+    var utc = new Date(date);
+      // var offset = utc.getTimezoneOffset();
+      var local = utc.toLocaleDateString();
+      console.log(local)
+    return local;
+  };
+
   useEffect(() => {
     // if (chains) {
     //   const currentChain = poolChain(chains);
@@ -43,9 +53,8 @@ export default function PoolInformation({ pool } : any) {
       setTierDetails(res);
     });
   }, []);
-  console.log({pool})
+  console.log({ pool });
 
-  
   return (
     <div className={`${styles.details} ${styles.poolInformation}`}>
       <h1>Pool Information</h1>
@@ -57,18 +66,36 @@ export default function PoolInformation({ pool } : any) {
         <div className="">
           <h2 className={styles.detailsTitle}>Minimum Allocation</h2>
           <p className={styles.value}>
-            {convertweiToEthers(tierDetails.minUserCap, 18)}
+            {/* {convertweiToEthers(tierDetails.minUserCap, 18)} */}
+            {pool?.minimumPurchase}
           </p>
         </div>
         <div className="">
           <h2 className={styles.detailsTitle}>Maximum Allocation</h2>
           <p className={styles.value}>
-            {convertweiToEthers(tierDetails.maxUserCap, 18)}
+            {/* {convertweiToEthers(tierDetails.maxUserCap, 18)} */}
+            {pool?.maximumPurchase}
           </p>
         </div>
         <div className="">
           <h2 className={styles.detailsTitle}>Token Price</h2>
           <p className={styles.value}>{pool?.tokenPrice}</p>
+        </div>
+        <div className="">
+          <h2 className={styles.detailsTitle}>Whitelist Price</h2>
+          <p className={styles.value}>{pool?.WhitelistPrice}</p>
+        </div>
+        <div className="">
+          <h2 className={styles.detailsTitle}>Public Sale Price</h2>
+          <p className={styles.value}>{pool?.PublicSalePrice}</p>
+        </div>
+        <div className="">
+          <h2 className={styles.detailsTitle}>PreSale Start</h2>
+          <p className={styles.value}>{convertDate(pool?.PresaleStart)}</p>
+        </div>
+        <div className="">
+          <h2 className={styles.detailsTitle}>PreSale End</h2>
+          <p className={styles.value}>{pool?.PresaleEnd}</p>
         </div>
         <div className={styles.access}>
           <h2 className={styles.detailsTitle}>Access</h2>

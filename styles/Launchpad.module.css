@@ -152,12 +152,12 @@
   gap: 10px;
   position: absolute;
   top: 50%;
+  align-items: start;
   transform: translateY(-50%);
   padding-inline: 30px;
 }
 
 .launchpad .fContent {
-  align-items: start;
 }
 
 .topContent {
@@ -192,8 +192,8 @@
 }
 
 .midContent {
-  width: 95%;
-  margin-left: auto;
+  width: 100%;
+  /* margin-left: auto; */
 }
 
 .midContentText {
@@ -284,6 +284,7 @@
   flex-direction: column;
   gap: 9px;
   margin-top: 12px;
+  width: 100%;
 }
 
 .bar {
@@ -317,6 +318,11 @@
 
 .poolBox a:hover {
   border-width: 2px;
+}
+
+.box img{
+  /* height: 400px !important; */
+  width: 90% !important;
 }
 
 .socialIcons {
@@ -373,6 +379,7 @@
 .poolTokenInformation {
   display: flex;
   flex-direction: column;
+  align-items: start;
   gap: 56px;
   width: 100%;
 }
@@ -523,7 +530,7 @@
 @media screen and (min-width: 400px) {
   .fContent {
     /* top: 98px; */
-    padding-inline: 36px;
+    /* padding-inline: 36px; */
   }
 
   .completed {
@@ -582,7 +589,7 @@
 
   .container {
     grid-template-columns: repeat(2, 1fr);
-    padding: 2rem;
+    /* padding: 2rem; */
   }
 
   .poolsBtns {

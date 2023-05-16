@@ -13,12 +13,12 @@ export class LaunchPoolClass {
         this.signer = signer
         this.provider = provider
         this.abi = SolimaxLaunchPadABI
-        this.contract = new ethers.Contract(this.address, this.abi, this.signer)
-        this.contractWithProvider = new ethers.Contract(this.address, this.abi, this.provider)
+        this.contract = new ethers.Contract(this?.address, this?.abi, this?.signer)
+        this.contractWithProvider = new ethers.Contract(this?.address, this?.abi, this?.provider)
     }
 
     getpoolAddress() {
-        return this.address;
+        return this?.address;
     }
     async increaseAllowance(amount) {
         const contract = new ethers.Contract(this.token, IERC20.abi, this.signer);
