@@ -45,7 +45,7 @@ export default function HeroSection({ pool }: any) {
               <Image src={radioIcon} alt="radio icon" />
             </a> */}
             {/* WEBSITE ICON */}
-            <a href={`https://${pool?.Website}`} target="_blank">
+            <a href={`https://${pool?.Website}`} target="_blank" rel="noreferrer" >
               <Image src={webIcon} alt="website icon" />
             </a>
           </div>
