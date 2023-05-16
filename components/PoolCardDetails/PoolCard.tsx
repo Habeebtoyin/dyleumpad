@@ -60,13 +60,13 @@ export default function PoolCard({ pool }: any) {
 
     newLaunchPool.getSaleEnd().then((res) => {
       //  console.log({date:parseInt(res.toString())})
-      var myDate: any = new Date(parseInt(res.toString()));
+      var myDate: any = new Date(parseInt(res.toString())* 1000);
       //  console.log(myDate.toLocaleString());
       setSaleEnd(myDate.toLocaleString());
     });
     newLaunchPool.getSaleStart().then((res) => {
       // console.log({ date: parseInt(res.toString()) });
-      var myDate = new Date(parseInt(res.toString()));
+      var myDate = new Date(parseInt(res.toString())* 1000);
       // console.log(myDate.toLocaleString());
       setSaleStart(res.toString());
     });
