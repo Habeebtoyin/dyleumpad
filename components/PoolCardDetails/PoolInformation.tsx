@@ -34,7 +34,7 @@ export default function PoolInformation({ pool }: any) {
   );
 
   const convertDate = (date: any) => {
-    
+
     var utc = new Date(date);
       // var offset = utc.getTimezoneOffset();
       var local = utc.toLocaleDateString();
@@ -91,7 +91,7 @@ export default function PoolInformation({ pool }: any) {
         </div>
         <div className="">
           <h2 className={styles.detailsTitle}>PreSale Start</h2>
-          <p className={styles.value}>{convertDate(pool?.PresaleStart)}</p>
+          <p className={styles.value}>{pool?.PresaleStart}</p>
         </div>
         <div className="">
           <h2 className={styles.detailsTitle}>PreSale End</h2>
