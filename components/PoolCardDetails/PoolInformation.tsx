@@ -34,12 +34,8 @@ export default function PoolInformation({ pool }: any) {
   );
 
   const convertDate = (date: any) => {
-
-    var utc = new Date(date);
-      // var offset = utc.getTimezoneOffset();
-      var local = utc.toLocaleDateString();
-      console.log(local)
-    return local;
+    var utc = new Date(date).toLocaleString();
+    return utc;
   };
 
   useEffect(() => {
@@ -91,11 +87,11 @@ export default function PoolInformation({ pool }: any) {
         </div>
         <div className="">
           <h2 className={styles.detailsTitle}>PreSale Start</h2>
-          <p className={styles.value}>{pool?.PresaleStart}</p>
+          <p className={styles.value}>{convertDate(pool?.PresaleStart)}</p>
         </div>
         <div className="">
           <h2 className={styles.detailsTitle}>PreSale End</h2>
-          <p className={styles.value}>{pool?.PresaleEnd}</p>
+          <p className={styles.value}>{convertDate(pool?.PresaleEnd)}</p>
         </div>
         <div className={styles.access}>
           <h2 className={styles.detailsTitle}>Access</h2>
