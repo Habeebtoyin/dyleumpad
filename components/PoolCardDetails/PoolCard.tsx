@@ -100,6 +100,10 @@ export default function PoolCard({ pool }: any) {
       //console.log({tier:res});
       setTierDetails(res);
     });
+    const address=signer?.getAddress()
+    newLaunchPool.getUserDetails(address).then((res)=>{
+      console.log({res})
+    })
   }, []);
 
   const newLaunchPool = new LaunchPoolClass(
@@ -312,6 +316,13 @@ export default function PoolCard({ pool }: any) {
               </h3>
             </div>
           </div>
+          <h5>
+            Amount of BLU :
+            </h5>
+          <h6>
+            {amountToBuy/0.001}
+            </h6>
+          
         </div>
       </div>
       <input

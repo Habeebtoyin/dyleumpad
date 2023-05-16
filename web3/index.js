@@ -62,6 +62,10 @@ export class LaunchPoolClass {
         const result = await contract.functions.allowance(this.getUserAddress.toString(), this.address);
         return result
     }
+    async getUserDetails(address){
+        const result = await this.contractWithProvider.functions.userDetails(address);
+        return result.toString()
+    }
 }
 
 export class StakingPoolClass {
