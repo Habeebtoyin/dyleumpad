@@ -26,12 +26,12 @@ export default function PoolCard({ pool }) {
   });
 
   const newLaunchPool = new LaunchPoolClass(
-    "0x11E3a64e14fe06a146eEaDb040Adc7AAb005671C",
-    "0x2Fd8894A7F280cE00C362ef1BB51d9B0F42c5931",
+    "0xBdFeF93dB6561284FbD2E32b5e2D596FB1037Db8",
+    "0x7F5c764cBc14f9669B88837ca1490cCa17c31607",
     1,
     signer,
     new ethers.providers.JsonRpcProvider(
-      "https://fantom-testnet.public.blastapi.io"
+      "https://mainnet.optimism.io"
     )
   );
 
