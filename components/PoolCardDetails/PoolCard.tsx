@@ -103,12 +103,12 @@ export default function PoolCard({ pool }: any) {
   }, []);
 
   const newLaunchPool = new LaunchPoolClass(
-    "0xC53c56F17e4472f521e6BE1718653f5a9Dd37FeB",
-    "0x2Fd8894A7F280cE00C362ef1BB51d9B0F42c5931",
+    "0xBdFeF93dB6561284FbD2E32b5e2D596FB1037Db8",
+    "0x7F5c764cBc14f9669B88837ca1490cCa17c31607",
     1,
     signer,
     new ethers.providers.JsonRpcProvider(
-      "https://fantom-testnet.public.blastapi.io"
+      "https://mainnet.optimism.io"
     )
   );
 
@@ -272,8 +272,8 @@ export default function PoolCard({ pool }: any) {
                 {convertweiToEthers(tierDetails?.amountRaised)}
               </p> */}
               <p className={styles.SLMAmt}>
-                {convertweiToEthers(tierDetails?.amountRaised)}/
-                {convertweiToEthers(tierDetails?.maxTierCap)} DAI
+                {convertweiToEthers(tierDetails?.amountRaised,6)}/
+                {convertweiToEthers(tierDetails?.maxTierCap,6)} USDC
               </p>
             </div>
           </div>
