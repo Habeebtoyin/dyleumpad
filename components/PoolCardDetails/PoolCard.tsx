@@ -116,7 +116,7 @@ export default function PoolCard({ pool }: any) {
     e.preventDefault();
     if (amountToBuy !== 0) {
       if (parseInt(saleStart) < currentDate / 1000) {
-        const value = convertEthersToWei(amountToBuy.toString(), 18);
+        const value = convertEthersToWei(amountToBuy.toString(), 6);
         // toast.success("Allowance Success");
         newLaunchPool
           .increaseAllowance(value.toString())
@@ -284,7 +284,7 @@ export default function PoolCard({ pool }: any) {
             <div className={styles.allocationGroupContainer}>
               <p className={styles.allocationGroupText}>Total Raised</p>
               <h3 className={styles.allocationGroupHeading}>
-                {convertweiToEthers(tierDetails?.amountRaised, 18)}
+                {convertweiToEthers(tierDetails?.amountRaised, 6)}
               </h3>
             </div>
             <div className={styles.allocationGroupContainer}>
@@ -328,7 +328,7 @@ export default function PoolCard({ pool }: any) {
 
       {pool.tag === "active" && (
         <>
-          <a href="" onClick={BuyPresale}>
+          <a href="#" onClick={BuyPresale}>
             Buy Presale
           </a>
         </>
