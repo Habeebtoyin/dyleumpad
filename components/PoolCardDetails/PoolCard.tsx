@@ -355,7 +355,7 @@ export default function PoolCard({ pool }: any) {
             Amount of BLU :
             </h5>
           <h6>
-            {amountToBuy/0.001}
+            {amountToBuy/0.0012}
             </h6> 
             </div>
           </div>
