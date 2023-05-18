@@ -295,7 +295,7 @@ export default function LaunchPad({ pools }: any) {
                           </p>
                           <h3 className={styles.allocationGroupHeading}>
                             {/* {convertweiToEthers(tierDetails.maxUserCap)} */}
-                            {pool?.maximumPurchase}
+                            {"500 USDC"}
                           </h3>
                         </div>
                         <div className={styles.allocationGroupContainer}>
