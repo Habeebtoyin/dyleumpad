@@ -6,7 +6,7 @@ import frame from "../../components/assets/images/launchpad/pool-frame.png";
 import { ethers } from "ethers";
 import { useState, useEffect } from "react";
 import { useSigner } from "wagmi";
-import { LaunchPoolClass } from "../../web3";
+import { LaunchPoolClass,PublicSaleClass } from "../../web3";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { createClient, configureChains } from "wagmi";
@@ -35,6 +35,8 @@ export default function PoolCard({ pool }: any) {
   const [progress, setProgress] = useState(0.0);
   const currentDate = Date.now();
   const [amountToBuy, setAmountToBuy]: any = useState(0);
+  const [hardCap,setHardCap]=useState(0)
+  const [totalRaised,setTotalRaise]=useState(0)
   const [tierDetails, setTierDetails] = useState({
     maxTierCap: 0,
     minUserCap: 0,
@@ -57,13 +59,37 @@ export default function PoolCard({ pool }: any) {
         "https://mainnet.optimism.io"
       )
     );
-
-    newLaunchPool.getSaleEnd().then((res) => {
+    const PublicSale=new PublicSaleClass(
+    "0x3223039CeCB55Cd6c484b9275EA19bF2C5d827Ae",
+    "0x7F5c764cBc14f9669B88837ca1490cCa17c31607",
+    signer,
+    new ethers.providers.JsonRpcProvider(
+      "https://mainnet.optimism.io"
+    )
+    )
+    PublicSale.getSaleEnd().then((res)=>{
       //  console.log({date:parseInt(res.toString())})
       var myDate: any = new Date(parseInt(res.toString())* 1000);
       //  console.log(myDate.toLocaleString());
       setSaleEnd(myDate.toLocaleString());
-    });
+
+    })
+
+    PublicSale.fetchTotalSaleAmount().then((res)=>{
+      console.log({res})
+      setTotalRaise(res)
+    })
+    PublicSale.getHardCap().then((res)=>{
+      console.log("hardCap",res[0].toString())
+      setHardCap(res[0])
+    })
+
+    // newLaunchPool.getSaleEnd().then((res) => {
+    //   //  console.log({date:parseInt(res.toString())})
+    //   var myDate: any = new Date(parseInt(res.toString())* 1000);
+    //   //  console.log(myDate.toLocaleString());
+    //   setSaleEnd(myDate.toLocaleString());
+    // });
     newLaunchPool.getSaleStart().then((res) => {
       // console.log({ date: parseInt(res.toString()) });
       var myDate = new Date(parseInt(res.toString())* 1000);
@@ -88,22 +114,24 @@ export default function PoolCard({ pool }: any) {
     // newLaunchPool.checkAllowance().then((res) => {
     //   console.log({ res });
     // });
-    if (chain) {
-      if (chain.id !== pool.chain) {
-        toast.error("THIS POOL EXIST ON ANOTHER CHAIN");
-        switchNetwork?.(parseInt(pool.chain));
-      }
-    }
+    // if (chain) {
+    //   if (chain.id !== pool.chain) {
+    //     toast.error("THIS POOL EXIST ON ANOTHER CHAIN");
+    //     switchNetwork?.(parseInt(pool.chain));
+    //   }
+    // }
   }, []);
   useEffect(() => {
     newLaunchPool.getTierDetails().then((res) => {
       //console.log({tier:res});
       setTierDetails(res);
     });
-    const address=signer?.getAddress()
-    newLaunchPool.getUserDetails(address).then((res)=>{
-      console.log({res})
-    })
+
+
+    // const address=signer?.getAddress()
+    // newLaunchPool.getUserDetails(address).then((res)=>{
+    //   console.log({res})
+    // })
   }, []);
 
   const newLaunchPool = new LaunchPoolClass(
@@ -116,18 +144,27 @@ export default function PoolCard({ pool }: any) {
     )
   );
 
+  const PublicSale=new PublicSaleClass(
+    "0x3223039CeCB55Cd6c484b9275EA19bF2C5d827Ae",
+    "0x7F5c764cBc14f9669B88837ca1490cCa17c31607",
+    signer,
+    new ethers.providers.JsonRpcProvider(
+      "https://mainnet.optimism.io"
+    )
+    )
+      
   async function BuyPresale(e: any) {
     e.preventDefault();
     if (amountToBuy !== 0) {
       if (parseInt(saleStart) < currentDate / 1000) {
         const value = convertEthersToWei(amountToBuy.toString(), 6);
         // toast.success("Allowance Success");
-        newLaunchPool
+        PublicSale
           .increaseAllowance(value.toString())
           .then((res) => {
             toast.success("Allowance Success");
             toast.success("Buying Presale Token");
-            newLaunchPool
+            PublicSale
               .buyTokens(value.toString())
               .then((res) => {
                 toast.success("Presale Token Bought");
@@ -259,8 +296,8 @@ export default function PoolCard({ pool }: any) {
                 style={{
                   width:
                     (
-                      (parseInt(convertweiToEthers(tierDetails?.amountRaised,6)) /
-                        parseInt(convertweiToEthers(tierDetails?.maxTierCap,6))) *
+                      (parseInt(convertweiToEthers(totalRaised,6)) /
+                        parseInt(convertweiToEthers(50000000000,6))) *
                       100
                     )
                       .toFixed(2)
@@ -276,8 +313,8 @@ export default function PoolCard({ pool }: any) {
                 {convertweiToEthers(tierDetails?.amountRaised)}
               </p> */}
               <p className={styles.SLMAmt}>
-                {convertweiToEthers(tierDetails?.amountRaised,6)}/
-                {convertweiToEthers(tierDetails?.maxTierCap,6)} USDC
+                {convertweiToEthers(totalRaised,6)}/
+                {convertweiToEthers(50000000000,6)} USDC
               </p>
             </div>
           </div>
@@ -288,7 +325,7 @@ export default function PoolCard({ pool }: any) {
             <div className={styles.allocationGroupContainer}>
               <p className={styles.allocationGroupText}>Total Raised</p>
               <h3 className={styles.allocationGroupHeading}>
-                {convertweiToEthers(tierDetails?.amountRaised, 6)}
+                {convertweiToEthers(totalRaised, 6)}
               </h3>
             </div>
             <div className={styles.allocationGroupContainer}>
@@ -314,14 +351,15 @@ export default function PoolCard({ pool }: any) {
               <h3 className={styles.allocationGroupHeading}>
                 {saleEnd === undefined || !saleEnd ? "0" : saleEnd}
               </h3>
-            </div>
-          </div>
-          <h5>
+              <h5>
             Amount of BLU :
             </h5>
           <h6>
             {amountToBuy/0.001}
-            </h6>
+            </h6> 
+            </div>
+          </div>
+          
           
         </div>
       </div>

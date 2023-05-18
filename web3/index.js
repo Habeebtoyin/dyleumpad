@@ -2,6 +2,7 @@ import { ethers } from "ethers";
 import SolimaxLaunchPadABI from "./abi/SolimaxLaunchPad.json";
 import SolimaxIDOABI from "./abi/SolimaxIDOLocking.json"
 import IERC20 from "./abi/IERC20.json"
+import PublicSaleABI from "./abi/PublicSale.json"
 
 
 export class LaunchPoolClass {
@@ -65,6 +66,42 @@ export class LaunchPoolClass {
     async getUserDetails(address){
         const result = await this.contractWithProvider.functions.userDetails(address);
         return result.toString()
+    }
+}
+
+export class PublicSaleClass{
+    constructor(address, token, signer, provider){
+        this.address = address
+        this.token = token
+        this.signer = signer
+        this.provider = provider
+        this.contract = new ethers.Contract(this.address, PublicSaleABI, this.signer)
+        this.contractWithProvider = new ethers.Contract(this.address, PublicSaleABI, this.provider)
+    }
+    //fetch total
+    async fetchTotalSaleAmount(){
+        const result = await this.contractWithProvider.callStatic.totalUSDCReceivedInAllTier();
+        return result
+    }
+    async buyTokens(amount) {
+        const tx = await this.contract.functions.buyTokens(amount.toString());
+        const receipt = await tx.wait();
+        return receipt
+    }
+
+    async getHardCap(){
+        const tx = await this.contractWithProvider.functions.hardcap();
+        return tx
+    }
+    async getSaleEnd() {
+        const result = await this.contractWithProvider.callStatic.stopTime();
+        return result
+    }
+    async increaseAllowance(amount) {
+        const contract = new ethers.Contract(this.token, IERC20.abi, this.signer);
+        const tx = await contract.functions.increaseAllowance(this.address, amount.toString());
+        const receipt = await tx.wait();
+        return receipt;
     }
 }
 
