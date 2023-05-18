@@ -331,7 +331,7 @@ export default function PoolCard({ pool }: any) {
             <div className={styles.allocationGroupContainer}>
               <p className={styles.allocationGroupText}>Participants</p>
               <h3 className={styles.allocationGroupHeading}>
-                {tierDetails.users}
+                {"∞"}
               </h3>
             </div>
             <div className={styles.allocationGroupContainer}>
