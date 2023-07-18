@@ -165,27 +165,29 @@ export function GlobalContextProvider({ children }) {
     }
   };
 
+  // const filteredPools = poolsData?.filter((pool) => pool.tag === selectedPool)
+
   useEffect(() => {
     checkMintStatus();
     console.log(isConnected);
   }, []);
 
-  useEffect(() => {
-    switch (selectedPool) {
-      case "active":
-        setPoolsData(ActivePools);
-        break;
-      case "upcoming":
-        setPoolsData(UpcomingPools);
-        break;
-      case "completed":
-        setPoolsData(CompletedPools);
-        break;
-      default:
-        setPoolsData(ActivePools);
-    }
-    // setPoolsData(activePools);
-  }, [selectedPool]);
+  // useEffect(() => {
+  //   switch (selectedPool) {
+  //     case "active":
+  //       setPoolsData(ActivePools);
+  //       break;
+  //     case "upcoming":
+  //       setPoolsData(UpcomingPools);
+  //       break;
+  //     case "completed":
+  //       setPoolsData(CompletedPools);
+  //       break;
+  //     default:
+  //       setPoolsData(ActivePools);
+  //   }
+  //   // setPoolsData(activePools);
+  // }, [selectedPool]);
 
   // useEffect(() => {
   // switch (proposalTag) {
@@ -218,6 +220,7 @@ export function GlobalContextProvider({ children }) {
         poolsData,
         selectedPool,
         setSelectedPool,
+        // filteredPools,
         isConnected,
         selectedTab,
         setSelectedTab,
