@@ -108,7 +108,6 @@ export default function LaunchPad({ pools }: any) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/logo-icon.svg" />
       </Head>
-      {/* <Navbar /> */}
       <main className="launchpad">
         <HeroSection />
         <BuyButtons />
@@ -153,76 +152,6 @@ export default function LaunchPad({ pools }: any) {
                 <div key={pool?.id} className={styles.poolBox}>
                   <div className={styles.box}>
                     <Image src={frame} alt="pool frame" />
-                    {/* {pool.tag !== "completed" && (
-                      <svg
-                        width="421"
-                        height="457"
-                        className={styles.boxImg}
-                        viewBox="0 0 421 457"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M159.672 41.528L209.678 2.10028L262.088 41.528"
-                          stroke="#00FFFF"
-                          strokeWidth="1.9233"
-                        />
-                        <path
-                          d="M173.135 39.6047L209.725 6.90857L248.144 39.6047"
-                          stroke="#00FFFF"
-                          strokeWidth="0.480826"
-                        />
-                        <path
-                          d="M1 39.6047V213.235L31.589 247.538L1 278.148V456H420.28V272.343L393.91 245.955L420.28 211.124V39.6047H1Z"
-                          fill="#090E17"
-                          stroke="#1592CA"
-                          strokeWidth="0.673156"
-                        />
-                        <path
-                          d="M19.2715 57.8761V216.068L47.1594 247.322L19.2715 275.209V437.248H401.528V269.92L377.487 245.879L401.528 214.145V57.8761H19.2715Z"
-                          stroke="#00FFFF"
-                          strokeWidth="1.9233"
-                        />
-                      </svg>
-                    )} */}
-                    {/* {pool.tag === "completed" && (
-                      // <Image
-                      //   className={`${styles.boxImg} ${styles.completedPoolBox}`}
-                      //   src={cardBorder1}
-                      //   alt="box border"
-                      //   width="100%"
-                      // />
-                      <svg
-                        className={styles.boxImg}
-                        width="421"
-                        height="534"
-                        viewBox="0 0 421 534"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M159.672 41.4277L209.678 2L262.088 41.4277"
-                          stroke="#00FFFF"
-                          strokeWidth="1.9233"
-                        />
-                        <path
-                          d="M173.135 39.5044L209.724 6.80823L248.144 39.5044"
-                          stroke="#00FFFF"
-                          strokeWidth="0.480826"
-                        />
-                        <path
-                          d="M1 39.5044V213.134L31.589 247.438L1 278.048V532.9H420.28V272.242L393.91 245.855L420.28 211.023V39.5044H1Z"
-                          fill="#090E17"
-                          stroke="#1592CA"
-                          strokeWidth="0.673156"
-                        />
-                        <path
-                          d="M19.2715 57.7758V215.967L47.1594 247.221L19.2715 275.109V514.9H401.528V269.82L377.487 245.779L401.528 214.044V57.7758H19.2715Z"
-                          stroke="#00FFFF"
-                          strokeWidth="1.9233"
-                        />
-                      </svg>
-                    )} */}
                     {/* <!--content inside the box--> */}
                     <div className={styles.fContent}>
                       {/* top contents */}
@@ -262,9 +191,9 @@ export default function LaunchPad({ pools }: any) {
                         <h3
                           style={{ cursor: "pointer" }}
                           className={styles.boxHeading}
-                          onClick={() =>
-                            router.push(`/launchpad/pools/${pool.id}`)
-                          }
+                          // onClick={() =>
+                          //   router.push(`/launchpad/pools/${pool.id}`)
+                          // }
                         >
                           {/* <Link href={`/launchpad/pools/${pool.id}`}> */}
                           {pool?.projectTitle}
@@ -344,31 +273,30 @@ export default function LaunchPad({ pools }: any) {
                     </div>
                   </div>
 
-                  {/* {pool.tag === "active" && (
-                    
-                    // <Link
-                    //   style={{
-                    //     background: "#08272f",
-                    //     border: "1px solid #2166ae",
-                    //     outline: "none",
-                    //     display: "flex",
-                    //     maxWidth: "420px",
-                    //     justifyContent: "center",
-                    //     paddingBlock: "13.5px",
-                    //     alignItems: "center",
-                    //     color: "#fff",
-                    //     fontWeight: "400",
-                    //     fontSize: "18px",
-                    //     lineHeight: "22px",
-                    //     width: "100%",
-                    //     marginTop: "16px",
-                    //   }}
-                    //   // className={styles.viewMoreBtn}
-                    //   href={`/launchpad/pools/${pool.id}`}
-                    // >
-                    //   View More
-                    // </Link>
-                //   )} */}
+                  {pool.tag === "active" && (
+                    <Link
+                      style={{
+                        background: "#08272f",
+                        border: "1px solid #2166ae",
+                        outline: "none",
+                        display: "flex",
+                        maxWidth: "420px",
+                        justifyContent: "center",
+                        paddingBlock: "13.5px",
+                        alignItems: "center",
+                        color: "#fff",
+                        fontWeight: "400",
+                        fontSize: "18px",
+                        lineHeight: "22px",
+                        width: "100%",
+                        marginTop: "16px",
+                      }}
+                      // className={styles.viewMoreBtn}
+                      href={`/launchpad/pools/${pool.id}`}
+                    >
+                      View More
+                    </Link>
+                  )}
                 </div>
               ))}
           </div>

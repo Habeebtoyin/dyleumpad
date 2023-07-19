@@ -36,10 +36,11 @@ const Navbar = lazy(() => import("../../../../components/Navbar/Navbar"));
 // );
 
 const Pool = ({ pool }: any) => {
+  const title = pool[0]?.projectDescription;
   return (
     <div className={`${HomeStyles.container} ${styles.poolCardDetails}`}>
       <Head>
-        <title>Solimax | Launchpad | Pool</title>
+        <title>Solimax | Launchpad | Pool | {title}</title>
         <meta
           name="description"
           content="A Global Hub for Farmers, Degens, and Tech Geeks"
