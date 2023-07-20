@@ -36,67 +36,69 @@ const Navbar = lazy(() => import("../../../../components/Navbar/Navbar"));
 // );
 
 const Pool = ({ pool }: any) => {
-  const title = pool[0]?.projectDescription;
-  return (
-    <div className={`${HomeStyles.container} ${styles.poolCardDetails}`}>
-      <Head>
-        <title>Solimax | Launchpad | Pool | {title}</title>
-        <meta
-          name="description"
-          content="A Global Hub for Farmers, Degens, and Tech Geeks"
-        />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/logo-icon.svg" />
-      </Head>
-      {/* <Navbar /> */}
-      <HeroSection pool={pool[0]} />
-      <section className={styles.poolTokenInformation}>
-        <PoolInformation pool={pool[0]} />
-        <TokenInformation pool={pool[0]} />
-      </section>
-      <AboutProject pool={pool[0]} />
-      <Footer />
-    </div>
-  );
+	const title = pool[0]?.projectDescription;
+	return (
+		<div className={`${HomeStyles.container} ${styles.poolCardDetails}`}>
+			<Head>
+				<title>Solimax | Launchpad | Pool | {title}</title>
+				<meta
+					name="description"
+					content="A Global Hub for Farmers, Degens, and Tech Geeks"
+				/>
+				<meta
+					name="viewport"
+					content="width=device-width, initial-scale=1"
+				/>
+				<link rel="icon" href="/logo-icon.svg" />
+			</Head>
+			{/* <Navbar /> */}
+			<HeroSection pool={pool[0]} />
+			<section className={styles.poolTokenInformation}>
+				<PoolInformation pool={pool[0]} />
+				<TokenInformation pool={pool[0]} />
+			</section>
+			<AboutProject pool={pool[0]} />
+			<Footer />
+		</div>
+	);
 };
 
 export default Pool;
 
 export const getStaticProps: GetStaticProps = async (context: any) => {
-  const res = await fetch(
-    "https://solimax-api-danijel-enoch.vercel.app/api/pools/" +
-      context?.params.id
-  );
-  const pool = await res.json();
-  console.log(pool, context.params.id);
+	const res = await fetch(
+		"https://solimax-api-dev.vercel.app/api/pools/" + context?.params.id
+	);
+	const pool = await res.json();
+	console.log(pool, context.params.id);
 
-  if (!pool) {
-    return {
-      notFound: true,
-    };
-  }
+	if (!pool) {
+		return {
+			notFound: true,
+		};
+	}
 
-  return {
-    props: {
-      pool,
-    },
-  };
+	return {
+		props: {
+			pool,
+		},
+	};
 };
 export const getStaticPaths: GetStaticPaths = async () => {
-  const res = await fetch(
-    "https://solimax-api-danijel-enoch.vercel.app/api/pools"
-  );
-  const pools = await res.json();
-  const ids = pools.map((pool: any) => pool.id);
-  console.log({ ids });
-  const paths = ids.map((id: number) => ({ params: { id: id.toString() } }));
-  console.log(paths);
-  return {
-    paths,
-    // paths:[
-    //   { params: { id: '1' }},
-    // { params: { id: '2' },},
-    // ],
-    fallback: false,
-  };
+	const res = await fetch(
+		"https://solimax-api-danijel-enoch.vercel.app/api/pools"
+	);
+	const pools = await res.json();
+	const ids = pools.map((pool: any) => pool.id);
+	//console.log({ pools });
+	const paths = ids.map((id: number) => ({ params: { id: id.toString() } }));
+	//console.log(paths);
+	return {
+		paths,
+		// paths:[
+		//   { params: { id: '1' }},
+		// { params: { id: '2' },},
+		// ],
+		fallback: false,
+	};
 };
