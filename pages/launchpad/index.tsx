@@ -273,30 +273,28 @@ export default function LaunchPad({ pools }: any) {
                     </div>
                   </div>
 
-                  {pool.tag === "active" && (
-                    <Link
-                      style={{
-                        background: "#08272f",
-                        border: "1px solid #2166ae",
-                        outline: "none",
-                        display: "flex",
-                        maxWidth: "420px",
-                        justifyContent: "center",
-                        paddingBlock: "13.5px",
-                        alignItems: "center",
-                        color: "#fff",
-                        fontWeight: "400",
-                        fontSize: "18px",
-                        lineHeight: "22px",
-                        width: "100%",
-                        marginTop: "16px",
-                      }}
-                      // className={styles.viewMoreBtn}
-                      href={`/launchpad/pools/${pool.id}`}
-                    >
-                      View More
-                    </Link>
-                  )}
+                  <Link
+                    style={{
+                      background: "#08272f",
+                      border: "1px solid #2166ae",
+                      outline: "none",
+                      display: "flex",
+                      maxWidth: "420px",
+                      justifyContent: "center",
+                      paddingBlock: "13.5px",
+                      alignItems: "center",
+                      color: "#fff",
+                      fontWeight: "400",
+                      fontSize: "18px",
+                      lineHeight: "22px",
+                      width: "100%",
+                      marginTop: "16px",
+                    }}
+                    // className={styles.viewMoreBtn}
+                    href={`/launchpad/pools/${pool.id}`}
+                  >
+                    View More
+                  </Link>
                 </div>
               ))}
           </div>
