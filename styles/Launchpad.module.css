@@ -239,8 +239,13 @@
 }
 
 .allocationGroup {
-  margin-top: 17.73px;
+  margin-top: 15.73px;
 }
+
+.allocationGroup:nth-child(2) {
+  margin-bottom: 0.3rem;
+}
+
 
 .allocationGroup,
 .percentageBar div {
@@ -349,7 +354,8 @@
 .phaseBtns {
   width: 100%;
   justify-content: space-between;
-  gap: 0;
+  gap: 8px;
+  margin-top: 0.4rem !important;
 }
 
 .phaseBtns button {
@@ -529,8 +535,8 @@
 
 @media screen and (min-width: 400px) {
   .fContent {
-    /* top: 98px; */
-    /* padding-inline: 36px; */
+    /* top: 98px; 
+     padding-inline: 36px; */
   }
 
   .completed {
