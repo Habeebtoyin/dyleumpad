@@ -86,7 +86,7 @@ export const getStaticProps: GetStaticProps = async (context: any) => {
 };
 export const getStaticPaths: GetStaticPaths = async () => {
 	const res = await fetch(
-		"https://solimax-api-danijel-enoch.vercel.app/api/pools"
+		"https://solimax-api-dev.vercel.app/api/pools"
 	);
 	const pools = await res.json();
 	const ids = pools.map((pool: any) => pool.id);
