@@ -381,7 +381,7 @@ export default function LaunchPad({ pools }: any) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const res = await fetch("https://solimax-api.vercel.app/api/pools");
+  const res = await fetch("https://solimax-api-dev.vercel.app/api/pools");
   const pools = await res.json();
   console.log(pools);
 
