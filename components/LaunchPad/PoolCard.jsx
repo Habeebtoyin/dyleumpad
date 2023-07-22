@@ -31,7 +31,7 @@ export default function PoolCard({ pool }) {
     1,
     signer,
     new ethers.providers.JsonRpcProvider(
-      "https://mainnet.optimism.io"
+      "https://opt-goerli.g.alchemy.com/v2/OkPyLQB7twaTwwJOzCaAW6pFuakPvuTm"
     )
   );
 
@@ -43,12 +43,7 @@ export default function PoolCard({ pool }) {
     return chains.filter((x) => x.id === pool.chain);
   }
 
-  useEffect(() => {
-    newLaunchPool.getTierDetails().then((res) => {
-      //console.log({ tier: res });
-      setTierDetails(res);
-    });
-  }, []);
+
 
   return (
     <div key={pool?.id} className={styles.poolBox}>

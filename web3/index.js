@@ -63,23 +63,23 @@ export class LaunchPoolClass {
         const result = await contract.functions.allowance(this.getUserAddress.toString(), this.address);
         return result
     }
-    async getUserDetails(address){
+    async getUserDetails(address) {
         const result = await this.contractWithProvider.functions.userDetails(address);
         return result.toString()
     }
 }
 
-export class PublicSaleClass{
-    constructor(address, token, signer, provider){
+export class PublicSaleClass {
+    constructor(address, token, signer, provider) {
         this.address = address
         this.token = token
         this.signer = signer
         this.provider = provider
-        this.contract = new ethers.Contract(this.address, PublicSaleABI, this.signer)
-        this.contractWithProvider = new ethers.Contract(this.address, PublicSaleABI, this.provider)
+        this.contract = new ethers.Contract(this.address, PublicSaleABI.abi, this.signer)
+        this.contractWithProvider = new ethers.Contract(this.address, PublicSaleABI.abi, this.provider)
     }
     //fetch total
-    async fetchTotalSaleAmount(){
+    async fetchTotalSaleAmount() {
         const result = await this.contractWithProvider.callStatic.totalUSDCReceivedInAllTier();
         return result
     }
@@ -89,7 +89,7 @@ export class PublicSaleClass{
         return receipt
     }
 
-    async getHardCap(){
+    async getHardCap() {
         const tx = await this.contractWithProvider.functions.hardcap();
         return tx
     }

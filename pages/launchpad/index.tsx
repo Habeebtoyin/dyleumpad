@@ -28,129 +28,136 @@ import BlueNorvaLogo from "../../components/assets/images/launchpad/Blue-norva-l
 // const Pools = lazy(() => import("./pools/components/Pools/Pools"));
 
 export default function LaunchPad({ pools }: any) {
-  const { poolsData, selectedPool, setSelectedPool } = GlobalAuth();
-  const [pageNumber, setPageNumber] = useState(0);
-  const cardPerPage = 9;
-  const pagesVisited = pageNumber * cardPerPage;
-  const pageCount = Math.ceil(poolsData?.length / cardPerPage);
+	const { poolsData, selectedPool, setSelectedPool } = GlobalAuth();
+	const [pageNumber, setPageNumber] = useState(0);
+	const cardPerPage = 9;
+	const pagesVisited = pageNumber * cardPerPage;
+	const pageCount = Math.ceil(poolsData?.length / cardPerPage);
 
-  const changePage = ({ selected }: any) => {
-    setPageNumber(selected);
-  };
+	const changePage = ({ selected }: any) => {
+		setPageNumber(selected);
+	};
 
-  const titles = [
-    {
-      id: "active",
-      title: "Active Pools",
-    },
-    {
-      id: "upcoming",
-      title: "Upcoming Pools",
-    },
-    {
-      id: "completed",
-      title: "Completed Pools",
-    },
-  ];
+	const titles = [
+		{
+			id: "active",
+			title: "Active Pools",
+		},
+		{
+			id: "upcoming",
+			title: "Upcoming Pools",
+		},
+		{
+			id: "completed",
+			title: "Completed Pools",
+		},
+	];
 
-  // switch(titles.title){
-  //   case "Active Pools":
-  //     setSelectedPool()
-  // }
+	// switch(titles.title){
+	//   case "Active Pools":
+	//     setSelectedPool()
+	// }
 
-  const { chain } = useNetwork();
-  const [cChain, setCChain] = useState(chain);
-  const { data: signer, isError, isLoading } = useSigner();
-  const { chains, error, pendingChainId, switchNetwork } = useSwitchNetwork();
-  const [tierDetails, setTierDetails] = useState({
-    maxTierCap: 0,
-    minUserCap: 0,
-    maxUserCap: 0,
-    amountRaised: 0,
-    users: 0,
-  });
+	const { chain } = useNetwork();
+	const [cChain, setCChain] = useState(chain);
+	const { data: signer, isError, isLoading } = useSigner();
+	const { chains, error, pendingChainId, switchNetwork } = useSwitchNetwork();
+	const [tierDetails, setTierDetails] = useState({
+		maxTierCap: 0,
+		minUserCap: 0,
+		maxUserCap: 0,
+		amountRaised: 0,
+		users: 0,
+	});
 
-  const getOnChainData = (contractAddress: string, token: string) => {};
-  const newLaunchPool = new LaunchPoolClass(
-    pools[0].contract,
-    "0x7F5c764cBc14f9669B88837ca1490cCa17c31607",
-    1,
-    signer,
-    new ethers.providers.JsonRpcProvider("https://mainnet.optimism.io")
-  );
+	const getOnChainData = (contractAddress: string, token: string) => {};
+	const newLaunchPool = new LaunchPoolClass(
+		pools[0].contract,
+		"0x7F5c764cBc14f9669B88837ca1490cCa17c31607",
+		1,
+		signer,
+		new ethers.providers.JsonRpcProvider(
+			"https://opt-goerli.g.alchemy.com/v2/OkPyLQB7twaTwwJOzCaAW6pFuakPvuTm"
+		)
+	);
 
-  let progressValue = tierDetails?.amountRaised / tierDetails?.maxTierCap;
-  let percentage: any = (progressValue * 100).toFixed(2);
-  // percentage = percentage.toFixed(2) ;
+	let progressValue = tierDetails?.amountRaised / tierDetails?.maxTierCap;
+	let percentage: any = (progressValue * 100).toFixed(2);
+	// percentage = percentage.toFixed(2) ;
 
-  // function poolChain(chains : any) {
-  //   return chains.filter((x: any) => x.id === pool.chain);
-  // }
+	// function poolChain(chains : any) {
+	//   return chains.filter((x: any) => x.id === pool.chain);
+	// }
 
-  useEffect(() => {
-    newLaunchPool?.getTierDetails().then((res) => {
-      console.log(res);
-      setTierDetails(res);
-    });
-    // console.log(pools);
-  }, []);
+	// useEffect(() => {
+	//   newLaunchPool?.getTierDetails().then((res) => {
+	//     console.log(res);
+	//     setTierDetails(res);
+	//   });
+	//   // console.log(pools);
+	// }, []);
 
-  return (
-    <div style={{ position: "relative" }}>
-      <Head>
-        <title>Solimax | Launchpad</title>
-        <meta
-          name="description"
-          content="A Secure Multi-chain Launch-pad with High Staking"
-        />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/logo-icon.svg" />
-      </Head>
-      {/* <Navbar /> */}
-      <main className="launchpad">
-        <HeroSection />
-        <BuyButtons />
-        <section className={styles.pools}>
-          <div className={styles.poolsBtns}>
-            {titles.map((item) => (
-              <div key={item?.id} className={styles.poolsBtn}>
-                <a
-                  id={item?.id}
-                  href=""
-                  className={`${styles.poolsBtnLink} ${
-                    selectedPool === item.id ? styles.poolsBtnsActiveLink : ``
-                  } `}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setSelectedPool(item?.id);
-                  }}
-                >
-                  {item?.title}
-                </a>
-              </div>
-            ))}
-          </div>
+	return (
+		<div style={{ position: "relative" }}>
+			<Head>
+				<title>Solimax | Launchpad</title>
+				<meta
+					name="description"
+					content="A Secure Multi-chain Launch-pad with High Staking"
+				/>
+				<meta
+					name="viewport"
+					content="width=device-width, initial-scale=1"
+				/>
+				<link rel="icon" href="/logo-icon.svg" />
+			</Head>
+			{/* <Navbar /> */}
+			<main className="launchpad">
+				<HeroSection />
+				<BuyButtons />
+				<section className={styles.pools}>
+					<div className={styles.poolsBtns}>
+						{titles.map((item) => (
+							<div key={item?.id} className={styles.poolsBtn}>
+								<a
+									id={item?.id}
+									href=""
+									className={`${styles.poolsBtnLink} ${
+										selectedPool === item.id
+											? styles.poolsBtnsActiveLink
+											: ``
+									} `}
+									onClick={(e) => {
+										e.preventDefault();
+										setSelectedPool(item?.id);
+									}}
+								>
+									{item?.title}
+								</a>
+							</div>
+						))}
+					</div>
 
-          <div className={styles.container}>
-            {pools.length === 0 && (
-              <p
-                style={{
-                  textAlign: "center",
-                  marginTop: "-10px",
-                  marginBottom: "16px",
-                }}
-                className={HomeStyles.text}
-              >
-                No pools at the moment
-              </p>
-            )}
-            {pools
-              ?.slice(pagesVisited, pagesVisited + cardPerPage)
-              .map((pool: any) => (
-                <div key={pool?.id} className={styles.poolBox}>
-                  <div className={styles.box}>
-                    <Image src={frame} alt="pool frame" />
-                    {/* {pool.tag !== "completed" && (
+					<div className={styles.container}>
+						{pools.length === 0 && (
+							<p
+								style={{
+									textAlign: "center",
+									marginTop: "-10px",
+									marginBottom: "16px",
+								}}
+								className={HomeStyles.text}
+							>
+								No pools at the moment
+							</p>
+						)}
+						{pools
+							?.slice(pagesVisited, pagesVisited + cardPerPage)
+							.map((pool: any) => (
+								<div key={pool?.id} className={styles.poolBox}>
+									<div className={styles.box}>
+										<Image src={frame} alt="pool frame" />
+										{/* {pool.tag !== "completed" && (
                       <svg
                         width="421"
                         height="457"
@@ -182,7 +189,7 @@ export default function LaunchPad({ pools }: any) {
                         />
                       </svg>
                     )} */}
-                    {/* {pool.tag === "completed" && (
+										{/* {pool.tag === "completed" && (
                       // <Image
                       //   className={`${styles.boxImg} ${styles.completedPoolBox}`}
                       //   src={cardBorder1}
@@ -220,91 +227,162 @@ export default function LaunchPad({ pools }: any) {
                         />
                       </svg>
                     )} */}
-                    {/* <!--content inside the box--> */}
-                    <div className={styles.fContent}>
-                      {/* top contents */}
-                      <Image
-                        src={dots}
-                        alt="dots"
-                        width="39.31px"
-                        style={{ marginRight: "auto" }}
-                      />
-                      <div className={styles.topContent}>
-                        
-                          <Image
-                            src={pool.logo}
-                            alt="logo"
-                            width="80px"
-                            height="80px"
-                          />
-                        
-                        {/* <div className="logo">{pool?.logo}</div> */}
-                        {/* <Image
+										{/* <!--content inside the box--> */}
+										<div className={styles.fContent}>
+											{/* top contents */}
+											<Image
+												src={dots}
+												alt="dots"
+												width="39.31px"
+												style={{ marginRight: "auto" }}
+											/>
+											<div className={styles.topContent}>
+												<Image
+													src={pool.logo}
+													alt="logo"
+													width="80px"
+													height="80px"
+												/>
+
+												{/* <div className="logo">{pool?.logo}</div> */}
+												{/* <Image
                           className={styles.logo}
                           src={DAILogo}
                           alt="logo"
                           width={100}
                           height={46}
                         /> */}
-                        <div className={styles.buttons}>
-                          {pool?.tags?.map((tag: any, index: number) => (
-                            <button key={index} className={styles.boxButton}>
-                              {tag}
-                            </button>
-                          ))}
-                        </div>
-                      </div>
-                      <div className={styles.midContent}>
-                        {/* <!--end of top contents--> */}
-                        <h3 className={styles.boxHeading}>
-                          {pool?.projectTitle}
-                        </h3>
+												<div className={styles.buttons}>
+													{pool?.tags?.map(
+														(
+															tag: any,
+															index: number
+														) => (
+															<button
+																key={index}
+																className={
+																	styles.boxButton
+																}
+															>
+																{tag}
+															</button>
+														)
+													)}
+												</div>
+											</div>
+											<div className={styles.midContent}>
+												{/* <!--end of top contents--> */}
+												<h3
+													className={
+														styles.boxHeading
+													}
+												>
+													{pool?.projectTitle}
+												</h3>
 
-                        <p className={styles.midContentText}>
-                          {pool?.projectDescription}{" "}
-                          {/* <Link to={`/launchpad/pool/${pool.id}`}> Read more</Link> */}
-                        </p>
-                      </div>
-                      <div className={styles.allocationGroup}>
-                        {pool?.tag === "completed" && (
-                          <div className={styles.allocationGroupContainer}>
-                            <p className={styles.allocationGroupText}>
-                              Status
-                            </p>
-                            <h3 className={styles.allocationGroupHeading}>
-                              {pool?.tag}
-                            </h3>
-                          </div>
-                        )}
-                        {pool?.tag !== "completed" && (
-                          <div className={styles.allocationGroupContainer}>
-                            <p className={styles.allocationGroupText}>
-                              Status
-                            </p>
-                            <h3 className={styles.allocationGroupHeading}>
-                              {/* {convertweiToEthers(tierDetails.minUserCap)} */}
-                              {pool?.tag}
-                            </h3>
-                          </div>
-                        )}
+												<p
+													className={
+														styles.midContentText
+													}
+												>
+													{pool?.projectDescription}{" "}
+													{/* <Link to={`/launchpad/pool/${pool.id}`}> Read more</Link> */}
+												</p>
+											</div>
+											<div
+												className={
+													styles.allocationGroup
+												}
+											>
+												{pool?.tag === "completed" && (
+													<div
+														className={
+															styles.allocationGroupContainer
+														}
+													>
+														<p
+															className={
+																styles.allocationGroupText
+															}
+														>
+															Status
+														</p>
+														<h3
+															className={
+																styles.allocationGroupHeading
+															}
+														>
+															{pool?.tag}
+														</h3>
+													</div>
+												)}
+												{pool?.tag !== "completed" && (
+													<div
+														className={
+															styles.allocationGroupContainer
+														}
+													>
+														<p
+															className={
+																styles.allocationGroupText
+															}
+														>
+															Status
+														</p>
+														<h3
+															className={
+																styles.allocationGroupHeading
+															}
+														>
+															{/* {convertweiToEthers(tierDetails.minUserCap)} */}
+															{pool?.tag}
+														</h3>
+													</div>
+												)}
 
-                        <div className={styles.allocationGroupContainer}>
-                          <p className={styles.allocationGroupText}>
-                            Max Allocation
-                          </p>
-                          <h3 className={styles.allocationGroupHeading}>
-                            {/* {convertweiToEthers(tierDetails.maxUserCap)} */}
-                            {pool?.maximumPurchase}
-                          </h3>
-                        </div>
-                        <div className={styles.allocationGroupContainer}>
-                          <p className={styles.allocationGroupText}>Access</p>
-                          <h3 className={styles.allocationGroupHeading}>
-                            {pool?.access}
-                          </h3>
-                        </div>
-                      </div>
-                      {/* {pool?.tag === "completed" && (
+												<div
+													className={
+														styles.allocationGroupContainer
+													}
+												>
+													<p
+														className={
+															styles.allocationGroupText
+														}
+													>
+														Max Allocation
+													</p>
+													<h3
+														className={
+															styles.allocationGroupHeading
+														}
+													>
+														{/* {convertweiToEthers(tierDetails.maxUserCap)} */}
+														{pool?.maximumPurchase}
+													</h3>
+												</div>
+												<div
+													className={
+														styles.allocationGroupContainer
+													}
+												>
+													<p
+														className={
+															styles.allocationGroupText
+														}
+													>
+														Access
+													</p>
+													<h3
+														className={
+															styles.allocationGroupHeading
+														}
+													>
+														{pool?.access}
+													</h3>
+												</div>
+											</div>
+											{/* {pool?.tag === "completed" && (
                         <div className={styles.percentageBar}>
                           <div
                             className=""
@@ -330,64 +408,64 @@ export default function LaunchPad({ pools }: any) {
                           </div>
                         </div>
                       )} */}
-                    </div>
-                  </div>
+										</div>
+									</div>
 
-                  <Link
-                    style={{
-                      background: "#08272f",
-                      border: "1px solid #2166ae",
-                      outline: "none",
-                      display: "flex",
-                      maxWidth: "420px",
-                      justifyContent: "center",
-                      paddingBlock: "13.5px",
-                      alignItems: "center",
-                      color: "#fff",
-                      fontWeight: "400",
-                      fontSize: "18px",
-                      lineHeight: "22px",
-                      width: "100%",
-                      marginTop: "16px",
-                    }}
-                    // className={styles.viewMoreBtn}
-                    href={`/launchpad/pools/${pool.id}`}
-                  >
-                    View More
-                  </Link>
-                </div>
-              ))}
-          </div>
-          {pools?.length > 3 && (
-            <ReactPaginate
-              breakLabel="..."
-              nextLabel=">"
-              onPageChange={changePage}
-              pageRangeDisplayed={5}
-              pageCount={pageCount}
-              previousLabel="<"
-              containerClassName={styles.paginationBtns}
-              previousLinkClassName={"previousBtn"}
-              nextLinkClassName={styles.nextBtn}
-              disabledClassName={styles.paginationDisabled}
-              activeClassName={styles.paginationActive}
-            />
-          )}
-        </section>
-      </main>
-      <Footer />
-    </div>
-  );
+									<Link
+										style={{
+											background: "#08272f",
+											border: "1px solid #2166ae",
+											outline: "none",
+											display: "flex",
+											maxWidth: "420px",
+											justifyContent: "center",
+											paddingBlock: "13.5px",
+											alignItems: "center",
+											color: "#fff",
+											fontWeight: "400",
+											fontSize: "18px",
+											lineHeight: "22px",
+											width: "100%",
+											marginTop: "16px",
+										}}
+										// className={styles.viewMoreBtn}
+										href={`/launchpad/pools/${pool.id}`}
+									>
+										View More
+									</Link>
+								</div>
+							))}
+					</div>
+					{pools?.length > 3 && (
+						<ReactPaginate
+							breakLabel="..."
+							nextLabel=">"
+							onPageChange={changePage}
+							pageRangeDisplayed={5}
+							pageCount={pageCount}
+							previousLabel="<"
+							containerClassName={styles.paginationBtns}
+							previousLinkClassName={"previousBtn"}
+							nextLinkClassName={styles.nextBtn}
+							disabledClassName={styles.paginationDisabled}
+							activeClassName={styles.paginationActive}
+						/>
+					)}
+				</section>
+			</main>
+			<Footer />
+		</div>
+	);
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const res = await fetch("https://solimax-api-dev.vercel.app/api/pools");
-  const pools = await res.json();
-  console.log(pools);
+	const res = await fetch("https://solimax-api-dev.vercel.app/api/pools");
+	const pools = await res.json();
+	console.log(pools);
 
-  return {
-    props: {
-      pools,
-    },
-  };
+	return {
+		props: {
+			pools,
+		},
+	};
 };
