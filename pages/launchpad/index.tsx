@@ -269,21 +269,21 @@ export default function LaunchPad({ pools }: any) {
                         {pool?.tag === "completed" && (
                           <div className={styles.allocationGroupContainer}>
                             <p className={styles.allocationGroupText}>
-                              Total Rate
+                              Status
                             </p>
                             <h3 className={styles.allocationGroupHeading}>
-                              {pool?.totalRate}
+                              {pool?.tag}
                             </h3>
                           </div>
                         )}
                         {pool?.tag !== "completed" && (
                           <div className={styles.allocationGroupContainer}>
                             <p className={styles.allocationGroupText}>
-                              Min Allocation
+                              Status
                             </p>
                             <h3 className={styles.allocationGroupHeading}>
                               {/* {convertweiToEthers(tierDetails.minUserCap)} */}
-                              {pool?.minimumPurchase}
+                              {pool?.tag}
                             </h3>
                           </div>
                         )}
