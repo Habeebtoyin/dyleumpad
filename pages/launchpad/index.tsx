@@ -230,14 +230,14 @@ export default function LaunchPad({ pools }: any) {
                         style={{ marginRight: "auto" }}
                       />
                       <div className={styles.topContent}>
-                        {pool?.tokenName === "Blue Norva" && (
+                        
                           <Image
-                            src={BlueNorvaLogo}
+                            src={pool.logo}
                             alt="logo"
                             width="80px"
                             height="80px"
                           />
-                        )}
+                        
                         {/* <div className="logo">{pool?.logo}</div> */}
                         {/* <Image
                           className={styles.logo}
@@ -333,7 +333,7 @@ export default function LaunchPad({ pools }: any) {
                     </div>
                   </div>
 
-                  {/* <Link
+                  <Link
                     style={{
                       background: "#08272f",
                       border: "1px solid #2166ae",
@@ -354,7 +354,7 @@ export default function LaunchPad({ pools }: any) {
                     href={`/launchpad/pools/${pool.id}`}
                   >
                     View More
-                  </Link> */}
+                  </Link>
                 </div>
               ))}
           </div>
