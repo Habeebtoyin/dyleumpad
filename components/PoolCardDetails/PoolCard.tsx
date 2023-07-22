@@ -49,6 +49,7 @@ export default function PoolCard({ pool }: any) {
   const { data: signer, isError, isLoading } = useSigner();
   // console.log(chain.id)
   const USDC="0x7F5c764cBc14f9669B88837ca1490cCa17c31607"
+  const test="0xBdFeF93dB6561284FbD2E32b5e2D596FB1037Db8"
   useEffect(() => {
     const PublicSale = new PublicSaleClass(
       pool.contract,
@@ -56,7 +57,9 @@ export default function PoolCard({ pool }: any) {
       signer,
       new ethers.providers.JsonRpcProvider("https://opt-goerli.g.alchemy.com/v2/OkPyLQB7twaTwwJOzCaAW6pFuakPvuTm")
     );
+    console.log("Here si the",pool.contract)
     PublicSale.getSaleEnd().then((res) => {
+      
       //  console.log({date:parseInt(res.toString())})
       var myDate: any = new Date(parseInt(res.toString()) * 1000);
       //  console.log(myDate.toLocaleString());
@@ -65,11 +68,21 @@ export default function PoolCard({ pool }: any) {
 
     PublicSale.fetchTotalSaleAmount().then((res) => {
       console.log({ res });
-      setTotalRaise(res);
+      if(pool.tag==="completed"){
+        setTotalRaise(pool.currentBalance)
+      }else{
+        setTotalRaise(res);
+      }
+     
     });
     PublicSale.getHardCap().then((res) => {
       console.log("hardCap", res[0].toString());
-      setHardCap(res[0]);
+      if(pool.tag==="completed"){
+        setHardCap(pool.targetBalance)
+      }else{
+        setHardCap(res[0])
+      }
+      ;
     });
 
    
@@ -178,7 +191,7 @@ export default function PoolCard({ pool }: any) {
                   width:
                     (
                       (parseInt(convertweiToEthers(totalRaised, 6)) /
-                        parseInt(convertweiToEthers(50000000000, 6))) *
+                        parseInt(convertweiToEthers(pool.targetBalance, 6))) *
                       100
                     )
                       .toFixed(2)
@@ -195,7 +208,7 @@ export default function PoolCard({ pool }: any) {
               </p> */}
               <p className={styles.SLMAmt}>
                 {convertweiToEthers(totalRaised, 6)}/
-                {convertweiToEthers(50000000000, 6)} USDC
+                {pool.targetBalance} USDC
               </p>
             </div>
           </div>
