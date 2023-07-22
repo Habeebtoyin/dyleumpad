@@ -48,20 +48,13 @@ export default function PoolCard({ pool }: any) {
   const [saleStart, setSaleStart]: any = useState(0);
   const { data: signer, isError, isLoading } = useSigner();
   // console.log(chain.id)
-
+  const USDC="0x7F5c764cBc14f9669B88837ca1490cCa17c31607"
   useEffect(() => {
-    const newLaunchPool = new LaunchPoolClass(
-      "0xBdFeF93dB6561284FbD2E32b5e2D596FB1037Db8",
-      "0x7F5c764cBc14f9669B88837ca1490cCa17c31607",
-      1,
-      signer,
-      new ethers.providers.JsonRpcProvider("https://mainnet.optimism.io")
-    );
     const PublicSale = new PublicSaleClass(
-      "0x3223039CeCB55Cd6c484b9275EA19bF2C5d827Ae",
-      "0x7F5c764cBc14f9669B88837ca1490cCa17c31607",
+      pool.contract,
+      USDC,
       signer,
-      new ethers.providers.JsonRpcProvider("https://mainnet.optimism.io")
+      new ethers.providers.JsonRpcProvider("https://opt-goerli.g.alchemy.com/v2/OkPyLQB7twaTwwJOzCaAW6pFuakPvuTm")
     );
     PublicSale.getSaleEnd().then((res) => {
       //  console.log({date:parseInt(res.toString())})
@@ -79,22 +72,12 @@ export default function PoolCard({ pool }: any) {
       setHardCap(res[0]);
     });
 
-    // newLaunchPool.getSaleEnd().then((res) => {
-    //   //  console.log({date:parseInt(res.toString())})
-    //   var myDate: any = new Date(parseInt(res.toString())* 1000);
-    //   //  console.log(myDate.toLocaleString());
-    //   setSaleEnd(myDate.toLocaleString());
-    // });
-    newLaunchPool.getSaleStart().then((res) => {
-      // console.log({ date: parseInt(res.toString()) });
-      var myDate = new Date(parseInt(res.toString()) * 1000);
-      // console.log(myDate.toLocaleString());
-      setSaleStart(res.toString());
-    });
+   
+   
     let progressValue =
       (
-        (parseInt(convertweiToEthers(tierDetails?.amountRaised)) /
-          parseInt(convertweiToEthers(tierDetails?.maxTierCap))) *
+        (parseInt(convertweiToEthers(totalRaised)) /
+          parseInt(convertweiToEthers(hardCap))) *
         100
       )
         .toFixed(2)
@@ -103,44 +86,17 @@ export default function PoolCard({ pool }: any) {
 
     console.log(progress);
 
-    // setProgress((percentage.toFixed(2)).toString())
-
-    // setProgress((percentage.toFixed(2)).toString())
-    // newLaunchPool.checkAllowance().then((res) => {
-    //   console.log({ res });
-    // });
-    // if (chain) {
-    //   if (chain.id !== pool.chain) {
-    //     toast.error("THIS POOL EXIST ON ANOTHER CHAIN");
-    //     switchNetwork?.(parseInt(pool.chain));
-    //   }
-    // }
-  }, []);
-  useEffect(() => {
-    newLaunchPool.getTierDetails().then((res) => {
-      //console.log({tier:res});
-      setTierDetails(res);
-    });
-
-    // const address=signer?.getAddress()
-    // newLaunchPool.getUserDetails(address).then((res)=>{
-    //   console.log({res})
-    // })
+   
   }, []);
 
-  const newLaunchPool = new LaunchPoolClass(
-    "0xBdFeF93dB6561284FbD2E32b5e2D596FB1037Db8",
-    "0x7F5c764cBc14f9669B88837ca1490cCa17c31607",
-    1,
-    signer,
-    new ethers.providers.JsonRpcProvider("https://mainnet.optimism.io")
-  );
+
+  
 
   const PublicSale = new PublicSaleClass(
-    "0x3223039CeCB55Cd6c484b9275EA19bF2C5d827Ae",
-    "0x7F5c764cBc14f9669B88837ca1490cCa17c31607",
+    pool.contract,
+    USDC,
     signer,
-    new ethers.providers.JsonRpcProvider("https://mainnet.optimism.io")
+    new ethers.providers.JsonRpcProvider("https://opt-goerli.g.alchemy.com/v2/OkPyLQB7twaTwwJOzCaAW6pFuakPvuTm")
   );
 
   async function BuyPresale(e: any) {

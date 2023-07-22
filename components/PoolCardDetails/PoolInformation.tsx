@@ -23,34 +23,14 @@ export default function PoolInformation({ pool }: any) {
     // console.log(pool.chain)
     return chains.filter((x: any) => x.id === pool.chain);
   }
-  const newLaunchPool = new LaunchPoolClass(
-    "0xC53c56F17e4472f521e6BE1718653f5a9Dd37FeB",
-    "0x2Fd8894A7F280cE00C362ef1BB51d9B0F42c5931",
-    1,
-    signer,
-    new ethers.providers.JsonRpcProvider(
-      "https://fantom-testnet.public.blastapi.io"
-    )
-  );
+ 
 
   const convertDate = (date: any) => {
     var utc = new Date(date).toLocaleString();
     return utc;
   };
 
-  useEffect(() => {
-    // if (chains) {
-    //   const currentChain = poolChain(chains);
-    //   setCChain(currentChain[0]);
-    //   console.log(currentChain[0]);
-    // }
-    newLaunchPool.getTierDetails().then((res) => {
-      console.log({ tier: res });
-      setTierDetails(res);
-    });
-  }, []);
-  console.log({ pool });
-
+ 
   return (
     <div className={`${styles.details} ${styles.poolInformation}`}>
       <h1>Pool Information</h1>
