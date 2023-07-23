@@ -48,7 +48,7 @@ export default function PoolCard({ pool }: any) {
 	const [saleStart, setSaleStart]: any = useState(0);
 	const { data: signer, isError, isLoading } = useSigner();
 	// console.log(chain.id)
-	const USDC = "0x7F5c764cBc14f9669B88837ca1490cCa17c31607";
+	const USDC = "0x94b008aA00579c1307B0EF2c499aD98a8ce58e58";
 	const getSalePrice = () => {
 		if (pool?.access === "Private") {
 			console.log(1);
@@ -81,7 +81,8 @@ export default function PoolCard({ pool }: any) {
 			if (pool.tag === "completed") {
 				setTotalRaise(pool.currentBalance);
 			} else {
-				setTotalRaise(res.toString());
+				const amount = convertweiToEthers(res.toString(), 6);
+				setTotalRaise(parseFloat(amount));
 			}
 		});
 		PublicSale.getHardCap().then((res) => {
@@ -231,7 +232,7 @@ export default function PoolCard({ pool }: any) {
 								Total Raised
 							</p>
 							<h3 className={styles.allocationGroupHeading}>
-								{convertweiToEthers(totalRaised, 6)}
+								{totalRaised.toString()}
 							</h3>
 						</div>
 						<div className={styles.allocationGroupContainer}>
