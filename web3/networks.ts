@@ -1,5 +1,16 @@
 import { ethers } from "ethers"
 
+
+const goerliProvider:any = [
+     "https://goerli.infura.io/v3/8ca05013686546bab29ec5751827c31c"
+
+]
+
+const nautTestntProvider:any = [
+    "https://api.proteus.nautchain.xyz/solana" ,
+     "https://goerli.infura.io/v3/8ca05013686546bab29ec5751827c31c"
+
+]
 const fantomTestnetProvider = [
     "https://fantom-testnet.public.blastapi.io",
     "https://rpc.ankr.com/fantom_testnet",
@@ -17,6 +28,14 @@ const OptimismTestnetProvider:any = [
 export const JsonRPCProviderUrl = (url:string) => new ethers.providers.JsonRpcProvider(url)
 
 export const ProviderSelector:any = (network:string, strength:number) => {
+    if (network === "nautTestntProvider") {
+        let selectedUrl = nautTestntProvider[strength]
+        return JsonRPCProviderUrl(selectedUrl)
+    }
+    if (network === "goerliProvider") {
+        let selectedUrl = goerliProvider[strength]
+        return JsonRPCProviderUrl(selectedUrl)
+    }
     if (network === "fantomTestnetProvider") {
         let selectedUrl = fantomTestnetProvider[strength]
         return JsonRPCProviderUrl(selectedUrl)

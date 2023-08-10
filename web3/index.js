@@ -8,15 +8,16 @@ import PublicSaleABI from "./abi/PublicSale.json"
 export class LaunchPoolClass {
     constructor(address, token, tier, signer, provider) {
         // console.log({ address, token, tier, signer, provider })
-        this.address = address
+      this.address = address
         this.token = token
         this.tier = tier
         this.signer = signer
         this.provider = provider
         this.abi = SolimaxLaunchPadABI
-        this.contract = new ethers.Contract(this?.address, this?.abi, this?.signer)
-        this.contractWithProvider = new ethers.Contract(this?.address, this?.abi, this?.provider)
-    }
+        this.contract = new ethers.Contract(this.address, this.abi, this.signer)
+        this.contractWithProvider = new ethers.Contract(this.address, this.abi, this.provider)
+        // this.contractWithProvider = new ethers.Contract(this.address, this.abi, this.provider)
+    }  
 
     getpoolAddress() {
         return this?.address;

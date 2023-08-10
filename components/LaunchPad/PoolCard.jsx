@@ -26,12 +26,12 @@ export default function PoolCard({ pool }) {
   });
 
   const newLaunchPool = new LaunchPoolClass(
-    "0xBdFeF93dB6561284FbD2E32b5e2D596FB1037Db8",
-    "0x7F5c764cBc14f9669B88837ca1490cCa17c31607",
+    "0x32ABa8993d3975b4c55423e42e373D1a294DD9F5",
+    "0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6",
     1,
     signer,
     new ethers.providers.JsonRpcProvider(
-      "https://opt-goerli.g.alchemy.com/v2/OkPyLQB7twaTwwJOzCaAW6pFuakPvuTm"
+       "https://goerli.infura.io/v3/8ca05013686546bab29ec5751827c31c"
     )
   );
 
@@ -161,7 +161,7 @@ export default function PoolCard({ pool }) {
               <div className={styles.allocationGroupContainer}>
                 <p className={styles.allocationGroupText}>Min Allocation</p>
                 <h3 className={styles.allocationGroupHeading}>
-                  {convertweiToEthers(tierDetails.minUserCap,6)}
+                  {convertweiToEthers(tierDetails.minUserCap,18)}
                 </h3>
               </div>
             )}
@@ -169,7 +169,7 @@ export default function PoolCard({ pool }) {
             <div className={styles.allocationGroupContainer}>
               <p className={styles.allocationGroupText}>Max Allocation</p>
               <h3 className={styles.allocationGroupHeading}>
-                {convertweiToEthers(tierDetails.maxUserCap,6)}
+                {convertweiToEthers(tierDetails.maxUserCap,18)}
               </h3>
             </div>
             <div className={styles.allocationGroupContainer}>
@@ -208,7 +208,7 @@ export default function PoolCard({ pool }) {
         // <button
         // onClick={async () => {
         //   await newLaunchPool.increaseAllowance(
-        //     "0xC53c56F17e4472f521e6BE1718653f5a9Dd37FeB",
+        //     "  0x1e44aD50eA57D61044BE36AF1eb11E10D9d7655C",
         //     "10"
         //   );
         // }}

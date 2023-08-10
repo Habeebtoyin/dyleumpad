@@ -73,11 +73,11 @@ export default function LaunchPad({ pools }: any) {
 	const getOnChainData = (contractAddress: string, token: string) => {};
 	const newLaunchPool = new LaunchPoolClass(
 		pools[0].contract,
-		"0x7F5c764cBc14f9669B88837ca1490cCa17c31607",
+		"0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6",
 		1,
 		signer,
 		new ethers.providers.JsonRpcProvider(
-			"https://opt-goerli.g.alchemy.com/v2/OkPyLQB7twaTwwJOzCaAW6pFuakPvuTm"
+			 "https://goerli.infura.io/v3/8ca05013686546bab29ec5751827c31c"
 		)
 	);
 
@@ -459,7 +459,7 @@ export default function LaunchPad({ pools }: any) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-	const res = await fetch("https://solimax-api-dev.vercel.app/api/pools");
+	const res = await fetch("https://dyleum-api-data.vercel.app/api/pools");
 	const pools = await res.json();
 	console.log(pools);
 

@@ -10,6 +10,7 @@ import { LaunchPoolClass, PublicSaleClass } from "../../web3";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { createClient, configureChains } from "wagmi";
+// import { Chain, configureChains, createClient, useAccount, WagmiConfig } from "wagmi"
 import { useNetwork, useSwitchNetwork } from "wagmi";
 import { convertEthersToWei, convertweiToEthers } from "../../web3/priceOracle";
 import {
@@ -18,13 +19,39 @@ import {
 	fantomTestnet,
 	optimismGoerli,
 	fantom,
+	goerli
+	
 } from "wagmi/chains";
 import { publicProvider } from "wagmi/providers/public";
 import PhaseBtns from "./PhaseBtns";
 import Image from "next/image";
 
-const { provider } = configureChains(
-	[fantom, fantomTestnet, optimism, optimismGoerli],
+const nautChain: any = {
+	id: 91002,
+	name: 'Nautilus Triton Testnet ',
+	network: 'Nautilus Triton Testnet',
+	iconUrl: "https://i.ibb.co/4dCffp7/icon.webp",
+	iconBackground: '#ffffff0',
+	nativeCurrency: {
+	  decimals: 18,
+	  name: 'ZBC',
+	  symbol: 'ZBC',
+	},
+	rpcUrls: {
+	  default: {
+		http: ['https://triton.api.nautchain.xyz'],
+	  },
+	},
+	blockExplorers: {
+	  default: { name: 'NautilusChain Explorer', url: 'https://triton.nautscan.com/' },
+	  etherscan: { name: 'NautilusChain Explorer', url: 'https://triton.nautscan.com/' },
+	},
+	testnet: false,
+  };
+
+const { chains, provider } = configureChains(
+	// [fantom, fantomTestnet, optimism, optimismGoerli, nautChain ],
+	[nautChain, goerli],
 	[publicProvider()]
 );
 
@@ -48,7 +75,7 @@ export default function PoolCard({ pool }: any) {
 	const [saleStart, setSaleStart]: any = useState(0);
 	const { data: signer, isError, isLoading } = useSigner();
 	// console.log(chain.id)
-	const USDC = "0x94b008aA00579c1307B0EF2c499aD98a8ce58e58";
+	const USDC = "0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6";
 	const getSalePrice = () => {
 		if (pool?.access === "Private") {
 			console.log(1);
@@ -65,7 +92,7 @@ export default function PoolCard({ pool }: any) {
 			USDC,
 			signer,
 			new ethers.providers.JsonRpcProvider(
-				"https://rpc.ankr.com/optimism"
+				 "https://goerli.infura.io/v3/8ca05013686546bab29ec5751827c31c"
 			)
 		);
 		console.log("Here si the", pool.contract);
@@ -81,7 +108,7 @@ export default function PoolCard({ pool }: any) {
 			if (pool.tag === "completed") {
 				setTotalRaise(pool.currentBalance);
 			} else {
-				const amount = convertweiToEthers(res.toString(), 6);
+				const amount = convertweiToEthers(res.toString(), 18);
 				setTotalRaise(parseFloat(amount));
 			}
 		});
@@ -111,14 +138,14 @@ export default function PoolCard({ pool }: any) {
 		pool.contract,
 		USDC,
 		signer,
-		new ethers.providers.JsonRpcProvider("https://rpc.ankr.com/optimism")
+		new ethers.providers.JsonRpcProvider( "https://goerli.infura.io/v3/8ca05013686546bab29ec5751827c31c")
 	);
 
 	async function BuyPresale(e: any) {
 		e.preventDefault();
 		if (amountToBuy !== 0) {
 			if (parseInt(saleStart) < currentDate / 1000) {
-				const value = convertEthersToWei(amountToBuy.toString(), 6);
+				const value = convertEthersToWei(amountToBuy.toString(), 18);
 				// toast.success("Allowance Success");
 				PublicSale.increaseAllowance(value.toString())
 					.then((res) => {

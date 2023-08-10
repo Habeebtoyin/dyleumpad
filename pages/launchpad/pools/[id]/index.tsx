@@ -67,7 +67,7 @@ export default Pool;
 
 export const getStaticProps: GetStaticProps = async (context: any) => {
 	const res = await fetch(
-		"https://solimax-api-dev.vercel.app/api/pools/" + context?.params.id
+		"https://dyleum-api-data.vercel.app/api/pools/" + context?.params.id
 	);
 	const pool = await res.json();
 	console.log(pool, context.params.id);
@@ -86,7 +86,7 @@ export const getStaticProps: GetStaticProps = async (context: any) => {
 };
 export const getStaticPaths: GetStaticPaths = async () => {
 	const res = await fetch(
-		"https://solimax-api-dev.vercel.app/api/pools"
+		"https://dyleum-api-data.vercel.app/api/pools/"
 	);
 	const pools = await res.json();
 	const ids = pools.map((pool: any) => pool.id);

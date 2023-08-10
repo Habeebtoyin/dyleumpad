@@ -21,6 +21,7 @@ import {
   optimismGoerli,
   fantom,
   localhost,
+  goerli,
 } from "wagmi/chains";
 import { alchemyProvider } from "wagmi/providers/alchemy";
 import { publicProvider } from "wagmi/providers/public";
@@ -28,7 +29,31 @@ import { GlobalContextProvider } from "../context/GlobalContext";
 import { Suspense, useEffect, useState } from "react";
 import Layout from "../components/Layout";
 import Loader from "./Loading";
-import zkLogo from '../components/assets/icons/zkSync logo.png';
+// import zkLogo from '../components/assets/icons/zkSync logo.png';
+
+
+const nautChain: any = {
+  id: 91002,
+  name: 'Nautilus Triton Testnet ',
+  network: 'Nautilus Triton Testnet',
+  iconUrl: "https://i.ibb.co/4dCffp7/icon.webp",
+  iconBackground: '#ffffff0',
+  nativeCurrency: {
+    decimals: 18,
+    name: 'ZBC',
+    symbol: 'ZBC',
+  },
+  rpcUrls: {
+    default: {
+      http: ['https://triton.api.nautchain.xyz'],
+    },
+  },
+  blockExplorers: {
+    default: { name: 'NautilusChain Explorer', url: 'https://triton.nautscan.com/' },
+    etherscan: { name: 'NautilusChain Explorer', url: 'https://triton.nautscan.com/' },
+  },
+  testnet: false,
+};
 
 const avalancheChain: any = {
   id: 324,
@@ -55,7 +80,8 @@ const avalancheChain: any = {
 
 
 const { chains, provider } = configureChains(
-  [fantom, optimism,avalancheChain],
+  // [fantom, optimism,avalancheChain,nautChain],
+  [nautChain, goerli],
   [publicProvider()]
 );
 

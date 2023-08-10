@@ -15,8 +15,8 @@ export default function Staking() {
   const { chain } = useNetwork();
   const [amount, setAmount]: any = useState(null);
   const StakingPool = new StakingPoolClass(
-    "0x5EFbde98f336769E0Ff45A05f9E6dc7A75a25fbB",
-    "0x2Fd8894A7F280cE00C362ef1BB51d9B0F42c5931",
+    "0x32ABa8993d3975b4c55423e42e373D1a294DD9F5",
+    "0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6",
     signer,
     new ethers.providers.JsonRpcProvider(chain?.rpcUrls.default.http[0])
   );
