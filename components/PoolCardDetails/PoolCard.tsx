@@ -25,6 +25,30 @@ import {
 import { publicProvider } from "wagmi/providers/public";
 import PhaseBtns from "./PhaseBtns";
 import Image from "next/image";
+import { errorMonitor } from "events";
+
+const nautMainnetChain: any = {
+	id: 22222,
+	name: 'Nautilus Mainnet',
+	network: 'Nautilus Mainnet',
+	iconUrl: "https://i.ibb.co/4dCffp7/icon.webp",
+	iconBackground: '#ffffff0',
+	nativeCurrency: {
+	  decimals: 18,
+	  name: 'ZBC',
+	  symbol: 'ZBC',
+	},
+	rpcUrls: {
+	  default: {
+		http: ['https://triton.api.nautchain.xyz'],
+	  },
+	},
+	blockExplorers: {
+	  default: { name: 'NautilusChain Explorer', url: 'https://triton.nautscan.com/' },
+	  etherscan: { name: 'NautilusChain Explorer', url: 'https://triton.nautscan.com/' },
+	},
+	testnet: false,
+  };
 
 const nautChain: any = {
 	id: 91002,
@@ -51,7 +75,7 @@ const nautChain: any = {
 
 const { chains, provider } = configureChains(
 	// [fantom, fantomTestnet, optimism, optimismGoerli, nautChain ],
-	[nautChain, goerli],
+	[nautChain, nautMainnetChain, goerli],
 	[publicProvider()]
 );
 
@@ -62,6 +86,7 @@ export default function PoolCard({ pool }: any) {
 	const [progress, setProgress] = useState(0.0);
 	const currentDate = Date.now();
 	const [amountToBuy, setAmountToBuy]: any = useState(0);
+	// const [amount, setAmountToBuy]: any = useState(0);
 	const [hardCap, setHardCap] = useState(0);
 	const [totalRaised, setTotalRaise] = useState(0);
 	const [tierDetails, setTierDetails] = useState({
@@ -144,24 +169,43 @@ export default function PoolCard({ pool }: any) {
 	async function BuyPresale(e: any) {
 		e.preventDefault();
 		if (amountToBuy !== 0) {
+			// if (amount !== 0) {
 			if (parseInt(saleStart) < currentDate / 1000) {
 				const value = convertEthersToWei(amountToBuy.toString(), 18);
+				// const value = convertEthersToWei(amount.toString(), 18);
 				// toast.success("Allowance Success");
-				PublicSale.increaseAllowance(value.toString())
-					.then((res) => {
-						toast.success("Allowance Success");
-						toast.success("Buying Presale Token");
-						PublicSale.buyTokens(value.toString())
-							.then((res) => {
-								toast.success("Presale Token Bought");
-							})
-							.catch((err) => {
-								toast.error(err.error.data.message);
-							});
-					})
-					.catch((err) => {
-						toast.error(err.error.data.message);
-					});
+				// const desiredlimit = 500000;
+				//  await PublicSale.increaseAllowance(value.toString())
+				
+				// .then((res) => {
+				// 	toast.success("Allowance Success");
+				// 		toast.success("Buying Presale Token");
+				// 		await PublicSale.buyTokens(value.toString(),{ gasLimit: desiredlimit })
+				// 			.then((res) => {
+				// 				toast.success("Presale Token Bought");
+				// 			})
+				// 			.catch((err) => {
+				// 				// toast.error(err.error.data.message);
+				// 				console.log("Buy tokens error:", err);
+				// 				toast.error("An error occurred while buying tokens");
+				// 			});
+				// 	})
+				// 	.catch((err) => {
+				// 		console.log(error)
+				// 		toast.error(err.error.data.message);
+
+				// 	});
+
+				const desiredGasLimit = 100000000; // Replace with your desired value
+
+      try {
+        await PublicSale.increaseAllowance(value.toString());
+        await PublicSale.buyTokens(value.toString(), { gasLimit: desiredGasLimit });
+        toast.success("Presale Token Bought");
+      } catch (err) {
+        console.error("Transaction error:", err);
+        toast.error("An error occurred while buying tokens");
+      }
 			} else {
 				toast.error("Launch Has not Started Yet");
 			}
@@ -294,6 +338,7 @@ export default function PoolCard({ pool }: any) {
 									: saleEnd}
 							</h3>
 							<h5>Amount of {pool?.tokenName} :</h5>
+							{/* <h6>{amount / pool?.price}</h6> */}
 							<h6>{amountToBuy / pool?.price}</h6>
 						</div>
 					</div>

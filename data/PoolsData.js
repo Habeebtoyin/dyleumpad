@@ -10,7 +10,7 @@ export const proposals = [
 ];
 
 
-export const ActivePools = [
+// export const ActivePools = [
 //   {
 //     id: 1,
 //     tag: "active",
@@ -47,7 +47,7 @@ export const ActivePools = [
 //       "2) Ensure a healthy living by targeting your daily step count goals on the Menzy application and getting rewarded with MNZ tokens and unique digital assets for maintaining a healthy lifestyle.",
 //     ],
 //   },
-]
+// ]
 //   {
 //     id: 1,
 //     tag: "active",

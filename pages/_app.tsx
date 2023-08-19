@@ -31,7 +31,28 @@ import Layout from "../components/Layout";
 import Loader from "./Loading";
 // import zkLogo from '../components/assets/icons/zkSync logo.png';
 
-
+const nautMainnetChain: any = {
+  id: 22222,
+  name: 'Nautilus Mainnet',
+  network: 'Nautilus Mainnet',
+  iconUrl: "https://i.ibb.co/4dCffp7/icon.webp",
+  iconBackground: '#ffffff0',
+  nativeCurrency: {
+    decimals: 9,
+    name: 'Zebec',
+    symbol: 'ZBC',
+  },
+  rpcUrls: {
+    default: {
+      http: ['https://api.nautilus.nautchain.xyz/'],
+    },
+  },
+  blockExplorers: {
+    default: { name: 'NautilusChain Explorer', url: 'https://nautscan.com/' },
+    etherscan: { name: 'NautilusChain Explorer', url: 'https://nautscan.com/' },
+  },
+  testnet: false,
+};
 const nautChain: any = {
   id: 91002,
   name: 'Nautilus Triton Testnet ',
@@ -81,7 +102,7 @@ const avalancheChain: any = {
 
 const { chains, provider } = configureChains(
   // [fantom, optimism,avalancheChain,nautChain],
-  [nautChain, goerli],
+  [nautChain, nautMainnetChain, goerli],
   [publicProvider()]
 );
 

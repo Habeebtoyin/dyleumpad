@@ -11,6 +11,10 @@ const nautTestntProvider:any = [
      "https://goerli.infura.io/v3/8ca05013686546bab29ec5751827c31c"
 
 ]
+const nautMainnetProvider:any = [
+    "https://api.nautilus.nautchain.xyz/"
+
+]
 const fantomTestnetProvider = [
     "https://fantom-testnet.public.blastapi.io",
     "https://rpc.ankr.com/fantom_testnet",
@@ -28,6 +32,10 @@ const OptimismTestnetProvider:any = [
 export const JsonRPCProviderUrl = (url:string) => new ethers.providers.JsonRpcProvider(url)
 
 export const ProviderSelector:any = (network:string, strength:number) => {
+    if (network === "nautMainnetProvider") {
+        let selectedUrl = nautMainnetProvider[strength]
+        return JsonRPCProviderUrl(selectedUrl)
+    }
     if (network === "nautTestntProvider") {
         let selectedUrl = nautTestntProvider[strength]
         return JsonRPCProviderUrl(selectedUrl)

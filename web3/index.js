@@ -14,17 +14,20 @@ export class LaunchPoolClass {
         this.signer = signer
         this.provider = provider
         this.abi = SolimaxLaunchPadABI
+        // this.abi = PublicSaleABI
         this.contract = new ethers.Contract(this.address, this.abi, this.signer)
         this.contractWithProvider = new ethers.Contract(this.address, this.abi, this.provider)
-        // this.contractWithProvider = new ethers.Contract(this.address, this.abi, this.provider)
+       
     }  
 
     getpoolAddress() {
         return this?.address;
     }
     async increaseAllowance(amount) {
+        // async approve(amount) {
         const contract = new ethers.Contract(this.token, IERC20.abi, this.signer);
         const tx = await contract.functions.increaseAllowance(this.address, amount.toString());
+        // const tx = await contract.functions.approve(this.address, amount.toString());
         const receipt = await tx.wait();
         return receipt;
     }
@@ -77,6 +80,7 @@ export class PublicSaleClass {
         this.signer = signer
         this.provider = provider
         this.contract = new ethers.Contract(this.address, PublicSaleABI.abi, this.signer)
+        
         this.contractWithProvider = new ethers.Contract(this.address, PublicSaleABI.abi, this.provider)
     }
     //fetch total
@@ -99,8 +103,10 @@ export class PublicSaleClass {
         return result
     }
     async increaseAllowance(amount) {
+        // async approve(amount) {
         const contract = new ethers.Contract(this.token, IERC20.abi, this.signer);
         const tx = await contract.functions.increaseAllowance(this.address, amount.toString());
+        // const tx = await contract.functions.approve(this.address, amount.toString());
         const receipt = await tx.wait();
         return receipt;
     }

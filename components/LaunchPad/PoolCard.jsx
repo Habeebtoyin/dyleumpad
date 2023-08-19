@@ -26,7 +26,7 @@ export default function PoolCard({ pool }) {
   });
 
   const newLaunchPool = new LaunchPoolClass(
-    "0x32ABa8993d3975b4c55423e42e373D1a294DD9F5",
+    "0xd826932358f9BeAa9DF46cEC844EA7FBD158c97e",
     "0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6",
     1,
     signer,
@@ -161,7 +161,7 @@ export default function PoolCard({ pool }) {
               <div className={styles.allocationGroupContainer}>
                 <p className={styles.allocationGroupText}>Min Allocation</p>
                 <h3 className={styles.allocationGroupHeading}>
-                  {convertweiToEthers(tierDetails.minUserCap,18)}
+                  {convertweiToEthers(tierDetails.minUserCap,6)}
                 </h3>
               </div>
             )}
@@ -169,7 +169,7 @@ export default function PoolCard({ pool }) {
             <div className={styles.allocationGroupContainer}>
               <p className={styles.allocationGroupText}>Max Allocation</p>
               <h3 className={styles.allocationGroupHeading}>
-                {convertweiToEthers(tierDetails.maxUserCap,18)}
+                {convertweiToEthers(tierDetails.maxUserCap,6)}
               </h3>
             </div>
             <div className={styles.allocationGroupContainer}>
