@@ -6,7 +6,7 @@ import frame from "../../components/assets/images/launchpad/pool-frame.png";
 import { ethers } from "ethers";
 import { useState, useEffect } from "react";
 import { useSigner } from "wagmi";
-import { LaunchPoolClass, PublicSaleClass } from "../../web3";
+import { LaunchPoolClass, PublicSaleClass } from "../../web3/index";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { createClient, configureChains } from "wagmi";
@@ -100,7 +100,7 @@ export default function PoolCard({ pool }: any) {
 	const [saleStart, setSaleStart]: any = useState(0);
 	const { data: signer, isError, isLoading } = useSigner();
 	// console.log(chain.id)
-	const USDC = "0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6";
+	const USDC ="0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6";
 	const getSalePrice = () => {
 		if (pool?.access === "Private") {
 			console.log(1);
@@ -169,43 +169,32 @@ export default function PoolCard({ pool }: any) {
 	async function BuyPresale(e: any) {
 		e.preventDefault();
 		if (amountToBuy !== 0) {
-			// if (amount !== 0) {
 			if (parseInt(saleStart) < currentDate / 1000) {
-				const value = convertEthersToWei(amountToBuy.toString(), 18);
-				// const value = convertEthersToWei(amount.toString(), 18);
-				// toast.success("Allowance Success");
-				// const desiredlimit = 500000;
-				//  await PublicSale.increaseAllowance(value.toString())
+				// const value = convertEthersToWei(amountToBuy.toString(), 18);
+				try {
+					const value = ethers.utils.parseEther(amountToBuy.toString())
+					await PublicSale.contract.buyTokens({ value: value.toString() });
+					toast.success("Presale Token Bought");
+				  } catch (error) {
+					toast.error("something went wrong" + error);
+				  }
 				
-				// .then((res) => {
-				// 	toast.success("Allowance Success");
-				// 		toast.success("Buying Presale Token");
-				// 		await PublicSale.buyTokens(value.toString(),{ gasLimit: desiredlimit })
-				// 			.then((res) => {
-				// 				toast.success("Presale Token Bought");
-				// 			})
-				// 			.catch((err) => {
-				// 				// toast.error(err.error.data.message);
-				// 				console.log("Buy tokens error:", err);
-				// 				toast.error("An error occurred while buying tokens");
-				// 			});
-				// 	})
-				// 	.catch((err) => {
-				// 		console.log(error)
-				// 		toast.error(err.error.data.message);
 
-				// 	});
-
-				const desiredGasLimit = 100000000; // Replace with your desired value
-
-      try {
-        await PublicSale.increaseAllowance(value.toString());
-        await PublicSale.buyTokens(value.toString(), { gasLimit: desiredGasLimit });
-        toast.success("Presale Token Bought");
-      } catch (err) {
-        console.error("Transaction error:", err);
-        toast.error("An error occurred while buying tokens");
-      }
+				// toast.success("Allowance Success");
+				// PublicSale.increaseAllowance(value.toString())
+					// .then((res) => {
+					// 	toast.success("Buying Presale Token");
+						// PublicSale.buyTokens({value: value.toString()})
+						// 	.then((res) => {
+						// 		toast.success("Presale Token Bought");
+						// 	})
+						// 	.catch((err) => {
+						// 		toast.error(err.error.data.message);
+						// 	});
+					// })
+					// .catch((err) => {
+					// 	toast.error(err.error.data.message);
+					// });
 			} else {
 				toast.error("Launch Has not Started Yet");
 			}
@@ -213,6 +202,7 @@ export default function PoolCard({ pool }: any) {
 			toast.error("USDC amount can't be empty");
 		}
 	}
+
 
 	const phases = [
 		{

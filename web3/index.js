@@ -89,7 +89,8 @@ export class PublicSaleClass {
         return result
     }
     async buyTokens(amount) {
-        const tx = await this.contract.functions.buyTokens(amount.toString());
+        const parsedAmount = ethers.utils.parseEther(amount.toString())
+        const tx = await this.contract.functions.buyTokens({value: parsedAmount});
         const receipt = await tx.wait();
         return receipt
     }
