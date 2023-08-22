@@ -47,10 +47,7 @@ const Home: NextPage = () => {
         <HeroSection />
         <AboutUs />
         <Mission />
-        <Tokenomics />
-        <Roadmap />
         <HowToBuy />
-        <ContractAddress />
       </main>
       <Footer />
     </div>

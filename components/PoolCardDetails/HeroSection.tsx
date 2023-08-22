@@ -18,54 +18,58 @@ export default function HeroSection({ pool }: any) {
 			<Image className={styles.bg} src={heroBg} alt="hero background" />
 
 			<div className={styles.heroContainer}>
-				<div className={`${HomeStyles.leftCol} ${styles.leftCol}`}>
-					<Image
-						src={pool?.logo}
-						alt="logo"
-						width="80px"
-						height="80px"
-					/>
-
-					{/* <div className={styles.logo}>{pool?.logo}</div> */}
-					<h1 className={HomeStyles.heroTitle}>
-						{pool?.projectTitle}
-					</h1>
-					<Image src={dash} alt="dash" />
-					<p className={HomeStyles.text}>
-						{pool?.projectDescription}
-					</p>
-					{/* HERO LOGO LINKS */}
-					<div className={styles.socialIcons}>
-						{/* TWITTER ICON */}
-						<a href={pool?.Twitter}>
-							<Image src={twitterIcon} alt="twitter icon" />
-						</a>
-						{/* TELEGRAM ICON */}
-						{/* <a href="">
-              <Image src={telegramIcon} alt="telegram icon" />
-            </a> */}
-						{/* DISCORD ICON */}
-						<a href={pool?.Discord}>
-							<Image src={discordIcon} alt="radio icon" />
-						</a>
-						{/* RADIO ICON */}
-						{/* <a href="">
-              <Image src={radioIcon} alt="radio icon" />
-            </a> */}
-						{/* WEBSITE ICON */}
-						<a
-							href={`${pool?.Website}`}
-							target="_blank"
-							rel="noreferrer"
-						>
-							<Image src={webIcon} alt="website icon" />
-						</a>
-					</div>
-				</div>
-				<div className="rightCol">
+				
+				{/* <div className="rightCol"> */}
+				<div >
 					<PoolCard pool={pool} />
 				</div>
 			</div>
 		</section>
 	);
 }
+
+
+// <div className={`${HomeStyles.leftCol} ${styles.leftCol}`}>
+// 					<Image
+// 						src={pool?.logo}
+// 						alt="logo"
+// 						width="80px"
+// 						height="80px"
+// 					/>
+
+// 					{/* <div className={styles.logo}>{pool?.logo}</div> */}
+// 					<h1 className={HomeStyles.heroTitle}>
+// 						{pool?.projectTitle}
+// 					</h1>
+// 					<Image src={dash} alt="dash" />
+// 					<p className={HomeStyles.text}>
+// 						{pool?.projectDescription}
+// 					</p>
+// 					{/* HERO LOGO LINKS */}
+// 					<div className={styles.socialIcons}>
+// 						{/* TWITTER ICON */}
+// 						<a href={pool?.Twitter}>
+// 							<Image src={twitterIcon} alt="twitter icon" />
+// 						</a>
+// 						{/* TELEGRAM ICON */}
+// 						{/* <a href="">
+//               <Image src={telegramIcon} alt="telegram icon" />
+//             </a> */}
+// 						{/* DISCORD ICON */}
+// 						<a href={pool?.Discord}>
+// 							<Image src={discordIcon} alt="radio icon" />
+// 						</a>
+// 						{/* RADIO ICON */}
+// 						{/* <a href="">
+//               <Image src={radioIcon} alt="radio icon" />
+//             </a> */}
+// 						{/* WEBSITE ICON */}
+// 						<a
+// 							href={`${pool?.Website}`}
+// 							target="_blank"
+// 							rel="noreferrer"
+// 						>
+// 							<Image src={webIcon} alt="website icon" />
+// 						</a>
+// 					</div>
+// 				</div>

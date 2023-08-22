@@ -114,7 +114,7 @@ export default function LaunchPad({ pools }: any) {
 			{/* <Navbar /> */}
 			<main className="launchpad">
 				<HeroSection />
-				<BuyButtons />
+				{/* <BuyButtons /> */}
 				<section className={styles.pools}>
 					<div className={styles.poolsBtns}>
 						{titles.map((item) => (

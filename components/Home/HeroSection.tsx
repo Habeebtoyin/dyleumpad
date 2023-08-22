@@ -2,6 +2,7 @@ import styles from '../../styles/Home.module.css';
 import Image from 'next/image';
 import heroBg from "../../components/assets/images/hero-frame.png";
 import arrowRight from "../../components/assets/icons/arrow-right.svg";
+import Link from 'next/link';
 
 export default function HeroSection() {
   return (
@@ -19,15 +20,27 @@ export default function HeroSection() {
           the community with us.”
         </p>
         {/* HERO BTN */}
-        <button className={styles.heroBtn}>
-          <a
+        <div>
+          <Link
             className={`${styles.buySlmBtn} ${styles.heroButtonLink}`}
             href="https://equalizer.exchange/swap/?outputCurrency=0x39263a476aadf768be43a99b24c4e461098524a4"
           >
-            Buy SLM Now
-            <Image src={arrowRight} alt="arrow-right" />
-          </a>
-        </button>
+            <a className={styles.heroBtn}>
+              Buy Leum Now
+              <Image src={arrowRight} alt="arrow-right" />
+            </a>
+          </Link>
+          <Link
+            className={`${styles.buySlmBtn} ${styles.heroButtonLink}`}
+            href="/launchpad"
+          >
+            <a className={styles.heroBtn}>
+              Visit LaunchPad
+              <Image src={arrowRight} alt="arrow-right" />
+            </a>
+          </Link>
+</div>
+
       </div>
     </section>
   );

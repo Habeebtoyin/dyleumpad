@@ -52,11 +52,13 @@ const Pool = ({ pool }: any) => {
 				<link rel="icon" href="/logo-icon.svg" />
 			</Head>
 			{/* <Navbar /> */}
+			<div style={{display:'flex',alignContent:'center',alignItems:'center'}}>
 			<HeroSection pool={pool[0]} />
 			<section className={styles.poolTokenInformation}>
 				<PoolInformation pool={pool[0]} />
 				<TokenInformation pool={pool[0]} />
 			</section>
+			</div>
 			<AboutProject pool={pool[0]} />
 			<Footer />
 		</div>
