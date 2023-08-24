@@ -24,16 +24,16 @@ export default function Footer() {
             About us
           </Link>
         </li>
-        <li className="menu-item">
+        {/* <li className="menu-item">
           <Link href="/#tokenomics" className={styles.link}>
             Tokenomics
           </Link>
-        </li>
-        <li className="menu-item">
+        </li> */}
+        {/* <li className="menu-item">
           <Link href="/#roadmap" className={styles.link}>
             Roadmap
           </Link>
-        </li>
+        </li> */}
         <li className="menu-item">
           <Link href="/#how-to-buy" className={styles.link}>
             How to buy
