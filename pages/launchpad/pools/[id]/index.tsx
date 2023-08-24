@@ -40,7 +40,7 @@ const Pool = ({ pool }: any) => {
 	return (
 		<div className={`${HomeStyles.container} ${styles.poolCardDetails}`}>
 			<Head>
-				<title>Solimax | Launchpad | Pool | {title}</title>
+				<title>Dyleum | Launchpad | Pool | {title}</title>
 				<meta
 					name="description"
 					content="A Global Hub for Farmers, Degens, and Tech Geeks"
@@ -52,15 +52,14 @@ const Pool = ({ pool }: any) => {
 				<link rel="icon" href="/logo-icon.svg" />
 			</Head>
 			{/* <Navbar /> */}
-			<div style={{display:'flex',alignContent:'center',alignItems:'center'}}>
-			<HeroSection pool={pool[0]} />
 			<section className={styles.poolTokenInformation}>
+				<HeroSection pool={pool[0]} />
+				<div className={styles.info}>
 				<PoolInformation pool={pool[0]} />
 				<TokenInformation pool={pool[0]} />
+				</div>
 			</section>
-			</div>
 			<AboutProject pool={pool[0]} />
-			<Footer />
 		</div>
 	);
 };

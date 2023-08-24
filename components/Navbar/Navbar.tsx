@@ -1,4 +1,4 @@
-import navLogo from "../assets/icons/nav-logo.svg";
+import navLogo from "../images/Dyleum.svg";
 import { GlobalAuth } from "../../context/GlobalContext";
 import HamburgerIcon from "./HamburgerIcon";
 import NavButton from "./NavButton";

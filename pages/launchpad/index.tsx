@@ -100,7 +100,7 @@ export default function LaunchPad({ pools }: any) {
 	return (
 		<div style={{ position: "relative" }}>
 			<Head>
-				<title>Solimax | Launchpad</title>
+				<title>Dyleum | Launchpad</title>
 				<meta
 					name="description"
 					content="A Secure Multi-chain Launch-pad with High Staking"
@@ -109,7 +109,7 @@ export default function LaunchPad({ pools }: any) {
 					name="viewport"
 					content="width=device-width, initial-scale=1"
 				/>
-				<link rel="icon" href="/logo-icon.svg" />
+				<link rel="icon" href="/android-chrome-512x512.png" />
 			</Head>
 			{/* <Navbar /> */}
 			<main className="launchpad">
@@ -411,28 +411,32 @@ export default function LaunchPad({ pools }: any) {
 										</div>
 									</div>
 
+									<button style={{marginTop:'10px',width:'50%',textAlign:'center',}}>
 									<Link
 										style={{
-											background: "#08272f",
-											border: "1px solid #2166ae",
-											outline: "none",
-											display: "flex",
-											maxWidth: "420px",
-											justifyContent: "center",
-											paddingBlock: "13.5px",
-											alignItems: "center",
-											color: "#fff",
-											fontWeight: "400",
-											fontSize: "18px",
-											lineHeight: "22px",
-											width: "100%",
-											marginTop: "16px",
+											padding:'20px 0'
+											// background: "#08272f",
+											// padding:'20px 0',
+											// border: "1px solid #2166ae",
+											// outline: "none",
+											// display: "flex",
+											// maxWidth: "420px",
+											// justifyContent: "center",
+											// paddingBlock: "13.5px",
+											// alignItems: "center",
+											// color: "#fff",
+											// fontWeight: "400",
+											// fontSize: "18px",
+											// lineHeight: "22px",
+											// width: "20%",
+											// marginTop: "16px",
 										}}
 										// className={styles.viewMoreBtn}
 										href={`/launchpad/pools/${pool.id}`}
 									>
-										View More
+										View More me
 									</Link>
+									</button>
 								</div>
 							))}
 					</div>
@@ -453,7 +457,6 @@ export default function LaunchPad({ pools }: any) {
 					)}
 				</section>
 			</main>
-			<Footer />
 		</div>
 	);
 }

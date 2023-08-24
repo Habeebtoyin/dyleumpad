@@ -1,4 +1,4 @@
-import footerLogo from "../components/assets/icons/footer-logo.svg";
+import footerLogo from "./images/Dyleum.svg";
 import twitterLogo from "../components/assets/icons/twitter.svg";
 import telegramLogo from "../components/assets/icons/telegram.svg";
 import Link from "next/link";

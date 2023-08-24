@@ -77,6 +77,7 @@
 /* POOLS */
 .pools {
   padding-inline: var(--padding);
+  
 }
 
 .poolsBtns {
@@ -123,16 +124,22 @@
 .poolBox {
   width: 100%;
   position: relative;
-  max-width: 421px;
+  /* max-width: 421px; */
   margin-inline: auto;
+  /* ! folly */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
 }
 
 /* BOX DETAILS */
 .box {
   position: relative;
   display: flex;
-  justify-content: center;
-  text-align: left;
+  /* justify-content: center; */
+  /* text-align: left; */
 }
 
 @media screen and (max-width: 700px) {
@@ -152,7 +159,7 @@
   gap: 10px;
   position: absolute;
   top: 50%;
-  align-items: start;
+  align-items: flex-start;
   transform: translateY(-50%);
   padding-inline: 30px;
 }
@@ -302,6 +309,7 @@
   font-size: 9px;
   line-height: 11px;
 }
+/* !hello */
 
 .poolBox a {
   background: #08272f;
@@ -309,16 +317,17 @@
   outline: none;
   display: flex;
   /* max-width: 421px; */
-  margin-inline: auto;
+  /* margin-inline: auto; */
   justify-content: center;
-  padding-block: 13.5px;
+  /* padding-block: 13.5px; */
+  padding: 10px 0;
   align-items: center;
   color: var(--white);
   font-weight: 400;
   font-size: 18px;
   line-height: 22px;
-  width: 100%;
-  margin-top: 16px;
+  /* width: 100%; */
+  /* margin-top: 16px; */
 }
 
 .poolBox a:hover {
@@ -383,11 +392,19 @@
 }
 
 .poolTokenInformation {
-  /* display: flex; */
+  display: flex;
   /* flex-direction: column; */
-  /* align-items: start; */
+  justify-content: space-between;
+  align-items:center;
   /* gap: 56px; */
-  /* width: 100%; */
+  width: 100%;
+  margin-top: 150px;
+}
+/* ! folly */
+.dexCard{
+  display: flex;
+  align-items: center;
+  padding-top: 150px;
 }
 
 .details {
@@ -395,7 +412,7 @@
   display: flex;
   flex-direction: column;
   border: 0.7px solid #374151;
-  max-width: 1000px;
+  /* max-width: 1000px; */
 }
 
 .details h1,
@@ -531,6 +548,7 @@
   .buyBtn {
     font-size: 16px;
   }
+  
 }
 
 @media screen and (min-width: 400px) {
@@ -572,9 +590,28 @@
     margin-top: 28px;
   }
 }
-
+ /*! folly  */
+@media screen and (max-width: 1200px) {
+  .poolTokenInformation {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  .info{
+    margin-top: 50px;
+  }
+}
 /* TABLET SCREEN SIZES */
-@media screen and (min-width: 768px) {
+@media screen and (max-width: 992px) {
+    /* !folly */
+    .dexCard{
+      display: flex;
+      flex-direction: column;
+      
+    }
+}
+@media screen and (min-width: 992px) {
+
   .heroSection,
   .bg {
     height: 1244px;
@@ -624,15 +661,18 @@
     padding: 2rem;
   } */
 
-  .poolTokenInformation {
+  /* .poolTokenInformation {
     flex-direction: row;
     margin-top: 10rem;
-  }
+  } */
+  /* !folly */
+  
+
 }
 
 @media screen and (min-width: 1100px) {
   .poolBox a {
-    margin-top: 16px;
+    /* margin-top: 16px; */
   }
 }
 

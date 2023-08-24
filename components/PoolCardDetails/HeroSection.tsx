@@ -14,22 +14,19 @@ import BlueNorvaLogo from "../../components/assets/images/launchpad/Blue-norva-l
 export default function HeroSection({ pool }: any) {
 	console.log(pool?.Website);
 	return (
-		<section className={styles.heroSection}>
-			<Image className={styles.bg} src={heroBg} alt="hero background" />
-
-			<div className={styles.heroContainer}>
-				
-				{/* <div className="rightCol"> */}
-				<div >
-					<PoolCard pool={pool} />
-				</div>
-			</div>
-		</section>
-	);
+		<div>
+				<PoolCard pool={pool} />
+		</div>
+	)
 }
+// export default function HeroSection({ pool }: any) {
+// 	console.log(pool?.Website);
+// 	return (
+// 		<section className={styles.heroSection}>
+// 			<Image className={styles.bg} src={heroBg} alt="hero background" />
 
-
-// <div className={`${HomeStyles.leftCol} ${styles.leftCol}`}>
+// 			<div className={styles.heroContainer}>
+// 				<div className={`${HomeStyles.leftCol} ${styles.leftCol}`}>
 // 					<Image
 // 						src={pool?.logo}
 // 						alt="logo"
@@ -73,3 +70,11 @@ export default function HeroSection({ pool }: any) {
 // 						</a>
 // 					</div>
 // 				</div>
+// 				<div className="rightCol">
+// 					<PoolCard pool={pool} />
+// 				</div>
+// 			</div>
+// 		</section>
+// 	);
+// }
+

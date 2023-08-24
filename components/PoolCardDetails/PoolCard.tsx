@@ -348,7 +348,7 @@ export default function PoolCard({ pool }: any) {
 
 			{pool.tag === "active" && (
 				<>
-					<a href="#" onClick={BuyPresale}>
+					<a href="#" onClick={BuyPresale} style={{marginTop:'16px',padding:'10px 20px'}}>
 						Buy Presale
 					</a>
 				</>
