@@ -141,6 +141,101 @@
   /* justify-content: center; */
   /* text-align: left; */
 }
+/* ! folly card */
+.editCardContainer {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  border:3px solid #08262e;
+  /* height: 300px; */
+  box-shadow:5px 5px 3px rgba(0, 0, 0, 0.3); /* Adjust shadow values as needed */
+  border-radius: 10px; /* Adjust radius value as needed */
+}
+.CardHeaderContent {
+  padding: 15px 20px;
+}
+.CardHeaderContent p{
+  height: 70px;
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 21px;
+  color: #d1d5db;
+  padding-top:10px ;
+}
+.editCardContainerHead{
+  display: flex;
+  gap: 20px;
+  padding: 10px;
+  /* justify-content: space-between; */
+}
+.CardHeaderDetails{
+  padding: 0;
+}
+.End{
+  background: linear-gradient(red,blue);
+  color: white;
+  text-align: center;
+  padding: 5px;
+
+}
+.EndTime{
+ 
+}
+.CardHeaderAllocation{
+  margin: 0;
+  padding: 0;
+}
+.CardHeaderAllocationStatus{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px ;
+}
+.CardHeaderAllocationStatus h3{
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 30px;
+  color: #f3f4f6;
+  letter-spacing: -0.02em;
+}
+.editCardContainerButton{
+  /*<buttonclass="button-76"role="button">Button76</button>*/background-color: #cf245f;
+  background-image: linear-gradient(to bottom right, #fcd34d, #ef4444, #ec4899);
+  border: 0;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  /* box-sizing: border-box; */
+  color: #fff;
+  cursor: pointer;
+  font-family: ui-sans-serif,system-ui,-apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+  font-size: 1.125rem;
+  /*18px*/font-weight: 600;
+  line-height: 1.75rem;
+  /*28px*/padding: 1rem 1.25rem;
+  text-align: center;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.editCardContainerButton:hover {
+  box-shadow: none;
+}
+
+@media (max-width:576px) {
+  .CardHeaderContent p{
+    height: 150px;
+  }
+}
+@media (max-width:480px) {
+ 
+  
+}
+/* !folly end */
+
+
+
+
 
 @media screen and (max-width: 700px) {
   .boxImg,

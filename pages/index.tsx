@@ -47,7 +47,7 @@ const Home: NextPage = () => {
         <HeroSection />
         <AboutUs />
         <Mission />
-        <HowToBuy />
+       
       </main>
   
     </div>

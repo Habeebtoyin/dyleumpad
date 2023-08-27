@@ -18,6 +18,7 @@ import { GetStaticProps } from "next";
 import HeroSection from "../../components/LaunchPad/HeroSection";
 import BuyButtons from "../../components/LaunchPad/BuyButtons";
 import BlueNorvaLogo from "../../components/assets/images/launchpad/Blue-norva-logo.png";
+import { CardHeaderAllocation, CardHeaderContent, CardHeaderCountDown, CardHeaderDetails, CardHeaderLogo } from "../../components/EditCard/CardHeader";
 
 // const BuyButtons = lazy(() => import("../../components/LaunchPad/BuyButtons"));
 
@@ -154,82 +155,60 @@ export default function LaunchPad({ pools }: any) {
 						{pools
 							?.slice(pagesVisited, pagesVisited + cardPerPage)
 							.map((pool: any) => (
-								<div key={pool?.id} className={styles.poolBox}>
-									<div className={styles.box}>
+								// <div key={pool?.id} className={styles.poolBox}>
+								<div key={pool?.id} className={styles.editCardContainer}>
+									{/*!folly */}
+									<div className={styles.editCardContainerHead}>
+									<CardHeaderLogo  logo={pool.logo}/>
+									<CardHeaderDetails title={pool?.projectTitle}/>
+
+									</div>
+									<CardHeaderCountDown startDate='2023-08-10' endDate='2024-12-10'/>
+									<CardHeaderContent title={pool?.projectTitle} description={pool?.projectDescription} />
+									<CardHeaderAllocation   pool={pool}/>
+									<button className={styles.editCardContainerButton}><Link href={`/launchpad/pools/${pool.id}`}>Swap Token</Link></button>
+								</div>
+							))}
+					</div>
+					{pools?.length > 3 && (
+						<ReactPaginate
+							breakLabel="..."
+							nextLabel=">"
+							onPageChange={changePage}
+							pageRangeDisplayed={5}
+							pageCount={pageCount}
+							previousLabel="<"
+							containerClassName={styles.paginationBtns}
+							previousLinkClassName={"previousBtn"}
+							nextLinkClassName={styles.nextBtn}
+							disabledClassName={styles.paginationDisabled}
+							activeClassName={styles.paginationActive}
+						/>
+					)}
+				</section>
+			</main>
+		</div>
+	);
+}
+
+export const getStaticProps: GetStaticProps = async () => {
+	const res = await fetch("https://dyleum-api-data.vercel.app/api/pools");
+	const pools = await res.json();
+	console.log(pools);
+
+	return {
+		props: {
+			pools,
+		},
+	};
+};
+
+{/* <div className={styles.box}>
 										<Image src={frame} alt="pool frame" />
-										{/* {pool.tag !== "completed" && (
-                      <svg
-                        width="421"
-                        height="457"
-                        className={styles.boxImg}
-                        viewBox="0 0 421 457"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M159.672 41.528L209.678 2.10028L262.088 41.528"
-                          stroke="#00FFFF"
-                          strokeWidth="1.9233"
-                        />
-                        <path
-                          d="M173.135 39.6047L209.725 6.90857L248.144 39.6047"
-                          stroke="#00FFFF"
-                          strokeWidth="0.480826"
-                        />
-                        <path
-                          d="M1 39.6047V213.235L31.589 247.538L1 278.148V456H420.28V272.343L393.91 245.955L420.28 211.124V39.6047H1Z"
-                          fill="#090E17"
-                          stroke="#1592CA"
-                          strokeWidth="0.673156"
-                        />
-                        <path
-                          d="M19.2715 57.8761V216.068L47.1594 247.322L19.2715 275.209V437.248H401.528V269.92L377.487 245.879L401.528 214.145V57.8761H19.2715Z"
-                          stroke="#00FFFF"
-                          strokeWidth="1.9233"
-                        />
-                      </svg>
-                    )} */}
-										{/* {pool.tag === "completed" && (
-                      // <Image
-                      //   className={`${styles.boxImg} ${styles.completedPoolBox}`}
-                      //   src={cardBorder1}
-                      //   alt="box border"
-                      //   width="100%"
-                      // />
-                      <svg
-                        className={styles.boxImg}
-                        width="421"
-                        height="534"
-                        viewBox="0 0 421 534"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M159.672 41.4277L209.678 2L262.088 41.4277"
-                          stroke="#00FFFF"
-                          strokeWidth="1.9233"
-                        />
-                        <path
-                          d="M173.135 39.5044L209.724 6.80823L248.144 39.5044"
-                          stroke="#00FFFF"
-                          strokeWidth="0.480826"
-                        />
-                        <path
-                          d="M1 39.5044V213.134L31.589 247.438L1 278.048V532.9H420.28V272.242L393.91 245.855L420.28 211.023V39.5044H1Z"
-                          fill="#090E17"
-                          stroke="#1592CA"
-                          strokeWidth="0.673156"
-                        />
-                        <path
-                          d="M19.2715 57.7758V215.967L47.1594 247.221L19.2715 275.109V514.9H401.528V269.82L377.487 245.779L401.528 214.044V57.7758H19.2715Z"
-                          stroke="#00FFFF"
-                          strokeWidth="1.9233"
-                        />
-                      </svg>
-                    )} */}
-										{/* <!--content inside the box--> */}
+										
+										<!--content inside the box-->
 										<div className={styles.fContent}>
-											{/* top contents */}
+											top contents
 											<Image
 												src={dots}
 												alt="dots"
@@ -243,15 +222,6 @@ export default function LaunchPad({ pools }: any) {
 													width="80px"
 													height="80px"
 												/>
-
-												{/* <div className="logo">{pool?.logo}</div> */}
-												{/* <Image
-                          className={styles.logo}
-                          src={DAILogo}
-                          alt="logo"
-                          width={100}
-                          height={46}
-                        /> */}
 												<div className={styles.buttons}>
 													{pool?.tags?.map(
 														(
@@ -271,7 +241,7 @@ export default function LaunchPad({ pools }: any) {
 												</div>
 											</div>
 											<div className={styles.midContent}>
-												{/* <!--end of top contents--> */}
+												<!--end of top contents-->
 												<h3
 													className={
 														styles.boxHeading
@@ -286,7 +256,7 @@ export default function LaunchPad({ pools }: any) {
 													}
 												>
 													{pool?.projectDescription}{" "}
-													{/* <Link to={`/launchpad/pool/${pool.id}`}> Read more</Link> */}
+													<Link to={`/launchpad/pool/${pool.id}`}> Read more</Link>
 												</p>
 											</div>
 											<div
@@ -334,7 +304,7 @@ export default function LaunchPad({ pools }: any) {
 																styles.allocationGroupHeading
 															}
 														>
-															{/* {convertweiToEthers(tierDetails.minUserCap)} */}
+															{convertweiToEthers(tierDetails.minUserCap)}
 															{pool?.tag}
 														</h3>
 													</div>
@@ -357,7 +327,7 @@ export default function LaunchPad({ pools }: any) {
 															styles.allocationGroupHeading
 														}
 													>
-														{/* {convertweiToEthers(tierDetails.maxUserCap)} */}
+														{convertweiToEthers(tierDetails.maxUserCap)}
 														{pool?.maximumPurchase}
 													</h3>
 												</div>
@@ -382,93 +352,16 @@ export default function LaunchPad({ pools }: any) {
 													</h3>
 												</div>
 											</div>
-											{/* {pool?.tag === "completed" && (
-                        <div className={styles.percentageBar}>
-                          <div
-                            className=""
-                            style={{
-                              border: "2px solid #6B7280",
-                              borderRadius: "8px",
-                            }}
-                          >
-                            <div
-                              id="myBar"
-                              className={styles.bar}
-                              style={{
-                                width: percentage + "%",
-                                borderRadius: "4px",
-                                backgroundColor: "#2166AE",
-                                margin: "2px",
-                              }}
-                            ></div>
-                          </div>
-                          <div className="">
-                            <p className={styles.percentage}>{percentage}</p>
-                            <p className={styles.SLMAmt}>{pool?.SLMAmount}</p>
-                          </div>
-                        </div>
-                      )} */}
 										</div>
 									</div>
 
 									<button style={{marginTop:'10px',width:'50%',textAlign:'center',}}>
 									<Link
 										style={{
-											padding:'20px 0'
-											// background: "#08272f",
-											// padding:'20px 0',
-											// border: "1px solid #2166ae",
-											// outline: "none",
-											// display: "flex",
-											// maxWidth: "420px",
-											// justifyContent: "center",
-											// paddingBlock: "13.5px",
-											// alignItems: "center",
-											// color: "#fff",
-											// fontWeight: "400",
-											// fontSize: "18px",
-											// lineHeight: "22px",
-											// width: "20%",
-											// marginTop: "16px",
-										}}
-										// className={styles.viewMoreBtn}
+											padding:'20px 0'}}
+
 										href={`/launchpad/pools/${pool.id}`}
 									>
 										View More me
 									</Link>
-									</button>
-								</div>
-							))}
-					</div>
-					{pools?.length > 3 && (
-						<ReactPaginate
-							breakLabel="..."
-							nextLabel=">"
-							onPageChange={changePage}
-							pageRangeDisplayed={5}
-							pageCount={pageCount}
-							previousLabel="<"
-							containerClassName={styles.paginationBtns}
-							previousLinkClassName={"previousBtn"}
-							nextLinkClassName={styles.nextBtn}
-							disabledClassName={styles.paginationDisabled}
-							activeClassName={styles.paginationActive}
-						/>
-					)}
-				</section>
-			</main>
-		</div>
-	);
-}
-
-export const getStaticProps: GetStaticProps = async () => {
-	const res = await fetch("https://dyleum-api-data.vercel.app/api/pools");
-	const pools = await res.json();
-	console.log(pools);
-
-	return {
-		props: {
-			pools,
-		},
-	};
-};
+									</button> */}
