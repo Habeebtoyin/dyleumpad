@@ -45,9 +45,7 @@ const Home: NextPage = () => {
       {/* <HomeNavbar /> */}
       <main id="main">
         <HeroSection />
-        <AboutUs />
-        <Mission />
-       
+        <AboutUs />       
       </main>
   
     </div>

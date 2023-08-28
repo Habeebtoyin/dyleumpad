@@ -80,13 +80,14 @@
 .navBtn ,
 .header button{
   margin-top: 2rem;
-  background: linear-gradient(
+  background: linear-gradient(to right top, #0045ad, #004bbc, #0051cb, #0058da, #005eea, #0072f3, #0084fa, #0096ff, #00b3ff, #00cdff, #00e5ff, #03fbfc)!important;
+  /* background: linear-gradient(
     90.72deg,
     #6b03b8e6 21.79%,
     rgba(168, 24, 186, 0.9) 54.77%,
     rgba(226, 43, 187, 0.9) 85.69%
-  ) !important;
-  /* background-color: #3898FF; */
+  ) !important; */
+  background-color: #3898FF;
   color: var(--menu-text-color);
   cursor: pointer;
   font-size: 16px;
@@ -160,12 +161,13 @@
 }
 
 .checked {
-  background: linear-gradient(
+  /* background: linear-gradient(
     90.72deg,
     rgba(107, 3, 184, 0.9) 21.79%,
     rgba(168, 24, 186, 0.9) 54.77%,
     rgba(226, 43, 187, 0.9) 85.69%
-  );
+  ); */
+  background: linear-gradient(to right top, #0045ad, #004bbc, #0051cb, #0058da, #005eea, #0072f3, #0084fa, #0096ff, #00b3ff, #00cdff, #00e5ff, #03fbfc)!important;
 }
 
 .checkedSpan1 {

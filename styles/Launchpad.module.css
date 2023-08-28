@@ -104,12 +104,7 @@
 
 .poolsBtnsActiveLink,
 .poolsBtnLink:hover {
-  background: linear-gradient(
-    90.72deg,
-    rgba(107, 3, 184, 0.9) 21.79%,
-    rgba(168, 24, 186, 0.9) 54.77%,
-    rgba(226, 43, 187, 0.9) 85.69%
-  );
+  background: linear-gradient(to right top, #0045ad, #004bbc, #0051cb, #0058da, #005eea, #0072f3, #0084fa, #0096ff, #00b3ff, #00cdff, #00e5ff, #03fbfc)!important;
   border: transparent;
   border-bottom: 0;
 }
@@ -123,21 +118,23 @@
 
 .poolBox {
   width: 100%;
-  position: relative;
-  /* max-width: 421px; */
-  margin-inline: auto;
   /* ! folly */
   display: flex;
   flex-direction: column;
+  padding:20px 10px;
   justify-content: center;
   align-items: center;
   align-content: center;
+  border:3px solid #03fbfc;
+  box-shadow:2px 2px 3px #b7d4ff;
+  border-radius: 10px; 
 }
 
 /* BOX DETAILS */
 .box {
-  position: relative;
-  display: flex;
+  flex: 1;
+  /* position: relative; */
+  /* display: flex; */
   /* justify-content: center; */
   /* text-align: left; */
 }
@@ -146,10 +143,10 @@
   display: flex;
   flex-direction: column;
   /* justify-content: center; */
-  border:3px solid #08262e;
+  border:3px solid #03fbfc;
   /* height: 300px; */
-  box-shadow:5px 5px 3px rgba(0, 0, 0, 0.3); /* Adjust shadow values as needed */
-  border-radius: 10px; /* Adjust radius value as needed */
+  box-shadow:2px 2px 3px #b7d4ff;
+  border-radius: 10px; 
 }
 .CardHeaderContent {
   padding: 15px 20px;
@@ -163,19 +160,34 @@
   padding-top:10px ;
 }
 .editCardContainerHead{
+   padding: 10px;
   display: flex;
   gap: 20px;
-  padding: 10px;
+  padding: 20px;
   /* justify-content: space-between; */
 }
 .CardHeaderDetails{
-  padding: 0;
+  padding: 5px 0;
 }
+.rateTag{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+.rate{
+  color: var(--white);
+  padding: 8px 20px;
+  /* font-size:8px ; */
+  width: fit-content;
+  background: rgba(69, 79, 218, 0.9);
+  border-radius: 40px;
+}
+
 .End{
-  background: linear-gradient(red,blue);
+  background: linear-gradient(to right top, #0045ad, #004bbc, #0051cb, #0058da, #005eea, #0072f3, #0084fa, #0096ff, #00b3ff, #00cdff, #00e5ff, #03fbfc)!important;
   color: white;
   text-align: center;
-  padding: 5px;
+  padding: 10px;
 
 }
 .EndTime{
@@ -199,19 +211,16 @@
   letter-spacing: -0.02em;
 }
 .editCardContainerButton{
-  /*<buttonclass="button-76"role="button">Button76</button>*/background-color: #cf245f;
-  background-image: linear-gradient(to bottom right, #fcd34d, #ef4444, #ec4899);
+  background: linear-gradient(to right top, #0045ad, #004bbc, #0051cb, #0058da, #005eea, #0072f3, #0084fa, #0096ff, #00b3ff, #00cdff, #00e5ff, #03fbfc)!important;
   border: 0;
   border-bottom-right-radius: 10px;
   border-bottom-left-radius: 10px;
-  /* box-sizing: border-box; */
-  color: #fff;
+    color: #fff;
   cursor: pointer;
-  font-family: ui-sans-serif,system-ui,-apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
   font-size: 1.125rem;
-  /*18px*/font-weight: 600;
+font-weight: 600;
   line-height: 1.75rem;
-  /*28px*/padding: 1rem 1.25rem;
+  padding: 1rem 1.25rem;
   text-align: center;
   user-select: none;
   -webkit-user-select: none;
@@ -222,10 +231,19 @@
   box-shadow: none;
 }
 
+
 @media (max-width:576px) {
+  .editCardContainerHead{
+     padding: 10px;
+    /* flex-direction: column; */
+  }
   .CardHeaderContent p{
     height: 150px;
   }
+  .pools{
+    padding:0;
+  }
+  
 }
 @media (max-width:480px) {
  
@@ -364,15 +382,15 @@
 }
 
 .allocationGroupText {
-  font-size: 10.5782px;
+  font-size: 16px;
   line-height: 13px;
-  color: var(--card-p-color);
+  color: #03FBFC;
 }
 
 .allocationGroupHeading {
   font-size: 14px;
   line-height: 19px;
-  color: var(--card-text-color);
+  color: #D4DA15;
 }
 
 .allocationGroupHeading,
@@ -401,7 +419,7 @@
 .percentageBar p {
   color: var(--card-p-color);
   font-weight: 300;
-  font-size: 9px;
+  font-size: 16px;
   line-height: 11px;
 }
 /* !hello */
@@ -468,7 +486,8 @@
   border: 0.5px solid #00e5ff;
   border-radius: 0px;
   color: #e5e7eb;
-  padding: 6.73px 12.5px;
+  padding: 10px;
+  border-radius: 5px;
 }
 
 .phaseBtns button.active {
@@ -478,12 +497,13 @@
 .poolBox input {
   width: 100%;
   background: transparent;
-  border: 1px solid #2166ae;
+  border: 1px solid #D4DA15;
   margin-top: 4px;
   color: var(--white);
   font-size: 18px;
   padding: 13.5px 2px;
   text-align: center;
+  border-radius: 5px;
 }
 
 .poolTokenInformation {
@@ -496,18 +516,98 @@
   margin-top: 150px;
 }
 /* ! folly */
+.HeroEditLaunch{
+  display: flex;
+  /* flex-direction: column; */
+  align-items:center;
+  /* justify-content: space-between; */
+  gap: 30px;
+  /* width: 100%; */
+  margin-top: 150px;
+}
 .dexCard{
   display: flex;
   align-items: center;
   padding-top: 150px;
+}
+.TokenEdit{
+  flex: 1;
+}
+.poolBtn{
+ margin-top:20px ;
+  padding: 10px 30px;
+  font-size: 16px;
+  border: none;
+  outline: none;
+  color: rgb(255, 255, 255);
+  background: #111;
+  cursor: pointer;
+  position: relative;
+  z-index: 0;
+  border-radius: 10px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.poolBtn:before {
+  content: "";
+  background: linear-gradient(
+    45deg,
+    #ff0000,
+    #ff7300,
+    #fffb00,
+    #48ff00,
+    #00ffd5,
+    #002bff,
+    #7a00ff,
+    #ff00c8,
+    #ff0000
+  );
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  background-size: 400%;
+  z-index: -1;
+  filter: blur(5px);
+  -webkit-filter: blur(5px);
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  animation: glowing-button-85 20s linear infinite;
+  transition: opacity 0.3s ease-in-out;
+  border-radius: 10px;
+}
+
+@keyframes glowing-button-85 {
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 400% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
+
+.poolBtn:after {
+  z-index: -1;
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #222;
+  left: 0;
+  top: 0;
+  border-radius: 10px;
 }
 
 .details {
   width: 100%;
   display: flex;
   flex-direction: column;
-  border: 0.7px solid #374151;
-  /* max-width: 1000px; */
+  border: 1px solid #03FBFC;
+  border-radius: 10px;
 }
 
 .details h1,
@@ -519,8 +619,13 @@
 }
 
 .details h1 {
-  padding: 28px 32px;
+  padding: 15px 20px;
+  font-size: 30px;
+  font-weight: bolder;
+  text-align: center;
+  color: #fff;
 }
+
 
 .details .group {
   display: flex;
@@ -534,7 +639,7 @@
   justify-content: space-between;
   align-items: center;
   gap: 20px;
-  padding: 28px 32px;
+  padding: 15px 20px;
   border: 0.7px solid #374151;
 }
 
@@ -551,11 +656,13 @@
   font-weight: 400;
   font-size: 18px;
   line-height: 20px;
+  color:#03fbfc;
 }
 
 .details p {
   text-align: right;
   word-break: break-all;
+  color: #D4DA15;
 }
 
 .details p,
@@ -687,11 +794,7 @@
 }
  /*! folly  */
 @media screen and (max-width: 1200px) {
-  .poolTokenInformation {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-  }
+ 
   .info{
     margin-top: 50px;
   }
@@ -704,6 +807,26 @@
       flex-direction: column;
       
     }
+}
+@media (max-width:768px) {
+  .HeroEditLaunch{
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 30px;
+  }
+  
+.details h1 {
+  padding: 15px 20px;
+  font-size: 24px;
+  font-weight: bolder;
+  color: #fff;
+}
+}
+@media screen and (max-width: 480px) {
+  .details .group div{
+  flex-direction: column;
+  }
 }
 @media screen and (min-width: 992px) {
 

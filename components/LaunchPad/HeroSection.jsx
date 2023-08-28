@@ -18,13 +18,12 @@ export default function HeroSection() {
             A Secure Community Driven Multi-chain Launch-pad
           </h1>
           <Image src={dash} alt="dash" />
-          <p className={HomeStyles.text}>Want to raise funds with SoliMax Launchpad?</p>
+          <p className={HomeStyles.text}>Want to raise funds with Dyleum Launchpad?</p>
           {/* HERO BTN */}
           <button className={HomeStyles.heroBtn}>
             <a
               className={`${HomeStyles.buySlmBtn} ${HomeStyles.heroButtonLink}`}
-              href="https://egx10b579vb.typeform.com/to/MrD6iduN"
-            >
+              href="https://forms.gle/k3kNzYtDjcsvuYqN8" target="_blank" rel="noreferrer">
               Apply as a Project
               <Image src={arrowRight} alt="arrow-right" />
             </a>

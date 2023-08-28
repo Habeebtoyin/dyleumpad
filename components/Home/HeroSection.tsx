@@ -12,15 +12,14 @@ export default function HeroSection() {
 
       <div className={styles.heroContainer}>
         <h1 className={styles.heroTitle}>
-          A Global Hub for Farmers, Degens, and Tech Geeks
+        Empower Your Project's Launch with LeumPad
         </h1>
         <p className={styles.text}>
-          At the very core, we are yield farmers, community-centric creators,
-          solidly maxis with one goal- “follow the liquidity but this time, take
-          the community with us.”
+        Your ultimate launchpad solution, providing projects with the tools, support, and exposure they need to achieve a successful launch.
+
         </p>
         {/* HERO BTN */}
-        <div>
+        <div className={styles.btnHeroEdit}>
           <Link
             className={`${styles.buySlmBtn} ${styles.heroButtonLink}`}
             href="https://equalizer.exchange/swap/?outputCurrency=0x39263a476aadf768be43a99b24c4e461098524a4"

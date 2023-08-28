@@ -180,22 +180,20 @@ function Loading(): JSX.Element {
 
   useEffect(() => {
     //! folly
-    // const handleStart = (url: any) => url !== router.asPath && setLoading(true);
-    // const handleComplete = (url: any) =>
-      // url === router.asPath && setLoading(false);
-    // router.events.on("routeChangeStart", handleStart);
-    // router.events.on("routeChangeComplete", handleComplete);
-    // router.events.on("routeChangeError", handleComplete);
+    const handleStart = (url: any) => url !== router.asPath && setLoading(true);
+    const handleComplete = (url: any) =>
+      url === router.asPath && setLoading(false);
+    router.events.on("routeChangeStart", handleStart);
+    router.events.on("routeChangeComplete", handleComplete);
+    router.events.on("routeChangeError", handleComplete);
     return () => {
-      // router.events.off("routeChangeStart", handleStart);
-      // router.events.off("routeChangeComplete", handleComplete);
-      // router.events.off("routeChangeError", handleComplete);
+      router.events.off("routeChangeStart", handleStart);
+      router.events.off("routeChangeComplete", handleComplete);
+      router.events.off("routeChangeError", handleComplete);
     };
-  });
-  // if(loading) return <Loader />
-  // return <>{loading && <Loader />}</>; //!folly
-  // return;
-  // return loading && (<Loader />);
+  },[router]);
+  if(loading) return <Loader />
+  return <>{loading && <Loader />}</>;
 }
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -224,7 +222,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       >
         <GlobalContextProvider>
           
-          {/* <Loading />  folly*/}  
+          <Loading />  
           <Layout>
             <Component {...pageProps} />
           </Layout>

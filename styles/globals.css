@@ -1,5 +1,8 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
-
+/* @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;700;800;900&display=swap'); */
+/* @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"); */
+/* background: linear-gradient(to right top, #0045ad, #004bbc, #0051cb, #0058da, #005eea, #0072f3, #0084fa, #0096ff, #00b3ff, #00cdff, #00e5ff, #03fbfc)!important; */
+/* background-image: linear-gradient(to left, #0045ad, #9b37a4, #e13082, #ff5755, #ff9025, #e8b20f, #c8d02c, #9eea5d, #74f28b, #44f7b6, #00fadd, #03fbfc); */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;700;800;900&display=swap');
 :root {
   /* colors */
   --body-bg: #090e17;
@@ -14,6 +17,29 @@
   --padding: 2rem;
   --margin: 3em;
   --section-title-font-size: 2em;
+  /* !follly */
+    --bg: #101419;
+    --bgGen:#1c2024;
+    --footerColor:#1c2024;
+    --bgBlue:#C1CDE3;
+    --textColor:#B7D4FF;
+    --textColor1:#03FBFC;
+    --primaryA:#E5EFFF;
+    --textColor2:#0066FF;
+    --primaryB:#0045AD;
+    --primaryC:#0066FF;
+    --bgRed:#D4DA15;
+    --dark:#363A3E;
+    --darkA:#34373B;
+    --darkB:#313539;
+    --darkC:#2D3035;
+    --darkD:#2A2E32;
+    --darkE:#26292E;
+    --darkF:#23272B;
+    --darkG:#212429;
+    --darkH:#101419;
+    --darkI:#1C2024;
+  
 }
 
 * {
@@ -22,6 +48,7 @@
   margin: 0;
   letter-spacing: -0.18px;
   scroll-behavior: smooth;
+  font-family: 'Inter', sans-serif;
 }
 
 html,
@@ -29,6 +56,7 @@ body {
   /* max-width: 100vw; */
   width: 100%;
   overflow-x: hidden;
+  font-family: 'Inter', sans-serif;
 }
 
 html {

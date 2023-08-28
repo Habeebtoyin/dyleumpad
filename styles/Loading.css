@@ -1,3 +1,29 @@
+
+/* !folly */
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.animated-image {
+  background-image: url('../components/images/Dyleum.svg') no-repeat ;
+  width: 100px;
+  height: 100px;
+  animation: zoomInOut 2s infinite;
+}
+
+@keyframes zoomInOut {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+}
+
+/* !folly */
 /* ------------------------------------------------------ */
 /* PRELOADER  */
 

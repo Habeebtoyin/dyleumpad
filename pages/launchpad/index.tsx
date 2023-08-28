@@ -163,10 +163,11 @@ export default function LaunchPad({ pools }: any) {
 									<CardHeaderDetails title={pool?.projectTitle}/>
 
 									</div>
-									<CardHeaderCountDown startDate='2023-08-10' endDate='2024-12-10'/>
+									{/* "YYYY-MM-DD" */}
+									<CardHeaderCountDown startDate="2023-10-01" endDate="2023-10-10" />
 									<CardHeaderContent title={pool?.projectTitle} description={pool?.projectDescription} />
 									<CardHeaderAllocation   pool={pool}/>
-									<button className={styles.editCardContainerButton}><Link href={`/launchpad/pools/${pool.id}`}>Swap Token</Link></button>
+									<button className={styles.editCardContainerButton}><Link href={`/launchpad/pools/${pool.id}`}> Buy Presale</Link></button>
 								</div>
 							))}
 					</div>

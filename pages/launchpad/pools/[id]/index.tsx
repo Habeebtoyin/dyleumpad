@@ -16,6 +16,7 @@ import TokenInformation from "../../../../components/PoolCardDetails/TokenInform
 import { lazy } from "react";
 import Footer from "../../../../components/Footer";
 import { GetStaticPaths, GetStaticProps } from "next";
+import { HeroEditLaunch } from "../../../../components/EditCard/HeroEditLaunch";
 
 const Navbar = lazy(() => import("../../../../components/Navbar/Navbar"));
 
@@ -51,15 +52,7 @@ const Pool = ({ pool }: any) => {
 				/>
 				<link rel="icon" href="/logo-icon.svg" />
 			</Head>
-			{/* <Navbar /> */}
-			<section className={styles.poolTokenInformation}>
-				<HeroSection pool={pool[0]} />
-				<div className={styles.info}>
-				<PoolInformation pool={pool[0]} />
-				<TokenInformation pool={pool[0]} />
-				</div>
-			</section>
-			<AboutProject pool={pool[0]} />
+			<HeroEditLaunch pool={pool[0]} />
 		</div>
 	);
 };
