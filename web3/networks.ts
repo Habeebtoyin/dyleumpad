@@ -8,7 +8,7 @@ const goerliProvider:any = [
 
 const nautTestntProvider:any = [
     "https://api.proteus.nautchain.xyz/solana" ,
-     "https://goerli.infura.io/v3/8ca05013686546bab29ec5751827c31c"
+    
 
 ]
 const nautMainnetProvider:any = [

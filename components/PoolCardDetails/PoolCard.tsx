@@ -100,7 +100,8 @@ export default function PoolCard({ pool }: any) {
 	const [saleStart, setSaleStart]: any = useState(0);
 	const { data: signer, isError, isLoading } = useSigner();
 	// console.log(chain.id)
-	const USDC ="0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6";
+	// const USDC ="0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6";
+	const USDC = "0xB9AEFBF3a09fab81656CE36B61Aac8E00d12d947"
 	const getSalePrice = () => {
 		if (pool?.access === "Private") {
 			console.log(1);
@@ -117,7 +118,8 @@ export default function PoolCard({ pool }: any) {
 			USDC,
 			signer,
 			new ethers.providers.JsonRpcProvider(
-				 "https://goerli.infura.io/v3/8ca05013686546bab29ec5751827c31c"
+				//  "https://goerli.infura.io/v3/8ca05013686546bab29ec5751827c31c"
+				"https://api.proteus.nautchain.xyz/solana"
 			)
 		);
 		console.log("Here si the", pool.contract);
@@ -163,7 +165,8 @@ export default function PoolCard({ pool }: any) {
 		pool.contract,
 		USDC,
 		signer,
-		new ethers.providers.JsonRpcProvider( "https://goerli.infura.io/v3/8ca05013686546bab29ec5751827c31c")
+		// new ethers.providers.JsonRpcProvider( "https://goerli.infura.io/v3/8ca05013686546bab29ec5751827c31c")
+		new ethers.providers.JsonRpcProvider( "https://api.proteus.nautchain.xyz/solana")
 	);
 
 	async function BuyPresale(e: any) {

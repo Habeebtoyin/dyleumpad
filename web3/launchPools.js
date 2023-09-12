@@ -1,11 +1,11 @@
 import { Tokens } from "./tokens"
 export const launchPools = [
     {
-        address: "0xd826932358f9BeAa9DF46cEC844EA7FBD158c97e",
+        address: "0xd9d6507119Ec56ce22A89bEdAcd6B44D495BFf08",
         name: "Test",
-        owner: "0x205029E729cB98C5E40AA29eCd20Ac7cFfAa1F1B",
+        owner: "0x0855875491E2A71b252b213Ec9A8D79E1A3bc06d",
         startTime: 1690882230,
-        chain: "goerli",
-        token: Tokens.goerli.WETH
+        chain: "naut",
+        token: Tokens.naut.ZBC
     }
 ]

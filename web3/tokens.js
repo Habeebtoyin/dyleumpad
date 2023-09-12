@@ -1,6 +1,6 @@
 export const Tokens = {
     naut: {
-     ZBC:"0x37a56cdcD83Dce2868f721De58cB3830C44C6303"
+     ZBC:"0xB9AEFBF3a09fab81656CE36B61Aac8E00d12d947"
     },
     goerli: {
         WETH: "0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6"

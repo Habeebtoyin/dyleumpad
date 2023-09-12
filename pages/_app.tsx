@@ -53,10 +53,10 @@ const nautMainnetChain: any = {
   },
   testnet: false,
 };
-const nautChain: any = {
-  id: 91002,
-  name: 'Nautilus Triton Testnet ',
-  network: 'Nautilus Triton Testnet',
+const nautChainTestnet: any = {
+  id: 88002,
+  name: 'Nautilus Proteus Testnet',
+  network: 'Nautilus Proteus Testnet',
   iconUrl: "https://i.ibb.co/4dCffp7/icon.webp",
   iconBackground: '#ffffff0',
   nativeCurrency: {
@@ -66,12 +66,12 @@ const nautChain: any = {
   },
   rpcUrls: {
     default: {
-      http: ['https://triton.api.nautchain.xyz'],
+      http: ['https://api.proteus.nautchain.xyz/solana'],
     },
   },
   blockExplorers: {
-    default: { name: 'NautilusChain Explorer', url: 'https://triton.nautscan.com/' },
-    etherscan: { name: 'NautilusChain Explorer', url: 'https://triton.nautscan.com/' },
+    default: { name: 'NautilusChain Explorer', url: 'https://proteus.nautscan.com/' },
+    etherscan: { name: 'NautilusChain Explorer', url: 'https://proteus.nautscan.com/' },
   },
   testnet: false,
 };
@@ -102,12 +102,12 @@ const avalancheChain: any = {
 
 const { chains, provider } = configureChains(
   // [fantom, optimism,avalancheChain,nautChain],
-  [nautChain, nautMainnetChain, goerli],
+  [nautChainTestnet, nautMainnetChain, goerli],
   [publicProvider()]
 );
 
 const { connectors } = getDefaultWallets({
-  appName: "Solimax",
+  appName: "Dyleum",
   chains,
 });
 

@@ -26,12 +26,14 @@ export default function PoolCard({ pool }) {
   });
 
   const newLaunchPool = new LaunchPoolClass(
-    "0xd826932358f9BeAa9DF46cEC844EA7FBD158c97e",
-    "0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6",
+    "0xd9d6507119Ec56ce22A89bEdAcd6B44D495BFf08",
+    "0xB9AEFBF3a09fab81656CE36B61Aac8E00d12d947",
+    // "0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6",
     1,
     signer,
     new ethers.providers.JsonRpcProvider(
-       "https://goerli.infura.io/v3/8ca05013686546bab29ec5751827c31c"
+      //  "https://goerli.infura.io/v3/8ca05013686546bab29ec5751827c31c"
+      "https://api.proteus.nautchain.xyz/solana"
     )
   );
 

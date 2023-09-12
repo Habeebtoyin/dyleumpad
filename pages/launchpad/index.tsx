@@ -73,11 +73,13 @@ export default function LaunchPad({ pools }: any) {
 	const getOnChainData = (contractAddress: string, token: string) => {};
 	const newLaunchPool = new LaunchPoolClass(
 		pools[0].contract,
-		"0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6",
+		"0xB9AEFBF3a09fab81656CE36B61Aac8E00d12d947",
+		// "0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6",
 		1,
 		signer,
 		new ethers.providers.JsonRpcProvider(
-			 "https://goerli.infura.io/v3/8ca05013686546bab29ec5751827c31c"
+			//  "https://goerli.infura.io/v3/8ca05013686546bab29ec5751827c31c"
+			"https://api.proteus.nautchain.xyz/solana"
 		)
 	);
 
