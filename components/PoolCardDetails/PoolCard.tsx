@@ -223,16 +223,9 @@ export default function PoolCard({ pool }: any) {
 	// percentage = percentage.toFixed(2) + "%";
 
 	return (
-		<div key={pool.id} className={styles.poolBox}>
-			{/* <div className="pool-box"> */}
-			<div className={styles.box}>
-				<Image src={frame} alt="pool frame" />
-				{/* <!--content inside the box--> */}
-				<div className={styles.fContent}>
-					{/* <!--begin top contents--> */}
-					{/* <img src={dots} alt="dots" width="39.31px" /> */}
-					{/* <div className={styles.topContent}> */}
-					<div className={`${styles.buttons} ${styles.phaseBtns}`}>
+		<div key={pool.id} className={styles.Box}>
+			<div className={styles.poolBox}>
+				<div className={`${styles.buttons} ${styles.phaseBtns}`}>
 						{phases?.map((phase): any => (
 							<PhaseBtns
 								phase={phase}
@@ -241,56 +234,44 @@ export default function PoolCard({ pool }: any) {
 								setPhaseId={setPhaseId}
 							/>
 						))}
-						{/* </div> */}
-					</div>
-
-					<div className={styles.percentageBar}>
-						{/* <img src={percentageBar} alt="percentage bar" /> */}
-						<div
-							className=""
-							style={{
-								border: "2px solid #6B7280",
-								borderRadius: "8px",
-							}}
-						>
-							<div
-								id="myBar"
-								className={styles.bar}
-								style={{
-									width:
-										(
-											(parseFloat(
-												totalRaised.toString()
-											) /
-												parseFloat(
-													pool.targetBalance
-												)) *
-											100
-										)
-											.toFixed(2)
-											.toString() + "%",
-									borderRadius: "4px",
-									backgroundColor: "#2166AE",
-									margin: "2px",
-								}}
-							></div>
-						</div>
-						<div className="">
-							{/* <p className={styles.percentage}>
-                {convertweiToEthers(tierDetails?.amountRaised)}
-              </p> */}
-							<p className={styles.SLMAmt}>
-								{totalRaised}/{pool.targetBalance} USDC
-							</p>
-						</div>
-					</div>
-
+				</div>
+				<div className={styles.percentageBar}>
 					<div
-						className={styles.dash}
-						style={{ width: "100%" }}
-					></div>
-
-					<div className={styles.allocationGroup}>
+						className=""
+						style={{
+							border: "2px solid #D4DA15",
+							borderRadius: "8px",
+						}}
+					>
+						<div
+							id="myBar"
+							className={styles.bar}
+							style={{
+								width:
+									(
+										(parseFloat(
+											totalRaised.toString()
+										) /
+											parseFloat(
+												pool.targetBalance
+											)) *
+										100
+									)
+										.toFixed(2)
+										.toString() + "%",
+								borderRadius: "4px",
+								backgroundColor: "#2166AE",
+								margin: "2px",
+							}}
+						></div>
+					</div>
+					<div className="">
+						<p className={styles.Dyleum}>
+							{totalRaised}/{pool.targetBalance} USDC
+						</p>
+					</div>
+				</div> 
+				 <div className={styles.allocationGroup}>
 						<div className={styles.allocationGroupContainer}>
 							<p className={styles.allocationGroupText}>
 								Total Raised
@@ -319,44 +300,25 @@ export default function PoolCard({ pool }: any) {
 								{pool?.status}
 							</h3>
 						</div>
-					</div>
-					<div className={styles.allocationGroup}>
-						<div className={styles.allocationGroupContainer}>
-							<p className={styles.allocationGroupText}>
-								Date of Completion
-							</p>
-							<h3 className={styles.allocationGroupHeading}>
-								{saleEnd === undefined || !saleEnd
-									? "0"
-									: saleEnd}
-							</h3>
-							<h5>Amount of {pool?.tokenName} :</h5>
-							{/* <h6>{amount / pool?.price}</h6> */}
-							<h6>{amountToBuy / pool?.price}</h6>
-						</div>
-					</div>
-				</div>
+	 			</div>
+				<input
+						type="number"
+						placeholder="Enter USDC Amount"
+						min="0"
+						// value={amountToBuy}
+						onChange={(e) => {
+							console.log(e.target.value);
+							setAmountToBuy(e.target.value);
+						}}
+						required
+				/> 
+				{pool.tag === "active" && (
+						 <>
+						 	<button onClick={BuyPresale} className={styles.poolBtn}>Buy Presale</button>
+						 </>
+						 )}
 			</div>
-			<input
-				type="number"
-				placeholder="Enter USDC Amount"
-				min="0"
-				// value={amountToBuy}
-				onChange={(e) => {
-					console.log(e.target.value);
-					setAmountToBuy(e.target.value);
-				}}
-				required
-			/>
-
-			{pool.tag === "active" && (
-				<>
-					<a href="#" onClick={BuyPresale}>
-						Buy Presale
-					</a>
-				</>
-			)}
-			{/* </div> */}
 		</div>
 	);
 }
+

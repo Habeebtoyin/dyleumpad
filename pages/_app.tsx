@@ -179,6 +179,7 @@ function Loading(): JSX.Element {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    //! folly
     const handleStart = (url: any) => url !== router.asPath && setLoading(true);
     const handleComplete = (url: any) =>
       url === router.asPath && setLoading(false);
@@ -190,11 +191,9 @@ function Loading(): JSX.Element {
       router.events.off("routeChangeComplete", handleComplete);
       router.events.off("routeChangeError", handleComplete);
     };
-  });
-  // if(loading) return <Loader />
+  },[router]);
+  if(loading) return <Loader />
   return <>{loading && <Loader />}</>;
-  // return;
-  // return loading && (<Loader />);
 }
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -223,7 +222,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       >
         <GlobalContextProvider>
           
-          <Loading />
+          <Loading />  
           <Layout>
             <Component {...pageProps} />
           </Layout>

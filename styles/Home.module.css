@@ -1,4 +1,6 @@
 /* HERO SECTION */
+
+
 .heroSection {
   position: relative;
   height: 1110px;
@@ -32,8 +34,7 @@
   overflow-x: hidden;
   position: unset !important;
   margin-top: 573px !important;
-  transform: perspective(1000px) scale3d(0.86, 0.75, 6)
-    translate3d(0px, -66px, 29px);
+  transform: perspective(1000px) scale3d(0.86, 0.75, 6)    translate3d(0px, -66px, 29px);
 }
 
 .imgOverlay {
@@ -46,6 +47,7 @@
   opacity: 0.7;
   filter: blur(25px);
   z-index: 99999;
+  -webkit-filter: blur(25px);
 }
 
 .heroTitle {
@@ -64,30 +66,32 @@
 
 /* HERO BTN */
 .heroBtn {
-  background: linear-gradient(
-    90.72deg,
-    rgba(107, 3, 184, 0.9) 21.79%,
-    rgba(168, 24, 186, 0.9) 54.77%,
-    rgba(226, 43, 187, 0.9) 85.69%
-  );
+  background: linear-gradient(to right top, #0045ad, #004bbc, #0051cb, #0058da, #005eea, #0072f3, #0084fa, #0096ff, #00b3ff, #00cdff, #00e5ff, #03fbfc)!important;
+  /* background: linear-gradient(    90.72deg,    rgba(107, 3, 184, 0.9) 21.79%,    rgba(168, 24, 186, 0.9) 54.77%,    rgba(226, 43, 187, 0.9) 85.69%  ); */
   border-radius: 40px;
   border: none;
-  width: 285px;
-  margin-top: 16px;
-  transition: all 0.5s ease;
+  width: 250px;
+  padding: 15px;
+  margin-right: 15px;
+  /*margin-top: 16px;
+  */transition: all 0.5s ease;
 }
 
 .navBtn:hover,
 .heroBtn:hover {
-  background: linear-gradient(
+  background: linear-gradient(to left, #0045ad, #9b37a4, #e13082, #ff5755, #ff9025, #e8b20f, #c8d02c, #9eea5d, #74f28b, #44f7b6, #00fadd, #03fbfc) !important;
+  /* background: linear-gradient(
     200deg,
     rgba(107, 3, 184, 0.9) 21.79%,
     rgba(168, 24, 186, 0.9) 54.77%,
     rgba(226, 43, 187, 0.9) 85.69%
-  );
+  ); */
   color: var(--menu-text-color);
 }
+.btnHeroEdit{
+  display: flex;
 
+}
 .heroButtonLink {
   color: var(--white);
   display: flex;
@@ -108,6 +112,7 @@
   letter-spacing: -1.68px;
   text-align: center;
 }
+
 
 @media screen and (min-width: 768px) {
   .heroSection {
@@ -163,5 +168,14 @@
 @media screen and (min-width: 1400px) {
   .imgOverlay {
     top: 992px;
+  }
+}
+
+/* !folly */
+@media(max-width: 480px) {
+  .btnHeroEdit{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
   }
 }

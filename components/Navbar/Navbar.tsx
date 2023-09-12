@@ -1,4 +1,4 @@
-import navLogo from "../assets/icons/nav-logo.svg";
+import navLogo from "../images/Dyleum.svg";
 import { GlobalAuth } from "../../context/GlobalContext";
 import HamburgerIcon from "./HamburgerIcon";
 import NavButton from "./NavButton";
@@ -73,7 +73,7 @@ export default function Navbar() {
               Launchpad
             </Link>
           </li>
-          <li
+          {/* <li
             className={styles.menuItem}
             onClick={() => {
               setMenuState((prevState: any) => !prevState);
@@ -83,7 +83,7 @@ export default function Navbar() {
             <Link href="/dao" className={styles.navLink}>
               DAO
             </Link>
-          </li>
+          </li> */}
           <li
             className={styles.menuItem}
             onClick={() => {
@@ -91,7 +91,7 @@ export default function Navbar() {
               setCheckboxState((prevState: any) => !prevState);
             }}
           >
-            <Link href="/#how-to-buy" className={styles.navLink}>
+            <Link href="#how-to-buy" className={styles.navLink}>
               How to buy
             </Link>
           </li>
@@ -102,7 +102,7 @@ export default function Navbar() {
               setCheckboxState((prevState: any) => !prevState);
             }}
           >
-            <Link href="/#contact" className={styles.navLink}>
+            <Link href="#contact" className={styles.navLink}>
               Contact us
             </Link>
           </li>
@@ -113,7 +113,7 @@ export default function Navbar() {
                   className={`${styles.navBtn} ${styles.mobileBtn}`}
                   id="mobile-btn"
                 >
-                  <NavButton link="/launchpad" value="SLM LaunchPad" />
+                  <NavButton link="/launchpad" value="Switch Network" />
                 </div>
               )
             : null}
@@ -129,7 +129,7 @@ export default function Navbar() {
                 className={`${styles.navBtn} ${styles.desktopBtn}`}
                 id="desktop-btn"
               >
-                <NavButton link="/launchpad" value="SLM LaunchPad" />
+                <NavButton link="/launchpad" value="Switch Network" />
               </div>
             )
           : null}

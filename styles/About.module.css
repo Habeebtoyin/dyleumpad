@@ -1,5 +1,6 @@
 .aboutUs {
-  padding-bottom: 8rem;
+  /* padding-bottom: 8rem; */
+  padding: 2rem;
   position: relative;
 }
 
@@ -8,41 +9,57 @@
   padding-bottom: 92px;
   position: relative;
   text-align: center;
-  font-weight: 400;
-  font-size: var(--section-title-font-size);
+  font-weight: bolder;
+  font-size: 42px;
 }
+
+/* !folly */
 
 .div {
   display: grid;
   justify-content: center;
+  grid-template-columns: repeat(4, 1fr);
   gap: 20px;
 }
 
 .card {
-  background-color: var(--card-bg);
-  height: fit-content;
-  padding: 32px;
-  border: 0.5px solid #374151;
+  /* background-color: var(--card-bg); */
+  height:350px;
+  padding: 20px 15px;
+  /* border: 0.5px solid #374151; */
   border-radius: 8px;
   display: flex;
-  gap: 60px;
-  padding: 32px;
-  max-width: 610px;
+  /* gap: 60px; */
+  /* max-width: 610px; */
+ /* !folly */
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
+  background-color: #101419;
+  border: 1px solid #03fbfc;
+  color: #b7d4ff;
 }
 
 .cardText {
   font-size: 16px;
-  line-height: 26px;
-  color: var(--text-color);
+  /* line-height: 26px; */
+  /* color: var(--text-color); */
+  color: #b7d4ff;
+  margin-top: 20px;
+ 
 }
 
 .cardTitle {
   font-weight: 400;
   font-size: 22px;
-  line-height: 64px;
-  letter-spacing: -1px;
+  /* line-height: 64px; */
+  /* letter-spacing: -1px; */
+  color: #03fbfc;
+  /* font-weight: 400; */
+  /* font-size: 20px; */
+  line-height: 24px;
+  /* color: #03fbfc; */
+  /* height: 100px; */
+  margin-top: 20px;
 }
 
 .cardNumber {
@@ -51,19 +68,43 @@
   width: fit-content;
   background: rgba(69, 79, 218, 0.9);
   border-radius: 40px;
+  /* height: 100px; */
 }
 
 .card3 {
-  border: 2px solid #374151;
+  /* border: 2px solid #374151; */
   border-image: linear-gradient(
     90.72deg,
     rgba(107, 3, 184, 0.9) 21.79%,
     rgba(168, 24, 186, 0.9) 54.77%,
     rgba(226, 43, 187, 0.9) 85.69%
   );
-  border-image-slice: 1;
-  border-radius: 8px;
+  /* border-image-slice: 1; */
+  /* border-radius: 8px; */
 }
+@media (max-width:1200px) {
+  .div {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media screen and (max-width: 768px) {
+.div {
+  grid-template-columns: repeat(1, 1fr);
+}
+.card {
+  height: 250;
+}
+
+}
+@media (max-width: 576px) {
+  .div {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .aboutUs {
+    padding:0;
+  }
+}
+/* !folly */
 
 .connectorLine {
   display: none !important;
@@ -138,113 +179,120 @@
 }
 
 @media screen and (min-width: 768px) {
+  .title {
+    font-size: 30px;
+    /* width: 745px; */
+    /* margin-inline: auto; */
+  }
+}
+@media screen and (min-width: 768px) {
   .aboutUs {
-    padding-block: 20px 13rem;
+    /* padding-block: 20px 13rem; */
   }
 
   .div {
-    grid-template-columns: repeat(2, 1fr);
+    /* grid-template-columns: repeat(2, 1fr); */
   }
 
   .card {
-    height: unset;
+    /* height: unset; */
   }
 
   .cardTitle {
-    line-height: 32px;
-    margin-bottom: 1em;
+    /* line-height: 32px; */
+    /* margin-bottom: 1em; */
   }
 
   /* MISSION */
   .ourMission {
-    height: 1029px;
+    /* height: 1029px; */
   }
 
   .cardText {
-    font-size: 18px;
+    /* font-size: 18px; */
   }
 }
 
 @media screen and (min-width: 1000px) {
   .aboutUs {
-    padding-top: 60px;
-    --padding: 10em;
+    /* padding-top: 60px; */
+    /* --padding: 10em; */
   }
 
   .title {
-    width: 745px;
-    margin-inline: auto;
+    /* width: 745px; */
+    /* margin-inline: auto; */
   }
 }
 
 @media screen and (min-width: 1300px) {
   .title {
-    width: 1000px;
+    /* width: 1000px; */
   }
 
   .div {
-    grid-template-columns: repeat(4, 1fr);
+    /* grid-template-columns: repeat(2, 1fr); */
   }
 
   .card {
-    width: 100%;
+    /* width: 100%; */
   }
 
   .cardTitle {
-    line-height: 32px;
+    /* line-height: 32px; */
   }
 
   .missionAsset {
-    width: 946px !important;
+    /* width: 946px !important; */
     /* height: 810px !important; */
     /* min-width: auto !important; */
-    margin-top: 5.25em !important;
+    /* margin-top: 5.25em !important; */
   }
 
   .missionContainer {
-    width: 946px;
-    height: 764px;
+    /* width: 946px; */
+    /* height: 764px; */
   }
 }
 
 @media screen and (min-width: 1400px) {
   .card {
-    justify-content: end;
+    /* justify-content: end; */
   }
 
   .card1 {
-    height: 462px;
-    padding-top: 103px;
+    /* height: 462px; */
+    /* padding-top: 103px; */
   }
 
   .card3 {
-    place-self: start;
+    /* place-self: start; */
   }
 
   .card2,
   .card-4 {
-    place-self: end;
+    /* place-self: end; */
   }
 
   .connectorLine {
-    display: unset !important;
-    position: absolute;
+    /* display: unset !important; */
+    /* position: absolute; */
     /* width: 100% !important; */
     /* height: 100% !important; */
   }
 
   .connectorLine1 {
-    left: 193.5px !important;
-    top: 754px !important;
+    /* left: 193.5px !important; */
+    /* top: 754px !important; */
   }
 
   .connectorLine2 {
-    top: 242px !important;
-    left: 526.5px !important;
+    /* top: 242px !important; */
+    /* left: 526.5px !important; */
   }
 
   .connectorLine3 {
-    left: 859.5px !important;
-    top: 700px !important;
+    /* left: 859.5px !important; */
+    /* top: 700px !important; */
   }
 }

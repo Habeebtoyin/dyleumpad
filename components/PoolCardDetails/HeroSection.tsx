@@ -11,6 +11,14 @@ import PoolCard from "./PoolCard";
 import Image from "next/image";
 import BlueNorvaLogo from "../../components/assets/images/launchpad/Blue-norva-logo.png";
 
+// export default function HeroSection({ pool }: any) {
+// 	console.log(pool?.Website);
+// 	return (
+// 		<div>
+// 				<PoolCard pool={pool} />
+// 		</div>
+// 	)
+// }
 export default function HeroSection({ pool }: any) {
 	console.log(pool?.Website);
 	return (
@@ -69,3 +77,4 @@ export default function HeroSection({ pool }: any) {
 		</section>
 	);
 }
+

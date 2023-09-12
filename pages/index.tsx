@@ -34,25 +34,20 @@ const Home: NextPage = () => {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Solimax</title>
+        <title>Dyleum</title>
         <meta
           name="description"
-          content="A Global Hub for Farmers, Degens, and Tech Geeks"
+          content="Dyleum launchPad"
         />
-        <link rel="icon" href="/logo-icon.svg" />
+        <link rel="icon" href="/android-chrome-512x512.png" />
       </Head>
 
       {/* <HomeNavbar /> */}
       <main id="main">
         <HeroSection />
-        <AboutUs />
-        <Mission />
-        <Tokenomics />
-        <Roadmap />
-        <HowToBuy />
-        <ContractAddress />
+        <AboutUs />       
       </main>
-      <Footer />
+  
     </div>
   );
 };

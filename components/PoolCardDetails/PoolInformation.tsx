@@ -40,43 +40,36 @@ export default function PoolInformation({ pool }: any) {
           <p className={styles.value}>{pool?.tokenDistribution}</p>
         </div>
         <div className="">
-          <h2 className={styles.detailsTitle}>Minimum Allocation</h2>
+          <h2 className={styles.detailsTitle}>Maximum/Minimum Allocation</h2>
           <p className={styles.value}>
             {/* {convertweiToEthers(tierDetails.minUserCap, 18)} */}
-            {pool?.minimumPurchase}
+            {pool?.maximumPurchase}/ {pool?.minimumPurchase}
           </p>
         </div>
-        <div className="">
-          <h2 className={styles.detailsTitle}>Maximum Allocation</h2>
-          <p className={styles.value}>
-            {/* {convertweiToEthers(tierDetails.maxUserCap, 18)} */}
-            {pool?.maximumPurchase}
-          </p>
-        </div>
-        <div className="">
+        {/* <div className="">
           <h2 className={styles.detailsTitle}>Token Price</h2>
           <p className={styles.value}>{pool?.tokenPrice}</p>
-        </div>
-        <div className="">
+        </div> */}
+        {/* <div className="">
           <h2 className={styles.detailsTitle}>Whitelist Price</h2>
           <p className={styles.value}>{pool?.WhitelistPrice}</p>
-        </div>
-        <div className="">
+        </div> */}
+        {/* <div className="">
           <h2 className={styles.detailsTitle}>Public Sale Price</h2>
           <p className={styles.value}>{pool?.PublicSalePrice}</p>
-        </div>
-        <div className="">
+        </div> */}
+        {/* <div className="">
           <h2 className={styles.detailsTitle}>PreSale Start</h2>
           <p className={styles.value}>{convertDate(pool?.PresaleStart)}</p>
-        </div>
-        <div className="">
+        </div> */}
+        {/* <div className="">
           <h2 className={styles.detailsTitle}>PreSale End</h2>
           <p className={styles.value}>{convertDate(pool?.PresaleEnd)}</p>
-        </div>
-        <div className={styles.access}>
+        </div> */}
+        {/* <div className={styles.access}>
           <h2 className={styles.detailsTitle}>Access</h2>
           <p className={styles.value}>{pool?.access}</p>
-        </div>
+        </div> */}
       </div>
     </div>
   );
